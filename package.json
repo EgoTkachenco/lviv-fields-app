@@ -9,11 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "mobx": "^6.6.1",
+    "mobx-react-lite": "^3.4.0",
     "next": "12.2.5",
+    "next-svgr": "^0.0.2",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-svg-pan-zoom": "^3.11.0",
+    "styled-components": "^5.3.5"
   },
   "devDependencies": {
+    "babel-plugin-styled-components": "^2.0.7",
     "eslint": "8.23.0",
     "eslint-config-next": "12.2.5"
   }

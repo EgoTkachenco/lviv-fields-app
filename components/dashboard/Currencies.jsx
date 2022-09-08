@@ -1,0 +1,115 @@
+import styled from 'styled-components'
+import Image from 'next/image'
+import { Box } from '../common'
+
+const Currencies = ({ usd, eur, bitcoin }) => {
+  return (
+    <Wrapper gap="30px 40px">
+      <CurrencyBlock
+        name="Долар"
+        currency="USD"
+        value="12 000"
+        icon="/icons/dollar.svg"
+      />
+
+      <CurrencyBlock
+        name="Євро"
+        currency="EUR"
+        value="15 000"
+        icon="/icons/euro.svg"
+      />
+
+      <CurrencyBlock
+        name="Біткоїн"
+        currency="btc"
+        value="2 000"
+        icon="/icons/bitcoin.svg"
+      />
+    </Wrapper>
+  )
+}
+
+export default Currencies
+
+const Wrapper = styled(Box)`
+  @media (max-width: 1200px) {
+    flex-wrap: wrap;
+  }
+`
+
+const CurrencyBlock = ({ name, currency, value, icon }) => (
+  <CurrencyCard>
+    <CurrencyCardIcon>
+      <Image width="48" height="48" src={icon} alt={name} />
+    </CurrencyCardIcon>
+    <CurrencyCardName>{name}</CurrencyCardName>
+    <Box align="baseline">
+      <CurrencyCardValue>{value}</CurrencyCardValue>
+      <CurrencyCardCurrency>{currency}</CurrencyCardCurrency>
+    </Box>
+  </CurrencyCard>
+)
+
+const CurrencyCard = styled.div`
+  background: #ffffff;
+  box-shadow: 0px 20px 40px rgba(197, 206, 231, 0.25);
+  border-radius: 30px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 89px;
+  position: relative;
+  overflow: hidden;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 14px;
+    right: -20px;
+    background: url('/icons/back.svg');
+    width: 210px;
+    height: 100%;
+    object-fit: fill;
+    z-index: 0;
+  }
+`
+const CurrencyCardIcon = styled.div`
+  background: radial-gradient(
+    67.22% 67.22% at 87.17% 17.38%,
+    #e69ef7 0%,
+    #44c3f6 52.6%,
+    #776aeb 100%
+  );
+  opacity: 0.8;
+  border-radius: 30px 0px 0px 30px;
+  height: 89px;
+  width: 89px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+const CurrencyCardName = styled.div`
+  margin: 0 auto 0 32px;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 29px;
+  color: #464f60;
+  position: relative;
+`
+const CurrencyCardValue = styled.div`
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 43px;
+  color: #464f60;
+  margin-right: 10px;
+  position: relative;
+`
+const CurrencyCardCurrency = styled.div`
+  margin-right: 40px;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  color: #94a5d0;
+  text-transform: uppercase;
+  position: relative;
+`
