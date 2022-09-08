@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Card, H4, Text, Spacer, Button, Input } from '../common'
-import Link from 'next/Link'
+import Link from 'next/link'
 import { AuthCard, ButtonText } from './elements'
 
 export default function LoginForm() {
