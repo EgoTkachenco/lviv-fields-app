@@ -7,8 +7,8 @@ const CardWrapper = styled.div`
 
   padding: 40px;
 
-  @media (max-width: 1750px) {
+  /* @media (max-width: 1750px) {
     padding: 30px;
-  }
+  } */
 `
 export default CardWrapper

@@ -63,7 +63,7 @@ const Filter = () => {
           </Box>
           <Spacer vertical size="30px" />
           <Button type="accent">застосувати</Button>
-          <Spacer vertical size="16px" />
+          <Spacer vertical size-sm="16px" />
           <Button type="text">скинути</Button>
         </FilterInner>
       </FilterCard>

@@ -1,80 +1,28 @@
 import { useRef, useState, useEffect } from 'react'
 import styled from 'styled-components'
+import ScrollContainer from 'react-indiana-drag-scroll'
 
-export default function Viewer({ children }) {
-  const ref = useRef()
-  useEffect(() => {
-    if (ref.current) {
-      const w = ref.current.offsetWidth
-      const h = ref.current.offsetHeight
-      setState({ ...state, width: w, height: h })
-    }
-  }, [ref])
+export default function Viewer({ children, small }) {
   const [state, setState] = useState({
-    isGrab: false,
-    x_s: null,
-    y_s: null,
-    x: 0,
-    y: 0,
     width: 0,
     height: 0,
     scroll: 1,
-    scroll_text: [],
   })
-  const handleStartGrab = (e) => {
-    setState({
-      ...state,
-      isGrab: true,
-      x_s: e.pageX - state.x,
-      y_s: e.pageY - state.y,
-      x_s: e.pageX,
-      y_s: e.pageY,
-    })
-  }
-  const handleEndGrab = (e) => setState({ ...state, isGrab: false })
-  const handleGrab = (e) => {
-    if (state.isGrab) {
-      const x = e.pageX - state.x_s
-      const y = e.pageY - state.y_s
-      setState({ ...state, isGrab: true, x, y })
-    }
-  }
   const handleScroll = (e) => {
     const isZoomIn = e.deltaY < 0
-    if (isZoomIn && state.scroll < 5)
+    if (isZoomIn && state.scroll < 3)
       setState({ ...state, scroll: state.scroll + 0.25 })
 
-    if (!isZoomIn && state.scroll > 0.5)
+    if (!isZoomIn && state.scroll > 1)
       setState({ ...state, scroll: state.scroll - 0.25 })
   }
   return (
-    <ViewerWrapper
-      ref={ref}
-      onMouseDown={handleStartGrab}
-      onMouseMove={handleGrab}
-      onMouseUp={handleEndGrab}
-      // onWheel={handleScroll}
-      state={state}
+    <ScrollContainer
+      className={`map-viewer-scroll-container ${small ? 'small' : ''}`}
     >
-      {state.scroll_text}
-      <div
-        style={{
-          transition: 'all 50ms',
-          position: 'absolute',
-
-          left: state.scroll * state.x,
-          top: state.scroll * state.y,
-
-          minHeight: state.scroll * state.height + 'px',
-          minWidth: state.scroll * state.width + 'px',
-          maxHeight: state.scroll * state.height + 'px',
-          maxWidth: state.scroll * state.width + 'px',
-          height: state.scroll * state.height + 'px',
-          width: state.scroll * state.width + 'px',
-        }}
-      >
+      <ViewerWrapper height={state.scroll * 100 + '%'} onWheel={handleScroll}>
         {children}
-      </div>
+      </ViewerWrapper>
       <Zoom>
         <ZoomBtn onClick={() => handleScroll({ deltaY: -1 })}>
           <span />
@@ -84,42 +32,20 @@ export default function Viewer({ children }) {
           <span />
         </ZoomBtn>
       </Zoom>
-    </ViewerWrapper>
+    </ScrollContainer>
   )
 }
 
 const ViewerWrapper = styled.div`
-  max-width: 100%;
-  max-height: 100%;
-  width: 100%;
-  overflow: hidden;
-  cursor: pointer;
-  position: relative;
-
-  max-width: ${(props) =>
-    props.state.width ? props.state.width + 'px' : '100%'};
-  max-height: ${(props) =>
-    props.state.height ? props.state.height + 'px' : '100%'};
-  min-width: ${(props) =>
-    props.state.width ? props.state.width + 'px' : '100%'};
-  min-height: ${(props) =>
-    props.state.height ? props.state.height + 'px' : '100%'};
-
-  @media (max-width: 1200px) {
-    min-height: 500px;
-    max-height: 500px;
-  }
-
-  @media (max-width: 800px) {
-    min-height: 320px;
-    max-height: 320px;
-  }
+  height: ${(props) => props.height};
+  /* width: ${(props) => props.width}; */
 
   svg {
     height: 100%;
   }
 
   path {
+    cursor: pointer;
     transition: all 0.3s;
   }
 `

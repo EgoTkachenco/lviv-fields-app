@@ -19,7 +19,7 @@ import Field12 from './fields/Field12'
 
 export default function Map({ area, field, onOpenArea, onOpenField, onClose }) {
   return (
-    <MapCard small={!!field}>
+    <MapCard>
       {area ? (
         <AreaMap
           area={area}
@@ -40,10 +40,12 @@ const MapCard = styled(Card)`
   justify-content: center;
   align-items: center;
   flex-grow: 1;
-  max-height: ${(props) => (props.small ? '528px' : 'unset')};
+  padding: 20px;
+
   svg {
     position: relative;
-    /* max-height: 1080px; */
+    margin: auto;
+    display: block;
 
     & > g {
       position: relative;
@@ -53,18 +55,9 @@ const MapCard = styled(Card)`
       cursor: pointer;
     }
   }
-  @media (max-width: 1200px) {
-    min-height: 500px;
-    max-height: 500px;
-  }
-
-  @media (max-width: 800px) {
-    min-height: 320px;
-    max-height: 320px;
-  }
 `
 
-function AreaMap({ area, onOpen, field, onClose }) {
+export function AreaMap({ area, onOpen, field, onClose }) {
   const ref = useRef()
   useMapFieldsHandlers(ref, (e) => onOpen(e.currentTarget.id), field)
   const renderField = () => {
@@ -98,10 +91,10 @@ function AreaMap({ area, onOpen, field, onClose }) {
     }
   }
 
-  return <Viewer>{renderField()}</Viewer>
+  return <Viewer small={!!field}>{renderField()}</Viewer>
 }
 
-function AllMap({ onOpen }) {
+export function AllMap({ onOpen }) {
   const ref = useRef()
   useMapAreaHandlers(ref, (e) => onOpen(e.currentTarget.id))
   return (

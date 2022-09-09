@@ -1,9 +1,5 @@
-// import FieldsMap from './Map'
-// import AreaMap from './AreaMap'
 import styled from 'styled-components'
 import Filter from './Filter'
-// import { useState } from 'react'
-import { Card } from '../common'
 import { observer } from 'mobx-react-lite'
 import store from '../../store/map-store'
 import FieldDetails from './FieldDetails'
@@ -55,6 +51,7 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  max-height: 100%;
 `
 const Side = styled.div`
   max-width: 550px;
