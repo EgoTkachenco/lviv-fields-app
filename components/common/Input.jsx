@@ -45,9 +45,13 @@ const InputField = styled.input`
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
-  color: #464f60;
+
   transition: all 0.3s;
   background: #ffffff;
+
+  &:first-child {
+    color: #464f60 !important;
+  }
 
   &::placeholder {
     color: #bbc0cd;

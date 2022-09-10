@@ -34,6 +34,7 @@ const Content = styled.div`
 
 const Avatar = styled.div`
   width: 48px;
+  min-width: 48px;
   height: 48px;
   background: #9aacbc;
   font-weight: 600;

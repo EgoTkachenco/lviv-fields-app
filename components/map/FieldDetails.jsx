@@ -28,11 +28,15 @@ const FieldDetails = () => {
         <H5>Інформація про насадження:</H5>
         <Spacer vertical size="20px" />
         <Box gap="4px 4px" wrap>
-          <Label type="header">Сорт</Label>
-          <Label type="header">Кількість насаджень</Label>
-          <Label>Ред Джонапринца</Label>
+          <Label type="header" title="Сорт">
+            Сорт
+          </Label>
+          <Label type="header" title="Кількість насаджень">
+            Кількість насаджень
+          </Label>
+          <Label title="Ред Джонапринца">Ред Джонапринца</Label>
           <Label>278</Label>
-          <Label>Гала</Label>
+          <Label title="Гала">Гала</Label>
           <Label>156</Label>
         </Box>
       </Card>
@@ -51,6 +55,9 @@ const Label = styled(Card)`
   font-size: 16px;
   line-height: 19px;
   color: #464f60;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 
   @media (max-width: 800px) {
     font-size: 12px;

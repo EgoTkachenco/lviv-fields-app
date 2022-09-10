@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import Image from 'next/image'
-import { Box } from '../common'
+import { Box, Spacer } from '../common'
 
 const Currencies = ({ usd, eur, bitcoin }) => {
   return (
@@ -95,6 +95,12 @@ const CurrencyCardName = styled.div`
   line-height: 29px;
   color: #464f60;
   position: relative;
+
+  @media (max-width: 600px) {
+    font-size: 18px;
+    line-height: 150%;
+    margin: 0 auto 0 16px;
+  }
 `
 const CurrencyCardValue = styled.div`
   font-weight: 700;
@@ -103,6 +109,13 @@ const CurrencyCardValue = styled.div`
   color: #464f60;
   margin-right: 10px;
   position: relative;
+  margin-left: 16px;
+
+  @media (max-width: 600px) {
+    font-size: 24px;
+    margin-left: 12px;
+    line-height: 150%;
+  }
 `
 const CurrencyCardCurrency = styled.div`
   margin-right: 40px;
@@ -112,4 +125,10 @@ const CurrencyCardCurrency = styled.div`
   color: #94a5d0;
   text-transform: uppercase;
   position: relative;
+
+  @media (max-width: 600px) {
+    font-size: 16px;
+    line-height: 150%;
+    margin-right: 16px;
+  }
 `

@@ -25,16 +25,17 @@ const Table = ({ model, data, sizes }) => {
 
 const TableWrapper = styled.table`
   border-radius: 20px;
-  overflow: hidden;
-  max-width: 100%;
   border-collapse: collapse;
 `
 const TableContent = styled.tbody`
-  max-height: 300px;
   display: block;
-  max-width: 100%;
   overflow-y: auto;
   overflow-x: hidden;
+  max-height: calc(100vh - 225px);
+
+  @media (max-width: 768px) {
+    max-height: calc(100vh - 201px);
+  }
 `
 const TableRow = styled.tr`
   border-bottom: 1px solid #e9edf5;

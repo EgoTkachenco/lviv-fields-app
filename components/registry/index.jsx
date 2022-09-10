@@ -17,7 +17,7 @@ const Registry = () => {
 export default Registry
 
 const Wrapper = styled.div`
-  max-width: calc(100vw - 40px);
+  /* max-width: calc(100vh - 40px); */
   overflow: auto;
 `
 const Search = styled.div`

@@ -22,9 +22,11 @@ const AreaDetails = () => {
         <Column gap="4px">
           <Text>Площа насаджень сорту: </Text>
           <Text color="grey">13 гектарів</Text>
-          <Text>(</Text>
-          <Text color="primary">оберіть сорт</Text>
-          <Text>)</Text>
+          <Box>
+            <Text color="grey">(</Text>
+            <Text color="primary">оберіть сорт</Text>
+            <Text color="grey">)</Text>
+          </Box>
         </Column>
       </Box>
     </Card>

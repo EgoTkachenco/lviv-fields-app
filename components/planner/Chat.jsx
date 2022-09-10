@@ -116,7 +116,7 @@ const Chat = () => {
     <Wrapper>
       <Header align="center" justify="space-between">
         <H5>Тема: {chat.title}</H5>
-        <Box gap="16px">
+        <Box gap="16px" wrap="true">
           <Button width="auto" type="primary-outline">
             <Icon icon="user-plus" />
             запросити до чату
@@ -153,6 +153,12 @@ const Chat = () => {
           </InputSlot>
         }
       />
+      <ModileInputSlot>
+        <Icon icon="attachment" />
+        <Icon icon="sobaka" />
+        <Icon icon="emoji" />
+        <Icon icon="text" />
+      </ModileInputSlot>
     </Wrapper>
   )
 }
@@ -168,6 +174,10 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   max-height: 100%;
+
+  @media (max-width: 768px) {
+    padding: 30px;
+  }
 `
 
 const Header = styled(Box)`
@@ -175,6 +185,9 @@ const Header = styled(Box)`
   border-bottom: 1px solid #dce0ec;
   gap: 20px 20px;
   flex-wrap: wrap;
+  @media (max-width: 768px) {
+    padding-bottom: 20px;
+  }
 `
 const Content = styled.div`
   display: flex;
@@ -189,6 +202,26 @@ const InputSlot = styled.div`
   display: flex;
   align-items: center;
   gap: 16px;
+  @media (max-width: 768px) {
+    & > * {
+      display: none;
+    }
+    & > :last-child {
+      display: block;
+    }
+  }
+`
+const ModileInputSlot = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  display: none;
+  padding: 0 16px;
+
+  @media (max-width: 768px) {
+    margin-top: 20px;
+    display: flex;
+  }
 `
 
 const InputSlotDelimiter = styled.div`
