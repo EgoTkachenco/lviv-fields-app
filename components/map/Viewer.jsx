@@ -18,7 +18,7 @@ export default function Viewer({ children, small }) {
   }
   return (
     <ScrollContainer
-      nativeMobileScroll={true}
+      nativeMobileScroll={false}
       className={`map-viewer-scroll-container ${small ? 'small' : ''}`}
     >
       <ViewerWrapper height={state.scroll * 100 + '%'} onWheel={handleScroll}>
