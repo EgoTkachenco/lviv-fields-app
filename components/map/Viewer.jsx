@@ -48,6 +48,8 @@ const ViewerWrapper = styled.div`
     cursor: pointer;
     transition: all 0.3s;
   }
+
+  max-width: 100%;
 `
 
 const Zoom = styled.div`

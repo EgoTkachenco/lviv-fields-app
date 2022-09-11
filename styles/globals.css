@@ -46,14 +46,13 @@ p {
 }
 .map-viewer-scroll-container.small {
   max-height: 488px;
+  height: 488px;
   min-height: 488px;
 }
-/* .map-viewer-scroll-container::-webkit-scrollbar {
-  display: none;
-} */
 @media (max-width: 1200px) {
   .map-viewer-scroll-container {
     min-height: 500px;
+    height: 500px;
     max-height: 500px;
   }
 }
@@ -61,6 +60,7 @@ p {
 @media (max-width: 800px) {
   .map-viewer-scroll-container {
     min-height: 320px;
+    height: 320px;
     max-height: 320px;
   }
 }
