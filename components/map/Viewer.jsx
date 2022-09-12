@@ -2,7 +2,6 @@ import { useRef, useState, useEffect } from 'react'
 import styled from 'styled-components'
 import ScrollContainer from 'react-indiana-drag-scroll'
 import { usePinch } from '@use-gesture/react'
-import _ from 'lodash'
 
 export default function Viewer({ children, small }) {
   const [state, setState] = useState({
