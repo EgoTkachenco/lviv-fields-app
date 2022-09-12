@@ -10,17 +10,18 @@ export default function Viewer({ children, small }) {
     height: 0,
     scroll: 1,
   })
-  const bind = usePinch(({ delta, direction }) => {
-    alert('pinch', direction || 'none', delta || 'none')
-  })
-  const handleScroll = _.debounce((e) => {
+  const handlePinch = _.debounce((event) => {
+    alert('pinch', JSON.stringify(event))
+  }, 100)
+  const bind = usePinch(handlePinch)
+  const handleScroll = (e) => {
     const isZoomIn = e.deltaY < 0
     if (isZoomIn && state.scroll < 3)
       setState({ ...state, scroll: state.scroll + 0.25 })
 
     if (!isZoomIn && state.scroll > 1)
       setState({ ...state, scroll: state.scroll - 0.25 })
-  }, 100)
+  }
   return (
     <ScrollContainer
       nativeMobileScroll={false}
