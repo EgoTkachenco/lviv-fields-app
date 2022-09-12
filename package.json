@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@use-gesture/react": "^10.2.19",
     "mobx": "^6.6.1",
     "mobx-react-lite": "^3.4.0",
     "next": "12.2.5",
