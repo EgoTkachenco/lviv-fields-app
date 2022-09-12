@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from 'react'
 import styled from 'styled-components'
 import ScrollContainer from 'react-indiana-drag-scroll'
 import { usePinch } from '@use-gesture/react'
+import _ from 'lodash'
 
 export default function Viewer({ children, small }) {
   const [state, setState] = useState({
@@ -9,17 +10,17 @@ export default function Viewer({ children, small }) {
     height: 0,
     scroll: 1,
   })
-  const bind = usePinch(({ delta }) => {
-    alert('pinch', delta)
+  const bind = usePinch(({ delta, direction }) => {
+    alert('pinch', direction || 'none', delta || 'none')
   })
-  const handleScroll = (e) => {
+  const handleScroll = _.debounce((e) => {
     const isZoomIn = e.deltaY < 0
     if (isZoomIn && state.scroll < 3)
       setState({ ...state, scroll: state.scroll + 0.25 })
 
     if (!isZoomIn && state.scroll > 1)
       setState({ ...state, scroll: state.scroll - 0.25 })
-  }
+  }, 100)
   return (
     <ScrollContainer
       nativeMobileScroll={false}
