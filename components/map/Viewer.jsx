@@ -2,15 +2,15 @@ import { useRef, useState, useEffect } from 'react'
 import styled from 'styled-components'
 import ScrollContainer from 'react-indiana-drag-scroll'
 import { usePinch } from '@use-gesture/react'
-
+import _ from 'lodash'
 export default function Viewer({ children, small }) {
   const [state, setState] = useState({
     width: 0,
     height: 0,
     scroll: 1,
   })
-  const handlePinch = (event) => {
-    alert('pinch', JSON.stringify(event))
+  const handlePinch = ({ movement }) => {
+    handleScroll({ deltaY: movement[1] < 0 ? 1 : -1 })
   }
   const bind = usePinch(handlePinch)
   const handleScroll = (e) => {
