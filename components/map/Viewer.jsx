@@ -14,14 +14,14 @@ export default function Viewer({ children, small }) {
     alert('pinch', JSON.stringify(event))
   }
   const bind = usePinch(handlePinch)
-  const handleScroll = _.debounce((e) => {
+  const handleScroll = (e) => {
     const isZoomIn = e.deltaY < 0
     if (isZoomIn && state.scroll < 3)
       setState({ ...state, scroll: state.scroll + 0.25 })
 
     if (!isZoomIn && state.scroll > 1)
       setState({ ...state, scroll: state.scroll - 0.25 })
-  }, 100)
+  }
   return (
     <ScrollContainer
       nativeMobileScroll={false}
