@@ -7,6 +7,7 @@ import OwnerDetails from './OwnerDetails'
 import ContractDetails from './ContractDetails'
 import AreaDetails from './AreaDetails'
 import Map from './Map'
+import BackLink from './BackLink'
 
 const MapPage = observer(() => {
   const { area, field, details } = store
@@ -32,6 +33,8 @@ const MapPage = observer(() => {
           <ContractDetails />
         </Bottom>
       )}
+
+      {area && <BackLink action={() => store.closeField()} />}
     </>
   )
 })

@@ -42,9 +42,9 @@ const Column = styled(Box)`
   @media (max-width: 1200px) {
     width: calc(50% - 16px);
     min-width: unset;
+    flex-wrap: wrap;
   }
   @media (max-width: 800px) {
     width: 100%;
-    flex-wrap: wrap;
   }
 `

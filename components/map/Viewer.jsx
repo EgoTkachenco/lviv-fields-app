@@ -3,7 +3,10 @@ import styled from 'styled-components'
 import ScrollContainer from 'react-indiana-drag-scroll'
 import { usePinch } from '@use-gesture/react'
 import _ from 'lodash'
+import { useNoBodyScroll } from '../../hooks'
 export default function Viewer({ children, small }) {
+  const [focus, setFocus] = useState(false)
+  useNoBodyScroll(focus)
   const [state, setState] = useState({
     width: 0,
     height: 0,
@@ -21,6 +24,7 @@ export default function Viewer({ children, small }) {
     if (!isZoomIn && state.scroll > 1)
       setState({ ...state, scroll: state.scroll - 0.25 })
   }
+
   return (
     <ScrollContainer
       nativeMobileScroll={false}
@@ -28,6 +32,8 @@ export default function Viewer({ children, small }) {
     >
       <ViewerWrapper
         {...bind()}
+        onMouseEnter={() => setFocus(true)}
+        onMouseLeave={() => setFocus(false)}
         height={state.scroll * 100 + '%'}
         onWheel={handleScroll}
       >

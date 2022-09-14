@@ -1,9 +1,12 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Card, H5, Spacer, Box, Input, Checkbox, Button, Icon } from '../common'
+import { useNoBodyScroll } from '../../hooks'
 
 const Filter = () => {
   const [open, setOpen] = useState(false)
+  useNoBodyScroll(open)
+
   return (
     <>
       <FilterButton type="success" onClick={() => setOpen(!open)}>
@@ -86,7 +89,7 @@ const FilterCard = styled(Card)`
     background: #2e3548;
     border-radius: 0;
     max-height: 100vh;
-    padding: 60px 30px;
+    padding: 60px 30px 80px;
     overflow: auto;
 
     * {

@@ -40,7 +40,7 @@ const MapCard = styled(Card)`
   justify-content: center;
   align-items: center;
   flex-grow: 1;
-  padding: 0;
+  padding: 32px;
 
   svg {
     position: relative;

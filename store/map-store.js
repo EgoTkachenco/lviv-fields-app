@@ -19,6 +19,7 @@ class Store {
   closeField() {
     this.area = null
     this.field = null
+    this.details = null
   }
 }
 

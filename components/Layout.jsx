@@ -68,6 +68,6 @@ const DashboardContent = styled.div`
   flex-grow: 1;
 
   @media (max-width: 600px) {
-    padding: 20px;
+    padding: 20px 20px 80px;
   }
 `

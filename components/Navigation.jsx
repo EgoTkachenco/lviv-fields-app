@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { Spacer, Box, Icon } from './common'
 import { useState } from 'react'
+import { useNoBodyScroll } from '../hooks'
 
 const Navigation = () => {
   const [open, setOpen] = useState(false)
@@ -12,6 +13,7 @@ const Navigation = () => {
     { name: 'Реєстр орендодавців', path: '/registry' },
     { name: 'Планер', path: '/planner' },
   ]
+  useNoBodyScroll(open)
   return (
     <Wrapper>
       <Link href="/">

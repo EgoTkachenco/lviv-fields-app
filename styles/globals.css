@@ -2,7 +2,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: 'Lato';
+  font-family: 'Lato', sans-serif;
   min-width: 350px;
 }
 * {
@@ -11,7 +11,7 @@ body {
 }
 *::-webkit-scrollbar {
   width: 3px;
-  height: 3px;
+  height: 12px;
 }
 
 *::-webkit-scrollbar-track {
@@ -22,6 +22,12 @@ body {
 *::-webkit-scrollbar-thumb {
   background-color: #407cff;
   border-radius: 30px;
+}
+
+button,
+input,
+a {
+  font-family: 'Lato', sans-serif;
 }
 
 a {

@@ -197,6 +197,7 @@ const Content = styled.div`
   gap: 20px;
   padding: 20px 0;
   max-height: calc(100vh - 364px);
+  min-height: 300px;
 `
 const InputSlot = styled.div`
   display: flex;

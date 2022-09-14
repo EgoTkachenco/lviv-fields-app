@@ -80,7 +80,6 @@ export const useMapFieldsHandlers = (ref, onOpen, field) =>
 
     return () => {
       if (!ref.current) return
-      debugger
       const childrens = ref.current.children[0].children
       for (let i = 0; i < childrens.length; i++) {
         const element = childrens[i]
