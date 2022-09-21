@@ -57,11 +57,13 @@ const Content = styled.div`
   max-height: 100%;
 `
 const Side = styled.div`
+  min-width: 550px;
   max-width: 550px;
   /* width: 29.5%; */
 
   @media (max-width: 1200px) {
     max-width: 100%;
+    min-width: unset;
   }
 `
 const Bottom = styled.div`

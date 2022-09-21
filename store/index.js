@@ -1,7 +1,7 @@
 import Map from './map-store'
-import Auth from './map-store'
+import Auth from './auth-store'
 
-export default {
+module.exports = {
   Map,
   Auth,
 }

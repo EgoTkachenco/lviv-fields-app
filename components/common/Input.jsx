@@ -18,7 +18,7 @@ export default function Input({
         id={id}
         name={name}
         value={value}
-        onChange={onChange}
+        onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         size={size}
         type={type}
@@ -27,12 +27,14 @@ export default function Input({
       <InputFieldRightSlot>{rightSlot}</InputFieldRightSlot>
 
       {tip && <InputTip>{tip}</InputTip>}
+      <InputError show={!!error}>{error}</InputError>
     </Wrapper>
   )
 }
 
 const Wrapper = styled.div`
   position: relative;
+  padding-bottom: 16px;
 `
 
 const InputField = styled.input`
@@ -79,4 +81,14 @@ const InputFieldRightSlot = styled.div`
   right: 20px;
   top: 50%;
   transform: translateY(-50%);
+`
+
+const InputError = styled.div`
+  font-size: 12px;
+  left: 20px;
+  color: red;
+  position: absolute;
+  bottom: ${({ show }) => (show ? '0' : '16px')};
+  opacity: (${({ show }) => (show ? '1' : '0')});
+  transition: all 0.3s;
 `

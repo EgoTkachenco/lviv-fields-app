@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import { Box } from '../common'
-import Image from 'next/image'
 import { useRouter } from 'next/router'
 
 const Links = () => {

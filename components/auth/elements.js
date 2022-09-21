@@ -1,11 +1,17 @@
 import styled from 'styled-components'
-import { Card, Text } from '../common'
+import { Text } from '../common'
 
-export const AuthCard = styled(Card)`
+export const AuthCard = styled.form`
+  background: #ffffff;
+  box-shadow: 0px 20px 40px rgba(197, 206, 231, 0.25);
+  border-radius: 30px;
   max-width: 549px;
   width: 100%;
   padding: 40px;
 
+  @media (max-width: 768px) {
+    padding: 30px;
+  }
   @media (max-width: 500px) {
     padding: 30px 24px;
   }

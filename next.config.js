@@ -1,6 +1,7 @@
 const nextConfig = {
   reactStrictMode: true,
-  optimizeFonts: false,
+  // optimizeFonts: false,
+  // images: { unoptimized: false },
 }
 
 module.exports = nextConfig

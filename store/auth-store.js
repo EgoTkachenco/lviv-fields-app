@@ -1,8 +1,62 @@
 import { makeAutoObservable } from 'mobx'
+import { AUTH_API } from './help/api'
+import { setToken } from './help/axios'
+import { TOKEN_NAME, USER_STORE_NAME } from './help/constants'
 
 class Store {
+  user = undefined
+
   constructor() {
     makeAutoObservable(this)
+  }
+
+  async signIn(identifier, password) {
+    try {
+      const { jwt, user } = await AUTH_API.login(identifier, password)
+      this.user = user
+      setToken(jwt)
+      localStorage.setItem(USER_STORE_NAME, JSON.stringify(user))
+      return true
+    } catch (err) {
+      return { key: 'identifier', error: 'Пошта або пароль не вірні' }
+    }
+  }
+
+  async signUp(username, email, password) {
+    try {
+      await AUTH_API.register(username, email, password)
+      return true
+    } catch (err) {
+      const error_key = err.response.data?.message[0]?.messages[0]?.id || null
+      console.log(error_key)
+      if (error_key === 'Auth.form.error.email.taken')
+        return { key: 'email', error: 'Пошта зайнята' }
+
+      return { key: 'username', error: 'error' }
+    }
+  }
+
+  async forgotPassword(email) {
+    await AUTH_API.forgetPassword(email)
+  }
+
+  async resetPassword(code, password, confirmPassword) {
+    if (!code) return Promise.reject('Invalid code')
+    if (password !== confirmPassword)
+      return Promise.reject("Password's do not match")
+    await AUTH_API.resetPassword(password, code)
+  }
+
+  logout() {
+    this.user = null
+    localStorage.removeItem(TOKEN_NAME)
+    localStorage.removeItem(USER_STORE_NAME)
+  }
+
+  relog() {
+    const user = localStorage.getItem(USER_STORE_NAME)
+    this.user = user ? JSON.parse(user) : null
+    return !!this.user
   }
 }
 

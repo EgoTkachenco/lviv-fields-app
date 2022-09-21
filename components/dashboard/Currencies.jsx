@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import Image from 'next/image'
 import { Box, Spacer } from '../common'
 
 const Currencies = ({ usd, eur, bitcoin }) => {
@@ -40,7 +39,7 @@ const Wrapper = styled(Box)`
 const CurrencyBlock = ({ name, currency, value, icon }) => (
   <CurrencyCard>
     <CurrencyCardIcon>
-      <Image width="48" height="48" src={icon} alt={name} />
+      <CurrencyCardImage src={icon} alt={name} />
     </CurrencyCardIcon>
     <CurrencyCardName>{name}</CurrencyCardName>
     <Box align="baseline">
@@ -72,6 +71,10 @@ const CurrencyCard = styled.div`
     object-fit: fill;
     z-index: 0;
   }
+`
+const CurrencyCardImage = styled.img`
+  width: 48px;
+  height: 48px;
 `
 const CurrencyCardIcon = styled.div`
   background: radial-gradient(

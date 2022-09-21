@@ -116,7 +116,7 @@ const AccentButton = styled(ButtonCore)`
     );
   }
 `
-const types = {
+const variants = {
   primary: PrimaryButton,
   'primary-outline': PrimaryOutlineButton,
   success: SuccessButton,
@@ -125,14 +125,18 @@ const types = {
   white: WhiteButton,
   text: TextButton,
 }
-const getType = (type) => types[type] || TextButton
+const getVariant = (variant) => variants[variant] || TextButton
 
 const Button = React.forwardRef(function Button(
-  { type, children, ...props },
+  { variant, children, ...props },
   ref
 ) {
   return (
-    <ButtonCore as={getType(type)} {...props}>
+    <ButtonCore
+      as={getVariant(variant)}
+      {...props}
+      type={props.type || 'button'}
+    >
       {children}
     </ButtonCore>
   )

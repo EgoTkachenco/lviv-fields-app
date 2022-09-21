@@ -4,12 +4,18 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@mantine/core": "^5.4.0",
+    "@mantine/form": "^5.4.0",
+    "@mantine/hooks": "^5.4.0",
+    "@mantine/modals": "^5.4.0",
     "@use-gesture/react": "^10.2.19",
+    "axios": "^0.27.2",
     "mobx": "^6.6.1",
     "mobx-react-lite": "^3.4.0",
     "next": "12.2.5",
