@@ -1,27 +1,45 @@
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 import styled from 'styled-components'
 import { Box, Spacer } from '../common'
 
 const Currencies = ({ usd, eur, bitcoin }) => {
+  const [state, setState] = useState({ usd: '', eur: '', btc: '' })
+  useEffect(() => {
+    const promises = [
+      axios.get(
+        'https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json'
+      ),
+      axios.get('https://www.blockchain.com/ru/ticker'),
+    ]
+    Promise.all(promises).then((res) => {
+      debugger
+      const usd = res[0].data.find((el) => el.cc === 'USD').rate.toFixed(2)
+      const eur = res[0].data.find((el) => el.cc === 'EUR').rate.toFixed(2)
+      const btc = res[1].data['USD'].last.toFixed(2)
+      setState({ usd, eur, btc })
+    })
+  }, [])
   return (
     <Wrapper gap="30px 40px">
       <CurrencyBlock
         name="Долар"
         currency="USD"
-        value="12 000"
+        value={state.usd}
         icon="/icons/dollar.svg"
       />
 
       <CurrencyBlock
         name="Євро"
         currency="EUR"
-        value="15 000"
+        value={state.eur}
         icon="/icons/euro.svg"
       />
 
       <CurrencyBlock
         name="Біткоїн"
         currency="btc"
-        value="2 000"
+        value={state.btc}
         icon="/icons/bitcoin.svg"
       />
     </Wrapper>
