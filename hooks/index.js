@@ -75,6 +75,9 @@ export const useForm = (fields = {}) => {
     }
     return true
   }
+  const reset = () => {
+    setState(getInitialState(fields))
+  }
 
-  return { state, onChange, onError, getFieldProps, validate }
+  return { state, onChange, onError, getFieldProps, validate, reset }
 }

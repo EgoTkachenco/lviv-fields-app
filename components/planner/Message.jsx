@@ -1,18 +1,20 @@
 import styled from 'styled-components'
 import { Text, Box } from '../common'
 
-const Message = ({ sender, isOwner, date, message }) => {
-  const avatarText = sender.split(' ').map((text) => text[0].toUpperCase())
+const Message = ({ isOwner, message }) => {
+  const avatarText = message.sender.username
+    .split(' ')
+    .map((text) => text[0].toUpperCase())
   return (
     <Container>
       <Avatar>{avatarText}</Avatar>
 
       <Content>
         <Box gap="6px">
-          <Text weight="600">{sender}</Text>
-          <Text>{date}</Text>
+          <Text weight="600">{message.sender.username}</Text>
+          <Text>{message.create_at}</Text>
         </Box>
-        <Text color="gray">{message}</Text>
+        <Text color="gray">{message.content}</Text>
       </Content>
     </Container>
   )

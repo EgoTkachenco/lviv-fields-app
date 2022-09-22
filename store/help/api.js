@@ -22,7 +22,36 @@ export const AUTH_API = {
 }
 
 export const PLANNER_API = {
-  getTasks: () => axios.get('/tasks', securedFetchOptions()),
+  getTasks: () =>
+    axios.get('/tasks?_limit=-1&status=open', securedFetchOptions()),
 
-  createTask: () => axios.post('/tasks', securedFetchOptions()),
+  createTask: (name) => axios.post('/tasks', { name }, securedFetchOptions()),
+
+  getMessages: (task, page) =>
+    axios.get('/messages', {
+      query: {
+        task: task,
+        _start: page * 20,
+        _limit: 20,
+      },
+      ...securedFetchOptions(),
+    }),
+
+  sendMessage: (task, content, type = 'text') =>
+    axios.post('/messages', { task, content, type }, securedFetchOptions()),
+
+  addMember: (task, user) =>
+    axios.post(
+      `/tasks/${task}/member`,
+      { memberId: user },
+      securedFetchOptions()
+    ),
+
+  deleteMember: (task, user) =>
+    axios.delete(`/tasks/${task}/member/${user}`, securedFetchOptions()),
+}
+
+export const USERS_API = {
+  getUsers: () =>
+    axios.get('/users', { query: { _limit: -1 }, ...securedFetchOptions() }),
 }

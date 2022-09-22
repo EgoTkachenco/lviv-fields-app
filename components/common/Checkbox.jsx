@@ -25,11 +25,12 @@ const Box = styled.div`
   align-items: center;
   justify-content: center;
   margin-right: 8px;
+  cursor: pointer;
 `
 const Value = styled.div`
   width: 14px;
   height: 14px;
-  background: #407cff;
+  background: ${(props) => (props.active ? '#407cff' : 'transparent')};
   border-radius: 4px;
   transition: all 0.3s;
 `

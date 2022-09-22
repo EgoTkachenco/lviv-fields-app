@@ -1,158 +1,72 @@
+import { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import { Box, Input, H5, Button, Spacer, Icon, Modal } from '../common'
 import Message from './Message'
+import MembersModal from './MembersModal'
 
-const Chat = () => {
-  const chat = {
-    title: ' Вирубка дiлянки саду №753564',
-    messages: [
-      {
-        name: 'Редько Дмитро',
-        date: '11:32',
-        message: 'Додав(ла) завдання в “Вирубка дiлянки саду №753564”',
-      },
-      {
-        name: 'Редько Дмитро',
-        date: '11:32',
-        message: 'Додав(ла) завдання в “Вирубка дiлянки саду №753564”',
-      },
-      {
-        name: 'Редько Дмитро',
-        date: '11:32',
-        message: 'Додав(ла) завдання в “Вирубка дiлянки саду №753564”',
-      },
-      {
-        name: 'Редько Дмитро',
-        date: '11:32',
-        message: 'Додав(ла) завдання в “Вирубка дiлянки саду №753564”',
-        isOwner: true,
-      },
-      {
-        name: 'Редько Дмитро',
-        date: '11:32',
-        message: 'Додав(ла) завдання в “Вирубка дiлянки саду №753564”',
-      },
-      {
-        name: 'Редько Дмитро',
-        date: '11:32',
-        message: 'Додав(ла) завдання в “Вирубка дiлянки саду №753564”',
-      },
-      {
-        name: 'Редько Дмитро',
-        date: '11:32',
-        message: 'Додав(ла) завдання в “Вирубка дiлянки саду №753564”',
-      },
-      {
-        name: 'Редько Дмитро',
-        date: '11:32',
-        message: 'Додав(ла) завдання в “Вирубка дiлянки саду №753564”',
-      },
-      {
-        name: 'Редько Дмитро',
-        date: '11:32',
-        message: 'Додав(ла) завдання в “Вирубка дiлянки саду №753564”',
-        isOwner: true,
-      },
-      {
-        name: 'Редько Дмитро',
-        date: '11:32',
-        message: 'Додав(ла) завдання в “Вирубка дiлянки саду №753564”',
-      },
-      {
-        name: 'Редько Дмитро',
-        date: '11:32',
-        message: 'Додав(ла) завдання в “Вирубка дiлянки саду №753564”',
-      },
-      {
-        name: 'Редько Дмитро',
-        date: '11:32',
-        message: 'Додав(ла) завдання в “Вирубка дiлянки саду №753564”',
-      },
-      {
-        name: 'Редько Дмитро',
-        date: '11:32',
-        message: 'Додав(ла) завдання в “Вирубка дiлянки саду №753564”',
-      },
-      {
-        name: 'Редько Дмитро',
-        date: '11:32',
-        message: 'Додав(ла) завдання в “Вирубка дiлянки саду №753564”',
-        isOwner: true,
-      },
-      {
-        name: 'Редько Дмитро',
-        date: '11:32',
-        message: 'Додав(ла) завдання в “Вирубка дiлянки саду №753564”',
-      },
-      {
-        name: 'Редько Дмитро',
-        date: '11:32',
-        message: 'Додав(ла) завдання в “Вирубка дiлянки саду №753564”',
-      },
-      {
-        name: 'Редько Дмитро',
-        date: '11:32',
-        message: 'Додав(ла) завдання в “Вирубка дiлянки саду №753564”',
-      },
-      {
-        name: 'Редько Дмитро',
-        date: '11:32',
-        message: 'Додав(ла) завдання в “Вирубка дiлянки саду №753564”',
-      },
-      {
-        name: 'Редько Дмитро',
-        date: '11:32',
-        message: 'Додав(ла) завдання в “Вирубка дiлянки саду №753564”',
-        isOwner: true,
-      },
-      {
-        name: 'Редько Дмитро',
-        date: '11:32',
-        message: 'Додав(ла) завдання в “Вирубка дiлянки саду №753564”',
-      },
-    ],
+const Chat = ({
+  task,
+  loadMessages,
+  messages,
+  onMemberChange,
+  onNewMessage,
+}) => {
+  const ref = useRef()
+  const [state, setState] = useState({
+    page: 0,
+    message: '',
+  })
+  const onMessageChange = (value) => setState({ ...state, message: value })
+  const sendMessage = (e) => {
+    e.preventDefault()
+    onNewMessage(state.message)
+    setState({ ...state, message: '' })
   }
+  useEffect(() => {
+    ref.scrollTop = '100%'
+  }, [])
+
+  if (!task) return 'No task open'
+
+  const members = task.users.map((u) => u.id)
+  console.log(messages)
+
   return (
     <Wrapper>
       <Header align="center" justify="space-between">
-        <H5>Тема: {chat.title}</H5>
+        <H5>Тема: {task.name}</H5>
         <Box gap="16px" wrap="true">
-          <Button width="auto" type="primary-outline">
-            <Icon icon="user-plus" />
-            запросити до чату
-          </Button>
+          <MembersModal members={members} onMemberChange={onMemberChange} />
           <Button width="auto" type="primary">
             <Icon icon="task-done" />
             завдання виконано
           </Button>
         </Box>
       </Header>
-      <Content>
-        {chat.messages.map((msg, i) => (
-          <Message
-            key={i}
-            message={msg.message}
-            sender={msg.name}
-            date={msg.date}
-            isOwner={msg.isOwner}
-          />
+      <Content ref={ref}>
+        {messages?.map((msg, i) => (
+          <Message key={i} message={msg} isOwner={true} />
         ))}
       </Content>
       <Spacer vertical size="16px" />
-      <Input
-        placeholder="Додати завдання"
-        size="large"
-        rightSlot={
-          <InputSlot>
-            <Icon icon="attachment" />
-            <Icon icon="sobaka" />
-            <Icon icon="emoji" />
-            <Icon icon="text" />
-            <InputSlotDelimiter />
-            <Icon icon="send" />
-          </InputSlot>
-        }
-      />
+      <form onSubmit={sendMessage}>
+        <Input
+          placeholder="Додати завдання"
+          onChange={onMessageChange}
+          value={state.message}
+          size="large"
+          rightSlot={
+            <InputSlot>
+              <Icon icon="attachment" />
+              <Icon icon="sobaka" />
+              <Icon icon="emoji" />
+              <Icon icon="text" />
+              <InputSlotDelimiter />
+              <Icon icon="send" onClick={sendMessage} />
+            </InputSlot>
+          }
+        />
+      </form>
       <ModileInputSlot>
         <Icon icon="attachment" />
         <Icon icon="sobaka" />
