@@ -1,7 +1,16 @@
 import { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { Card, H5, Spacer, Box, Input, Checkbox, Button, Icon } from '../common'
-import { useNoBodyScroll } from '../../hooks'
+import {
+  Card,
+  H5,
+  Spacer,
+  Box,
+  Input,
+  Checkbox,
+  Button,
+  Icon,
+} from '../../common'
+import { useNoBodyScroll } from '../../../hooks'
 
 const Filter = () => {
   const [open, setOpen] = useState(false)
@@ -9,7 +18,7 @@ const Filter = () => {
 
   return (
     <>
-      <FilterButton type="success" onClick={() => setOpen(!open)}>
+      <FilterButton variant="success" onClick={() => setOpen(!open)}>
         Фiльтр
       </FilterButton>
       <FilterCard open={open}>
@@ -65,9 +74,9 @@ const Filter = () => {
             <Input placeholder="10" />
           </Box>
           <Spacer vertical size="30px" />
-          <Button type="accent">застосувати</Button>
+          <Button variant="accent">застосувати</Button>
           <Spacer vertical size-sm="16px" />
-          <Button type="text">скинути</Button>
+          <Button variant="text">скинути</Button>
         </FilterInner>
       </FilterCard>
     </>

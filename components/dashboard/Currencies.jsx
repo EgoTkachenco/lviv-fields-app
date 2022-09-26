@@ -13,7 +13,6 @@ const Currencies = ({ usd, eur, bitcoin }) => {
       axios.get('https://www.blockchain.com/ru/ticker'),
     ]
     Promise.all(promises).then((res) => {
-      debugger
       const usd = res[0].data.find((el) => el.cc === 'USD').rate.toFixed(2)
       const eur = res[0].data.find((el) => el.cc === 'EUR').rate.toFixed(2)
       const btc = res[1].data['USD'].last.toFixed(2)

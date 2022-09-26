@@ -70,3 +70,40 @@ p {
     max-height: 320px;
   }
 }
+
+@keyframes shine {
+  to {
+    background-position-x: -200%;
+  }
+}
+@keyframes borderLoader {
+  50% {
+    border-width: 0px;
+  }
+  50% {
+    border-width: 8px;
+  }
+  100% {
+    border-width: 0px;
+  }
+}
+@keyframes topLoader {
+  0% {
+    left: 0;
+    width: 0;
+  }
+  49% {
+    left: 0;
+    width: 100%;
+    right: 0;
+  }
+  50% {
+    right: 0;
+    left: unset;
+  }
+
+  100% {
+    right: 0;
+    width: 0;
+  }
+}

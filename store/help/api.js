@@ -29,7 +29,7 @@ export const PLANNER_API = {
 
   getMessages: (task, page) =>
     axios.get('/messages', {
-      query: {
+      params: {
         task: task,
         _start: page * 20,
         _limit: 20,

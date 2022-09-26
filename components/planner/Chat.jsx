@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
-import { Box, Input, H5, Button, Spacer, Icon, Modal } from '../common'
+import { Box, Input, H5, Button, Spacer, Icon } from '../common'
 import Message from './Message'
 import MembersModal from './MembersModal'
 
@@ -26,7 +26,12 @@ const Chat = ({
     ref.scrollTop = '100%'
   }, [])
 
-  if (!task) return 'No task open'
+  if (!task)
+    return (
+      <Wrapper>
+        <H5 align="center">Оберіть чат</H5>
+      </Wrapper>
+    )
 
   const members = task.users.map((u) => u.id)
   console.log(messages)

@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import { useMapAreaHandlers, useMapFieldsHandlers } from './utils'
 import Viewer from './Viewer'
 import styled from 'styled-components'
-import { Card } from '../common'
+import { Card } from '../../common'
 
 import Field1 from './fields/Field1'
 import Field2 from './fields/Field2'

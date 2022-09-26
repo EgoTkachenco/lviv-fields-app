@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Card, Text, H5, Spacer, Box, Icon, Button } from '../common'
+import { Card, Text, H5, Spacer, Box, Icon, Button } from '../../common'
 
 const OwnerDetails = () => {
   return (

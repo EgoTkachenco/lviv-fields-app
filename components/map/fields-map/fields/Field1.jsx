@@ -169,15 +169,7 @@ const Field = React.forwardRef((props, ref) => (
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      <path
-        id="path21886"
-        d="M188.497 636.44L165.137 632.44L189.777 576.12L198.097 577.24L188.497 636.44Z"
-        stroke="#464F60"
-        strokeWidth="1.12"
-        strokeMiterlimit="10"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+
       <path
         id="path21902"
         d="M188.497 636.44L165.137 632.44L189.777 576.12L198.097 577.24L188.497 636.44Z"

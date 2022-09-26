@@ -8,6 +8,32 @@ export const AuthCard = styled.form`
   max-width: 549px;
   width: 100%;
   padding: 40px;
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    height: ${(props) => (props.loading ? '4px' : '0')};
+    border-radius: 4px;
+    background: #407cff;
+    animation: 2s topLoader linear infinite;
+    z-index: 100;
+  }
+
+  &::before {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: ${(props) => (props.loading ? '100%' : '0')};
+    background: rgba(255, 255, 255, 0.6);
+    z-index: 100;
+  }
 
   @media (max-width: 768px) {
     padding: 30px;

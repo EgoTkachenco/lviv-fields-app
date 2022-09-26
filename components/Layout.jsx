@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import Navigation from './Navigation'
+import Navigation from './navigation/Navigation'
 
 export default function Layout({ children, type }) {
   const renderContent = () => {

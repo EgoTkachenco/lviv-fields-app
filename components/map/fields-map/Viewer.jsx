@@ -1,9 +1,10 @@
-import { useRef, useState, useEffect } from 'react'
+import { useState } from 'react'
 import styled from 'styled-components'
 import ScrollContainer from 'react-indiana-drag-scroll'
 import { usePinch } from '@use-gesture/react'
 import _ from 'lodash'
-import { useNoBodyScroll } from '../../hooks'
+import { useNoBodyScroll } from '../../../hooks'
+
 export default function Viewer({ children, small }) {
   const [focus, setFocus] = useState(false)
   useNoBodyScroll(focus)

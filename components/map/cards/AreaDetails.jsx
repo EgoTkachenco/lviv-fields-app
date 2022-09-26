@@ -1,9 +1,9 @@
 import styled from 'styled-components'
-import { Card, H5, Box, Spacer, Text } from './common'
+import { Card, Text, H5, Spacer, Box } from '../../common'
 
-const Details = () => {
+const AreaDetails = () => {
   return (
-    <DetailsCard>
+    <Card>
       <H5>Загальна площа земельних ділянок: 5,6704 гектарів</H5>
       <Spacer vertical size="20px" />
       <Box wrap="true" gap="20px 0">
@@ -22,23 +22,29 @@ const Details = () => {
         <Column gap="4px">
           <Text>Площа насаджень сорту: </Text>
           <Text color="grey">13 гектарів</Text>
-          <Text>(</Text>
-          <Text color="primary">оберіть сорт</Text>
-          <Text>)</Text>
+          <Box>
+            <Text color="grey">(</Text>
+            <Text color="primary">оберіть сорт</Text>
+            <Text color="grey">)</Text>
+          </Box>
         </Column>
       </Box>
-    </DetailsCard>
+    </Card>
   )
 }
 
-export default Details
-
-const DetailsCard = styled(Card)`
-  grid-area: details;
-  padding: 40px;
-`
+export default AreaDetails
 
 const Column = styled(Box)`
   min-width: 400px;
   width: 40%;
+
+  @media (max-width: 1200px) {
+    width: calc(50% - 16px);
+    min-width: unset;
+    flex-wrap: wrap;
+  }
+  @media (max-width: 800px) {
+    width: 100%;
+  }
 `

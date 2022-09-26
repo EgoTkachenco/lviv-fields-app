@@ -1,21 +1,36 @@
 import styled from 'styled-components'
-import Filter from './Filter'
 import { observer } from 'mobx-react-lite'
 import store from '../../store/map-store'
-import FieldDetails from './FieldDetails'
-import OwnerDetails from './OwnerDetails'
-import ContractDetails from './ContractDetails'
-import AreaDetails from './AreaDetails'
-import Map from './Map'
+import {
+  Filter,
+  OwnerDetails,
+  ContractDetails,
+  AreaDetails,
+  CommonDetails,
+  PlantationsDetails,
+} from './cards'
+
+import Map from './fields-map/Map'
 import BackLink from './BackLink'
+import { Spacer } from '../common'
 
 const MapPage = observer(() => {
-  const { area, field, details } = store
-
+  const { area, field, mode } = store
+  const isRead = mode === 'read'
   return (
     <>
       <Wrapper>
-        <Side>{!details ? <Filter /> : <FieldDetails />}</Side>
+        <Side>
+          {!field ? (
+            <Filter />
+          ) : (
+            <>
+              <CommonDetails isRead={isRead} />
+              <Spacer vertical size="40px" />
+              <PlantationsDetails isRead={isRead} />
+            </>
+          )}
+        </Side>
         <Content>
           <Map
             area={area}
@@ -24,10 +39,10 @@ const MapPage = observer(() => {
             onOpenField={(v) => store.openField(v)}
             onClose={() => store.closeField()}
           />
-          {!details && <AreaDetails />}
+          {!field && <AreaDetails />}
         </Content>
       </Wrapper>
-      {details && (
+      {field && (
         <Bottom>
           <OwnerDetails />
           <ContractDetails />

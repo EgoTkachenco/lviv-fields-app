@@ -1,19 +1,26 @@
 import styled from 'styled-components'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { Spacer, Box, Icon } from './common'
+import { Spacer, Box, Icon } from '../common'
 import { useState } from 'react'
-import { useNoBodyScroll } from '../hooks'
+import { useNoBodyScroll } from '../../hooks'
+import EditButton from './EditButton'
+import { observer } from 'mobx-react-lite'
+import { Auth as store } from '../../store'
 
-const Navigation = () => {
+const Navigation = observer(() => {
   const [open, setOpen] = useState(false)
   const router = useRouter()
   const links = [
     { name: 'Карта', path: '/map' },
     { name: 'Реєстр орендодавців', path: '/registry' },
     { name: 'Планер', path: '/planner' },
+    { name: 'Вихід', action: () => store.logout() },
   ]
   useNoBodyScroll(open)
+
+  const isLogged = !!store.user
+
   return (
     <Wrapper>
       <Link href="/">
@@ -23,28 +30,38 @@ const Navigation = () => {
         </Box>
       </Link>
       <Spacer size="auto" />
-      <Links gap="60px" open={open} onClick={() => setOpen(false)}>
-        <LinksCloseButton onClick={() => setOpen(false)}>
-          <Icon icon="close" size="24px" />
-        </LinksCloseButton>
-        {links.map((link, i) => (
-          <Link href={link.path} key={i}>
-            <NavLink active={link.path === router.pathname}>
-              {link.name}
-            </NavLink>
-          </Link>
-        ))}
-      </Links>
-      <Spacer size="60px" />
-      <MenuButton onClick={() => router.push('/')}>
-        <Icon icon="menu" size="21px" />
-      </MenuButton>
-      <MobileMenuButton onClick={() => setOpen(true)}>
-        <Icon icon="menu" size="21px" />
-      </MobileMenuButton>
+      {isLogged && (
+        <>
+          <Links gap="60px" open={open} onClick={() => setOpen(false)}>
+            <LinksCloseButton onClick={() => setOpen(false)}>
+              <Icon icon="close" size="24px" />
+            </LinksCloseButton>
+
+            <EditButton />
+
+            {links.map(({ name, path, action }, i) => (
+              <Link href={path || ''} key={i}>
+                <NavLink
+                  active={path === router.pathname}
+                  onClick={() => !path && action && action()}
+                >
+                  {name}
+                </NavLink>
+              </Link>
+            ))}
+          </Links>
+          <Spacer size="60px" />
+          <MenuButton onClick={() => router.push('/')}>
+            <Icon icon="menu" size="21px" />
+          </MenuButton>
+          <MobileMenuButton onClick={() => setOpen(true)}>
+            <Icon icon="menu" size="21px" />
+          </MobileMenuButton>
+        </>
+      )}
     </Wrapper>
   )
-}
+})
 
 const Wrapper = styled.nav`
   height: 80px;
@@ -125,7 +142,7 @@ const MobileMenuButton = styled.button`
   }
 `
 
-const NavLink = styled.div`
+export const NavLink = styled.div`
   font-weight: 500;
   font-size: 16px;
   line-height: 19px;

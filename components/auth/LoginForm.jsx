@@ -29,7 +29,7 @@ const LoginForm = observer(() => {
       })
   }
   return (
-    <AuthCard onSubmit={onSubmit}>
+    <AuthCard onSubmit={onSubmit} loading={store.isFetch}>
       <H4>Вхід в особистий кабінет</H4>
       <Spacer vertical size="24px" />
       <Input placeholder="Логiн" {...form.getFieldProps('identifier')} />
