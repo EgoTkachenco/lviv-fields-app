@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import styled from 'styled-components'
 import { observer } from 'mobx-react-lite'
 import store from '../../store/map-store'
@@ -5,7 +6,7 @@ import {
   Filter,
   OwnerDetails,
   ContractDetails,
-  AreaDetails,
+  SummaryDetails,
   CommonDetails,
   PlantationsDetails,
 } from './cards'
@@ -15,12 +16,16 @@ import BackLink from './BackLink'
 import { Spacer } from '../common'
 
 const MapPage = observer(() => {
-  const { area, field, mode, filter } = store
+  const { area, field, mode, filter, summary } = store
   const isRead = mode === 'read'
   const onChange = (key, value) => store.updateFieldDetails(key, value)
   const onFilterChange = (key, value) => store.updateFilter(key, value)
   const onSubmitFilter = () => store.getSummary()
   const onClearFilter = () => store.clearFilter()
+
+  useEffect(() => {
+    store.getSummary()
+  }, [])
   return (
     <>
       <Wrapper>
@@ -52,8 +57,9 @@ const MapPage = observer(() => {
             onOpenArea={(v) => store.openArea(v)}
             onOpenField={(v) => store.openField(v)}
             onClose={() => store.closeField()}
+            summary={summary}
           />
-          {!field && <AreaDetails />}
+          {!field && <SummaryDetails data={summary} />}
         </Content>
       </Wrapper>
       {field && (

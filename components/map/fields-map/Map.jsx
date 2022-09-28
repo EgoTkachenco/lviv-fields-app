@@ -17,7 +17,14 @@ import Field10 from './fields/Field10'
 import Field11 from './fields/Field11'
 import Field12 from './fields/Field12'
 
-export default function Map({ area, field, onOpenArea, onOpenField, onClose }) {
+export default function Map({
+  area,
+  field,
+  onOpenArea,
+  onOpenField,
+  onClose,
+  summary,
+}) {
   return (
     <MapCard>
       {area ? (
@@ -26,9 +33,10 @@ export default function Map({ area, field, onOpenArea, onOpenField, onClose }) {
           field={field}
           onOpen={(v) => onOpenField(v)}
           onClose={onClose}
+          fields={summary?.fields || []}
         />
       ) : (
-        <AllMap onOpen={(v) => onOpenArea(v)} />
+        <AllMap onOpen={(v) => onOpenArea(v)} fields={summary?.fields || []} />
       )}
     </MapCard>
   )

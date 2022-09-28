@@ -41,7 +41,7 @@ const RegistationForm = observer(() => {
       })
   }
   return (
-    <AuthCard onSubmit={onSubmit}>
+    <AuthCard onSubmit={onSubmit} loading={store.isFetch || undefined}>
       <Box
         align="center"
         justify="space-between"

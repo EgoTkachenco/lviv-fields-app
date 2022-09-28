@@ -22,6 +22,7 @@ class Store {
   isFetch = false
 
   filter = { ...initialFilter }
+  summary = null
   updateFilter(key, val) {
     let filter = { ...this.filter }
     switch (key) {
@@ -56,9 +57,9 @@ class Store {
       requestQueryFilter.set('category_in', this.filter.category)
 
     try {
-      const summary = await MAP_API.getSummary(requestQueryFilter.toString())
-      console.log(requestQueryFilter.toString())
-      console.log(summary)
+      this.summary = await MAP_API.getSummary(requestQueryFilter.toString())
+      // console.log(requestQueryFilter.toString())
+      // console.log(summary)
     } catch (error) {
       console.log('Error: ', error)
     }

@@ -48,7 +48,7 @@ const handleLeaveField = (e) => {
   e.currentTarget.style.stroke = '#464F60'
 }
 
-export const useMapFieldsHandlers = (ref, onOpen, field) =>
+export const useMapFieldsHandlers = (ref, onOpen, field, fields) =>
   useEffect(() => {
     if (!ref.current) return
     const childrens = ref.current.children[0].children

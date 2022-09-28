@@ -1,6 +1,7 @@
 import styled from 'styled-components'
-import { Button, Spacer } from '../common'
+import { Button, Spacer, H5 } from '../common'
 import TaskModal from './TaskModal'
+
 const ChatList = ({
   activeTask,
   tasks,
@@ -14,22 +15,24 @@ const ChatList = ({
       {isAdmin && <TaskModal onSubmit={onNewTask} />}
 
       <Spacer />
-      {isFetch
-        ? 'Loading'
-        : tasks
-        ? tasks.map((task) => {
-            const isActive = activeTask === task.id
-            return (
-              <Button
-                key={task.id}
-                variant={isActive ? 'grey' : 'white'}
-                onClick={() => onTaskOpen(isActive ? null : task)}
-              >
-                {task.name}
-              </Button>
-            )
-          })
-        : 'No tasks'}
+      {isFetch ? (
+        'Loading'
+      ) : tasks.length ? (
+        tasks.map((task) => {
+          const isActive = activeTask === task.id
+          return (
+            <Button
+              key={task.id}
+              variant={isActive ? 'grey' : 'white'}
+              onClick={() => onTaskOpen(isActive ? null : task)}
+            >
+              {task.name}
+            </Button>
+          )
+        })
+      ) : (
+        <H5 align="center">Немає активних завдань</H5>
+      )}
     </List>
   )
 }

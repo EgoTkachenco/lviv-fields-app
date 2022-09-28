@@ -1,7 +1,7 @@
 import Filter from './Filter'
 import OwnerDetails from './OwnerDetails'
 import ContractDetails from './ContractDetails'
-import AreaDetails from './AreaDetails'
+import SummaryDetails from './SummaryDetails'
 import CommonDetails from './CommonDetails'
 import PlantationsDetails from './PlantationsDetails'
 
@@ -9,7 +9,7 @@ module.exports = {
   Filter,
   OwnerDetails,
   ContractDetails,
-  AreaDetails,
+  SummaryDetails,
   CommonDetails,
   PlantationsDetails,
 }
