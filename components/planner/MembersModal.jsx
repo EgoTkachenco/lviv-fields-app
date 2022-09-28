@@ -29,7 +29,7 @@ const MembersModal = ({ members, onMemberChange }) => {
           {users?.map((user) => (
             <Fragment key={user.id}>
               <Checkbox
-                label={user.username + ' ' + user.id}
+                label={user.username}
                 value={members.includes(user.id)}
                 onChange={(v) => onMemberChange(user, v)}
               />
@@ -42,7 +42,11 @@ const MembersModal = ({ members, onMemberChange }) => {
           </Button>
         </form>
       </Modal>
-      <Button width="auto" type="primary-outline" onClick={() => setShow(true)}>
+      <Button
+        width="auto"
+        variant="primary-outline"
+        onClick={() => setShow(true)}
+      >
         <Icon icon="user-plus" />
         запросити до чату
       </Button>

@@ -4,27 +4,53 @@ import { Box, Input, H5, Button, Spacer, Icon } from '../common'
 import Message from './Message'
 import MembersModal from './MembersModal'
 
+const CHAT_UPDATE_TIMEOUT = 1500
+
 const Chat = ({
   task,
   loadMessages,
-  messages,
   onMemberChange,
   onNewMessage,
+  isAdmin,
 }) => {
   const ref = useRef()
   const [state, setState] = useState({
-    page: 0,
+    timeout: null,
     message: '',
+    messages: [],
   })
-  const onMessageChange = (value) => setState({ ...state, message: value })
-  const sendMessage = (e) => {
-    e.preventDefault()
-    onNewMessage(state.message)
-    setState({ ...state, message: '' })
-  }
+
+  const taskId = task?.id
+  useEffect(() => {
+    updateChat()
+    return () => clearChatUpdate()
+  }, [taskId])
   useEffect(() => {
     ref.scrollTop = '100%'
+    return () => clearChatUpdate()
   }, [])
+
+  const clearChatUpdate = () => state.timeout && clearTimeout(state.timeout)
+
+  const updateChat = async () => {
+    clearChatUpdate()
+    const messages = await loadMessages()
+    const timeout = setTimeout(() => updateChat(), CHAT_UPDATE_TIMEOUT)
+    setState((state) => ({ ...state, timeout, messages }))
+  }
+
+  const onMessageChange = (value) =>
+    setState((state) => ({ ...state, message: value }))
+
+  const sendMessage = async (e) => {
+    e.preventDefault()
+    const newMessage = await onNewMessage(state.message)
+    setState((state) => ({
+      ...state,
+      message: '',
+      messages: [...state.messages, newMessage],
+    }))
+  }
 
   if (!task)
     return (
@@ -33,23 +59,24 @@ const Chat = ({
       </Wrapper>
     )
 
-  const members = task.users.map((u) => u.id)
-  console.log(messages)
+  const members = task?.users?.map((u) => u.id)
 
   return (
     <Wrapper>
       <Header align="center" justify="space-between">
         <H5>Тема: {task.name}</H5>
-        <Box gap="16px" wrap="true">
-          <MembersModal members={members} onMemberChange={onMemberChange} />
-          <Button width="auto" type="primary">
-            <Icon icon="task-done" />
-            завдання виконано
-          </Button>
-        </Box>
+        {isAdmin && (
+          <Box gap="16px" wrap="true">
+            <MembersModal members={members} onMemberChange={onMemberChange} />
+            <Button width="auto" variant="primary">
+              <Icon icon="task-done" />
+              завдання виконано
+            </Button>
+          </Box>
+        )}
       </Header>
       <Content ref={ref}>
-        {messages?.map((msg, i) => (
+        {state.messages?.map((msg, i) => (
           <Message key={i} message={msg} isOwner={true} />
         ))}
       </Content>

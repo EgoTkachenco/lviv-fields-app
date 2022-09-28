@@ -15,26 +15,40 @@ import BackLink from './BackLink'
 import { Spacer } from '../common'
 
 const MapPage = observer(() => {
-  const { area, field, mode } = store
+  const { area, field, mode, filter } = store
   const isRead = mode === 'read'
+  const onChange = (key, value) => store.updateFieldDetails(key, value)
+  const onFilterChange = (key, value) => store.updateFilter(key, value)
+  const onSubmitFilter = () => store.getSummary()
+  const onClearFilter = () => store.clearFilter()
   return (
     <>
       <Wrapper>
         <Side>
-          {!field ? (
-            <Filter />
-          ) : (
+          {!field && (
+            <Filter
+              filter={filter}
+              onChange={onFilterChange}
+              onSubmit={onSubmitFilter}
+              onClear={onClearFilter}
+            />
+          )}
+          {field && (
             <>
-              <CommonDetails isRead={isRead} />
+              <CommonDetails data={field} isRead={isRead} onChange={onChange} />
               <Spacer vertical size="40px" />
-              <PlantationsDetails isRead={isRead} />
+              <PlantationsDetails
+                data={field}
+                isRead={isRead}
+                onChange={onChange}
+              />
             </>
           )}
         </Side>
         <Content>
           <Map
             area={area}
-            field={field}
+            field={field && field.pathname}
             onOpenArea={(v) => store.openArea(v)}
             onOpenField={(v) => store.openField(v)}
             onClose={() => store.closeField()}
@@ -44,8 +58,8 @@ const MapPage = observer(() => {
       </Wrapper>
       {field && (
         <Bottom>
-          <OwnerDetails />
-          <ContractDetails />
+          <OwnerDetails data={field} isRead={isRead} onChange={onChange} />
+          <ContractDetails data={field} isRead={isRead} onChange={onChange} />
         </Bottom>
       )}
 

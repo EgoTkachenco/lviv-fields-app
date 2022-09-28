@@ -34,7 +34,6 @@ export default function Input({
 
 const Wrapper = styled.div`
   position: relative;
-  padding-bottom: 16px;
 `
 
 const InputField = styled.input`
@@ -85,10 +84,9 @@ const InputFieldRightSlot = styled.div`
 
 const InputError = styled.div`
   font-size: 12px;
-  left: 20px;
   color: red;
-  position: absolute;
-  bottom: ${({ show }) => (show ? '0' : '16px')};
-  opacity: (${({ show }) => (show ? '1' : '0')});
   transition: all 0.3s;
+  padding: ${({ show }) => (show ? '4px 0 0 20px' : '0 0 0 20px')};
+  max-height: ${({ show }) => (show ? '32px' : '0')};
+  opacity: (${({ show }) => (show ? '1' : '0')});
 `

@@ -27,7 +27,7 @@ const TaskModal = ({ onSubmit, task }) => {
           </Button>
         </form>
       </Modal>
-      <Button type="primary" onClick={() => setShow(true)}>
+      <Button variant="primary" onClick={() => setShow(true)}>
         додати нове завдання
       </Button>
     </>

@@ -1,7 +1,9 @@
+import { Fragment } from 'react'
 import styled from 'styled-components'
 import { Card, Text, H5, Spacer, Box } from '../../common'
 
-const PlantationsDetails = ({ field, read }) => {
+const PlantationsDetails = ({ data, isRead, onChange }) => {
+  console.log('Plantations: ', data.plantations)
   return (
     <Card>
       <H5>Інформація про насадження:</H5>
@@ -13,10 +15,14 @@ const PlantationsDetails = ({ field, read }) => {
         <Label type="header" title="Кількість насаджень">
           Кількість насаджень
         </Label>
-        <Label title="Ред Джонапринца">Ред Джонапринца</Label>
-        <Label>278</Label>
-        <Label title="Гала">Гала</Label>
-        <Label>156</Label>
+        {data.plantations.map((plantation, i) => (
+          <Fragment key={plantation.id || i}>
+            <Label title={plantation.variety.name}>
+              {plantation.variety.name}
+            </Label>
+            <Label>{plantation.size}</Label>
+          </Fragment>
+        ))}
       </Box>
     </Card>
   )

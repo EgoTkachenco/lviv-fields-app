@@ -7,8 +7,6 @@ class Store {
 
   activeTask = null
 
-  messages = null
-  isLoadMoreMessages = false
   isLoadingMessages = false
 
   constructor() {
@@ -19,6 +17,7 @@ class Store {
     try {
       const task = await PLANNER_API.createTask(name)
       await this.loadTasksList()
+      debugger
       this.openTask(task.id)
       return true
     } catch (error) {
@@ -35,21 +34,22 @@ class Store {
     }
     this.isLoadingTasks = false
   }
+
   openTask(task) {
     this.activeTask = task
     this.loadMessages(0)
   }
 
-  async loadMessages(page) {
+  async loadMessages() {
     if (!this.activeTask) return
     this.isLoadingMessages = true
     try {
-      const messages = await PLANNER_API.getMessages(this.activeTask.id, page)
-      this.messages = page === 0 ? messages : [...this.messages, ...messages]
+      this.isLoadingMessages = false
+      return await PLANNER_API.getMessages(this.activeTask.id)
     } catch (error) {
+      this.isLoadingMessages = false
       console.log(error)
     }
-    this.isLoadingMessages = false
   }
 
   async handleMemberChange(user, mode) {
@@ -70,8 +70,7 @@ class Store {
 
   async sendMessage(message) {
     try {
-      await PLANNER_API.sendMessage(this.activeTask.id, message)
-      this.loadMessages(0)
+      return await PLANNER_API.sendMessage(this.activeTask.id, message)
     } catch (error) {
       console.log(error)
     }

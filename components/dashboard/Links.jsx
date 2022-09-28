@@ -98,6 +98,7 @@ const LinkCard = styled.a`
     background: radial-gradient(
       96.86% 382.9% at 97.29% 3.14%,
       #407cff 0%,
+      #407cff 50.52%,
       #407cff 100%
     );
   }

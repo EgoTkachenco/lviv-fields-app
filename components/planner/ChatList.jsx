@@ -1,10 +1,17 @@
 import styled from 'styled-components'
 import { Button, Spacer } from '../common'
 import TaskModal from './TaskModal'
-const ChatList = ({ activeTask, tasks, onNewTask, onTaskOpen, isFetch }) => {
+const ChatList = ({
+  activeTask,
+  tasks,
+  onNewTask,
+  onTaskOpen,
+  isFetch,
+  isAdmin,
+}) => {
   return (
     <List>
-      <TaskModal onSubmit={onNewTask} />
+      {isAdmin && <TaskModal onSubmit={onNewTask} />}
 
       <Spacer />
       {isFetch

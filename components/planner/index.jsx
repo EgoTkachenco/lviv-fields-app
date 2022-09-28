@@ -3,13 +3,15 @@ import styled from 'styled-components'
 import Chat from './Chat'
 
 import { observer } from 'mobx-react-lite'
-import { Planner as store } from '../../store'
+import { Planner as store, Auth as AuthStore } from '../../store'
 import ChatList from './ChatList'
 
 const Planner = observer(() => {
   useEffect(() => {
     store.loadTasksList()
   }, [])
+  const isAdmin = AuthStore.user?.role.name === 'Admin'
+
   return (
     <Wrapper>
       <ChatList
@@ -18,13 +20,14 @@ const Planner = observer(() => {
         onTaskOpen={(task) => store.openTask(task)}
         activeTask={store.activeTask?.id}
         isFetch={store.isLoadingTasks}
+        isAdmin={isAdmin}
       />
       <Chat
         task={store.activeTask}
-        loadMessages={(page) => store.loadMessages(page)}
-        messages={store.messages}
+        loadMessages={() => store.loadMessages()}
         onMemberChange={(user, mode) => store.handleMemberChange(user, mode)}
         onNewMessage={(message) => store.sendMessage(message)}
+        isAdmin={isAdmin}
       />
     </Wrapper>
   )

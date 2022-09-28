@@ -1,7 +1,8 @@
 import styled from 'styled-components'
-import { Card, Text, H5, Spacer, Box, Icon, Button } from '../../common'
+import { Card, H5, Spacer, Box, Icon, Button, Input } from '../../common'
+import { CardField, Column } from './elements'
 
-const OwnerDetails = () => {
+const OwnerDetails = ({ data, isRead, onChange }) => {
   return (
     <Card>
       <Box justify="space-between" align="center">
@@ -9,46 +10,93 @@ const OwnerDetails = () => {
         <Files gap="32px" align="center">
           <Icon icon="file-doc" size="32px" />
           <Icon icon="file-pdf" size="32px" />
-          <Button type="primary">Додати ФАЙЛ</Button>
+          <Button variant="primary">Додати ФАЙЛ</Button>
         </Files>
       </Box>
+
       <Spacer vertical size="25px" />
+
       <Box gap="40px" direction-sm="column">
         <Avatar src="/avatar.png" />
         <Box wrap="true" gap="20px" direction-sm="column">
-          <Column gap="4px">
-            <Text>ПІБ:</Text>
-            <Text color="grey">Василенко Галина Павлівна</Text>
-          </Column>
-          <Column gap="4px">
-            <Text>Контактний телефон: </Text>
-            <Text color="grey">+380675847511</Text>
-          </Column>
-          <Column gap="4px">
-            <Text>Дата народження: </Text>
-            <Text color="grey">12.05.1962</Text>
-          </Column>
-          <Column gap="4px">
-            <Text>Електронна пошта: </Text>
-            <Text color="grey">fhdks@gmail.com</Text>
-          </Column>
-          <Box gap="4px" width="100%" wrap="true">
-            <Text>Адреса:</Text>
-            <Text color="grey">
-              Львівська обл., Червоноградський р-н., с. Соснина, вул. Центральна
-              буд. 17
-            </Text>
-          </Box>
-          <Box gap="4px" width="100%" wrap="true">
-            <Text>Примітка: </Text>
-            <Text color="grey">
-              Контактна особа син Василенко Іван Іванович тел. 0675366544
-            </Text>
-          </Box>
+          <CardField
+            styledBox={Column}
+            isRead={isRead}
+            label="ПІБ"
+            value={data.owner_fullname}
+            editableSlot={
+              <Input
+                placeholder="ПІБ"
+                value={data.owner_fullname}
+                onChange={(value) => onChange('owner_fullname', value)}
+              />
+            }
+          />
+          <CardField
+            styledBox={Column}
+            isRead={isRead}
+            label="Контактний телефон"
+            value={data.owner_phone}
+            editableSlot={
+              <Input
+                value={data.owner_phone}
+                onChange={(value) => onChange('owner_phone', value)}
+              />
+            }
+          />
+          <CardField
+            styledBox={Column}
+            isRead={isRead}
+            label="Дата народження"
+            value={data.owner_birthdate}
+            editableSlot={
+              <Input
+                type="date"
+                value={data.owner_birthdate}
+                onChange={(value) => onChange('owner_birthdate', value)}
+              />
+            }
+          />
+          <CardField
+            styledBox={Column}
+            isRead={isRead}
+            label="Електронна пошта"
+            value={data.owner_mail}
+            editableSlot={
+              <Input
+                value={data.owner_mail}
+                onChange={(value) => onChange('owner_mail', value)}
+              />
+            }
+          />
+          <CardField
+            styledBox={FullBox}
+            isRead={isRead}
+            label="Адреса"
+            value={data.owner_address}
+            editableSlot={
+              <Input
+                value={data.owner_address}
+                onChange={(value) => onChange('owner_address', value)}
+              />
+            }
+          />
+          <CardField
+            styledBox={FullBox}
+            isRead={isRead}
+            label="Примітка"
+            value={data.owner_note}
+            editableSlot={
+              <Input
+                value={data.owner_note}
+                onChange={(value) => onChange('owner_note', value)}
+              />
+            }
+          />
         </Box>
       </Box>
       <FilesMobile gap="32px" align="center">
-        <Button type="primary">Додати ФАЙЛ</Button>
+        <Button variant="primary">Додати ФАЙЛ</Button>
         <Icon icon="file-doc" size="32px" />
         <Icon icon="file-pdf" size="32px" />
       </FilesMobile>
@@ -58,14 +106,11 @@ const OwnerDetails = () => {
 
 export default OwnerDetails
 
-const Column = styled(Box)`
-  width: 35%;
-  @media (max-width: 1200px) {
-    width: calc(50% - 16px);
-  }
-  @media (max-width: 800px) {
-    width: 100%;
-    flex-wrap: wrap;
+const FullBox = styled(Box)`
+  width: 100%;
+  gap: 16px;
+  & :nth-child(2) {
+    flex-grow: 1;
   }
 `
 const Avatar = styled.img`

@@ -20,7 +20,6 @@ const Navigation = observer(() => {
   useNoBodyScroll(open)
 
   const isLogged = !!store.user
-
   return (
     <Wrapper>
       <Link href="/">

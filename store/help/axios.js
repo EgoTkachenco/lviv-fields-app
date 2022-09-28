@@ -30,12 +30,13 @@ axios.interceptors.response.use(
   function (error) {
     if (error.response) {
       if (error.response.status === 401) {
+        eraseToken()
         localStorage.removeItem(USER_STORE_NAME)
         // window.location.pathname = '/login'
       }
 
       if (error.response.status === 500) {
-        window.location.pathname = '/error-500'
+        // window.location.pathname = 's/error-500'
       }
     }
     return Promise.reject(error)

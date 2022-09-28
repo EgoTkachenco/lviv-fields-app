@@ -27,12 +27,12 @@ export const PLANNER_API = {
 
   createTask: (name) => axios.post('/tasks', { name }, securedFetchOptions()),
 
-  getMessages: (task, page) =>
+  getMessages: (task) =>
     axios.get('/messages', {
       params: {
         task: task,
-        _start: page * 20,
-        _limit: 20,
+        // _start: page * 20,
+        _limit: -1,
       },
       ...securedFetchOptions(),
     }),
@@ -54,4 +54,15 @@ export const PLANNER_API = {
 export const USERS_API = {
   getUsers: () =>
     axios.get('/users', { query: { _limit: -1 }, ...securedFetchOptions() }),
+}
+
+export const MAP_API = {
+  getField: (pathname) =>
+    axios.get(`/fields/${pathname}`, securedFetchOptions()),
+
+  updateField: (pathname, data) =>
+    axios.put(`/fields/${pathname}`, data, securedFetchOptions()),
+
+  getSummary: (filter) =>
+    axios.get(`/fields/summary?${filter}`, securedFetchOptions()),
 }

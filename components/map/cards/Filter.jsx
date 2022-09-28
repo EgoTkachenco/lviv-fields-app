@@ -11,8 +11,9 @@ import {
   Icon,
 } from '../../common'
 import { useNoBodyScroll } from '../../../hooks'
+import { FIELD_TYPES, FIELD_CATEGORIES } from '../../../store/help/constants'
 
-const Filter = () => {
+const Filter = ({ filter, onChange, onSubmit, onClear }) => {
   const [open, setOpen] = useState(false)
   useNoBodyScroll(open)
 
@@ -29,17 +30,27 @@ const Filter = () => {
           <H5>Тип земельної ділянки</H5>
           <Spacer vertical size="20px" />
           <Box gap="20px" wrap="true">
-            <Checkbox label="Власні земельні ділянки" />
-            <Checkbox label="Орендовані земельні ділянки" />
-            <Checkbox label="Ризикові земельні ділянки" />
+            {Object.keys(FIELD_TYPES).map((type) => (
+              <Checkbox
+                key={type}
+                label={FIELD_TYPES[type]}
+                value={filter.type.includes(type)}
+                onChange={() => onChange('type', type)}
+              />
+            ))}
           </Box>
           <Spacer vertical size="30px" />
           <H5>Клас земельної ділянки</H5>
           <Spacer vertical size="20px" />
           <Box gap="20px" wrap="true">
-            <Checkbox label="Вільні ділянки" />
-            <Checkbox label="Засаджені ділянки" />
-            <Checkbox label="Викорчувані ділянки" />
+            {Object.keys(FIELD_CATEGORIES).map((category) => (
+              <Checkbox
+                key={category}
+                label={FIELD_CATEGORIES[category]}
+                value={filter.category.includes(category)}
+                onChange={() => onChange('category', category)}
+              />
+            ))}
           </Box>
           <Spacer vertical size="30px" />
           <H5>Сорт насаджень</H5>
@@ -74,9 +85,13 @@ const Filter = () => {
             <Input placeholder="10" />
           </Box>
           <Spacer vertical size="30px" />
-          <Button variant="accent">застосувати</Button>
+          <Button variant="accent" onClick={onSubmit}>
+            застосувати
+          </Button>
           <Spacer vertical size-sm="16px" />
-          <Button variant="text">скинути</Button>
+          <Button variant="text" onClick={onClear}>
+            скинути
+          </Button>
         </FilterInner>
       </FilterCard>
     </>

@@ -1,7 +1,8 @@
 import styled from 'styled-components'
-import { Card, Text, H5, Spacer, Box, Icon, Button } from '../../common'
+import { Card, H5, Spacer, Box, Icon, Button, Input } from '../../common'
+import { CardField, Column } from './elements'
 
-const ContactDetails = () => {
+const ContactDetails = ({ data, isRead, onChange }) => {
   return (
     <ContactCard>
       <ContactCardHeader>
@@ -9,28 +10,60 @@ const ContactDetails = () => {
         <Files gap="32px" align="center">
           <Icon icon="file-doc" size="32px" />
           <Icon icon="file-pdf" size="32px" />
-          <Button type="primary">Додати ФАЙЛ</Button>
+          <Button variant="primary">Додати ФАЙЛ</Button>
         </Files>
       </ContactCardHeader>
-      <Spacer vertical size="25px" />
+      {/* <Spacer vertical size="25px" /> */}
       <Spacer vertical size="20px" />
-      <Box gap="20px" direction="column">
-        <Box gap="4px">
-          <Text>Договір:</Text>
-          <Text color="grey">№125/125/12</Text>
-        </Box>
-        <Box gap="4px">
-          <Text>Дата укладання:</Text>
-          <Text color="grey">12.05.2017</Text>
-        </Box>
-        <Box gap="4px">
-          <Text>Дійсний до:</Text>
-          <Text color="grey">12.05.2025</Text>
-        </Box>
-        <Box gap="4px">
-          <Text>Примiтки:</Text>
-          <Text color="grey">немає</Text>
-        </Box>
+      <Box gap="20px" direction="column" width="100%">
+        <CardField
+          styledBox={Column}
+          isRead={isRead}
+          label="Договір"
+          value={data.contract_name}
+          editableSlot={
+            <Input
+              value={data.contract_name}
+              onChange={(value) => onChange('contract_name', value)}
+            />
+          }
+        />
+        <CardField
+          styledBox={Column}
+          isRead={isRead}
+          label="Дата укладання"
+          value={data.contract_start}
+          editableSlot={
+            <Input
+              value={data.contract_start}
+              onChange={(value) => onChange('contract_start', value)}
+            />
+          }
+        />
+        <CardField
+          styledBox={Column}
+          isRead={isRead}
+          label="Дійсний до"
+          value={data.contract_due}
+          editableSlot={
+            <Input
+              value={data.contract_due}
+              onChange={(value) => onChange('contract_due', value)}
+            />
+          }
+        />
+        <CardField
+          styledBox={Column}
+          isRead={isRead}
+          label="Примiтки"
+          value={data.contract_note}
+          editableSlot={
+            <Input
+              value={data.contract_note}
+              onChange={(value) => onChange('contract_note', value)}
+            />
+          }
+        />
       </Box>
       <FilesMobile gap="32px" align="center">
         <Button type="primary">Додати ФАЙЛ</Button>
