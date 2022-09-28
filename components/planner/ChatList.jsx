@@ -17,7 +17,7 @@ const ChatList = ({
       <Spacer />
       {isFetch ? (
         'Loading'
-      ) : tasks.length ? (
+      ) : tasks && tasks.length ? (
         tasks.map((task) => {
           const isActive = activeTask === task.id
           return (
