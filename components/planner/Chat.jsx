@@ -1,6 +1,14 @@
 import { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
-import { Box, Input, H5, Button, Spacer, Icon } from '../common'
+import {
+  Box,
+  Input,
+  H5,
+  Button,
+  Spacer,
+  Icon,
+  ConfirmationModal,
+} from '../common'
 import Message from './Message'
 import MembersModal from './MembersModal'
 
@@ -12,6 +20,7 @@ const Chat = ({
   onMemberChange,
   onNewMessage,
   isAdmin,
+  onTaskClose,
 }) => {
   const ref = useRef()
   const [state, setState] = useState({
@@ -68,10 +77,16 @@ const Chat = ({
         {isAdmin && (
           <Box gap="16px" wrap="true">
             <MembersModal members={members} onMemberChange={onMemberChange} />
-            <Button width="auto" variant="primary">
-              <Icon icon="task-done" />
-              завдання виконано
-            </Button>
+            <ConfirmationModal
+              title="Завершити завдання"
+              text="Ви впевнені шо хочете завершити задачу?"
+              onConfirm={onTaskClose}
+            >
+              <Button width="auto" variant="primary">
+                <Icon icon="task-done" />
+                завдання виконано
+              </Button>
+            </ConfirmationModal>
           </Box>
         )}
       </Header>

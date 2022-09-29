@@ -28,6 +28,7 @@ const Planner = observer(() => {
         onMemberChange={(user, mode) => store.handleMemberChange(user, mode)}
         onNewMessage={(message) => store.sendMessage(message)}
         isAdmin={isAdmin}
+        onTaskClose={() => store.finishTask()}
       />
     </Wrapper>
   )

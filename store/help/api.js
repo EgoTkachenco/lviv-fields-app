@@ -49,6 +49,9 @@ export const PLANNER_API = {
 
   deleteMember: (task, user) =>
     axios.delete(`/tasks/${task}/member/${user}`, securedFetchOptions()),
+
+  finishTask: (task) =>
+    axios.put(`/tasks/${task}`, { status: 'closed' }, securedFetchOptions()),
 }
 
 export const USERS_API = {

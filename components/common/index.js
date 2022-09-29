@@ -10,6 +10,7 @@ import Input from './Input'
 import Checkbox from './Checkbox'
 import Icon from './Icon'
 import Table from './Table'
+import ConfirmationModal from './ConfirmationModal'
 
 export {
   Button,
@@ -32,4 +33,5 @@ export {
   Checkbox,
   Icon,
   Table,
+  ConfirmationModal,
 }

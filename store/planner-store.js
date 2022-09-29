@@ -17,9 +17,19 @@ class Store {
     try {
       const task = await PLANNER_API.createTask(name)
       await this.loadTasksList()
-      debugger
-      this.openTask(task.id)
+      this.openTask(task)
       return true
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  async finishTask() {
+    try {
+      if (!this.activeTask) return
+      await PLANNER_API.finishTask(this.activeTask.id)
+      await this.loadTasksList()
+      this.activeTask = null
     } catch (error) {
       console.log(error)
     }
@@ -37,7 +47,7 @@ class Store {
 
   openTask(task) {
     this.activeTask = task
-    this.loadMessages(0)
+    this.loadMessages()
   }
 
   async loadMessages() {
