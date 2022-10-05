@@ -96,6 +96,13 @@ const TextButton = styled(ButtonCore)`
   font-weight: 600;
 `
 
+const WhiteTextButton = styled(ButtonCore)`
+  background: transparent;
+  border-radius: 30px;
+  color: #ffffff !important;
+  font-weight: 600;
+`
+
 const AccentButton = styled(ButtonCore)`
   border-radius: 30px;
   background: radial-gradient(
@@ -124,6 +131,7 @@ const variants = {
   accent: AccentButton,
   white: WhiteButton,
   text: TextButton,
+  'white-text': WhiteTextButton,
 }
 const getVariant = (variant) => variants[variant] || TextButton
 

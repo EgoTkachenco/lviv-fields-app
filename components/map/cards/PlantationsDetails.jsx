@@ -1,10 +1,12 @@
 import { Fragment, useState } from 'react'
 import styled from 'styled-components'
 import { Card, Text, H5, Spacer, Box } from '../../common'
+import { useAPIVarieties } from '../../../hooks'
+import { useClickOutside } from '@mantine/hooks'
 
 const PlantationsDetails = ({ data, isRead, onChange }) => {
   const onNewPlantation = () => onChange('new-plantation')
-  const [value, setValue] = useState(null)
+
   return (
     <Card>
       <H5>Інформація про насадження:</H5>
@@ -16,8 +18,20 @@ const PlantationsDetails = ({ data, isRead, onChange }) => {
         </HeaderLabel>
         {data.plantations.map((plantation, i) => (
           <Fragment key={plantation.id || i}>
-            <InputLabel value={plantation.variety.name} readOnly={isRead} />
-            <InputLabel value={plantation.size} readOnly={isRead} />
+            <Autocomplete
+              value={plantation.variety}
+              onChange={(value) =>
+                onChange('plantation-variety', { value, index: i })
+              }
+              isRead={isRead}
+            />
+            <InputLabel
+              value={plantation.size}
+              readOnly={isRead}
+              onChange={(e) =>
+                onChange('plantation-size', { value: e.target.value, index: i })
+              }
+            />
           </Fragment>
         ))}
 
@@ -32,7 +46,7 @@ export default PlantationsDetails
 const LabelStyles = `
 	flex: 0 1 calc(50% - 2px);
 	padding: 11px 15px;
-	background: #EDF1F8
+	background: #EDF1F8;
 	border-radius: 0;
 	font-weight: 400;
 	font-size: 16px;
@@ -57,7 +71,13 @@ const HeaderLabel = styled.div`
 
 const Label = styled.div`
   ${LabelStyles}
-  background: '#EDF1F8';
+  background: #EDF1F8;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s;
+  &:hover {
+    background: #ccd1e0;
+  }
 `
 
 const InputLabel = styled.input`
@@ -83,4 +103,73 @@ const LabelButton = styled.button`
   &:hover {
     background: #ccd1e0;
   }
+`
+
+const Autocomplete = ({ value, onChange, isRead }) => {
+  const [isFocused, setFocused] = useState(false)
+  const ref = useClickOutside(() => handleFocus(false))
+  const { varieties, search, onCreate, onSearch } = useAPIVarieties()
+
+  const input_value = isFocused ? search : value ? value.name : ''
+  const handleFocus = (isFocused) => {
+    if (!isRead) {
+      setFocused(isFocused)
+      if (isFocused) onSearch('')
+    }
+  }
+  const handleNewVariant = async () => {
+    console.log(123123)
+    const newVariant = await onCreate()
+    onChange(newVariant)
+    setFocused(false)
+  }
+  return (
+    <Container ref={ref}>
+      <InputLabel
+        value={input_value}
+        readOnly={isRead}
+        onFocus={() => handleFocus(true)}
+        onChange={(e) => onSearch(e.target.value)}
+      />
+      <Menu show={isFocused}>
+        {varieties &&
+          varieties.map((variant) => (
+            <Label
+              key={variant.id}
+              onClick={() => {
+                setFocused(false)
+                onChange(variant)
+              }}
+            >
+              {variant.name}
+            </Label>
+          ))}
+        {varieties.length === 0 && (
+          <LabelButton onClick={handleNewVariant}>Додати до списку</LabelButton>
+        )}
+      </Menu>
+    </Container>
+  )
+}
+
+const Container = styled.div`
+  position: relative;
+  flex: 0 1 calc(50% - 2px);
+  max-height: 150px;
+  & > input {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+`
+
+const Menu = styled.div`
+  position: absolute;
+  width: 100%;
+  top: calc(100% + 2px);
+  left: 0;
+  z-index: 100;
+  display: ${(props) => (props.show ? 'flex' : 'none')};
+  flex-direction: column;
+  gap: 2px;
+  background-color: white; ;
 `

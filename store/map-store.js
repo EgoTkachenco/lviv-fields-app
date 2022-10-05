@@ -125,6 +125,7 @@ class Store {
   mode = 'read'
   isEdited = false
   deletedFiles = []
+  editedPlantations = []
   async changeMode() {
     if (this.mode === 'read') {
       this.mode = 'write'
@@ -150,6 +151,12 @@ class Store {
       case 'new-plantation':
         field.plantations.push({ size: '', variety: null })
         break
+      case 'plantation-variety':
+        field.plantations[val.index].variety = val.value
+        break
+      case 'plantation-size':
+        field.plantations[val.index].size = val.value
+        break
       case 'owner-file-new':
         field.owner_files.push(val)
         break
@@ -171,7 +178,6 @@ class Store {
             this.deletedFiles.push(field.owner_avatar.id)
         }
         field.owner_avatar = val
-
         break
 
       default:

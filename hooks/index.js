@@ -101,12 +101,17 @@ export const useAPIVarieties = () => {
     const res = await VARIETIES_API.getVarieties(search)
     setVarieties(res)
   }
-  const createVariety = (name) => {
-    console.log(name)
+  const createVariety = async () => {
+    debugger
+    const new_variant = await VARIETIES_API.createVariety(search)
+    setSearch('')
+    getVarieties()
+    return new_variant
   }
   useEffect(() => {
     getVarieties()
   }, [])
+
   return {
     varieties,
     search,

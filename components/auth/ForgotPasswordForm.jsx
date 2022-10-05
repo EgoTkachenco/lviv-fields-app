@@ -23,10 +23,10 @@ export default function ForgotPasswordForm() {
           Введіть e-mail, до якого прив`язаний Ваш обліковий запис
         </Caption>
         <Spacer vertical size="20px" />
-        <Button type="primary">надіслати пароль</Button>
+        <Button variant="primary">надіслати пароль</Button>
       </AuthCard>
       <Spacer vertical size="35px" />
-      <Button type="text">повернутись назад</Button>
+      <Button variant="white-text">повернутись назад</Button>
     </>
   )
 }
