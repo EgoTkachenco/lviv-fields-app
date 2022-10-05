@@ -8,16 +8,16 @@ const ButtonCore = styled.button`
   outline: none;
   transition: all 0.3s;
   width: ${(props) => props.width || '100%'};
-  height: 46px;
+  height: ${(props) => props.height};
   display: flex;
   align-items: center;
   justify-content: center;
   text-transform: uppercase;
   gap: 8px;
-  font-size: 14px;
-  line-height: 17px;
+  font-size: ${(props) => props.fontSize};
+  line-height: 120%;
   font-family: 'Lato';
-  padding: 16px 24px;
+  padding: ${(props) => props.padding};
   border: 1px solid transparent;
   path {
     transition: all 0.3s;
@@ -127,14 +127,23 @@ const variants = {
 }
 const getVariant = (variant) => variants[variant] || TextButton
 
+const sizes = {
+  small: { height: '32px', padding: '8px 16px', fontSize: '12px' },
+  medium: { height: '46px', padding: '16px 24px', fontSize: '14px' },
+}
+const getSize = (size = 'medium') => sizes[size] || sizes['medium']
+
 const Button = React.forwardRef(function Button(
   { variant, children, ...props },
   ref
 ) {
+  const sizesProps = getSize(props.size)
+  delete props.size
   return (
     <ButtonCore
       as={getVariant(variant)}
       {...props}
+      {...sizesProps}
       type={props.type || 'button'}
     >
       {children}

@@ -1,6 +1,7 @@
 import styled from 'styled-components'
-import { Button, Spacer, H5 } from '../common'
+import { Button, Spacer, H5, H6 } from '../common'
 import TaskModal from './TaskModal'
+import ArchiveModal from './ArchiveModal'
 
 const ChatList = ({
   activeTask,
@@ -13,26 +14,29 @@ const ChatList = ({
   return (
     <List>
       {isAdmin && <TaskModal onSubmit={onNewTask} />}
-
       <Spacer />
-      {isFetch ? (
-        'Loading'
-      ) : tasks && tasks.length ? (
-        tasks.map((task) => {
-          const isActive = activeTask === task.id
-          return (
-            <Button
-              key={task.id}
-              variant={isActive ? 'grey' : 'white'}
-              onClick={() => onTaskOpen(isActive ? null : task)}
-            >
-              {task.name}
-            </Button>
-          )
-        })
-      ) : (
-        <H5 align="center">Немає активних завдань</H5>
+      {isFetch && 'Loading'}
+      {!isFetch && tasks && tasks.length && (
+        <>
+          <H6 align="left">Активні завдання:</H6>
+          {tasks.map((task) => {
+            const isActive = activeTask === task.id
+            return (
+              <Button
+                key={task.id}
+                variant={isActive ? 'grey' : 'white'}
+                onClick={() => onTaskOpen(isActive ? null : task)}
+              >
+                {task.name}
+              </Button>
+            )
+          })}
+        </>
       )}
+
+      <div style={{ flexGrow: 1 }} />
+
+      <ArchiveModal onOpen={(task) => onTaskOpen(task)} />
     </List>
   )
 }

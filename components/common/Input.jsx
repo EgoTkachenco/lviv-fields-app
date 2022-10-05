@@ -72,7 +72,6 @@ const InputTip = styled.div`
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
-  background-color: #ffffff;
 `
 
 const InputFieldRightSlot = styled.div`

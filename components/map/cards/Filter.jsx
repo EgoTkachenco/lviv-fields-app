@@ -10,12 +10,13 @@ import {
   Button,
   Icon,
 } from '../../common'
-import { useNoBodyScroll } from '../../../hooks'
+import { useNoBodyScroll, useAPIVarieties } from '../../../hooks'
 import { FIELD_TYPES, FIELD_CATEGORIES } from '../../../store/help/constants'
 
 const Filter = ({ filter, onChange, onSubmit, onClear }) => {
   const [open, setOpen] = useState(false)
   useNoBodyScroll(open)
+  const { search, varieties, onSearch: onSearchVarieties } = useAPIVarieties()
 
   return (
     <>
@@ -56,17 +57,21 @@ const Filter = ({ filter, onChange, onSubmit, onClear }) => {
           <H5>Сорт насаджень</H5>
           <Spacer vertical size="20px" />
           <Input
+            value={search}
+            onChange={onSearchVarieties}
             placeholder="Пошук"
             tip={<SearchIcon src="/icons/search.svg" />}
           />
           <Spacer vertical size="20px" />
           <SortsBox gap="20px" direction="column">
-            <Checkbox label="Ред" />
-            <Checkbox label="Гала" />
-            <Checkbox label="Фуджі" />
-            <Checkbox label="Ред" />
-            <Checkbox label="Гала" />
-            <Checkbox label="Фуджі" />
+            {varieties.map((variety) => (
+              <Checkbox
+                key={variety.id}
+                label={variety.name}
+                value={filter.varieties.includes(variety.id)}
+                onChange={() => onChange('varieties', variety.id)}
+              />
+            ))}
           </SortsBox>
           <Spacer vertical size="30px" />
           <H5>Рік насаджень</H5>
@@ -169,6 +174,10 @@ const SearchIcon = styled.img`
 `
 
 const SortsBox = styled(Box)`
-  max-height: 100px;
+  max-height: 150px;
+  min-height: 150px;
   overflow: auto;
+  & > * {
+    flex-grow: 0;
+  }
 `

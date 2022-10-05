@@ -1,5 +1,6 @@
-import { Text, Box } from '../../common'
+import { Text, Box } from '../../../common'
 import styled from 'styled-components'
+
 export const CardField = ({
   isRead,
   label,
@@ -10,7 +11,7 @@ export const CardField = ({
   const StyledBox = styledBox
   if (isRead)
     return (
-      <StyledBox gap="16px 4px" wrap>
+      <StyledBox gap="16px 4px">
         <Text>{label}:</Text>
         <Text color="grey">{value || 'немає'}</Text>
       </StyledBox>
@@ -25,12 +26,24 @@ export const CardField = ({
 }
 
 export const Column = styled(Box)`
-  width: 35%;
-  @media (max-width: 1200px) {
-    width: calc(50% - 16px);
+  width: 100%;
+
+  @media (max-width: 800px) {
+    flex-wrap: wrap;
   }
+`
+
+export const SmallColumn = styled(Column)`
+  width: 35%;
+  min-width: 400px;
+  @media (max-width: 1700px) {
+    width: calc(50% - 16px);
+    min-width: unset;
+  }
+
   @media (max-width: 800px) {
     width: 100%;
     flex-wrap: wrap;
+    min-width: unset;
   }
 `

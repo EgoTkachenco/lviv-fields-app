@@ -70,11 +70,13 @@ const Chat = ({
 
   const members = task?.users?.map((u) => u.id)
 
+  const isActiveChat = task?.status === 'open'
+
   return (
     <Wrapper>
       <Header align="center" justify="space-between">
         <H5>Тема: {task.name}</H5>
-        {isAdmin && (
+        {isActiveChat && isAdmin && (
           <Box gap="16px" wrap="true">
             <MembersModal members={members} onMemberChange={onMemberChange} />
             <ConfirmationModal
@@ -96,24 +98,26 @@ const Chat = ({
         ))}
       </Content>
       <Spacer vertical size="16px" />
-      <form onSubmit={sendMessage}>
-        <Input
-          placeholder="Додати завдання"
-          onChange={onMessageChange}
-          value={state.message}
-          size="large"
-          rightSlot={
-            <InputSlot>
-              <Icon icon="attachment" />
-              <Icon icon="sobaka" />
-              <Icon icon="emoji" />
-              <Icon icon="text" />
-              <InputSlotDelimiter />
-              <Icon icon="send" onClick={sendMessage} />
-            </InputSlot>
-          }
-        />
-      </form>
+      {isActiveChat && (
+        <form onSubmit={sendMessage}>
+          <Input
+            placeholder="Додати завдання"
+            onChange={onMessageChange}
+            value={state.message}
+            size="large"
+            rightSlot={
+              <InputSlot>
+                <Icon icon="attachment" />
+                <Icon icon="sobaka" />
+                <Icon icon="emoji" />
+                <Icon icon="text" />
+                <InputSlotDelimiter />
+                <Icon icon="send" onClick={sendMessage} />
+              </InputSlot>
+            }
+          />
+        </form>
+      )}
       <ModileInputSlot>
         <Icon icon="attachment" />
         <Icon icon="sobaka" />

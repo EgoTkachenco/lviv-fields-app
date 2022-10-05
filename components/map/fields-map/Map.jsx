@@ -25,8 +25,15 @@ export default function Map({
   onClose,
   summary,
 }) {
+  const filterStyles = () => {
+    if (!summary?.fields) return ''
+    const selector = summary.fields.map((id) => 'path#' + id).join(', ')
+    const styles = `${selector} {fill: #407cff;}`
+    return <style>{styles}</style>
+  }
   return (
     <MapCard>
+      {filterStyles()}
       {area ? (
         <AreaMap
           area={area}

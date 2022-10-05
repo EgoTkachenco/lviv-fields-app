@@ -52,7 +52,6 @@ p {
 }
 .map-viewer-scroll-container.small {
   max-height: 488px;
-  height: 488px;
   min-height: 488px;
 }
 @media (max-width: 1200px) {

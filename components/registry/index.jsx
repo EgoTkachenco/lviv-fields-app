@@ -1,18 +1,50 @@
 import styled from 'styled-components'
-import { Table, Input, Spacer, Icon } from '../common'
-const Registry = () => {
+import { useEffect } from 'react'
+import { Table, Input, Spacer, Icon, Button, Box } from '../common'
+import { Registry as store } from '../../store'
+import { observer } from 'mobx-react-lite'
+
+const Registry = observer(() => {
+  useEffect(() => {
+    store.loadData()
+  }, [])
+  const isRead = store.mode === 'read'
   return (
     <>
-      <Search>
-        <Input placeholder="Пошук" rightSlot={<Icon icon="search" />} />
-      </Search>
+      <Box justify="space-between" wrap="true" gap="16px 16px">
+        <Search>
+          <Input
+            value={store.search}
+            onChange={(value) => store.updateSearch(value)}
+            placeholder="Пошук"
+            rightSlot={<Icon icon="search" />}
+          />
+        </Search>
+        {!isRead && (
+          <Button
+            variant="primary"
+            width="200px"
+            onClick={() => store.createNew()}
+          >
+            Створити
+          </Button>
+        )}
+      </Box>
       <Spacer vertical size="30px" />
       <Wrapper>
-        <Table model={model} data={data} sizes={sizes} />
+        <Table
+          model={model}
+          data={store.data}
+          sizes={sizes}
+          isRead={isRead}
+          onChange={(index, key, value) =>
+            store.updateTableRow(index, key, value)
+          }
+        />
       </Wrapper>
     </>
   )
-}
+})
 
 export default Registry
 
@@ -22,45 +54,40 @@ const Wrapper = styled.div`
 `
 const Search = styled.div`
   max-width: 470px;
+  width: 100%;
 `
 
-const data = new Array(20).fill({
-  id: '11',
-  name: 'Білявська Олександра Миколаївна',
-  cadastr: '4621087600:10:000:0114',
-  area: '0,5195',
-  date: '25.12.2021',
-  rentedYears: '49',
-  rentedYearsOwner: '28',
-  percent: '5',
-  colision: 'Остра Ольга Михайлівна',
-  note: 'Зміна власника',
-  suborend_1: '№2 від 06.06.2016',
-  suborend_2: '№2 від 06.06.2016',
-  register_date: '25.12.2021',
-  register_check_date: '25.12.2021',
-  sum: '5846,01',
-})
 const model = [
-  { id: 'id', name: '№ поля' },
-  { id: 'name', name: 'Орендодавець згідно Публічної кадастрової карти' },
+  { id: 'field', name: '№ поля' },
+  {
+    id: 'landlord_by_public_cadastral',
+    name: 'Орендодавець згідно Публічної кадастрової карти',
+  },
   { id: 'cadastr', name: 'Кадастровий номер' },
-  { id: 'area', name: 'Площа змельної ділянки, га' },
-  { id: 'date', name: 'Дата договору' },
-  { id: 'rentedYears', name: 'Строк оренди, років' },
-  { id: 'renterYearsOwner', name: 'Строк оренди у договорі орендодавця' },
+  { id: 'size', name: 'Площа змельної ділянки, га' },
+  { id: 'contract_date', name: 'Дата договору', type: 'date' },
+  { id: 'lease_term', name: 'Строк оренди, років' },
+  { id: 'lease_term_in_contract', name: 'Строк оренди у договорі орендодавця' },
   { id: 'percent', name: '%' },
-  { id: 'colision', name: 'Не співпадає власник згідно державного акту' },
+  { id: 'owner_dismatch', name: 'Не співпадає власник згідно державного акту' },
   { id: 'note', name: 'Примітки' },
   {
-    id: 'suborend_1',
+    id: 'sublease_MRIA_FARMING',
     name: 'Договір суборенди ТОВ "МРІЯ ФАРМІНГ ЛЬВІВ"до 06.06.2021 (7 років)',
   },
-  { id: 'suborend_2', name: 'Договір суборенди Колодій Микола Іванович' },
-  { id: 'register_date', name: 'Дата державної реєстрації права' },
   {
-    id: 'register_check_date',
+    id: 'sublease_Colodiy_Mykola',
+    name: 'Договір суборенди Колодій Микола Іванович',
+  },
+  {
+    id: 'state_registration_date',
+    name: 'Дата державної реєстрації права',
+    type: 'date',
+  },
+  {
+    id: 'assessment_date',
     name: 'Дата оцінки ділянки, згідно Держгеокадастру',
+    type: 'date',
   },
   { id: 'sum', name: 'Сума, грн' },
 ]

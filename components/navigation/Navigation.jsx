@@ -157,6 +157,7 @@ export const NavLink = styled.div`
     background: #94a5d0;
     border-radius: 0px 0px 30px 30px;
     height: 4px;
+    transition: opacity 0.3s;
   }
 
   @media (max-width: 800px) {
@@ -164,6 +165,12 @@ export const NavLink = styled.div`
     font-size: 24px;
     line-height: 29px;
     color: #ffffff;
+  }
+
+  &:hover {
+    &::before {
+      opacity: 1;
+    }
   }
 `
 

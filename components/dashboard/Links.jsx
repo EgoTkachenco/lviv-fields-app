@@ -16,36 +16,45 @@ const Links = () => {
         text="карта полiв"
         redirect={() => router.push('/map')}
         icon="/icons/marker.svg"
+        index={0}
       />
       <Link
         text="Камери відеоспостереження"
         link={video}
         icon="/icons/video.svg"
+        index={1}
       />
       <Link
         text="Органайзер"
         redirect={() => router.push('/planner')}
         icon="/icons/organize.svg"
+        index={2}
       />
-      <Link text="crm система" link={admin} icon="/icons/crm.svg" />
-      <Link text="сайт" link="/" icon="/icons/web.svg" />
+      <Link text="crm система" link={admin} icon="/icons/crm.svg" index={3} />
+      <Link text="сайт" link="/" icon="/icons/web.svg" index={4} />
       <LinkCardsWrapper gap="13px">
         <Link
           text="корпоративна пошта"
           link={'mailto:' + email}
           icon="/icons/mail.svg"
           size="medium"
+          index={5}
         />
         <SocialBox gap="13px" direction="column">
-          <Link link={telegram} icon="/icons/telegram.svg" size="small" />
-          <Link link={viber} icon="/icons/viber.svg" size="small" />
+          <Link
+            link={telegram}
+            icon="/icons/telegram.svg"
+            size="small"
+            index={6}
+          />
+          <Link link={viber} icon="/icons/viber.svg" size="small" index={7} />
         </SocialBox>
       </LinkCardsWrapper>
     </Wrapper>
   )
 }
 
-const Link = ({ text, link, icon, size, redirect }) => (
+const Link = ({ text, link, icon, size, redirect, index }) => (
   <LinkCard
     size={size}
     href={link}
@@ -56,6 +65,9 @@ const Link = ({ text, link, icon, size, redirect }) => (
       }
     }}
     target="_blank"
+    data-aos="fade-in"
+    data-aos-anchor-placement="top-bottom"
+    data-aos-delay={50 * index}
   >
     <LinkIcon src={icon} alt={text} />
     {text && <LinkText>{text}</LinkText>}

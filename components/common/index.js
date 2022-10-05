@@ -11,6 +11,7 @@ import Checkbox from './Checkbox'
 import Icon from './Icon'
 import Table from './Table'
 import ConfirmationModal from './ConfirmationModal'
+import Autocomplete from './Autocomplete'
 
 export {
   Button,
@@ -34,4 +35,5 @@ export {
   Icon,
   Table,
   ConfirmationModal,
+  Autocomplete,
 }

@@ -12,12 +12,16 @@ const EditButton = observer(() => {
   const isAdmin = user?.role.name === 'Admin'
 
   const getProps = () => {
-    console.log(router.pathname)
     switch (router.pathname) {
       case '/map':
         return {
           text: Stores.Map.mode === 'read' ? edit_text : save_text,
           action: () => Stores.Map.changeMode(),
+        }
+      case '/registry':
+        return {
+          text: Stores.Registry.mode === 'read' ? edit_text : save_text,
+          action: () => Stores.Registry.changeMode(),
         }
       default:
         return null

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { VARIETIES_API } from '../store/help/api'
 
 export const useNoBodyScroll = (open) => {
   useEffect(() => {
@@ -80,4 +81,36 @@ export const useForm = (fields = {}) => {
   }
 
   return { state, onChange, onError, getFieldProps, validate, reset }
+}
+
+export const useAPIVarieties = () => {
+  const [search, setSearch] = useState('')
+  const [varieties, setVarieties] = useState([])
+
+  const debouncedGetVarieties = _.debounce(
+    (search) => getVarieties(search),
+    100
+  )
+
+  const searchVarieties = (value) => {
+    setSearch(value)
+    debouncedGetVarieties(value)
+  }
+
+  const getVarieties = async (search) => {
+    const res = await VARIETIES_API.getVarieties(search)
+    setVarieties(res)
+  }
+  const createVariety = (name) => {
+    console.log(name)
+  }
+  useEffect(() => {
+    getVarieties()
+  }, [])
+  return {
+    varieties,
+    search,
+    onSearch: searchVarieties,
+    onCreate: createVariety,
+  }
 }

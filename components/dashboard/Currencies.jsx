@@ -3,8 +3,8 @@ import axios from 'axios'
 import styled from 'styled-components'
 import { Box, Spacer } from '../common'
 
-const Currencies = ({ usd, eur, bitcoin }) => {
-  const [state, setState] = useState({ usd: '', eur: '', btc: '' })
+const Currencies = () => {
+  const [state, setState] = useState(null)
   useEffect(() => {
     const promises = [
       axios.get(
@@ -24,22 +24,25 @@ const Currencies = ({ usd, eur, bitcoin }) => {
       <CurrencyBlock
         name="Долар"
         currency="USD"
-        value={state.usd}
+        value={state?.usd}
         icon="/icons/dollar.svg"
+        index={0}
       />
 
       <CurrencyBlock
         name="Євро"
         currency="EUR"
-        value={state.eur}
+        value={state?.eur}
         icon="/icons/euro.svg"
+        index={1}
       />
 
       <CurrencyBlock
         name="Біткоїн"
         currency="btc"
-        value={state.btc}
+        value={state?.btc}
         icon="/icons/bitcoin.svg"
+        index={2}
       />
     </Wrapper>
   )
@@ -53,16 +56,16 @@ const Wrapper = styled(Box)`
   }
 `
 
-const CurrencyBlock = ({ name, currency, value, icon }) => (
-  <CurrencyCard>
+const CurrencyBlock = ({ name, currency, value, icon, index }) => (
+  <CurrencyCard data-aos="fade-in" data-aos-delay={100 * index}>
     <CurrencyCardIcon>
       <CurrencyCardImage src={icon} alt={name} />
     </CurrencyCardIcon>
     <CurrencyCardName>{name}</CurrencyCardName>
-    <Box align="baseline">
+    <CurrencyCardContent align="baseline" value={value}>
       <CurrencyCardValue>{value}</CurrencyCardValue>
       <CurrencyCardCurrency>{currency}</CurrencyCardCurrency>
-    </Box>
+    </CurrencyCardContent>
   </CurrencyCard>
 )
 
@@ -89,6 +92,26 @@ const CurrencyCard = styled.div`
     z-index: 0;
   }
 `
+const CurrencyCardContent = styled(Box)`
+  /* background: ${(props) => (props.value ? 'red' : 'transparent')}; */
+  &:after {
+    content: '';
+    background: radial-gradient(
+      67.22% 67.22% at 87.17% 17.38%,
+      #e69ef7 0%,
+      #44c3f6 52.6%,
+      #776aeb 100%
+    );
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s;
+    opacity: ${(props) => (props.value ? '0' : '1')};
+    width: ${(props) => (props.value ? '0' : '100%')};
+  }
+`
+
 const CurrencyCardImage = styled.img`
   width: 48px;
   height: 48px;

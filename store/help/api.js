@@ -1,4 +1,4 @@
-const { axios, securedFetchOptions } = require('./axios')
+const { axios, securedFetchOptions, getToken } = require('./axios')
 
 export const AUTH_API = {
   login: (identifier, password) =>
@@ -24,6 +24,9 @@ export const AUTH_API = {
 export const PLANNER_API = {
   getTasks: () =>
     axios.get('/tasks?_limit=-1&status=open', securedFetchOptions()),
+
+  getArchiveTasks: () =>
+    axios.get('/tasks?_limit=-1&status=closed', securedFetchOptions()),
 
   createTask: (name) => axios.post('/tasks', { name }, securedFetchOptions()),
 
@@ -68,4 +71,45 @@ export const MAP_API = {
 
   getSummary: (filter) =>
     axios.get(`/fields/summary?${filter}`, securedFetchOptions()),
+}
+
+export const FILE_API = {
+  loadFile: async (data) => {
+    const res = await axios.post('/upload', data, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: 'Bearer ' + getToken(),
+      },
+    })
+
+    return Array.isArray(res) ? res[0] : res
+  },
+
+  removeFile: (fileId) =>
+    axios.delete(`/upload/files/${fileId}`, securedFetchOptions()),
+}
+
+export const VARIETIES_API = {
+  getVarieties: (search) =>
+    axios.get('/varieties', {
+      params: {
+        _limit: 6,
+        _q: search,
+      },
+      ...securedFetchOptions(),
+    }),
+  createVariety: (name) =>
+    axios.post('/varieties', { name }, securedFetchOptions()),
+}
+
+export const REGISTRY_API = {
+  getRegistry: (search) =>
+    axios.get('/landlords-registries', {
+      params: { _limit: -1, _q: search },
+      ...securedFetchOptions(),
+    }),
+  create: (data) =>
+    axios.post('/landlords-registries', data, securedFetchOptions()),
+  update: (id, data) =>
+    axios.put(`/landlords-registries/${id}`, data, securedFetchOptions()),
 }

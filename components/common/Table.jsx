@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
-const Table = ({ model, data, sizes }) => {
+const Table = ({ model, data, sizes, isRead, onChange }) => {
+  if (!data) return
   return (
     <TableWrapper>
       <TableContent>
@@ -13,7 +14,12 @@ const Table = ({ model, data, sizes }) => {
           <TableRow key={i}>
             {model.map((field, j) => (
               <TableCell width={sizes[i]} key={i + ' ' + j}>
-                {row[field.id]}
+                <input
+                  type={field.type || 'text'}
+                  value={row[field.id]}
+                  readOnly={isRead}
+                  onChange={(e) => onChange(i, field.id, e.target.value)}
+                />
               </TableCell>
             ))}
           </TableRow>
@@ -62,13 +68,18 @@ const TableHeaderCell = styled.th`
   }
 `
 const TableCell = styled.td`
-  padding: 12px 20px;
   white-space: nowrap;
   border-right: 1px solid #e9edf5;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  color: #687182;
+  input {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #687182;
+    padding: 12px 20px;
+    background: none;
+    border: none;
+    outline: none;
+  }
 
   &:last-child {
     border-right: none;

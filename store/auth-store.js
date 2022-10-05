@@ -1,6 +1,6 @@
 import { makeAutoObservable } from 'mobx'
 import { AUTH_API } from './help/api'
-import { setToken, eraseToken } from './help/axios'
+import { setToken, eraseToken, getToken } from './help/axios'
 import { TOKEN_NAME, USER_STORE_NAME } from './help/constants'
 
 class Store {
@@ -62,8 +62,16 @@ class Store {
 
   relog() {
     const user = localStorage.getItem(USER_STORE_NAME)
-    this.user = user ? JSON.parse(user) : null
-    return !!this.user
+    const token = getToken()
+    if (user && token) {
+      this.user = JSON.parse(user)
+
+      return this.user
+    } else {
+      this.user = null
+      localStorage.removeItem(USER_STORE_NAME)
+      return false
+    }
   }
 }
 
