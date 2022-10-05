@@ -69,6 +69,11 @@ export const MAP_API = {
   updateField: (pathname, data) =>
     axios.put(`/fields/${pathname}`, data, securedFetchOptions()),
 
+  createPlantation: (variety, size, field) =>
+    axios.post('/plantations', { variety, size, field }, securedFetchOptions()),
+  updatePlantation: (id, variety, size) =>
+    axios.put(`/plantations/${id}`, { variety, size }, securedFetchOptions()),
+
   getSummary: (filter) =>
     axios.get(`/fields/summary?${filter}`, securedFetchOptions()),
 }
@@ -93,8 +98,8 @@ export const VARIETIES_API = {
   getVarieties: (search) =>
     axios.get('/varieties', {
       params: {
-        _limit: 6,
-        _q: search,
+        _limit: -1,
+        name_contains: search,
       },
       ...securedFetchOptions(),
     }),

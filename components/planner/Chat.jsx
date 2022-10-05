@@ -53,6 +53,7 @@ const Chat = ({
 
   const sendMessage = async (e) => {
     e.preventDefault()
+    if (state.message.length === 0) return
     const newMessage = await onNewMessage(state.message)
     setState((state) => ({
       ...state,

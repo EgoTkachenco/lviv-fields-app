@@ -11,14 +11,19 @@ export const CardField = ({
   const StyledBox = styledBox
   if (isRead)
     return (
-      <StyledBox gap="16px 4px">
+      <StyledBox gap="16px 4px" wrap="true">
         <Text>{label}:</Text>
         <Text color="grey">{value || 'немає'}</Text>
       </StyledBox>
     )
 
   return (
-    <StyledBox align="center" gap="16px 4px" justify="space-between" wrap>
+    <StyledBox
+      align="center"
+      gap="16px 4px"
+      justify="space-between"
+      wrap="true"
+    >
       <Text>{label}:</Text>
       {editableSlot}
     </StyledBox>

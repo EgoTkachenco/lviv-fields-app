@@ -61,7 +61,6 @@ export const useMapFieldsHandlers = (ref, onOpen, field, fields) =>
         element.id.search('Vector') === -1 &&
         element.id.search('Lake') === -1
       ) {
-        console.log('field')
         if (field !== element.id)
           element.addEventListener('mouseenter', handleEnterField)
         if (field !== element.id)

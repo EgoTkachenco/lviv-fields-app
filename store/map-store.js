@@ -207,6 +207,7 @@ class Store {
     }
     let new_owner_files = []
     let new_contract_files = []
+    let plantations = []
     try {
       // create files
       new_owner_files = field?.owner_files.filter((file) => !file.id)
@@ -221,48 +222,59 @@ class Store {
         data.append('files', field.owner_avatar)
         field.owner_avatar = await FILE_API.loadFile(data)
       }
-
-      debugger
       // remove files
       for (let i = 0; i < deleted_files.length; i++) {
-        debugger
         await FILE_API.removeFile(deleted_files[i])
       }
-    } catch (error) {
-      console.log('error', error)
-    }
 
-    const fieldCommonData = _.omit(field, [
-      'owner_files',
-      'contract_files',
-      'created_at',
-      'id',
-      'plantations',
-      'published_at',
-      'updated_at',
-    ])
-    debugger
-    fieldCommonData.owner_avatar = field.owner_avatar
-      ? field.owner_avatar.id
-      : null
-    fieldCommonData.owner_files = [
-      ...field.owner_files.filter((file) => file.id),
-      ...new_owner_files,
-    ].map((file) => file.id)
+      // handle plantations change
+      for (let i = 0; i < field.plantations.length; i++) {
+        let plantation = field.plantations[i]
+        if (plantation.id) {
+          plantation = await MAP_API.updatePlantation(
+            plantation.id,
+            plantation.variety.id,
+            plantation.size
+          )
+        } else {
+          plantation = await MAP_API.createPlantation(
+            plantation.variety.id,
+            plantation.size
+          )
+        }
+        plantations.push(plantation.id)
+      }
 
-    fieldCommonData.contract_files = [
-      ...field.contract_files.filter((file) => file.id),
-      ...new_contract_files,
-    ].map((file) => file.id)
+      const fieldCommonData = _.omit(field, [
+        'owner_files',
+        'contract_files',
+        'created_at',
+        'id',
+        'plantations',
+        'published_at',
+        'updated_at',
+      ])
+      fieldCommonData.owner_avatar = field.owner_avatar
+        ? field.owner_avatar.id
+        : null
+      fieldCommonData.owner_files = [
+        ...field.owner_files.filter((file) => file.id),
+        ...new_owner_files,
+      ].map((file) => file.id)
 
-    console.log(fieldCommonData)
-    try {
+      fieldCommonData.contract_files = [
+        ...field.contract_files.filter((file) => file.id),
+        ...new_contract_files,
+      ].map((file) => file.id)
+      fieldCommonData.plantations = plantations
+
       this.field = await MAP_API.updateField(this.field.pathname, {
         ...fieldCommonData,
         area: this.area,
       })
+      console.log(fieldCommonData)
     } catch (error) {
-      console.log('Error: ', error)
+      console.log('error', error)
     }
   }
 }
