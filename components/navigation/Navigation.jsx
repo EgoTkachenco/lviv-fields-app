@@ -31,7 +31,12 @@ const Navigation = observer(() => {
       <Spacer size="auto" />
       {isLogged && (
         <>
-          <Links gap="60px" open={open} onClick={() => setOpen(false)}>
+          <Links
+            gap="60px"
+            open={open}
+            onClick={() => setOpen(false)}
+            align="center"
+          >
             <LinksCloseButton onClick={() => setOpen(false)}>
               <Icon icon="close" size="24px" />
             </LinksCloseButton>
@@ -148,6 +153,7 @@ export const NavLink = styled.div`
   color: #464f60;
   cursor: pointer;
   position: relative;
+  white-space: nowrap;
   &::before {
     content: '';
     opacity: ${(props) => (props.active ? 1 : 0)};

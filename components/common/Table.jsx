@@ -79,6 +79,7 @@ const TableCell = styled.td`
     background: none;
     border: none;
     outline: none;
+    width: 100%;
   }
 
   &:last-child {

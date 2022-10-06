@@ -5,7 +5,13 @@ import Box from './Box'
 import { Text } from './Text'
 import Spacer from './Spacer'
 
-const ConfirmationModal = ({ title, text, children, onConfirm }) => {
+const ConfirmationModal = ({
+  title,
+  text,
+  children,
+  onConfirm,
+  onCancel = () => {},
+}) => {
   const [show, setShow] = useState(false)
 
   return (
@@ -19,7 +25,13 @@ const ConfirmationModal = ({ title, text, children, onConfirm }) => {
           </>
         )}
         <Box gap="16px" align="center">
-          <Button variant="outline" onClick={() => setShow(false)}>
+          <Button
+            variant="outline"
+            onClick={() => {
+              setShow(false)
+              onCancel()
+            }}
+          >
             Закрити
           </Button>
           <Button

@@ -85,6 +85,11 @@ class Store {
   }
 
   async openField(id) {
+    if (this.mode === 'write') {
+      this.isEdited = false
+      this.deletedFiles = []
+    }
+
     this.isFetch = true
     try {
       const fieldDetails = await MAP_API.getField(id)
@@ -117,7 +122,16 @@ class Store {
     }
     this.isFetch = false
   }
+
+  cancelSave() {
+    this.field && this.openField(this.field.pathname)
+    this.isEdited = false
+    this.deletedFiles = []
+    this.mode = 'read'
+  }
+
   closeField() {
+    if (this.mode === 'write') return this.changeMode()
     this.area = null
     this.field = null
   }
@@ -125,7 +139,7 @@ class Store {
   mode = 'read'
   isEdited = false
   deletedFiles = []
-  editedPlantations = []
+
   async changeMode() {
     if (this.mode === 'read') {
       this.mode = 'write'

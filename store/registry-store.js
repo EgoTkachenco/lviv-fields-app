@@ -75,6 +75,12 @@ class Store {
     }
     this.loadData()
   }
+
+  cancelSave() {
+    this.mode = 'read'
+    this.editedRows = {}
+    this.loadData()
+  }
 }
 
 const store = new Store()
