@@ -33,10 +33,10 @@ export default function Viewer({ children, small }) {
     >
       <ViewerWrapper
         {...bind()}
-        onMouseEnter={() => setFocus(true)}
-        onMouseLeave={() => setFocus(false)}
+        // onMouseEnter={() => setFocus(true)}
+        // onMouseLeave={() => setFocus(false)}
         height={state.scroll * 100 + '%'}
-        onWheel={handleScroll}
+        // onWheel={handleScroll}
       >
         {children}
       </ViewerWrapper>
