@@ -7,22 +7,26 @@ const initialFilter = {
   category: [],
   varieties: [],
   year: {
-    start: null,
-    end: null,
+    start: '',
+    end: '',
   },
   term: {
-    start: null,
-    end: null,
+    start: '',
+    end: '',
   },
 }
 class Store {
+  isFetch = false
+  filter = {}
+  summary = null
+  area = null
+  field = null
+
   constructor() {
     makeAutoObservable(this)
+    this.clearFilter(false)
   }
-  isFetch = false
 
-  filter = { ...initialFilter }
-  summary = null
   updateFilter(key, val) {
     let filter = { ...this.filter }
     switch (key) {
@@ -58,13 +62,15 @@ class Store {
     if (this.filter.varieties.length)
       requestQueryFilter.set('varieties_in', this.filter.varieties)
     if (this.filter.year.start)
-      requestQueryFilter.set('contract_start_gte', this.filter.year.start)
+      requestQueryFilter.set('plantation_year_gte', this.filter.year.start)
+    if (this.filter.year.end)
+      requestQueryFilter.set('plantation_year_lte', this.filter.year.end)
+    if (this.filter.term.start)
+      requestQueryFilter.set('contract_term_gte', this.filter.term.start)
     if (this.filter.term.end)
-      requestQueryFilter.set('contract_due_lte', this.filter.year.end)
-    // if (this.filter.term.start)
-    //   requestQueryFilter.set('term_gte', this.filter.term.start)
-    // if (this.filter.term.end)
-    //   requestQueryFilter.set('term_lte', this.filter.term.end)
+      requestQueryFilter.set('contract_term_lte', this.filter.term.end)
+
+    if (this.area) requestQueryFilter.set('area_in', this.area)
     try {
       this.summary = await MAP_API.getSummary(requestQueryFilter.toString())
       // console.log(requestQueryFilter.toString())
@@ -73,15 +79,15 @@ class Store {
       console.log('Error: ', error)
     }
   }
-  clearFilter() {
-    this.filter = { ...initialFilter }
-  }
 
-  area = null
-  field = null
+  clearFilter(isFetch = true) {
+    this.filter = _.cloneDeep(initialFilter)
+    if (isFetch) this.getSummary()
+  }
 
   openArea(id) {
     this.area = id
+    this.getSummary()
   }
 
   async openField(id) {
@@ -134,11 +140,13 @@ class Store {
     if (this.mode === 'write') return this.changeMode()
     this.area = null
     this.field = null
+    this.getSummary()
   }
 
   mode = 'read'
   isEdited = false
   deletedFiles = []
+  deletedPlantations = []
 
   async changeMode() {
     if (this.mode === 'read') {
@@ -150,6 +158,7 @@ class Store {
           await this.saveField()
           this.isEdited = false
           this.deletedFiles = []
+          this.deletedPlantations = []
         } catch (error) {
           console.log('Error: ', error)
         }
@@ -165,11 +174,20 @@ class Store {
       case 'new-plantation':
         field.plantations.push({ size: '', variety: null })
         break
+      case 'delete-plantation':
+        debugger
+        const deleted = field.plantations[val]
+        if (deleted.id) this.deletedPlantations.push(deleted.id)
+        field.plantations = field.plantations.filter((_, i) => i !== val)
+        break
       case 'plantation-variety':
         field.plantations[val.index].variety = val.value
         break
       case 'plantation-size':
         field.plantations[val.index].size = val.value
+        break
+      case 'plantation-year':
+        field.plantations[val.index].year = val.value
         break
       case 'owner-file-new':
         field.owner_files.push(val)
@@ -248,15 +266,22 @@ class Store {
           plantation = await MAP_API.updatePlantation(
             plantation.id,
             plantation.variety.id,
-            plantation.size
+            plantation.size,
+            plantation.year
           )
         } else {
           plantation = await MAP_API.createPlantation(
             plantation.variety.id,
-            plantation.size
+            plantation.size,
+            plantation.year
           )
         }
         plantations.push(plantation.id)
+      }
+      // remove plantations
+      for (let i = 0; i < this.deletedPlantations.length; i++) {
+        const id = this.deletedPlantations[i]
+        await MAP_API.deletePlantation(id)
       }
 
       const fieldCommonData = _.omit(field, [

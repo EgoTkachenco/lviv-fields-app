@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Button, ConfirmationModal } from '../common'
 
 const Table = ({ model, data, sizes, isRead, onChange }) => {
   if (!data) return
@@ -9,6 +10,7 @@ const Table = ({ model, data, sizes, isRead, onChange }) => {
           {model.map((field, i) => (
             <TableHeaderCell key={i}>{field.name}</TableHeaderCell>
           ))}
+          {!isRead && <TableHeaderCell></TableHeaderCell>}
         </TableRow>
         {data.map((row, i) => (
           <TableRow key={i}>
@@ -22,6 +24,17 @@ const Table = ({ model, data, sizes, isRead, onChange }) => {
                 />
               </TableCell>
             ))}
+            {!isRead && (
+              <TableCell>
+                <ConfirmationModal
+                  title="Видалення"
+                  text="Ви впевнені шо хочете видалити запис?"
+                  onConfirm={() => onChange(i, 'delete', null)}
+                >
+                  <Button size="small">Видалити</Button>
+                </ConfirmationModal>
+              </TableCell>
+            )}
           </TableRow>
         ))}
       </TableContent>

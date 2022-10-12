@@ -41,7 +41,7 @@ const Navigation = observer(() => {
               <Icon icon="close" size="24px" />
             </LinksCloseButton>
 
-            <EditButton />
+            <EditButton isMobile={false} />
 
             {links.map(({ name, path, action }, i) => (
               <Link href={path || ''} key={i}>

@@ -40,8 +40,7 @@ export const PLANNER_API = {
       ...securedFetchOptions(),
     }),
 
-  sendMessage: (task, content, type = 'text') =>
-    axios.post('/messages', { task, content, type }, securedFetchOptions()),
+  sendMessage: (data) => axios.post('/messages', data, securedFetchOptions()),
 
   addMember: (task, user) =>
     axios.post(
@@ -69,10 +68,16 @@ export const MAP_API = {
   updateField: (pathname, data) =>
     axios.put(`/fields/${pathname}`, data, securedFetchOptions()),
 
-  createPlantation: (variety, size, field) =>
-    axios.post('/plantations', { variety, size, field }, securedFetchOptions()),
-  updatePlantation: (id, variety, size) =>
-    axios.put(`/plantations/${id}`, { variety, size }, securedFetchOptions()),
+  createPlantation: (variety, size, year) =>
+    axios.post('/plantations', { variety, size, year }, securedFetchOptions()),
+  updatePlantation: (id, variety, size, year) =>
+    axios.put(
+      `/plantations/${id}`,
+      { variety, size, year },
+      securedFetchOptions()
+    ),
+  deletePlantation: (id) =>
+    axios.delete(`/plantations/${id}`, securedFetchOptions()),
 
   getSummary: (filter) =>
     axios.get(`/fields/summary?${filter}`, securedFetchOptions()),
@@ -117,4 +122,6 @@ export const REGISTRY_API = {
     axios.post('/landlords-registries', data, securedFetchOptions()),
   update: (id, data) =>
     axios.put(`/landlords-registries/${id}`, data, securedFetchOptions()),
+  delete: (id) =>
+    axios.delete(`/landlords-registries/${id}`, securedFetchOptions()),
 }

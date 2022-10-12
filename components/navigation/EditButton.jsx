@@ -2,11 +2,12 @@ import { Button, ConfirmationModal } from '../common'
 import { observer } from 'mobx-react-lite'
 import Stores from '../../store'
 import { useRouter } from 'next/router'
+import styled from 'styled-components'
 
 const edit_text = 'Редагування'
 const save_text = 'Зберегти'
 
-const EditButton = observer(() => {
+const EditButton = observer(({ isMobile }) => {
   const router = useRouter()
   const user = Stores.Auth.user
   const isAdmin = user?.role.name === 'Admin'
@@ -19,6 +20,7 @@ const EditButton = observer(() => {
           isRead: Stores.Map.mode === 'read',
           confirm: () => Stores.Map.changeMode(),
           cancel: () => Stores.Map.cancelSave(null),
+          condition: () => !!Stores.Map.field,
         }
       case '/registry':
         return {
@@ -26,19 +28,25 @@ const EditButton = observer(() => {
           isRead: Stores.Registry.mode === 'read',
           confirm: () => Stores.Registry.changeMode(),
           cancel: () => Stores.Registry.cancelSave(),
+          condition: () => true,
         }
       default:
         return null
     }
   }
   const props = getProps()
-  if (!isAdmin || !props) return
+  if (!isAdmin || !props || !props.condition()) return
 
   if (props.isRead)
     return (
-      <Button onClick={props.confirm} variant="primary" size="small">
+      <StyledButton
+        onClick={props.confirm}
+        variant="primary"
+        size="small"
+        isMobile={isMobile}
+      >
         {edit_text}
-      </Button>
+      </StyledButton>
     )
   return (
     <ConfirmationModal
@@ -47,11 +55,19 @@ const EditButton = observer(() => {
       onConfirm={props.confirm}
       onCancel={props.cancel}
     >
-      <Button variant="success" size="small">
+      <StyledButton variant="success" size="small" isMobile={isMobile}>
         {save_text}
-      </Button>
+      </StyledButton>
     </ConfirmationModal>
   )
 })
 
 export default EditButton
+
+const StyledButton = styled(Button)`
+  display: ${(props) => (props.isMobile ? 'none' : 'flex')};
+  @media (max-width: 800px) {
+    display: ${(props) => (props.isMobile ? 'flex' : 'none')};
+    margin-bottom: 16px;
+  }
+`

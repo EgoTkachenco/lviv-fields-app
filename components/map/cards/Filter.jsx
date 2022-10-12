@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import {
   Card,
   H5,
+  Text,
   Spacer,
   Box,
   Input,
@@ -17,6 +18,11 @@ const Filter = ({ filter, onChange, onSubmit, onClear }) => {
   const [open, setOpen] = useState(false)
   useNoBodyScroll(open)
   const { search, varieties, onSearch: onSearchVarieties } = useAPIVarieties()
+
+  const clearFilter = () => {
+    onClear()
+    onSearchVarieties('')
+  }
 
   return (
     <>
@@ -60,41 +66,66 @@ const Filter = ({ filter, onChange, onSubmit, onClear }) => {
             value={search}
             onChange={onSearchVarieties}
             placeholder="Пошук"
+            name="search"
             tip={<SearchIcon src="/icons/search.svg" />}
           />
           <Spacer vertical size="20px" />
           <SortsBox gap="20px" direction="column">
-            {varieties.map((variety) => (
-              <Checkbox
-                key={variety.id}
-                label={variety.name}
-                value={filter.varieties.includes(variety.id)}
-                onChange={() => onChange('varieties', variety.id)}
-              />
-            ))}
+            {varieties.length > 0 ? (
+              varieties.map((variety) => (
+                <Checkbox
+                  key={variety.id}
+                  label={variety.name}
+                  value={filter.varieties.includes(variety.id)}
+                  onChange={() => onChange('varieties', variety.id)}
+                />
+              ))
+            ) : (
+              <Text align="center">Немає результатів</Text>
+            )}
           </SortsBox>
           <Spacer vertical size="30px" />
           <H5>Рік насаджень</H5>
           <Spacer vertical size="20px" />
           <Box align="center" justify="space-between" gap="16px">
-            <Input placeholder="2011" />
+            <Input
+              value={filter.year.start}
+              validate={(v) => !isNaN(Number(v)) && v > 0 && v < 3000}
+              placeholder="2011"
+              onChange={(val) => onChange('year-start', val)}
+            />
             <FilterDelimiter />
-            <Input placeholder="2022" />
+            <Input
+              value={filter.year.end}
+              validate={(v) => !isNaN(Number(v)) && v > 0 && v < 3000}
+              placeholder="2022"
+              onChange={(val) => onChange('year-end', val)}
+            />
           </Box>
           <Spacer vertical size="30px" />
           <H5>Термiн дії договору</H5>
           <Spacer vertical size="20px" />
           <Box align="center" justify="space-between" gap="16px">
-            <Input placeholder="3" />
+            <Input
+              value={filter.term.start}
+              validate={(v) => !isNaN(Number(v)) && v > 0 && v < 100}
+              placeholder="3"
+              onChange={(val) => onChange('term-start', val)}
+            />
             <FilterDelimiter />
-            <Input placeholder="10" />
+            <Input
+              value={filter.term.end}
+              validate={(v) => !isNaN(Number(v)) && v > 0 && v < 100}
+              placeholder="10"
+              onChange={(val) => onChange('term-end', val)}
+            />
           </Box>
           <Spacer vertical size="30px" />
           <Button variant="accent" onClick={onSubmit}>
             застосувати
           </Button>
           <Spacer vertical size-sm="16px" />
-          <Button variant="text" onClick={onClear}>
+          <Button variant="text" onClick={clearFilter}>
             скинути
           </Button>
         </FilterInner>
@@ -179,5 +210,6 @@ const SortsBox = styled(Box)`
   overflow: auto;
   & > * {
     flex-grow: 0;
+    width: 100%;
   }
 `

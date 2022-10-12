@@ -8,9 +8,11 @@ import {
   Spacer,
   Icon,
   ConfirmationModal,
+  Text,
 } from '../common'
 import Message from './Message'
 import MembersModal from './MembersModal'
+import { FilePreview } from '../map/cards/elements/FilesList'
 
 const CHAT_UPDATE_TIMEOUT = 1500
 
@@ -72,7 +74,8 @@ const Chat = ({
   const members = task?.users?.map((u) => u.id)
 
   const isActiveChat = task?.status === 'open'
-
+  const isFile = typeof state.message === 'object'
+  console.log(state.message)
   return (
     <Wrapper>
       <Header align="center" justify="space-between">
@@ -101,35 +104,68 @@ const Chat = ({
       <Spacer vertical size="16px" />
       {isActiveChat && (
         <form onSubmit={sendMessage}>
-          <Input
-            placeholder="Додати завдання"
-            onChange={onMessageChange}
-            value={state.message}
-            size="large"
-            rightSlot={
-              <InputSlot>
-                <Icon icon="attachment" />
-                <Icon icon="sobaka" />
-                <Icon icon="emoji" />
-                <Icon icon="text" />
-                <InputSlotDelimiter />
-                <Icon icon="send" onClick={sendMessage} />
-              </InputSlot>
-            }
-          />
+          {!isFile ? (
+            <Input
+              placeholder="Додати завдання"
+              onChange={onMessageChange}
+              value={state.message}
+              size="large"
+              rightSlot={
+                <InputSlot>
+                  <IconButton>
+                    <Icon icon="attachment" />
+                    <FileInput
+                      type="file"
+                      onChange={(e) => onMessageChange(e.target.files[0])}
+                    />
+                  </IconButton>
+                  {/* <Icon icon="sobaka" /> */}
+                  {/* <Icon icon="emoji" /> */}
+                  {/* <Icon icon="text" /> */}
+                  <InputSlotDelimiter />
+                  <IconButton onClick={sendMessage}>
+                    <Icon icon="send" />
+                  </IconButton>
+                </InputSlot>
+              }
+            />
+          ) : (
+            <MediaInput gap="8px" align="center">
+              <FilePreview
+                file={state.message}
+                isRead={false}
+                onDelete={() => onMessageChange('')}
+              />
+              <Text>{state.message.name}</Text>
+              <Spacer size="auto" />
+              <IconButton onClick={sendMessage}>
+                <Icon icon="send" />
+              </IconButton>
+            </MediaInput>
+          )}
         </form>
       )}
       <ModileInputSlot>
         <Icon icon="attachment" />
-        <Icon icon="sobaka" />
-        <Icon icon="emoji" />
-        <Icon icon="text" />
+        {/* <Icon icon="sobaka" /> */}
+        {/* <Icon icon="emoji" /> */}
+        {/* <Icon icon="text" /> */}
       </ModileInputSlot>
     </Wrapper>
   )
 }
 
 export default Chat
+
+const FileInput = styled.input`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  opacity: 0;
+  top: 0;
+  left: 0;
+`
 
 const Wrapper = styled.div`
   background: #ffffff;
@@ -195,4 +231,27 @@ const InputSlotDelimiter = styled.div`
   height: 35px;
   width: 1px;
   background: #dce0ec;
+`
+
+const IconButton = styled.button`
+  background: none;
+  border: none;
+  position: relative;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+`
+
+const MediaInput = styled(Box)`
+  height: 60px;
+  border: 1px solid #e9edf2;
+  border-radius: 30px;
+  padding: 0 20px;
+  font-family: 'Lato';
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+
+  transition: all 0.3s;
+  background: #ffffff;
 `

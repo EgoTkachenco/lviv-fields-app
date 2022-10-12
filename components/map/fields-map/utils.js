@@ -39,16 +39,17 @@ export const useMapAreaHandlers = (ref, onOpen) =>
     }
   }, [ref])
 
-const handleEnterField = (e) => {
-  e.currentTarget.style.fill = 'rgba(64, 124, 255, 0.2)'
-  e.currentTarget.style.stroke = '#407CFF'
-}
-const handleLeaveField = (e) => {
-  e.currentTarget.style.fill = 'transparent'
-  e.currentTarget.style.stroke = '#464F60'
-}
-
-export const useMapFieldsHandlers = (ref, onOpen, field, fields) =>
+export const useMapFieldsHandlers = (ref, onOpen, field, fields) => {
+  const handleEnterField = (e) => {
+    e.currentTarget.style.fill = 'rgba(64, 124, 255, 0.2)'
+    e.currentTarget.style.stroke = '#407CFF'
+  }
+  const handleLeaveField = (e) => {
+    e.currentTarget.style.fill = fields.includes(e.currentTarget.id)
+      ? '#407cff'
+      : 'transparent'
+    e.currentTarget.style.stroke = '#464F60'
+  }
   useEffect(() => {
     if (!ref.current) return
     const childrens = ref.current.children[0].children
@@ -67,7 +68,9 @@ export const useMapFieldsHandlers = (ref, onOpen, field, fields) =>
           element.addEventListener('mouseleave', handleLeaveField)
         element.addEventListener('click', onOpen)
 
-        element.style.fill = 'transparent'
+        element.style.fill = fields.includes(element.id)
+          ? '#407cff'
+          : 'transparent'
         element.style.stroke = '#464F60'
 
         if (field === element.id) {
@@ -94,3 +97,4 @@ export const useMapFieldsHandlers = (ref, onOpen, field, fields) =>
       }
     }
   }, [ref, field])
+}

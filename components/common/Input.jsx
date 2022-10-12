@@ -11,6 +11,8 @@ export default function Input({
   rightSlot,
   size,
   type,
+  validate = () => true,
+  isRead,
 }) {
   return (
     <Wrapper>
@@ -18,10 +20,20 @@ export default function Input({
         id={id}
         name={name}
         value={value}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={(e) => {
+          const newValue = e.target.value
+          if (!newValue) return onChange('')
+          const isValid = newValue && validate(newValue)
+          if (newValue && isValid && onChange) {
+            onChange(newValue)
+          } else {
+            e.target.value = value || ''
+          }
+        }}
         placeholder={placeholder}
         size={size}
         type={type}
+        readonly={isRead}
       />
 
       <InputFieldRightSlot>{rightSlot}</InputFieldRightSlot>

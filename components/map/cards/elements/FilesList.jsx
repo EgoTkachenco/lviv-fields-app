@@ -31,7 +31,7 @@ const getIconType = (type) => {
   return 'file-doc'
 }
 
-const FilePreview = ({ file, isRead, onDelete }) => {
+export const FilePreview = ({ file, isRead, onDelete }) => {
   const handleDelete = (e) => {
     e.stopPropagation()
     e.preventDefault()

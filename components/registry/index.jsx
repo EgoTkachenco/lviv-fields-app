@@ -1,8 +1,9 @@
 import styled from 'styled-components'
 import { useEffect } from 'react'
-import { Table, Input, Spacer, Icon, Button, Box } from '../common'
+import { Table, Input, Spacer, Icon, Button, Box, PageLoader } from '../common'
 import { Registry as store } from '../../store'
 import { observer } from 'mobx-react-lite'
+import EditButton from '../navigation/EditButton'
 
 const Registry = observer(() => {
   useEffect(() => {
@@ -11,6 +12,8 @@ const Registry = observer(() => {
   const isRead = store.mode === 'read'
   return (
     <>
+      <PageLoader isLoading={store.isFetch} />
+      <EditButton isMobile={true} />
       <Box justify="space-between" wrap="true" gap="16px 16px">
         <Search>
           <Input

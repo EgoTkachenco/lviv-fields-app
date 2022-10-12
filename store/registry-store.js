@@ -8,6 +8,7 @@ class Store {
   search = ''
   editedRows = {}
   mode = 'read'
+  deletedItems = []
 
   constructor() {
     makeAutoObservable(this)
@@ -32,6 +33,7 @@ class Store {
   async changeMode() {
     if (this.mode === 'read') {
       this.editedRows = {}
+      this.deletedItems = []
       this.mode = 'write'
     } else {
       if (Object.keys(this.editedRows).length > 0) {
@@ -46,8 +48,14 @@ class Store {
 
   updateTableRow(index, key, value) {
     let newData = _.cloneDeep(this.data)
-    newData[index][key] = value
-    this.editedRows[index] = true
+    if (key === 'delete') {
+      const removed = newData[index]
+      if (removed.id) this.deletedItems.push(removed.id)
+      newData = newData.filter((_, i) => i !== index)
+    } else {
+      newData[index][key] = value
+    }
+    this.editedRows.delete = true
     this.data = newData
   }
 
@@ -59,7 +67,13 @@ class Store {
   }
 
   handleSave = async () => {
+    delete this.editedRows.delete
     const indexes = Object.keys(this.editedRows)
+
+    for (let i = 0; i < this.deletedItems.length; i++) {
+      const id = this.deletedItems[i]
+      await REGISTRY_API.delete(id)
+    }
     for (let i = 0; i < indexes.length; i++) {
       const index = indexes[i]
       const isNew = !this.data[index].id

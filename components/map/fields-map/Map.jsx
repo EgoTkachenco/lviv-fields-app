@@ -72,9 +72,9 @@ const MapCard = styled(Card)`
   }
 `
 
-export function AreaMap({ area, onOpen, field, onClose }) {
+export function AreaMap({ area, onOpen, field, onClose, fields }) {
   const ref = useRef()
-  useMapFieldsHandlers(ref, (e) => onOpen(e.currentTarget.id), field)
+  useMapFieldsHandlers(ref, (e) => onOpen(e.currentTarget.id), field, fields)
   const renderField = () => {
     switch (area) {
       case '1':

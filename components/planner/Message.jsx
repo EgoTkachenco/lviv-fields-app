@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Text, Box } from '../common'
+import { FilePreview } from '../map/cards/elements/FilesList'
 
 const Message = ({ isOwner, message }) => {
   const avatarText = message.sender.username
@@ -14,7 +15,11 @@ const Message = ({ isOwner, message }) => {
           <Text weight="600">{message.sender.username}</Text>
           <Text>{message.create_at}</Text>
         </Box>
-        <Text color="gray">{message.content}</Text>
+        {message.type === 'file' ? (
+          <FilePreview file={message.file} isRead={true} />
+        ) : (
+          <Text color="gray">{message.content}</Text>
+        )}
       </Content>
     </Container>
   )

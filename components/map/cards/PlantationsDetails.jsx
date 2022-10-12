@@ -1,8 +1,12 @@
-import { Fragment, useState } from 'react'
+import { useState } from 'react'
 import styled from 'styled-components'
-import { Card, Text, H5, Spacer, Box } from '../../common'
+import { Card, Select, H5, Spacer, Box, Icon } from '../../common'
 import { useAPIVarieties } from '../../../hooks'
 import { useClickOutside } from '@mantine/hooks'
+
+const YEARS_OPTIONS = new Array(20)
+  .fill(null)
+  .map((_, i) => new Date().getFullYear() - i)
 
 const PlantationsDetails = ({ data, isRead, onChange }) => {
   const onNewPlantation = () => onChange('new-plantation')
@@ -12,12 +16,15 @@ const PlantationsDetails = ({ data, isRead, onChange }) => {
       <H5>Інформація про насадження:</H5>
       <Spacer vertical size="20px" />
       <Box gap="4px 4px" wrap="true">
-        <HeaderLabel title="Сорт">Сорт</HeaderLabel>
-        <HeaderLabel title="Кількість насаджень">
-          Кількість насаджень
-        </HeaderLabel>
+        <Row>
+          <HeaderLabel title="Сорт">Сорт</HeaderLabel>
+          <HeaderLabel title="Кількість насаджень">
+            Кількість насаджень
+          </HeaderLabel>
+          <HeaderLabel title="Кількість насаджень">Рік насаджень</HeaderLabel>
+        </Row>
         {data.plantations.map((plantation, i) => (
-          <Fragment key={plantation.id || i}>
+          <Row key={plantation.id || i}>
             <Autocomplete
               value={plantation.variety}
               onChange={(value) =>
@@ -32,10 +39,33 @@ const PlantationsDetails = ({ data, isRead, onChange }) => {
                 onChange('plantation-size', { value: e.target.value, index: i })
               }
             />
-          </Fragment>
+            <Select
+              value={plantation.year}
+              onChange={(value) =>
+                onChange('plantation-year', { value, index: i })
+              }
+              isRead={isRead}
+              options={YEARS_OPTIONS}
+            />
+            {!isRead && (
+              <CloseButton
+                onClick={() => onChange('delete-plantation', i)}
+                title="Видалити"
+              >
+                <Icon icon="close" size="12px" />
+              </CloseButton>
+            )}
+          </Row>
         ))}
 
-        {!isRead && <LabelButton onClick={onNewPlantation}>Додати</LabelButton>}
+        {!isRead && (
+          <LabelButton
+            onClick={onNewPlantation}
+            title="Створити нову плантацію"
+          >
+            Додати
+          </LabelButton>
+        )}
       </Box>
     </Card>
   )
@@ -44,7 +74,8 @@ const PlantationsDetails = ({ data, isRead, onChange }) => {
 export default PlantationsDetails
 
 const LabelStyles = `
-	flex: 0 1 calc(50% - 2px);
+	width: calc(100% / 3 - 4px);
+	max-width: calc(100% / 3 - 4px);
 	padding: 11px 15px;
 	background: #EDF1F8;
 	border-radius: 0;
@@ -85,6 +116,7 @@ const InputLabel = styled.input`
   outline: none;
   border: 1px solid #edf1f8;
   font-weight: 400;
+  max-width: unset;
   &:read-only {
     cursor: default;
     border-color: transparent;
@@ -94,7 +126,8 @@ const InputLabel = styled.input`
 
 const LabelButton = styled.button`
   ${LabelStyles}
-  flex: 0 1 100%;
+  max-width: unset;
+  width: 100%;
   font-weight: 600;
   text-align: center;
   cursor: pointer;
@@ -102,6 +135,34 @@ const LabelButton = styled.button`
   border: none;
   &:hover {
     background: #ccd1e0;
+  }
+`
+
+const Row = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+  gap: 2px;
+`
+
+const CloseButton = styled.button`
+  right: -8px;
+  top: 50%;
+  transform: translate(100%, -50%);
+  position: absolute;
+  border: none;
+  background: none;
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  path {
+    fill: #464f60;
   }
 `
 
@@ -118,7 +179,6 @@ const Autocomplete = ({ value, onChange, isRead }) => {
     }
   }
   const handleNewVariant = async () => {
-    console.log(123123)
     const newVariant = await onCreate()
     onChange(newVariant)
     setFocused(false)
@@ -145,7 +205,12 @@ const Autocomplete = ({ value, onChange, isRead }) => {
             </Label>
           ))}
         {varieties.length === 0 && (
-          <LabelButton onClick={handleNewVariant}>Додати до списку</LabelButton>
+          <LabelButton
+            onClick={handleNewVariant}
+            title="Створити новий тип насадження"
+          >
+            Додати до списку
+          </LabelButton>
         )}
       </Menu>
     </Container>
@@ -154,8 +219,9 @@ const Autocomplete = ({ value, onChange, isRead }) => {
 
 const Container = styled.div`
   position: relative;
-  flex: 0 1 calc(50% - 2px);
+  flex: 0 1 calc(100% / 3 - 4px);
   max-height: 150px;
+  width: 100%;
   & > input {
     flex: 1 1 100%;
     width: 100%;
@@ -171,5 +237,12 @@ const Menu = styled.div`
   display: ${(props) => (props.show ? 'flex' : 'none')};
   flex-direction: column;
   gap: 2px;
-  background-color: white; ;
+  background-color: white;
+  max-height: 200px;
+  overflow: auto;
+  & > div {
+    max-width: unset;
+    width: 100%;
+    min-height: 41px;
+  }
 `

@@ -1,12 +1,10 @@
 import { makeAutoObservable } from 'mobx'
-import { PLANNER_API } from './help/api'
+import { PLANNER_API, FILE_API } from './help/api'
 
 class Store {
   tasks = null
   isLoadingTasks = false
-
   activeTask = null
-
   isLoadingMessages = false
 
   constructor() {
@@ -80,7 +78,20 @@ class Store {
 
   async sendMessage(message) {
     try {
-      return await PLANNER_API.sendMessage(this.activeTask.id, message)
+      let data = {
+        task: this.activeTask.id,
+        type: 'text',
+      }
+      if (typeof message === 'object') {
+        const formdata = new FormData()
+        formdata.append('files', message)
+        const file = await FILE_API.loadFile(formdata)
+        data.file = file.id
+        data.type = 'file'
+      } else {
+        data.content = message
+      }
+      return await PLANNER_API.sendMessage(data)
     } catch (error) {
       console.log(error)
     }

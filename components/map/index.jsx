@@ -13,7 +13,8 @@ import {
 
 import Map from './fields-map/Map'
 import BackLink from './BackLink'
-import { Spacer } from '../common'
+import EditButton from '../navigation/EditButton'
+import { Spacer, PageLoader } from '../common'
 
 const MapPage = observer(() => {
   const { area, field, mode, filter, summary } = store
@@ -29,7 +30,10 @@ const MapPage = observer(() => {
   return (
     <>
       <Wrapper>
+        <PageLoader isLoading={store.isFetch} />
         <Side>
+          <EditButton isMobile={true} />
+
           {!field && (
             <Filter
               filter={filter}

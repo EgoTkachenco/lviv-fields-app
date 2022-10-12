@@ -12,6 +12,8 @@ import Icon from './Icon'
 import Table from './Table'
 import ConfirmationModal from './ConfirmationModal'
 import Autocomplete from './Autocomplete'
+import Select from './Select'
+import { PageLoader } from './PageLoader'
 
 export {
   Button,
@@ -36,4 +38,6 @@ export {
   Table,
   ConfirmationModal,
   Autocomplete,
+  Select,
+  PageLoader,
 }
