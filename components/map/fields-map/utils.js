@@ -97,5 +97,5 @@ export const useMapFieldsHandlers = (ref, onOpen, field, fields) => {
         }
       }
     }
-  }, [ref, field])
+  }, [ref, field, fields])
 }

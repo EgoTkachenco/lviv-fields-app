@@ -135,8 +135,11 @@ const LinkText = styled.div`
   color: #ffffff;
   width: 100%;
   min-height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  @media (max-width: 1600px) {
+  @media (max-width: 1800px) {
     font-size: 14px;
     line-height: 16px;
     min-height: 28px;

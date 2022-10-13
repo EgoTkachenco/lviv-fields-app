@@ -6,20 +6,22 @@ const SummaryDetails = ({ data }) => {
   if (!data) return
   return (
     <Card>
-      <H5>Загальна площа земельних ділянок: {data.all || 0} гектарів</H5>
+      <H5>
+        Загальна площа земельних ділянок: {data.all.toFixed(4) || 0} гектарів
+      </H5>
       <Spacer vertical size="20px" />
       <Box wrap="true" gap="20px 0">
         <Column gap="4px">
           <Text>Площа власних земель:</Text>
-          <Text color="grey">{data.owned || 0} гектарів</Text>
+          <Text color="grey">{data.owned?.toFixed(4) || 0} гектарів</Text>
         </Column>
         <Column gap="4px">
           <Text>Площа ризикових земель: </Text>
-          <Text color="grey">{data.risk || 0} гектарів</Text>
+          <Text color="grey">{data.risk?.toFixed(4) || 0} гектарів</Text>
         </Column>
         <Column gap="4px">
           <Text>Площа орендованих земель: </Text>
-          <Text color="grey">{data.rented || 0} гектарів</Text>
+          <Text color="grey">{data.rented?.toFixed(4) || 0} гектарів</Text>
         </Column>
         <Column gap="4px">
           <Text>Площа насаджень сорту: </Text>
@@ -27,7 +29,9 @@ const SummaryDetails = ({ data }) => {
           {Object.keys(data.varieties).length > 0 ? (
             Object.keys(data.varieties).map((variety) => (
               <Fragment key={variety}>
-                <Text color="grey">{data.varieties[variety]} гектарів</Text>
+                <Text color="grey">
+                  {data.varieties[variety]?.toFixed(2)} гектарів
+                </Text>
                 <Box>
                   <Text color="grey">(</Text>
                   <Text color="primary">{variety}</Text>

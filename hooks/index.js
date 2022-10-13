@@ -102,7 +102,6 @@ export const useAPIVarieties = () => {
     setVarieties(res)
   }
   const createVariety = async () => {
-    debugger
     const new_variant = await VARIETIES_API.createVariety(search)
     setSearch('')
     getVarieties()

@@ -175,7 +175,6 @@ class Store {
         field.plantations.push({ size: '', variety: null })
         break
       case 'delete-plantation':
-        debugger
         const deleted = field.plantations[val]
         if (deleted.id) this.deletedPlantations.push(deleted.id)
         field.plantations = field.plantations.filter((_, i) => i !== val)
@@ -265,14 +264,14 @@ class Store {
         if (plantation.id) {
           plantation = await MAP_API.updatePlantation(
             plantation.id,
-            plantation.variety.id,
-            plantation.size,
+            plantation.variety ? plantation.variety.id : null,
+            plantation.size || null,
             plantation.year
           )
         } else {
           plantation = await MAP_API.createPlantation(
-            plantation.variety.id,
-            plantation.size,
+            plantation.variety ? plantation.variety.id : null,
+            plantation.size || null,
             plantation.year
           )
         }
