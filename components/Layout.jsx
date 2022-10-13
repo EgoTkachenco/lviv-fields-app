@@ -6,12 +6,10 @@ export default function Layout({ children, type }) {
     switch (type) {
       case 'auth':
         return <AuthContent>{children}</AuthContent>
-      case 'map':
-        return <DashboardContent>{children}</DashboardContent>
-      // return <MapContent>{children}</MapContent>
       case 'dashboard':
-      default:
         return <DashboardContent>{children}</DashboardContent>
+      default:
+        return <DefaultContent>{children}</DefaultContent>
     }
   }
   return (
@@ -39,30 +37,23 @@ const AuthContent = styled.div`
   padding: 20px;
 `
 const DefaultContent = styled.div`
-  flex-grow: 1;
-`
-
-const MapContent = styled.div`
   padding: 30px;
   min-height: calc(100vh - 80px);
   background: #eceff7;
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
-  display: grid;
-  grid-template-columns: 550px 1fr;
-  /* grid-template-columns: 1fr 2fr; */
-  grid-template-rows: 528px 184px auto;
-  /* grid-template-rows: calc(100vh - 184px - 160px) 184px; */
-  grid-template-areas:
-    'filter map'
-    'filter details';
-  column-gap: 40px;
-  row-gap: 20px;
+
+  @media (max-width: 600px) {
+    padding: 20px 20px 80px;
+  }
 `
 
 const DashboardContent = styled.div`
+  background: url('/back.png') center center;
+  background-size: cover;
   padding: 30px;
   min-height: calc(100vh - 80px);
-  background: #eceff7;
   display: flex;
   flex-direction: column;
   flex-grow: 1;

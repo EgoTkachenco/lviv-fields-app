@@ -1,5 +1,5 @@
 import { useState, useEffect, Fragment } from 'react'
-import { Button, Spacer, Modal, Input, Icon, Checkbox } from '../common'
+import { Button, Spacer, Modal, Text, Icon, Checkbox } from '../common'
 import { USERS_API } from '../../store/help/api'
 
 const MembersModal = ({ members, onMemberChange }) => {
@@ -26,16 +26,20 @@ const MembersModal = ({ members, onMemberChange }) => {
         show={show}
       >
         <form onSubmit={handleSubmit}>
-          {users?.map((user) => (
-            <Fragment key={user.id}>
-              <Checkbox
-                label={user.username}
-                value={members.includes(user.id)}
-                onChange={(v) => onMemberChange(user, v)}
-              />
-              <Spacer vertical size="8px" />
-            </Fragment>
-          ))}
+          {users && users.length > 0 ? (
+            users.map((user) => (
+              <Fragment key={user.id}>
+                <Checkbox
+                  label={user.username}
+                  value={members.includes(user.id)}
+                  onChange={(v) => onMemberChange(user, v)}
+                />
+                <Spacer vertical size="8px" />
+              </Fragment>
+            ))
+          ) : (
+            <Text>Немає користувачів</Text>
+          )}
           <Spacer vertical size="20px" />
           <Button variant="primary" onClick={() => setShow(false)}>
             Додати

@@ -5,8 +5,8 @@ import { Spacer } from '../common'
 export default function Dashboard() {
   return (
     <>
-      <Currencies />
-      <Spacer vertical size="48px" />
+      {/* <Currencies /> */}
+      {/* <Spacer vertical size="48px" /> */}
       <Links />
     </>
   )

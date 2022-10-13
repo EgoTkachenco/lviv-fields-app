@@ -72,8 +72,6 @@ const MapPage = observer(() => {
           <ContractDetails data={field} isRead={isRead} onChange={onChange} />
         </Bottom>
       )}
-
-      {area && <BackLink action={() => store.closeField()} />}
     </>
   )
 })
@@ -96,7 +94,7 @@ const Content = styled.div`
   max-height: 100%;
 `
 const Side = styled.div`
-  min-width: 550px;
+  min-width: 350px;
   max-width: 550px;
   /* width: 29.5%; */
 

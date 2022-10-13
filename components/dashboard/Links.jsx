@@ -32,14 +32,13 @@ const Links = () => {
       />
       <Link text="crm система" link={admin} icon="/icons/crm.svg" index={3} />
       <Link text="сайт" link="/" icon="/icons/web.svg" index={4} />
-      <LinkCardsWrapper gap="13px">
-        <Link
-          text="корпоративна пошта"
-          link={'mailto:' + email}
-          icon="/icons/mail.svg"
-          size="medium"
-          index={5}
-        />
+      <Link
+        text="корпоративна пошта"
+        link={'mailto:' + email}
+        icon="/icons/mail.svg"
+        index={5}
+      />
+      {/* <LinkCardsWrapper gap="13px">
         <SocialBox gap="13px" direction="column">
           <Link
             link={telegram}
@@ -49,7 +48,7 @@ const Links = () => {
           />
           <Link link={viber} icon="/icons/viber.svg" size="small" index={7} />
         </SocialBox>
-      </LinkCardsWrapper>
+      </LinkCardsWrapper> */}
     </Wrapper>
   )
 }
@@ -77,45 +76,45 @@ const Link = ({ text, link, icon, size, redirect, index }) => (
 export default Links
 
 const Wrapper = styled(Box)`
-  gap: 40px;
+  justify-content: space-between;
+  gap: 30px;
   @media (max-width: 1200px) {
     gap: 20px;
   }
 `
 
 const LinkCard = styled.a`
-  height: ${(props) => (props.size === 'small' ? '121px' : '255px')};
-  width: ${(props) =>
+  width: calc((100% - 30px * 5) / 6);
+  /* height: ${(props) => (props.size === 'small' ? '121px' : '285px')}; */
+  /* width: ${(props) =>
     props.size === 'small'
       ? '125px'
       : props.size === 'medium'
       ? 'calc(100% - 125px - 13px)'
-      : 'calc((100% - 80px) / 3)'};
-  background: radial-gradient(
-    96.86% 382.9% at 97.29% 3.14%,
-    #407cff 0%,
-    #7073e6 50.52%,
-    #b976fc 100%
-  );
+      : 'calc((100% - 30px * 5) / 6)'}; */
+  background: #407cff;
   transition: all 0.3s;
   border-radius: 30px;
   position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 30px;
   cursor: pointer;
+  gap: 20px;
 
   &:hover {
-    background: radial-gradient(
-      96.86% 382.9% at 97.29% 3.14%,
-      #407cff 0%,
-      #407cff 50.52%,
-      #407cff 100%
-    );
+    background: rgba(64, 124, 255, 0.8);
+  }
+
+  @media (max-width: 1500px) {
+    width: calc((100% - 30px * 2) / 3);
   }
 
   @media (max-width: 1200px) {
+    flex-direction: row;
+    gap: 0;
     width: ${(props) =>
       props.size === 'medium' ? '100%' : 'calc((100% - 20px) / 2)'};
     height: 46px;
@@ -128,22 +127,27 @@ const LinkCard = styled.a`
 `
 
 const LinkText = styled.div`
-  position: absolute;
-  bottom: 30px;
-  left: 30px;
   font-weight: 600;
-  font-size: 16px;
-  line-height: 19px;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
   text-transform: uppercase;
   color: #ffffff;
+  width: 100%;
+  min-height: 48px;
+
+  @media (max-width: 1600px) {
+    font-size: 14px;
+    line-height: 16px;
+    min-height: 28px;
+  }
 
   @media (max-width: 1200px) {
-    position: relative;
-    bottom: unset;
-    left: unset;
     font-weight: 600;
     font-size: 14px;
     line-height: 17px;
+    min-height: unset;
+    width: auto;
   }
 `
 
@@ -159,8 +163,11 @@ const LinkCardsWrapper = styled(Box)`
   }
 `
 const LinkIcon = styled.img`
-  width: 100px;
   height: 100px;
+
+  @media (max-width: 1600px) {
+    height: 80px;
+  }
 
   @media (max-width: 1200px) {
     width: 16px;

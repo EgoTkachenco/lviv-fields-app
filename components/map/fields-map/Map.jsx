@@ -3,6 +3,7 @@ import { useMapAreaHandlers, useMapFieldsHandlers } from './utils'
 import Viewer from './Viewer'
 import styled from 'styled-components'
 import { Card } from '../../common'
+import BackLink from '../BackLink'
 
 import Field1 from './fields/Field1'
 import Field2 from './fields/Field2'
@@ -34,6 +35,7 @@ export default function Map({
   return (
     <MapCard>
       {filterStyles()}
+      {area && <BackLink action={onClose} />}
       {area ? (
         <AreaMap
           area={area}
@@ -62,7 +64,7 @@ const MapCard = styled(Card)`
     margin: auto;
     display: block;
 
-    & > g {
+    & > g:not(#lakes) {
       position: relative;
       z-index: 100;
       transition: all 0.3s;
@@ -1386,6 +1388,15 @@ const MapIcon = React.forwardRef((_, ref) => (
     </g>
     <g id="5">
       <path
+        id="path32014"
+        d="M972.786 1443.04L972.466 1198.4L1052.31 1199.84L1074.87 1231.04L1082.55 1256L1095.35 1415.36L1057.91 1424.96L1044.31 1435.2L972.786 1443.04Z"
+        stroke="#464F60"
+        strokeWidth="0.8"
+        strokeMiterlimit="10"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
         id="path21472"
         d="M1329.27 1625.12L1211.19 1633.92L1220.63 1497.76L1345.59 1488.48L1342.71 1507.2L1335.51 1553.12L1322.23 1571.2V1601.44L1334.39 1610.4L1329.27 1625.12Z"
         stroke="#464F60"
@@ -1396,7 +1407,7 @@ const MapIcon = React.forwardRef((_, ref) => (
       />
       <path
         id="path21518"
-        d="M1873.11 381.76L1725.43 359.04L1711.99 338.56L1881.11 364.64L1873.11 381.76Z"
+        d="M1873.11 381.761L1725.43 359.041L1711.99 338.561L1881.11 364.641L1873.11 381.761Z"
         stroke="#464F60"
         strokeWidth="1.12"
         strokeMiterlimit="10"
@@ -1414,7 +1425,7 @@ const MapIcon = React.forwardRef((_, ref) => (
       />
       <path
         id="path21522"
-        d="M1906.55 309.28L1708.47 278.88L1743.03 249.44L1746.71 235.84L1740.47 223.68L1932.31 253.12L1906.55 309.28Z"
+        d="M1906.55 309.281L1708.47 278.881L1743.03 249.441L1746.71 235.841L1740.47 223.681L1932.31 253.121L1906.55 309.281Z"
         stroke="#464F60"
         strokeWidth="1.12"
         strokeMiterlimit="10"
@@ -1423,7 +1434,7 @@ const MapIcon = React.forwardRef((_, ref) => (
       />
       <path
         id="path21524"
-        d="M1740.47 223.68L1736.47 216.16L1765.59 174.56L1783.51 139.04L1867.83 152L1856.31 189.28L1898.55 199.04L1953.11 211.52L1946.39 222.56L1932.31 253.12L1740.47 223.68Z"
+        d="M1740.47 223.681L1736.47 216.161L1765.59 174.561L1783.51 139.041L1867.83 152.001L1856.31 189.281L1898.55 199.041L1953.11 211.521L1946.39 222.561L1932.31 253.121L1740.47 223.681Z"
         stroke="#464F60"
         strokeWidth="1.12"
         strokeMiterlimit="10"
@@ -1432,7 +1443,7 @@ const MapIcon = React.forwardRef((_, ref) => (
       />
       <path
         id="path21538"
-        d="M1378.07 715.04L1689.91 763.04L1669.11 804.8L1639.19 877.44L1387.83 838.72L1386.87 815.52L1379.03 725.92L1378.07 715.04Z"
+        d="M1378.07 715.041L1689.91 763.041L1669.11 804.801L1639.19 877.441L1387.83 838.721L1386.87 815.521L1379.03 725.921L1378.07 715.041Z"
         stroke="#464F60"
         strokeWidth="1.12"
         strokeMiterlimit="10"
@@ -1441,7 +1452,7 @@ const MapIcon = React.forwardRef((_, ref) => (
       />
       <path
         id="path21540"
-        d="M1387.83 838.72L1639.19 877.44L1625.59 910.56L1624.31 910.08L1623.03 913.44L1624.31 913.76L1622.23 918.88L1612.15 939.36L1606.23 951.04L1390.87 918.08L1390.71 912.48L1387.83 838.72Z"
+        d="M1387.83 838.721L1639.19 877.441L1625.59 910.561L1624.31 910.081L1623.03 913.441L1624.31 913.761L1622.23 918.881L1612.15 939.361L1606.23 951.041L1390.87 918.081L1390.71 912.481L1387.83 838.721Z"
         stroke="#464F60"
         strokeWidth="1.12"
         strokeMiterlimit="10"
@@ -1459,7 +1470,7 @@ const MapIcon = React.forwardRef((_, ref) => (
       />
       <path
         id="path21674"
-        d="M1783.51 139.04L1796.79 112.96L1809.27 88.48L1883.99 100.16L1867.83 152L1783.51 139.04Z"
+        d="M1783.51 139.04L1796.79 112.96L1809.27 88.4805L1883.99 100.16L1867.83 152L1783.51 139.04Z"
         stroke="#464F60"
         strokeWidth="1.12"
         strokeMiterlimit="10"
@@ -1468,7 +1479,7 @@ const MapIcon = React.forwardRef((_, ref) => (
       />
       <path
         id="path21804"
-        d="M1127.67 639.2L1271.19 628.64L1261.11 774.72L1098.55 786.72L1111.99 723.84L1125.11 643.04L1127.67 639.2Z"
+        d="M1127.67 639.201L1271.19 628.641L1261.11 774.721L1098.55 786.721L1111.99 723.841L1125.11 643.041L1127.67 639.201Z"
         stroke="#464F60"
         strokeWidth="1.12"
         strokeMiterlimit="10"
@@ -1477,7 +1488,7 @@ const MapIcon = React.forwardRef((_, ref) => (
       />
       <path
         id="path21806"
-        d="M1098.55 786.72L1261.11 774.72L1251.83 909.92L1092.31 920.8L1091.19 917.6L1085.43 903.52L1091.19 866.56L1086.39 838.72L1097.27 792.96L1098.55 786.72Z"
+        d="M1098.55 786.721L1261.11 774.721L1251.83 909.921L1092.31 920.801L1091.19 917.601L1085.43 903.521L1091.19 866.561L1086.39 838.721L1097.27 792.961L1098.55 786.721Z"
         stroke="#464F60"
         strokeWidth="1.12"
         strokeMiterlimit="10"
@@ -1594,7 +1605,7 @@ const MapIcon = React.forwardRef((_, ref) => (
       />
       <path
         id="path21838"
-        d="M1898.55 199.04L1930.23 107.52L1989.75 116.8L1997.59 131.84L1991.83 148L1953.11 211.52L1898.55 199.04Z"
+        d="M1898.55 199.041L1930.23 107.521L1989.75 116.801L1997.59 131.841L1991.83 148.001L1953.11 211.521L1898.55 199.041Z"
         stroke="#464F60"
         strokeWidth="1.12"
         strokeMiterlimit="10"
