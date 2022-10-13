@@ -61,7 +61,10 @@ const Search = styled.div`
 `
 
 const model = [
+  { id: 'identifier', name: '№ п/п' },
+  { id: 'area', name: 'Районування' },
   { id: 'field', name: '№ поля' },
+  { id: 'plant_year', name: 'рік посадки поля' },
   {
     id: 'landlord_by_public_cadastral',
     name: 'Орендодавець згідно Публічної кадастрової карти',
@@ -93,8 +96,26 @@ const model = [
     type: 'date',
   },
   { id: 'sum', name: 'Сума, грн' },
+
+  { id: 'state_act_number', name: 'Серія, номер державного акту' },
+  { id: 'state_act_date', name: 'Дата видачі державного акту', type: 'date' },
+  { id: 'field_type', name: 'Тип землі' },
+  { id: 'passport', name: 'Паспорт' },
+  { id: 'passport_who', name: 'Виданий ким' },
+
+  { id: 'passport_date', name: 'Виданий, дата', type: 'date' },
+  { id: 'identifier_code', name: 'Ідентифікаційний номер' },
+  { id: 'phone', name: 'телефон' },
+  { id: 'note_2', name: 'примітка' },
+  { id: 'additional_relation', name: "Родинний зв'язок" },
+  { id: 'additional_name', name: 'ПІБ' },
+  { id: 'additional_passport', name: 'паспорт' },
+  { id: 'additional_code', name: 'ідентифікаційний код' },
+  { id: 'additional_phone', name: 'телефон' },
 ]
 const sizes = [
+  '60px',
+  '120px',
   '90px',
   '370px',
   '205px',
@@ -108,6 +129,21 @@ const sizes = [
   '360px',
   '208px',
   '250px',
+  '100px',
+  '100px',
+
+  '100px',
+  '100px',
+  '100px',
+  '100px',
+  '100px',
+  '100px',
+  '100px',
+  '100px',
+  '100px',
+  '100px',
+  '100px',
+  '100px',
   '100px',
   '100px',
 ]
