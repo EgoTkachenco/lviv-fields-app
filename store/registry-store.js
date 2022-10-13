@@ -52,10 +52,11 @@ class Store {
       const removed = newData[index]
       if (removed.id) this.deletedItems.push(removed.id)
       newData = newData.filter((_, i) => i !== index)
+      this.editedRows.delete = true
     } else {
       newData[index][key] = value
+      this.editedRows[index] = true
     }
-    this.editedRows.delete = true
     this.data = newData
   }
 
