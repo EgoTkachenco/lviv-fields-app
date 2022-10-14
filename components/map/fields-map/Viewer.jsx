@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import ScrollContainer from 'react-indiana-drag-scroll'
 import { usePinch } from '@use-gesture/react'
@@ -11,19 +11,44 @@ export default function Viewer({ children, small }) {
   const [state, setState] = useState({
     width: 0,
     height: 0,
-    scroll: 1,
+    scroll: 0,
+    isNoZoomMode: true,
   })
+  useEffect(() => {
+    setInitialScroll()
+  }, [children])
   const handlePinch = ({ movement }) => {
     handleScroll({ deltaY: movement[1] < 0 ? 1 : -1 })
   }
   const bind = usePinch(handlePinch)
   const handleScroll = (e) => {
     const isZoomIn = e.deltaY < 0
-    if (isZoomIn && state.scroll < 3)
-      setState({ ...state, scroll: state.scroll + 0.25 })
+    let new_scroll = 0
+    if (isZoomIn && state.scroll < 3) {
+      const differ = state.scroll < 1 ? 1 : 0.25
+      new_scroll = state.scroll + differ
+    }
 
-    if (!isZoomIn && state.scroll > 1)
-      setState({ ...state, scroll: state.scroll - 0.25 })
+    if (!isZoomIn && state.scroll > 1) {
+      new_scroll = state.scroll - 0.25
+    } else if (!isZoomIn && state.scroll > 0 && state.isNoZoomMode) {
+      new_scroll = state.scroll - 1
+    } else if (!isZoomIn && state.scroll > 0 && !state.isNoZoomMode) {
+      return
+    }
+    setState({ ...state, scroll: new_scroll })
+  }
+  const setInitialScroll = () => {
+    if (!children) return
+    const svg = children.ref.current
+    const { width, height } = svg.getBoundingClientRect()
+    if (width > height) {
+      setState((state) => ({ ...state, scroll: 0, isNoZoomMode: true }))
+      console.log('Initialize scroll', 0, true)
+    } else {
+      setState((state) => ({ ...state, scroll: 1, isNoZoomMode: false }))
+      console.log('Initialize scroll', 1, false)
+    }
   }
 
   return (
@@ -35,7 +60,8 @@ export default function Viewer({ children, small }) {
         {...bind()}
         // onMouseEnter={() => setFocus(true)}
         // onMouseLeave={() => setFocus(false)}
-        height={state.scroll * 100 + '%'}
+        zoom={state.scroll}
+        isCentered={!small && !state.scroll}
         // onWheel={handleScroll}
       >
         {children}
@@ -54,11 +80,16 @@ export default function Viewer({ children, small }) {
 }
 
 const ViewerWrapper = styled.div`
-  height: ${(props) => props.height};
-  /* width: ${(props) => props.width}; */
+  height: ${(props) => (props.zoom ? props.zoom * 100 + '%' : '100%')};
+  width: ${(props) => (props.zoom ? 'auto' : '100%')};
+
+  display: ${(props) => (props.isCentered ? 'flex' : 'block')};
+  justify-content: center;
+  align-items: center;
 
   svg {
-    height: 100%;
+    height: ${(props) => (props.zoom ? '100%' : 'auto')};
+    width: ${(props) => (props.zoom ? 'auto' : '100%')};
   }
 
   path {

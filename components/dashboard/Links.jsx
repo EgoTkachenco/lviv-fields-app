@@ -108,21 +108,17 @@ const LinkCard = styled.a`
     background: rgba(64, 124, 255, 0.8);
   }
 
-  @media (max-width: 1500px) {
+  @media (max-width: 1200px) {
     width: calc((100% - 30px * 2) / 3);
   }
 
-  @media (max-width: 1200px) {
+  @media (max-width: 900px) {
     flex-direction: row;
     gap: 0;
-    width: ${(props) =>
-      props.size === 'medium' ? '100%' : 'calc((100% - 20px) / 2)'};
+    width: 100%;
     height: 46px;
     padding: 0;
     background: #407cff;
-  }
-  @media (max-width: 600px) {
-    width: 100%;
   }
 `
 
@@ -139,7 +135,7 @@ const LinkText = styled.div`
   justify-content: center;
   align-items: center;
 
-  @media (max-width: 1800px) {
+  @media (max-width: 1700px) {
     font-size: 14px;
     line-height: 16px;
     min-height: 28px;
@@ -154,6 +150,19 @@ const LinkText = styled.div`
   }
 `
 
+const LinkIcon = styled.img`
+  height: 100px;
+
+  @media (max-width: 1700px) {
+    height: 80px;
+  }
+
+  @media (max-width: 900px) {
+    height: 16px;
+    margin-right: 6px;
+  }
+`
+
 const LinkCardsWrapper = styled(Box)`
   width: calc((100% - 80px) / 3);
 
@@ -165,19 +174,7 @@ const LinkCardsWrapper = styled(Box)`
     width: 100%;
   }
 `
-const LinkIcon = styled.img`
-  height: 100px;
 
-  @media (max-width: 1600px) {
-    height: 80px;
-  }
-
-  @media (max-width: 1200px) {
-    width: 16px;
-    height: 16px;
-    margin-right: 6px;
-  }
-`
 const SocialBox = styled(Box)`
   @media (max-width: 1200px) {
     display: none;
