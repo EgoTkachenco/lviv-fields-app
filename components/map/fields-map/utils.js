@@ -54,7 +54,6 @@ export const useMapFieldsHandlers = (ref, onOpen, field, fields) => {
     if (!ref.current) return
     const element_index = ref.current.children[0].id === 'lakes' ? 1 : 0
     const childrens = ref.current.children[element_index].children
-
     for (let i = 0; i < childrens.length; i++) {
       const element = childrens[i]
 
@@ -83,7 +82,8 @@ export const useMapFieldsHandlers = (ref, onOpen, field, fields) => {
 
     return () => {
       if (!ref.current) return
-      const childrens = ref.current.children[0].children
+      const element_index = ref.current.children[0].id === 'lakes' ? 1 : 0
+      const childrens = ref.current.children[element_index].children
       for (let i = 0; i < childrens.length; i++) {
         const element = childrens[i]
         if (
