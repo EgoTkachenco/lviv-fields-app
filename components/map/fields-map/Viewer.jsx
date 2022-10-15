@@ -81,15 +81,18 @@ export default function Viewer({ children, small }) {
 
 const ViewerWrapper = styled.div`
   height: ${(props) => (props.zoom ? props.zoom * 100 + '%' : '100%')};
-  width: ${(props) => (props.zoom ? 'auto' : '100%')};
+  max-width: ${(props) => (props.zoom ? 'unset' : '100%')};
+  /* width: ${(props) => (props.zoom ? 'auto' : '100%')}; */
 
   display: ${(props) => (props.isCentered ? 'flex' : 'block')};
   justify-content: center;
   align-items: center;
 
   svg {
+    max-width: ${(props) => (props.zoom ? 'unset' : '100%')};
+    max-height: ${(props) => (props.zoom ? 'unset' : '100%')};
     height: ${(props) => (props.zoom ? '100%' : 'auto')};
-    width: ${(props) => (props.zoom ? 'auto' : '100%')};
+    /* width: ${(props) => (props.zoom ? 'auto' : '100%')}; */
   }
 
   path {

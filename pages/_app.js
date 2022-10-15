@@ -1,5 +1,5 @@
 import '../styles/globals.css'
-// import 'aos/dist/aos.css'
+import 'aos/dist/aos.css'
 import { useEffect } from 'react'
 import { Auth as store } from '../store'
 import AOS from 'aos'
