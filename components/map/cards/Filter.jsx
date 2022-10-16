@@ -105,21 +105,23 @@ const Filter = ({ filter, onChange, onSubmit, onClear }) => {
           <Spacer vertical size="30px" />
           <H5>Термiн дії договору</H5>
           <Spacer vertical size="20px" />
-          <Box align="center" justify="space-between" gap="16px">
+          <DateBox align="center" justify="space-between" gap="8px">
             <Input
               value={filter.term.start}
-              validate={(v) => !isNaN(Number(v)) && v > 0 && v < 100}
+              type="date"
+              // validate={(v) => !isNaN(Number(v)) && v > 0 && v < 100}
               placeholder="3"
               onChange={(val) => onChange('term-start', val)}
             />
             <FilterDelimiter />
             <Input
               value={filter.term.end}
-              validate={(v) => !isNaN(Number(v)) && v > 0 && v < 100}
+              type="date"
+              // validate={(v) => !isNaN(Number(v)) && v > 0 && v < 100}
               placeholder="10"
               onChange={(val) => onChange('term-end', val)}
             />
-          </Box>
+          </DateBox>
           <Spacer vertical size="30px" />
           <Button variant="accent" onClick={onSubmit}>
             застосувати
@@ -155,6 +157,13 @@ const FilterCard = styled(Card)`
     * {
       color: #ffffff !important;
     }
+  }
+`
+
+const DateBox = styled(Box)`
+  & > :nth-child(1),
+  & > :nth-child(3) {
+    width: calc((100% - 20px - 16px) / 2);
   }
 `
 

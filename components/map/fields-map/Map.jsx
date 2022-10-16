@@ -42,7 +42,8 @@ export default function Map({
           field={field}
           onOpen={(v) => onOpenField(v)}
           onClose={onClose}
-          fields={summary?.fields || []}
+          summary={summary}
+          // fields={summary?.fields || []}
         />
       ) : (
         <AllMap onOpen={(v) => onOpenArea(v)} fields={summary?.fields || []} />
@@ -57,7 +58,7 @@ const MapCard = styled(Card)`
   justify-content: center;
   align-items: center;
   flex-grow: 1;
-  padding: 32px;
+  padding: 48px 32px;
 
   svg {
     position: relative;
@@ -74,13 +75,13 @@ const MapCard = styled(Card)`
   }
 `
 
-export function AreaMap({ area, onOpen, field, onClose, fields }) {
+export function AreaMap({ area, onOpen, field, onClose, summary }) {
   const ref = useRef()
   useMapFieldsHandlers(
     ref,
     (e) => onOpen(e.currentTarget.id),
     field,
-    field ? [] : fields
+    field ? [] : summary?.fields || []
   )
   const renderField = () => {
     switch (area) {
@@ -113,7 +114,12 @@ export function AreaMap({ area, onOpen, field, onClose, fields }) {
     }
   }
 
-  return <Viewer small={!!field}>{renderField()}</Viewer>
+  return (
+    <>
+      <AreaLabel>Поле № {summary?.area?.name}</AreaLabel>
+      <Viewer small={!!field}>{renderField()}</Viewer>
+    </>
+  )
 }
 
 export function AllMap({ onOpen }) {
@@ -800,7 +806,7 @@ const MapIcon = React.forwardRef((_, ref) => (
         strokeLinejoin="round"
       />
     </g>
-    <g id="8">
+    {/* <g id="8">
       <path
         id="path32014"
         d="M972.786 1443.04L972.466 1198.4L1052.31 1199.84L1074.87 1231.04L1082.55 1256L1095.35 1415.36L1057.91 1424.96L1044.31 1435.2L972.786 1443.04Z"
@@ -810,7 +816,7 @@ const MapIcon = React.forwardRef((_, ref) => (
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-    </g>
+    </g> */}
     <g id="7">
       <path
         id="path21544"
@@ -2564,3 +2570,14 @@ const MapIcon = React.forwardRef((_, ref) => (
     </g>
   </svg>
 ))
+
+const AreaLabel = styled.div`
+  position: absolute;
+  z-index: 99;
+  top: 16px;
+  right: 32px;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 120%;
+  color: #abb1c8;
+`

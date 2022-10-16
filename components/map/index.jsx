@@ -12,7 +12,6 @@ import {
 } from './cards'
 
 import Map from './fields-map/Map'
-import BackLink from './BackLink'
 import EditButton from '../navigation/EditButton'
 import { Spacer, PageLoader } from '../common'
 
@@ -26,6 +25,9 @@ const MapPage = observer(() => {
 
   useEffect(() => {
     store.getSummary()
+    return () => {
+      store.reset()
+    }
   }, [])
   return (
     <>

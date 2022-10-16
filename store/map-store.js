@@ -66,9 +66,9 @@ class Store {
     if (this.filter.year.end)
       requestQueryFilter.set('plantation_year_lte', this.filter.year.end)
     if (this.filter.term.start)
-      requestQueryFilter.set('contract_term_gte', this.filter.term.start)
+      requestQueryFilter.set('contract_start_gte', this.filter.term.start)
     if (this.filter.term.end)
-      requestQueryFilter.set('contract_term_lte', this.filter.term.end)
+      requestQueryFilter.set('contract_due_lte', this.filter.term.end)
 
     if (this.area) requestQueryFilter.set('area_in', this.area)
     try {
@@ -314,6 +314,10 @@ class Store {
     } catch (error) {
       console.log('error', error)
     }
+  }
+  async reset() {
+    this.clearFilter()
+    this.closeField()
   }
 }
 
