@@ -2,7 +2,7 @@ import { useState, useEffect, Fragment } from 'react'
 import { Button, Spacer, Modal, Text, Icon, Checkbox } from '../common'
 import { USERS_API } from '../../store/help/api'
 
-const MembersModal = ({ members, onMemberChange }) => {
+const MembersModal = ({ members, onMemberChange, currentUser }) => {
   const [show, setShow] = useState(false)
   const [users, setUsers] = useState(null)
   const handleSubmit = (e) => {
@@ -11,12 +11,10 @@ const MembersModal = ({ members, onMemberChange }) => {
   }
 
   useEffect(() => {
-    if (show) {
-      console.log('fetch')
-      USERS_API.getUsers().then((res) =>
-        setUsers(res.filter((u) => u.role.name !== 'Admin'))
-      )
-    }
+    if (show)
+      USERS_API.getUsers().then((res) => {
+        setUsers(res.filter((u) => u.id !== currentUser?.id))
+      })
   }, [show])
   return (
     <>

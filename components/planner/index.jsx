@@ -10,7 +10,7 @@ const Planner = observer(() => {
   useEffect(() => {
     store.loadTasksList()
   }, [])
-  const isAdmin = AuthStore.user?.role.name === 'Admin'
+  // const isAdmin = AuthStore.user?.role.name === 'Admin'
 
   return (
     <Wrapper>
@@ -20,15 +20,14 @@ const Planner = observer(() => {
         onTaskOpen={(task) => store.openTask(task)}
         activeTask={store.activeTask?.id}
         isFetch={store.isLoadingTasks}
-        isAdmin={isAdmin}
       />
       <Chat
         task={store.activeTask}
         loadMessages={() => store.loadMessages()}
         onMemberChange={(user, mode) => store.handleMemberChange(user, mode)}
         onNewMessage={(message) => store.sendMessage(message)}
-        isAdmin={isAdmin}
         onTaskClose={() => store.finishTask()}
+        currentUser={AuthStore.user}
       />
     </Wrapper>
   )

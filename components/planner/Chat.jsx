@@ -21,8 +21,8 @@ const Chat = ({
   loadMessages,
   onMemberChange,
   onNewMessage,
-  isAdmin,
   onTaskClose,
+  currentUser,
 }) => {
   const ref = useRef()
   const [state, setState] = useState({
@@ -75,14 +75,17 @@ const Chat = ({
 
   const isActiveChat = task?.status === 'open'
   const isFile = typeof state.message === 'object'
-  console.log(state.message)
   return (
     <Wrapper>
       <Header align="center" justify="space-between">
         <H5>Тема: {task.name}</H5>
-        {isActiveChat && isAdmin && (
+        {isActiveChat && (
           <Box gap="16px" wrap="true">
-            <MembersModal members={members} onMemberChange={onMemberChange} />
+            <MembersModal
+              members={members}
+              onMemberChange={onMemberChange}
+              currentUser={currentUser}
+            />
             <ConfirmationModal
               title="Завершити завдання"
               text="Ви впевнені шо хочете завершити задачу?"

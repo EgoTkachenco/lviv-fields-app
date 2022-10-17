@@ -13,7 +13,7 @@ const ChatList = ({
 }) => {
   return (
     <List>
-      {isAdmin && <TaskModal onSubmit={onNewTask} />}
+      <TaskModal onSubmit={onNewTask} />
       <Spacer />
       {isFetch && 'Loading'}
       {!isFetch && tasks && tasks.length && (
@@ -26,8 +26,9 @@ const ChatList = ({
                 key={task.id}
                 variant={isActive ? 'grey' : 'white'}
                 onClick={() => onTaskOpen(isActive ? null : task)}
+                title={task.name}
               >
-                {task.name}
+                <ButtonText>{task.name}</ButtonText>
               </Button>
             )
           })}
@@ -44,6 +45,7 @@ const ChatList = ({
 export default ChatList
 
 const List = styled.div`
+  min-width: 350px;
   max-width: 550px;
   width: 33%;
   display: flex;
@@ -57,4 +59,11 @@ const List = styled.div`
     padding-bottom: 30px;
     margin-bottom: 30px;
   }
+`
+
+const ButtonText = styled.span`
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 `
