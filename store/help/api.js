@@ -115,7 +115,8 @@ export const VARIETIES_API = {
 export const REGISTRY_API = {
   getRegistry: (search) =>
     axios.get(
-      `/landlords-registries?_limit=-1&_where[_or][0][landlord_by_public_cadastral_containss]=${search}&_where[_or][1][cadastr_containss]=${search}`,
+      // `/landlords-registries?_limit=-1&_where[_or][0][landlord_by_public_cadastral_contains]=${search}&_where[_or][1][cadastr_contains]=${search}`,
+      `/landlords-registries?_limit=-1&search=${search}`,
       securedFetchOptions()
     ),
   create: (data) =>

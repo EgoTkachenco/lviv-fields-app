@@ -23,7 +23,7 @@ class Store {
   async loadData() {
     this.isFetch = true
     try {
-      this.data = await REGISTRY_API.getRegistry(this.search)
+      this.data = await REGISTRY_API.getRegistry(this.search.toLowerCase())
     } catch (error) {
       console.log(error)
     }

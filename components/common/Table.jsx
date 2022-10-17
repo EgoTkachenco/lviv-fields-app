@@ -18,7 +18,7 @@ const Table = ({ model, data, sizes, isRead, onChange }) => {
               <TableCell width={sizes[i]} key={i + ' ' + j}>
                 <input
                   type={field.type || 'text'}
-                  value={row[field.id]}
+                  value={row[field.id] || ''}
                   readOnly={isRead}
                   onChange={(e) => onChange(i, field.id, e.target.value)}
                 />
