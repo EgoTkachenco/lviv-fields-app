@@ -24,6 +24,11 @@ const Filter = ({ filter, onChange, onSubmit, onClear }) => {
     onSearchVarieties('')
   }
 
+  const handleSubmit = () => {
+    onSubmit()
+    setOpen(false)
+  }
+
   return (
     <>
       <FilterButton variant="success" onClick={() => setOpen(!open)}>
@@ -123,7 +128,7 @@ const Filter = ({ filter, onChange, onSubmit, onClear }) => {
             />
           </DateBox>
           <Spacer vertical size="30px" />
-          <Button variant="accent" onClick={onSubmit}>
+          <Button variant="accent" onClick={handleSubmit}>
             застосувати
           </Button>
           <Spacer vertical size-sm="16px" />
