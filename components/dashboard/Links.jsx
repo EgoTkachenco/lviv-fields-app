@@ -102,7 +102,7 @@ const LinkCard = styled.a`
   justify-content: center;
   padding: 30px;
   cursor: pointer;
-  gap: 20px;
+  gap: 20px 20px;
 
   &:hover {
     background: rgba(64, 124, 255, 0.8);

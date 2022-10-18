@@ -91,8 +91,8 @@ const ViewerWrapper = styled.div`
   svg {
     max-width: ${(props) => (props.zoom ? 'unset' : '100%')};
     max-height: ${(props) => (props.zoom ? 'unset' : '100%')};
-    height: ${(props) => (props.zoom ? '100%' : 'auto')};
-    /* width: ${(props) => (props.zoom ? 'auto' : '100%')}; */
+    height: ${(props) => (props.zoom ? '100%' : '100%')};
+    width: ${(props) => (props.zoom ? 'auto' : '100%')};
   }
 
   path {
