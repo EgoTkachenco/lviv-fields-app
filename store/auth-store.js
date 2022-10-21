@@ -14,11 +14,16 @@ class Store {
     try {
       this.isFetch = true
       const { jwt, user } = await AUTH_API.login(identifier, password)
-      this.user = user
-      setToken(jwt)
-      localStorage.setItem(USER_STORE_NAME, JSON.stringify(user))
+      const isConfirmed = user.role.description === 'Admin' || user.confirmed
       this.isFetch = false
-      return true
+      if (isConfirmed) {
+        this.user = user
+        setToken(jwt)
+        localStorage.setItem(USER_STORE_NAME, JSON.stringify(user))
+        return true
+      } else {
+        return { key: 'identifier', error: 'Аккаунт ще не пройшов перевірку' }
+      }
     } catch (err) {
       this.isFetch = false
       return { key: 'identifier', error: 'Пошта або пароль не вірні' }
@@ -65,7 +70,6 @@ class Store {
     const token = getToken()
     if (user && token) {
       this.user = JSON.parse(user)
-
       return this.user
     } else {
       this.user = null
