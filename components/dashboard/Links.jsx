@@ -1,14 +1,25 @@
+import { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Box } from '../common'
 import { useRouter } from 'next/router'
 
 const Links = () => {
+  // get links from public folder
+  const [links, setLinks] = useState({
+    email: '',
+    telegram: '',
+    viber: '',
+    video: '',
+    site: '',
+  })
+  useEffect(() => {
+    fetch('/links.json')
+      .then((res) => res.json())
+      .then((res) => setLinks({ ...links, ...res }))
+  }, [])
+
   const router = useRouter()
-  const email = process.env.NEXT_PUBLIC_EMAIL
-  const telegram = process.env.NEXT_PUBLIC_TELEGRAM
-  const viber = process.env.NEXT_PUBLIC_VIBER
   const admin = process.env.NEXT_PUBLIC_ADMIN_URL
-  const video = process.env.NEXT_PUBLIC_VIDEO_URL
 
   return (
     <Wrapper wrap="true">
@@ -20,7 +31,7 @@ const Links = () => {
       />
       <Link
         text="Камери відеоспостереження"
-        link={video}
+        link={links.video}
         icon="/icons/video.svg"
         index={1}
       />
@@ -31,10 +42,10 @@ const Links = () => {
         index={2}
       />
       <Link text="crm система" link={admin} icon="/icons/crm.svg" index={3} />
-      <Link text="сайт" link="/" icon="/icons/web.svg" index={4} />
+      <Link text="сайт" link={links.site} icon="/icons/web.svg" index={4} />
       <Link
         text="корпоративна пошта"
-        link={'mailto:' + email}
+        link={'mailto:' + links.email}
         icon="/icons/mail.svg"
         index={5}
       />
