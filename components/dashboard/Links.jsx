@@ -7,10 +7,11 @@ const Links = () => {
   // get links from public folder
   const [links, setLinks] = useState({
     email: '',
-    telegram: '',
-    viber: '',
     video: '',
     site: '',
+    crm_site: '',
+    telegram: '',
+    viber: '',
   })
   useEffect(() => {
     fetch('/links.json')
@@ -19,7 +20,7 @@ const Links = () => {
   }, [])
 
   const router = useRouter()
-  const admin = process.env.NEXT_PUBLIC_ADMIN_URL
+  // const admin = process.env.NEXT_PUBLIC_ADMIN_URL
 
   return (
     <Wrapper wrap="true">
@@ -41,7 +42,12 @@ const Links = () => {
         icon="/icons/organize.svg"
         index={2}
       />
-      <Link text="crm система" link={admin} icon="/icons/crm.svg" index={3} />
+      <Link
+        text="crm система"
+        link={links.crm_site}
+        icon="/icons/crm.svg"
+        index={3}
+      />
       <Link text="сайт" link={links.site} icon="/icons/web.svg" index={4} />
       <Link
         text="корпоративна пошта"
