@@ -1,7 +1,11 @@
-import { makeAutoObservable } from 'mobx'
+import { makeAutoObservable, computed } from 'mobx'
 import { REGISTRY_API } from './help/api'
 import _ from 'lodash'
 
+const initialFilter = {
+  _limit: 10,
+  _start: 0,
+}
 class Store {
   data = null
   isFetch = false
@@ -9,21 +13,55 @@ class Store {
   editedRows = {}
   mode = 'read'
   deletedItems = []
+  count = null
+
+  filter = initialFilter
 
   constructor() {
-    makeAutoObservable(this)
-    this.debouncedLoadData = _.debounce(this.loadData, 200)
+    makeAutoObservable(this, { max: computed, page: computed })
+    this.debouncedLoadData = _.debounce(() => {
+      this.loadData()
+      this.loadDataCount()
+    }, 200)
+  }
+
+  init() {
+    this.loadData()
+    this.loadDataCount()
   }
 
   updateSearch = (value) => {
     this.search = value
+    this.filter._start = 0
     this.debouncedLoadData()
+  }
+
+  onFilterChange(key, mode, value) {}
+
+  async loadDataCount() {
+    this.isFetch = true
+    try {
+      let query = new URLSearchParams()
+      Object.keys(this.filter).forEach((key) => {
+        query.set(key, this.filter[key])
+      })
+      if (this.search) query.set('search', this.search.toLowerCase())
+      this.count = await REGISTRY_API.getRegistryCount(query.toString())
+    } catch (error) {
+      console.log(error)
+    }
+    this.isFetch = false
   }
 
   async loadData() {
     this.isFetch = true
     try {
-      this.data = await REGISTRY_API.getRegistry(this.search.toLowerCase())
+      let query = new URLSearchParams()
+      Object.keys(this.filter).forEach((key) => {
+        query.set(key, this.filter[key])
+      })
+      if (this.search) query.set('search', this.search.toLowerCase())
+      this.data = await REGISTRY_API.getRegistry(query.toString())
     } catch (error) {
       console.log(error)
     }
@@ -95,6 +133,19 @@ class Store {
     this.mode = 'read'
     this.editedRows = {}
     this.loadData()
+  }
+
+  changePage(page) {
+    this.filter._start = (page - 1) * this.filter._limit
+    this.loadData()
+  }
+
+  get page() {
+    return Math.floor(this.filter._start / this.filter._limit) + 1
+  }
+  get max() {
+    if (this.count) return Math.ceil(this.count / this.filter._limit)
+    return 0
   }
 }
 

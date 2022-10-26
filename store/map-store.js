@@ -19,6 +19,7 @@ class Store {
   isFetch = false
   filter = {}
   summary = null
+  areas = null
   area = null
   field = null
 
@@ -73,6 +74,8 @@ class Store {
     if (this.area) requestQueryFilter.set('area_in', this.area)
     try {
       this.summary = await MAP_API.getSummary(requestQueryFilter.toString())
+
+      if (!this.areas) await this.loadAreas()
       // console.log(requestQueryFilter.toString())
       // console.log(summary)
     } catch (error) {
@@ -318,6 +321,16 @@ class Store {
   async reset() {
     this.clearFilter()
     this.closeField()
+    console.log('reset')
+  }
+
+  async loadAreas() {
+    try {
+      const res = await MAP_API.getAreas()
+      this.areas = res.map((area) => _.pick(area, ['id', 'name', 'path']))
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 

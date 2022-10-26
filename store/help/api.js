@@ -81,6 +81,8 @@ export const MAP_API = {
 
   getSummary: (filter) =>
     axios.get(`/fields/summary?${filter}`, securedFetchOptions()),
+
+  getAreas: () => axios.get('/areas', securedFetchOptions()),
 }
 
 export const FILE_API = {
@@ -113,12 +115,10 @@ export const VARIETIES_API = {
 }
 
 export const REGISTRY_API = {
-  getRegistry: (search) =>
-    axios.get(
-      // `/landlords-registries?_limit=-1&_where[_or][0][landlord_by_public_cadastral_contains]=${search}&_where[_or][1][cadastr_contains]=${search}`,
-      `/landlords-registries?_limit=-1&search=${search}`,
-      securedFetchOptions()
-    ),
+  getRegistry: (query) =>
+    axios.get(`/landlords-registries?${query}`, securedFetchOptions()),
+  getRegistryCount: (query) =>
+    axios.get(`/landlords-registries/count?${query}`, securedFetchOptions()),
   create: (data) =>
     axios.post('/landlords-registries', data, securedFetchOptions()),
   update: (id, data) =>

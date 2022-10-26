@@ -13,6 +13,7 @@ import Table from './Table'
 import ConfirmationModal from './ConfirmationModal'
 import Autocomplete from './Autocomplete'
 import Select from './Select'
+import Pagination from './Pagination'
 import { PageLoader } from './PageLoader'
 
 export {
@@ -36,6 +37,7 @@ export {
   Checkbox,
   Icon,
   Table,
+  Pagination,
   ConfirmationModal,
   Autocomplete,
   Select,

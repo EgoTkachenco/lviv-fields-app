@@ -1,13 +1,22 @@
 import styled from 'styled-components'
 import { useEffect } from 'react'
-import { Table, Input, Spacer, Icon, Button, Box, PageLoader } from '../common'
+import {
+  Table,
+  Input,
+  Spacer,
+  Icon,
+  Button,
+  Box,
+  PageLoader,
+  Pagination,
+} from '../common'
 import { Registry as store } from '../../store'
 import { observer } from 'mobx-react-lite'
 import EditButton from '../navigation/EditButton'
 
 const Registry = observer(() => {
   useEffect(() => {
-    store.loadData()
+    store.init()
   }, [])
   const isRead = store.mode === 'read'
   return (
@@ -45,6 +54,12 @@ const Registry = observer(() => {
           }
         />
       </Wrapper>
+      <Spacer vertical size="32px" />
+      <Pagination
+        page={store.page}
+        max={store.max}
+        onChange={(page) => store.changePage(page)}
+      />
     </>
   )
 })
