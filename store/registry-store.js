@@ -67,6 +67,11 @@ class Store {
     this.isFetch = false
   }
 
+  showOnMap(cadastr) {
+    debugger
+    mapStore.updateFilter('cadastrs', [cadastr])
+  }
+
   async loadDataCount() {
     this.isFetch = true
     try {

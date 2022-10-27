@@ -40,6 +40,7 @@ const PlantationsDetails = ({ data, isRead, onChange }) => {
               }
             />
             <Select
+              style={{ flex: '0 1 calc(100% / 3 - 4px)' }}
               value={plantation.year}
               onChange={(value) =>
                 onChange('plantation-year', { value, index: i })

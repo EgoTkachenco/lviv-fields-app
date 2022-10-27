@@ -15,10 +15,32 @@ import { model } from './util'
 
 const FIELD_OPTIONS = model.map((f) => f.name)
 const TYPE_OPTIONS = {
-  'Більше рівно': '_gte',
-  'Менше рівно': '_lte',
   Рівно: '',
+  Більше: '_gt',
+  'Більше рівно': '_gte',
+  Менше: '_lt',
+  'Менше рівно': '_lte',
   Містить: '_contains',
+}
+const TYPED_OPTIONS = {
+  number: {
+    Рівно: '',
+    Більше: '_gt',
+    'Більше рівно': '_gte',
+    Менше: '_lt',
+    'Менше рівно': '_lte',
+  },
+  date: {
+    Рівно: '',
+    Більше: '_gt',
+    'Більше рівно': '_gte',
+    Менше: '_lt',
+    'Менше рівно': '_lte',
+  },
+  text: {
+    Рівно: '',
+    Містить: '_contains',
+  },
 }
 
 const FilterModal = ({ filters, onFilterChange }) => {
@@ -26,8 +48,9 @@ const FilterModal = ({ filters, onFilterChange }) => {
   const count = Object.keys(filters).length
 
   const onCreate = (field, type, value) => {
-    const field_key = model.find((f) => f.name === field).id
-    const key = field_key + TYPE_OPTIONS[type]
+    const model_field = model.find((f) => f.name === field)
+    const model_type = model_field.type || 'text'
+    const key = model_field.id + TYPED_OPTIONS[model_type][type]
     onFilterChange(key, value)
     setShow(false)
   }
@@ -87,9 +110,14 @@ const NewFilterForm = ({ onCreate }) => {
     onCreate(state.field, state.type, state.value)
     setState({ field: '', type: '', value: '' })
   }
-
+  const fieldType = model.find((f) => f.name === state.field)?.type || 'text'
   return (
-    <Box gap="8px" wrap direction-sm="column" align-sm="center">
+    <NewFilterFormContainer
+      gap="8px"
+      wrap-sm
+      direction-sm="column"
+      align-sm="center"
+    >
       <Select
         value={state.field}
         onChange={(v) => setState({ ...state, field: v })}
@@ -101,11 +129,12 @@ const NewFilterForm = ({ onCreate }) => {
         value={state.type}
         onChange={(v) => setState({ ...state, type: v })}
         placeholder="Тип"
-        options={Object.keys(TYPE_OPTIONS)}
+        options={Object.keys(TYPED_OPTIONS[fieldType])}
       />
       <InputLabel
         disabled={!state.type}
         value={state.value}
+        type={fieldType}
         onChange={(v) => setState({ ...state, value: v.target.value })}
         placeholder="Значення"
       />
@@ -117,7 +146,7 @@ const NewFilterForm = ({ onCreate }) => {
       >
         Додати
       </Button>
-    </Box>
+    </NewFilterFormContainer>
   )
 }
 
@@ -129,6 +158,15 @@ const FilterList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+`
+
+const NewFilterFormContainer = styled(Box)`
+  @media (max-width: 768px) {
+    & > * {
+      flex-grow: 1;
+      width: 100%;
+    }
+  }
 `
 
 const Row = styled(Box)`

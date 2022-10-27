@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { Button, ConfirmationModal } from '../common'
 
-const Table = ({ model, data, sizes, isRead, onChange }) => {
+const Table = ({ model, data, sizes, isRead, onChange, onCellClick }) => {
   if (!data) return
   return (
     <TableWrapper>
@@ -23,6 +23,7 @@ const Table = ({ model, data, sizes, isRead, onChange }) => {
                   value={row[field.id] || ''}
                   readOnly={isRead}
                   onChange={(e) => onChange(i, field.id, e.target.value)}
+                  onClick={(e) => onCellClick(field.id, i, e.target.value)}
                 />
               </TableCell>
             ))}
@@ -99,6 +100,7 @@ const TableCell = styled.td`
     outline: none;
     width: 100%;
     transition: all 0.3s;
+    cursor: pointer;
 
     &:focus {
       position: absolute;

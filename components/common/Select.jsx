@@ -3,7 +3,7 @@ import { useState } from 'react'
 import _ from 'lodash'
 import { useClickOutside } from '@mantine/hooks'
 
-const Select = ({ value, onChange, placeholder, options, isRead }) => {
+const Select = ({ value, onChange, placeholder, options, isRead, style }) => {
   const [show, setShow] = useState()
   const handleClick = (option) => {
     onChange(option)
@@ -12,7 +12,7 @@ const Select = ({ value, onChange, placeholder, options, isRead }) => {
   const ref = useClickOutside(() => setShow(false))
 
   return (
-    <Container ref={ref}>
+    <Container ref={ref} style={style}>
       <InputLabel
         value={value}
         title={value}
@@ -41,7 +41,7 @@ export default Select
 const Container = styled.div`
   position: relative;
   display: flex;
-  flex: 0 1 calc(100% / 3 - 4px);
+
   /* width: 300px; */
 `
 

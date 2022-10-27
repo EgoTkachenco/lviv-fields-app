@@ -24,6 +24,12 @@ const Registry = observer(() => {
   const router = useRouter()
   const isRead = store.mode === 'read'
   const isShowOnMap = store.search || Object.keys(store.filter).length > 0
+  const handleCellClick = (key, index, value) => {
+    if (key === 'cadastr') {
+      store.showOnMap(value)
+      router.push('/map')
+    }
+  }
   return (
     <>
       <PageLoader isLoading={store.isFetch} />
@@ -41,7 +47,8 @@ const Registry = observer(() => {
         {!isRead && (
           <Button
             variant="primary"
-            width="200px"
+            size="small"
+            width="150px"
             onClick={() => store.createNew()}
           >
             Створити
@@ -75,6 +82,7 @@ const Registry = observer(() => {
           onChange={(index, key, value) =>
             store.updateTableRow(index, key, value)
           }
+          onCellClick={handleCellClick}
         />
       </Wrapper>
       <Spacer vertical size="32px" />
