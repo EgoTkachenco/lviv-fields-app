@@ -1,15 +1,16 @@
 import { useEffect } from 'react'
 
-const handleEnterArea = (e) => {
-  e.currentTarget.style.fill = 'rgba(64, 124, 255, 0.2)'
-  e.currentTarget.style.stroke = '#407CFF'
-}
-const handleLeaveArea = (e) => {
-  e.currentTarget.style.fill = 'transparent'
-  e.currentTarget.style.stroke = 'transparent'
-}
-
-export const useMapAreaHandlers = (ref, onOpen) =>
+export const useMapAreaHandlers = (ref, onOpen) => {
+  const handleEnterArea = (e) => {
+    e.currentTarget.style.fill = 'rgba(64, 124, 255, 0.2)'
+    e.currentTarget.style.stroke = '#407CFF'
+    onOpen(e)
+  }
+  const handleLeaveArea = (e) => {
+    e.currentTarget.style.fill = 'transparent'
+    e.currentTarget.style.stroke = 'transparent'
+    onOpen({ currentTarget: { id: null } })
+  }
   useEffect(() => {
     if (!ref.current) return
 
@@ -21,7 +22,7 @@ export const useMapAreaHandlers = (ref, onOpen) =>
         element.addEventListener('mouseenter', handleEnterArea)
         element.addEventListener('mouseleave', handleLeaveArea)
         element.addEventListener('click', onOpen)
-        element.style.fill = 'transparent'
+        // element.style.fill = 'transparent'
       }
     }
 
@@ -37,7 +38,8 @@ export const useMapAreaHandlers = (ref, onOpen) =>
         }
       }
     }
-  }, [ref])
+  }, [ref, onOpen])
+}
 
 export const useMapFieldsHandlers = (ref, onOpen, field, fields) => {
   const handleEnterField = (e) => {

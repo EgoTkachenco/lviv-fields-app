@@ -5,6 +5,7 @@ import _ from 'lodash'
 const initialFilter = {
   type: [],
   category: [],
+  cadastrs: [],
   varieties: [],
   year: {
     start: '',
@@ -20,6 +21,7 @@ class Store {
   filter = {}
   summary = null
   areas = null
+  areaLabel = null
   area = null
   field = null
 
@@ -46,9 +48,14 @@ class Store {
         const [filterKey, filterKeyField] = key.split('-')
         filter[filterKey][filterKeyField] = val
         break
+      case 'cadastrs':
+        this.clearFilter(false)
+        filter[key] = val
+        break
       default:
         return
     }
+    if (!['area', 'cadastrs'].includes(key)) filter.cadastrs = []
     this.filter = filter
   }
 
@@ -71,6 +78,9 @@ class Store {
     if (this.filter.term.end)
       requestQueryFilter.set('contract_due_lte', this.filter.term.end)
 
+    if (this.filter.cadastrs.length)
+      requestQueryFilter.set('cadastr_in', this.filter.cadastrs)
+
     if (this.area) requestQueryFilter.set('area_in', this.area)
     try {
       this.summary = await MAP_API.getSummary(requestQueryFilter.toString())
@@ -89,8 +99,16 @@ class Store {
   }
 
   openArea(id) {
-    this.area = id
-    this.getSummary()
+    if (!id) {
+      this.areaLabel = null
+      return
+    }
+    if (this.areaLabel === id) {
+      this.area = id
+      this.getSummary()
+    } else {
+      this.areaLabel = id
+    }
   }
 
   async openField(id) {
@@ -141,6 +159,7 @@ class Store {
 
   closeField() {
     if (this.mode === 'write') return this.changeMode()
+    this.areaLabel = null
     this.area = null
     this.field = null
     this.getSummary()

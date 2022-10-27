@@ -8,14 +8,16 @@ const Table = ({ model, data, sizes, isRead, onChange }) => {
       <TableContent>
         <TableRow>
           {model.map((field, i) => (
-            <TableHeaderCell key={i}>{field.name}</TableHeaderCell>
+            <TableHeaderCell key={i} width={sizes[i]}>
+              {field.name}
+            </TableHeaderCell>
           ))}
           {!isRead && <TableHeaderCell></TableHeaderCell>}
         </TableRow>
         {data.map((row, i) => (
           <TableRow key={i}>
             {model.map((field, j) => (
-              <TableCell width={sizes[i]} key={i + ' ' + j}>
+              <TableCell width={sizes[j]} key={i + ' ' + j}>
                 <input
                   type={field.type || 'text'}
                   value={row[field.id] || ''}
@@ -68,6 +70,7 @@ const TableRow = styled.tr`
 const TableHeaderCell = styled.th`
   padding: 12px 20px;
   white-space: nowrap;
+  min-width: ${(props) => props.width};
   background: #f4f6fa;
   font-weight: 600;
   font-size: 14px;
@@ -81,8 +84,10 @@ const TableHeaderCell = styled.th`
   }
 `
 const TableCell = styled.td`
+  position: relative;
   white-space: nowrap;
   border-right: 1px solid #e9edf5;
+  min-width: ${(props) => props.width};
   input {
     font-weight: 400;
     font-size: 14px;
@@ -93,6 +98,27 @@ const TableCell = styled.td`
     border: none;
     outline: none;
     width: 100%;
+    transition: all 0.3s;
+
+    &:focus {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 10;
+      background-color: #fff;
+      min-width: 300px;
+    }
+
+    &:read-only {
+      &:focus {
+        position: static;
+        top: unset;
+        left: unset;
+        z-index: 10;
+        background-color: transparent;
+        min-width: unset;
+      }
+    }
   }
 
   &:last-child {

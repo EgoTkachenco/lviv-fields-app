@@ -1,11 +1,8 @@
 import { makeAutoObservable, computed } from 'mobx'
 import { REGISTRY_API } from './help/api'
 import _ from 'lodash'
+import mapStore from './map-store'
 
-const initialFilter = {
-  _limit: 10,
-  _start: 0,
-}
 class Store {
   data = null
   isFetch = false
@@ -14,11 +11,16 @@ class Store {
   mode = 'read'
   deletedItems = []
   count = null
+  limit = 10
+  start = 0
 
-  filter = initialFilter
+  filter = {}
 
   constructor() {
-    makeAutoObservable(this, { max: computed, page: computed })
+    makeAutoObservable(this, {
+      max: computed,
+      page: computed,
+    })
     this.debouncedLoadData = _.debounce(() => {
       this.loadData()
       this.loadDataCount()
@@ -32,11 +34,38 @@ class Store {
 
   updateSearch = (value) => {
     this.search = value
-    this.filter._start = 0
+    this.start = 0
     this.debouncedLoadData()
   }
 
-  onFilterChange(key, mode, value) {}
+  onFilterChange(key, value) {
+    if (value) {
+      this.filter[key] = value
+    } else {
+      delete this.filter[key]
+    }
+
+    this.start = 0
+    this.loadData()
+    this.loadDataCount()
+  }
+
+  async loadFieldIds() {
+    this.isFetch = true
+    try {
+      let query = new URLSearchParams()
+      Object.keys(this.filter).forEach((key) => {
+        query.set(key, this.filter[key])
+      })
+      if (this.search) query.set('search', this.search.toLowerCase())
+      const res = await REGISTRY_API.getRegistryMap(query.toString())
+      console.log(res)
+      mapStore.updateFilter('cadastrs', res)
+    } catch (error) {
+      console.log(error)
+    }
+    this.isFetch = false
+  }
 
   async loadDataCount() {
     this.isFetch = true
@@ -60,6 +89,8 @@ class Store {
       Object.keys(this.filter).forEach((key) => {
         query.set(key, this.filter[key])
       })
+      query.set('_limit', this.limit)
+      query.set('_start', this.start)
       if (this.search) query.set('search', this.search.toLowerCase())
       this.data = await REGISTRY_API.getRegistry(query.toString())
     } catch (error) {
@@ -136,15 +167,15 @@ class Store {
   }
 
   changePage(page) {
-    this.filter._start = (page - 1) * this.filter._limit
+    this.start = (page - 1) * this.limit
     this.loadData()
   }
 
   get page() {
-    return Math.floor(this.filter._start / this.filter._limit) + 1
+    return Math.ceil(this.start / this.limit) + 1
   }
   get max() {
-    if (this.count) return Math.ceil(this.count / this.filter._limit)
+    if (this.count) return Math.ceil(this.count / this.limit)
     return 0
   }
 }

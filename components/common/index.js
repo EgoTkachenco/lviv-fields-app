@@ -15,6 +15,7 @@ import Autocomplete from './Autocomplete'
 import Select from './Select'
 import Pagination from './Pagination'
 import { PageLoader } from './PageLoader'
+import { Label, InputLabel } from './Label'
 
 export {
   Button,
@@ -42,4 +43,6 @@ export {
   Autocomplete,
   Select,
   PageLoader,
+  Label,
+  InputLabel,
 }

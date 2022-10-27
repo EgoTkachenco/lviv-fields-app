@@ -15,15 +15,19 @@ const Select = ({ value, onChange, placeholder, options, isRead }) => {
     <Container ref={ref}>
       <InputLabel
         value={value}
-        onChange={(value) => setState({ ...state, value })}
+        title={value}
         readOnly
         placeholder={placeholder}
         onClick={() => !isRead && setShow(!show)}
       />
       <Menu show={show}>
         {options &&
-          options.map((option) => (
-            <Label key={option} onClick={() => handleClick(option)}>
+          options.map((option, i) => (
+            <Label
+              key={option + i}
+              onClick={() => handleClick(option)}
+              title={option}
+            >
               {option}
             </Label>
           ))}
@@ -44,6 +48,7 @@ const Container = styled.div`
 const Menu = styled.div`
   position: absolute;
   width: 100%;
+  max-width: 100%;
   top: calc(100% + 2px);
   left: 0;
   z-index: 100;
@@ -79,6 +84,11 @@ const Label = styled.div`
   position: relative;
   cursor: pointer;
   transition: all 0.3s;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  min-height: 40px;
+
   &:hover {
     background: #ccd1e0;
   }
@@ -89,9 +99,5 @@ const InputLabel = styled.input`
   outline: none;
   border: 1px solid #edf1f8;
   font-weight: 400;
-  &:read-only {
-    cursor: default;
-    border-color: transparent;
-    background: #edf1f8;
-  }
+  cursor: pointer;
 `

@@ -19,6 +19,7 @@ import Field11 from './fields/Field11'
 import Field12 from './fields/Field12'
 
 export default function Map({
+  areaLabel,
   area,
   field,
   onOpenArea,
@@ -39,6 +40,7 @@ export default function Map({
       {area ? (
         <AreaMap
           area={area}
+          areaLabel={areaLabel}
           field={field}
           onOpen={(v) => onOpenField(v)}
           onClose={onClose}
@@ -46,7 +48,11 @@ export default function Map({
           // fields={summary?.fields || []}
         />
       ) : (
-        <AllMap onOpen={(v) => onOpenArea(v)} fields={summary?.fields || []} />
+        <AllMap
+          onOpen={(v) => onOpenArea(v)}
+          fields={summary?.fields || []}
+          areaLabel={areaLabel}
+        />
       )}
     </MapCard>
   )
@@ -75,7 +81,7 @@ const MapCard = styled(Card)`
   }
 `
 
-export function AreaMap({ area, onOpen, field, onClose, summary }) {
+export function AreaMap({ area, onOpen, field, onClose, summary, areaLabel }) {
   const ref = useRef()
   useMapFieldsHandlers(
     ref,
@@ -116,17 +122,21 @@ export function AreaMap({ area, onOpen, field, onClose, summary }) {
 
   return (
     <>
-      <AreaLabel>Поле № {summary?.area?.name}</AreaLabel>
+      {areaLabel && <AreaLabel>Поле № {areaLabel.name}</AreaLabel>}
       <Viewer small={!!field}>{renderField()}</Viewer>
     </>
   )
 }
 
-export function AllMap({ onOpen }) {
+export function AllMap({ onOpen, areaLabel }) {
   const ref = useRef()
-  useMapAreaHandlers(ref, (e) => onOpen(e.currentTarget.id))
+  useMapAreaHandlers(ref, (e) => {
+    if (e.type === 'click' && !areaLabel) return
+    onOpen(e.currentTarget.id)
+  })
   return (
     <Viewer>
+      {areaLabel && <AreaLabel>Поле № {areaLabel.name}</AreaLabel>}
       <MapIcon ref={ref} />
     </Viewer>
   )

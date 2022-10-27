@@ -44,8 +44,8 @@ const ModalWrapper = styled.div`
 
 const Card = styled.div`
   position: relative;
-  max-width: 550px;
-  width: 100%;
+  min-width: 550px;
+  max-width: 950px;
   max-height: calc(100vh - 64px);
   overflow: auto;
   background: #ffffff;

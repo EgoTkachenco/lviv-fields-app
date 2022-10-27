@@ -119,6 +119,8 @@ export const REGISTRY_API = {
     axios.get(`/landlords-registries?${query}`, securedFetchOptions()),
   getRegistryCount: (query) =>
     axios.get(`/landlords-registries/count?${query}`, securedFetchOptions()),
+  getRegistryMap: (query) =>
+    axios.get(`/landlords-registries/map?${query}`, securedFetchOptions()),
   create: (data) =>
     axios.post('/landlords-registries', data, securedFetchOptions()),
   update: (id, data) =>

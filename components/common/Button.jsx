@@ -22,6 +22,11 @@ const ButtonCore = styled.button`
   path {
     transition: all 0.3s;
   }
+
+  &:disabled {
+    opacity: 0.8;
+    cursor: default;
+  }
 `
 
 const PrimaryButton = styled(ButtonCore)`

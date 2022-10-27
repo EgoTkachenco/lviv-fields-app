@@ -40,14 +40,13 @@ export default function Viewer({ children, small }) {
   }
   const setInitialScroll = () => {
     if (!children) return
-    const svg = children.ref.current
+    const svg = children.ref?.current
+    if (!svg) return
     const { width, height } = svg.getBoundingClientRect()
     if (width > height) {
       setState((state) => ({ ...state, scroll: 0, isNoZoomMode: true }))
-      console.log('Initialize scroll', 0, true)
     } else {
       setState((state) => ({ ...state, scroll: 1, isNoZoomMode: false }))
-      console.log('Initialize scroll', 1, false)
     }
   }
 

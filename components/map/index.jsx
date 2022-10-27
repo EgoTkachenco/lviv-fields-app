@@ -16,12 +16,16 @@ import EditButton from '../navigation/EditButton'
 import { Spacer, PageLoader } from '../common'
 
 const MapPage = observer(() => {
-  const { area, field, mode, filter, summary } = store
+  const { area, field, mode, filter, summary, areas } = store
   const isRead = mode === 'read'
   const onChange = (key, value) => store.updateFieldDetails(key, value)
   const onFilterChange = (key, value) => store.updateFilter(key, value)
   const onSubmitFilter = () => store.getSummary()
   const onClearFilter = () => store.clearFilter()
+  const areaLabel =
+    store.areaLabel === null
+      ? null
+      : areas.find((area) => area.path === store.areaLabel)
 
   useEffect(() => {
     store.getSummary()
@@ -58,6 +62,7 @@ const MapPage = observer(() => {
         </Side>
         <Content>
           <Map
+            areaLabel={areaLabel}
             area={area}
             field={field && field.pathname}
             onOpenArea={(v) => store.openArea(v)}

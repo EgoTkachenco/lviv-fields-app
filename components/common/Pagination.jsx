@@ -5,7 +5,6 @@ import { Text } from './Text'
 
 const Pagination = ({ page, max, onChange }) => {
   const pages = getPagesButtons(page, max)
-  console.log(pages)
   return (
     <Wrapper gap="8px">
       {max &&
@@ -42,8 +41,13 @@ const PaginationButton = styled(Button)`
 
 function getPagesButtons(page, max) {
   if (!max) return []
-  if (page === 1) return [1, 2, 3, null, max]
+  if (max === 1) return [1]
+  if (max === 2) return [1, 2]
+  if (max === 3) return [1, 2, 3]
+  if (max === 4) return [1, 2, 3, 4]
+  if (page === 1) return [1, 2, null, max]
   if (page === 2) return [1, 2, 3, null, max]
+  if (page === 3 && max === 5) return [1, 2, 3, 4, max]
   if (page === 3) return [1, 2, 3, 4, null, max]
 
   if (page > 3 && page < max - 2)
