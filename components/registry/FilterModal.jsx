@@ -16,10 +16,10 @@ import { model } from './util'
 const FIELD_OPTIONS = model.map((f) => f.name)
 const TYPE_OPTIONS = {
   Рівно: '',
-  Більше: '_gt',
   'Більше рівно': '_gte',
-  Менше: '_lt',
+  Більше: '_gt',
   'Менше рівно': '_lte',
+  Менше: '_lt',
   Містить: '_contains',
 }
 const TYPED_OPTIONS = {
@@ -111,6 +111,7 @@ const NewFilterForm = ({ onCreate }) => {
     setState({ field: '', type: '', value: '' })
   }
   const fieldType = model.find((f) => f.name === state.field)?.type || 'text'
+
   return (
     <NewFilterFormContainer
       gap="8px"
@@ -196,7 +197,7 @@ const CloseButton = styled.button`
 function getFilterType(key) {
   for (let i = 0; i < Object.keys(TYPE_OPTIONS).length; i++) {
     const type = Object.values(TYPE_OPTIONS)[i]
-    if (!type) break
+    if (!type) continue
     if (key.search(type) !== -1)
       return {
         type: Object.keys(TYPE_OPTIONS)[i],

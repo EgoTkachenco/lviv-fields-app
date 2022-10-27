@@ -8,11 +8,15 @@ export const model = [
     name: 'Орендодавець згідно Публічної кадастрової карти',
   },
   { id: 'cadastr', name: 'Кадастровий номер' },
-  { id: 'size', name: 'Площа земельної ділянки, га' },
+  { id: 'size', name: 'Площа земельної ділянки, га', type: 'number' },
   { id: 'contract_date', name: 'Дата договору', type: 'date' },
-  { id: 'lease_term', name: 'Строк оренди, років' },
-  { id: 'lease_term_in_contract', name: 'Строк оренди у договорі орендодавця' },
-  { id: 'percent', name: '%' },
+  { id: 'lease_term', name: 'Строк оренди, років', type: 'number' },
+  {
+    id: 'lease_term_in_contract',
+    name: 'Строк оренди у договорі орендодавця',
+    type: 'number',
+  },
+  { id: 'percent', name: '%', type: 'number' },
   { id: 'owner_dismatch', name: 'Не співпадає власник згідно державного акту' },
   { id: 'note', name: 'Примітки' },
   {
@@ -33,7 +37,7 @@ export const model = [
     name: 'Дата оцінки ділянки, згідно Держгеокадастру',
     type: 'date',
   },
-  { id: 'sum', name: 'Сума, грн' },
+  { id: 'sum', name: 'Сума, грн', type: 'number' },
 
   { id: 'state_act_number', name: 'Серія, номер державного акту' },
   { id: 'state_act_date', name: 'Дата видачі державного акту', type: 'date' },
