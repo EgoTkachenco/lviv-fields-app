@@ -22,7 +22,10 @@ export const useMapAreaHandlers = (ref, onOpen) => {
         element.addEventListener('mouseenter', handleEnterArea)
         element.addEventListener('mouseleave', handleLeaveArea)
         element.addEventListener('click', onOpen)
-        // element.style.fill = 'transparent'
+        element.style.fill =
+          element.style.fill === 'rgba(64, 124, 255, 0.2)'
+            ? 'rgba(64, 124, 255, 0.2)'
+            : 'transparent'
       }
     }
 

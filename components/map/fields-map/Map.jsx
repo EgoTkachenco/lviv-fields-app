@@ -131,7 +131,11 @@ export function AreaMap({ area, onOpen, field, onClose, summary, areaLabel }) {
 export function AllMap({ onOpen, areaLabel }) {
   const ref = useRef()
   useMapAreaHandlers(ref, (e) => {
-    if (e.type === 'click' && !areaLabel) return
+    if (
+      e.type === 'click' &&
+      (!areaLabel || areaLabel.path !== e.currentTarget.id)
+    )
+      return
     onOpen(e.currentTarget.id)
   })
   return (

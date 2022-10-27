@@ -59,6 +59,8 @@ const Card = styled.div`
   @media (max-width: 768px) {
     max-height: calc(100vh - 16px);
     width: 100%;
+    min-width: unset;
+    max-width: unset;
   }
 `
 

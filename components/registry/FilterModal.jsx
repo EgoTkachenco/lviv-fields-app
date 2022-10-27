@@ -89,7 +89,7 @@ const NewFilterForm = ({ onCreate }) => {
   }
 
   return (
-    <Box gap="8px">
+    <Box gap="8px" wrap direction-sm="column" align-sm="center">
       <Select
         value={state.field}
         onChange={(v) => setState({ ...state, field: v })}
