@@ -32,6 +32,14 @@ class Store {
     this.loadDataCount()
   }
 
+  clearFilter() {
+    this.start = 0
+    this.deletedItems = []
+    this.editedRows = []
+    this.filter = {}
+    this.search = ''
+  }
+
   updateSearch = (value) => {
     this.search = value
     this.start = 0

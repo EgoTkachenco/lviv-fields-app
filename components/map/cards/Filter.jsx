@@ -29,6 +29,27 @@ const Filter = ({ filter, onChange, onSubmit, onClear }) => {
     setOpen(false)
   }
 
+  if (filter.cadastrs.length > 0)
+    return (
+      <>
+        <FilterButton variant="success" onClick={() => setOpen(!open)}>
+          Фiльтр
+        </FilterButton>
+        <FilterCard open={open}>
+          <FilterCloseButton onClick={() => setOpen(false)}>
+            <Icon icon="close" />
+          </FilterCloseButton>
+          <FilterInner>
+            <H5 align="center">Застосовано фільтр з реєстру</H5>
+            <Spacer vertical size="48px" />
+            <Button variant="text" onClick={clearFilter}>
+              скинути
+            </Button>
+          </FilterInner>
+        </FilterCard>
+      </>
+    )
+
   return (
     <>
       <FilterButton variant="success" onClick={() => setOpen(!open)}>
@@ -145,7 +166,6 @@ export default Filter
 
 const FilterCard = styled(Card)`
   padding: 40px;
-
   @media (max-width: 1200px) {
     display: ${(props) => (props.open ? 'block' : 'none')};
     position: fixed;

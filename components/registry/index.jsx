@@ -20,6 +20,10 @@ import { useRouter } from 'next/router'
 const Registry = observer(() => {
   useEffect(() => {
     store.init()
+
+    return () => {
+      store.clearFilter()
+    }
   }, [])
   const router = useRouter()
   const isRead = store.mode === 'read'

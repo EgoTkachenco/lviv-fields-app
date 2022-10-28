@@ -61,6 +61,7 @@ class Store {
 
   async getSummary() {
     // fetch summary with filters
+    this.isFetch = true
     let requestQueryFilter = new URLSearchParams()
 
     if (this.filter.type.length)
@@ -91,6 +92,7 @@ class Store {
     } catch (error) {
       console.log('Error: ', error)
     }
+    this.isFetch = false
   }
 
   clearFilter(isFetch = true) {
