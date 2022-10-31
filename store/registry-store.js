@@ -76,7 +76,6 @@ class Store {
   }
 
   showOnMap(cadastr) {
-    debugger
     mapStore.updateFilter('cadastrs', [cadastr])
   }
 

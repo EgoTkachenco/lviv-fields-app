@@ -24,6 +24,7 @@ class Store {
   areaLabel = null
   area = null
   field = null
+  openFieldFlag = false
 
   constructor() {
     makeAutoObservable(this)
@@ -51,6 +52,7 @@ class Store {
       case 'cadastrs':
         this.clearFilter(false)
         filter[key] = val
+        if (val.length === 1) this.openFieldFlag = true
         break
       default:
         return
@@ -84,11 +86,12 @@ class Store {
 
     if (this.area) requestQueryFilter.set('area_in', this.area)
     try {
+      const isOpenField = this.filter.cadastrs.length === 1 && !this.summary
       this.summary = await MAP_API.getSummary(requestQueryFilter.toString())
-
       if (!this.areas) await this.loadAreas()
-      // console.log(requestQueryFilter.toString())
-      // console.log(summary)
+
+      if (this.openFieldFlag) this.openField(this.summary.fields[0], true)
+      this.openFieldFlag = false
     } catch (error) {
       console.log('Error: ', error)
     }
@@ -113,7 +116,7 @@ class Store {
     }
   }
 
-  async openField(id) {
+  async openField(id, openArea = false) {
     if (this.mode === 'write') {
       this.isEdited = false
       this.deletedFiles = []
@@ -150,6 +153,12 @@ class Store {
         }
     }
     this.isFetch = false
+
+    if (openArea) {
+      const area = this.areas.find((area) => area.id === this.field.area)
+      this.areaLabel = area.name
+      this.area = area.path
+    }
   }
 
   cancelSave() {
@@ -342,7 +351,8 @@ class Store {
   async reset() {
     this.clearFilter()
     this.closeField()
-    console.log('reset')
+    this.summary = null
+    console.log('reset', this.summary)
   }
 
   async loadAreas() {
