@@ -1,10 +1,17 @@
 import { useEffect } from 'react'
+import { useMobileDetect } from '../../../hooks'
 
 export const useMapAreaHandlers = (ref, onOpen) => {
+  const { isDesktop } = useMobileDetect()
   const handleEnterArea = (e) => {
     e.currentTarget.style.fill = 'rgba(64, 124, 255, 0.2)'
     e.currentTarget.style.stroke = '#407CFF'
-    onOpen(e)
+
+    /*
+			Call onOpen on mouseenter event only in desktop case 
+		*/
+    console.log(isDesktop())
+    if (isDesktop()) onOpen(e)
   }
   const handleLeaveArea = (e) => {
     e.currentTarget.style.fill = 'transparent'

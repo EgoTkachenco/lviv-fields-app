@@ -130,10 +130,7 @@ export function AreaMap({ area, onOpen, field, onClose, summary, areaLabel }) {
 
 export function AllMap({ onOpen, areaLabel }) {
   const ref = useRef()
-  useMapAreaHandlers(ref, (e) => {
-    if (e.type === 'click' && areaLabel?.path !== e.currentTarget.id) return
-    onOpen(e.currentTarget.id)
-  })
+  useMapAreaHandlers(ref, (e) => onOpen(e.currentTarget.id))
   return (
     <Viewer>
       {areaLabel && <AreaLabel>Поле № {areaLabel.name}</AreaLabel>}
