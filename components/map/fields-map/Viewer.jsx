@@ -81,7 +81,7 @@ export default function Viewer({ children, small }) {
 const ViewerWrapper = styled.div`
   height: ${(props) => (props.zoom ? props.zoom * 100 + '%' : '100%')};
   max-width: ${(props) => (props.zoom ? 'unset' : '100%')};
-  /* width: ${(props) => (props.zoom ? 'auto' : '100%')}; */
+  width: ${(props) => (props.zoom ? 'auto' : '100%')};
 
   display: ${(props) => (props.isCentered ? 'flex' : 'block')};
   justify-content: center;

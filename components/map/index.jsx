@@ -9,6 +9,8 @@ import {
   SummaryDetails,
   CommonDetails,
   PlantationsDetails,
+  DocumentsDetails,
+  OwnersDetails,
 } from './cards'
 
 import Map from './fields-map/Map'
@@ -57,6 +59,18 @@ const MapPage = observer(() => {
                 isRead={isRead}
                 onChange={onChange}
               />
+              <Spacer vertical size="40px" />
+              <ContractDetails
+                data={field}
+                isRead={isRead}
+                onChange={onChange}
+              />
+              <Spacer vertical size="40px" />
+              <DocumentsDetails
+                data={field}
+                isRead={isRead}
+                onChange={onChange}
+              />
             </>
           )}
         </Side>
@@ -69,16 +83,26 @@ const MapPage = observer(() => {
             onOpenField={(v) => store.openField(v)}
             onClose={() => store.closeField()}
             summary={summary}
+            areas={areas}
+            filter={filter}
           />
           {!field && <SummaryDetails data={summary} />}
+          {field && (
+            <OwnersDetails
+              data={field}
+              isRead={isRead}
+              onCreate={(data) => onChange('owners-new', data)}
+              onUpdate={(data) => onChange('owners-update', data)}
+              onDelete={(data) => onChange('owners-delete', data)}
+            />
+          )}
         </Content>
       </Wrapper>
-      {field && (
+      {/* {field && (
         <Bottom>
           <OwnerDetails data={field} isRead={isRead} onChange={onChange} />
-          <ContractDetails data={field} isRead={isRead} onChange={onChange} />
         </Bottom>
-      )}
+      )} */}
     </>
   )
 })
@@ -88,7 +112,8 @@ export default MapPage
 const Wrapper = styled.div`
   display: flex;
   gap: 40px;
-  min-height: 100%;
+  flex-grow: 1;
+
   @media (max-width: 1200px) {
     flex-direction: column;
   }
@@ -99,9 +124,13 @@ const Content = styled.div`
   flex-direction: column;
   gap: 20px;
   max-height: 100%;
+  max-width: calc(100vw - 550px - 40px - 60px);
+  @media (max-width: 1200px) {
+    max-width: unset;
+  }
 `
 const Side = styled.div`
-  min-width: 350px;
+  min-width: 550px;
   max-width: 550px;
   /* width: 29.5%; */
 

@@ -1,4 +1,4 @@
-import FilesList from './FilesList'
+import FilesList, { FileUploadButton } from './FilesList'
 import { CardField, Column, SmallColumn } from './CardField'
 
 module.exports = {
@@ -6,4 +6,5 @@ module.exports = {
   CardField,
   Column,
   SmallColumn,
+  FileUploadButton,
 }

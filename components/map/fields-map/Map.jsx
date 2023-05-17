@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useMemo, useRef } from 'react'
 import { useMapAreaHandlers, useMapFieldsHandlers } from './utils'
 import Viewer from './Viewer'
 import styled from 'styled-components'
@@ -17,6 +17,7 @@ import Field9 from './fields/Field9'
 import Field10 from './fields/Field10'
 import Field11 from './fields/Field11'
 import Field12 from './fields/Field12'
+import { FIELD_TYPES_COLORS } from '../../../store/help/constants'
 
 export default function Map({
   areaLabel,
@@ -26,16 +27,40 @@ export default function Map({
   onOpenField,
   onClose,
   summary,
+  areas,
+  filter,
 }) {
-  const filterStyles = () => {
+  const filterStyles = useMemo(() => {
     if (!summary?.fields) return ''
-    const selector = summary.fields.map((id) => 'path#' + id).join(', ')
-    const styles = `${selector} {fill: #407cff;}`
-    return <style>{styles}</style>
-  }
+    const fields =
+      areas?.reduce((acc, area) => [...acc, ...area.fields], []) || []
+
+    if (fields.length === 0) return
+
+    const isRegistryFilter = filter.cadastrs.length > 0
+
+    let styles = summary.fields.map((id) => {
+      const field = fields.find((field) => field.pathname === id)
+      let color
+      if (!isRegistryFilter && filter.type.includes(field.type))
+        color = FIELD_TYPES_COLORS[field.type] || 'transparent'
+      else color = '#407CFF'
+
+      let opacity
+      if (!isRegistryFilter && filter.category.length > 0)
+        opacity = field.category === 'free' ? 0.5 : 1
+      else opacity = 1
+      return `${'path#' + id} {fill: ${color}; opacity: ${opacity};}`
+    })
+
+    styles = styles.join('\n')
+    console.log('filter styles', styles)
+    return <style id="map-style">{styles}</style>
+  }, [summary])
+
   return (
-    <MapCard>
-      {filterStyles()}
+    <MapCard isField={!!field}>
+      {filterStyles}
       {area && <BackLink action={onClose} />}
       {area ? (
         <AreaMap
@@ -64,6 +89,7 @@ const MapCard = styled(Card)`
   justify-content: center;
   align-items: center;
   flex-grow: 1;
+  max-height: ${({ isField }) => (isField ? '550px' : 'unset')};
   padding: 48px 32px;
 
   svg {

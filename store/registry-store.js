@@ -27,6 +27,88 @@ class Store {
     }, 200)
   }
 
+  loadOwners = (page, size) => {
+    let query = this.getFilterQuery()
+    query.set('_limit', size)
+    query.set('_start', (page - 1) * size)
+    if (this.search) query.set('_q', this.search.toLowerCase())
+    return REGISTRY_API.getOwners(query.toString())
+  }
+
+  loadOwnersCount = () => {
+    let query = this.getFilterQuery()
+    if (this.search) query.set('_q', this.search.toLowerCase())
+    return REGISTRY_API.getOwnersCount(query.toString())
+  }
+
+  async exportOwners() {
+    let query = this.getFilterQuery()
+    if (this.search) query.set('_q', this.search.toLowerCase())
+    try {
+      this.isFetch = true
+      const res = await REGISTRY_API.exportOwners(query.toString())
+      if (res.path) {
+        const link = document.createElement('a')
+        link.href = process.env.NEXT_PUBLIC_ADMIN_URL + res.path
+        link.download = 'owners-export.xlsx'
+        link.click()
+      }
+    } catch (error) {
+      console.log(error.message)
+    }
+    this.isFetch = false
+  }
+
+  loadFields = (page, size) => {
+    let query = this.getFilterQuery()
+    query.set('_limit', size)
+    query.set('_start', (page - 1) * size)
+    if (this.search) query.set('_q', this.search.toLowerCase())
+    return REGISTRY_API.getFields(query.toString())
+  }
+
+  loadFieldsCount = () => {
+    let query = this.getFilterQuery()
+    if (this.search) query.set('_q', this.search.toLowerCase())
+    return REGISTRY_API.getFieldsCount(query.toString())
+  }
+
+  async exportFields() {
+    let query = this.getFilterQuery()
+    if (this.search) query.set('_q', this.search.toLowerCase())
+    try {
+      this.isFetch = true
+      const res = await REGISTRY_API.exportFields(query.toString())
+      if (res.path) {
+        const link = document.createElement('a')
+        link.href = process.env.NEXT_PUBLIC_ADMIN_URL + res.path
+        link.download = 'fields-export.xlsx'
+        link.click()
+      }
+    } catch (error) {
+      console.log(error.message)
+    }
+    this.isFetch = false
+  }
+
+  async exportPlantations() {
+    let query = this.getFilterQuery()
+    if (this.search) query.set('_q', this.search.toLowerCase())
+    try {
+      this.isFetch = true
+      const res = await REGISTRY_API.exportPlantations(query.toString())
+      if (res.path) {
+        const link = document.createElement('a')
+        link.href = process.env.NEXT_PUBLIC_ADMIN_URL + res.path
+        link.download = 'plantations-export.xlsx'
+        link.click()
+      }
+    } catch (error) {
+      console.log(error.message)
+    }
+    this.isFetch = false
+  }
+
   init() {
     this.loadData()
     this.loadDataCount()
@@ -43,7 +125,7 @@ class Store {
   updateSearch = (value) => {
     this.search = value
     this.start = 0
-    this.debouncedLoadData()
+    // this.debouncedLoadData()
   }
 
   onFilterChange(key, value) {
@@ -67,7 +149,6 @@ class Store {
       })
       if (this.search) query.set('search', this.search.toLowerCase())
       const res = await REGISTRY_API.getRegistryMap(query.toString())
-      console.log(res)
       mapStore.updateFilter('cadastrs', res)
     } catch (error) {
       console.log(error)
@@ -82,10 +163,7 @@ class Store {
   async loadDataCount() {
     this.isFetch = true
     try {
-      let query = new URLSearchParams()
-      Object.keys(this.filter).forEach((key) => {
-        query.set(key, this.filter[key])
-      })
+      let query = this.getFilterQuery()
       if (this.search) query.set('search', this.search.toLowerCase())
       this.count = await REGISTRY_API.getRegistryCount(query.toString())
     } catch (error) {
@@ -97,10 +175,7 @@ class Store {
   async loadData() {
     this.isFetch = true
     try {
-      let query = new URLSearchParams()
-      Object.keys(this.filter).forEach((key) => {
-        query.set(key, this.filter[key])
-      })
+      let query = this.getFilterQuery()
       query.set('_limit', this.limit)
       query.set('_start', this.start)
       if (this.search) query.set('search', this.search.toLowerCase())
@@ -189,6 +264,14 @@ class Store {
   get max() {
     if (this.count) return Math.ceil(this.count / this.limit)
     return 0
+  }
+
+  getFilterQuery() {
+    let query = new URLSearchParams()
+    Object.keys(this.filter).forEach((key) => {
+      query.set(key, this.filter[key])
+    })
+    return query
   }
 }
 

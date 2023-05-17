@@ -8,12 +8,12 @@ const OwnerDetails = ({ data, isRead, onChange }) => {
     <Card>
       <Box justify="space-between" align="center">
         <H5>Інформація про власника земельної ділянки:</H5>
-        <FilesList
+        {/* <FilesList
           files={data.owner_files}
           onCreate={(file) => onChange('owner-file-new', file)}
           onDelete={(i) => onChange('owner-file-delete', i)}
           isRead={isRead}
-        />
+        /> */}
       </Box>
 
       <Spacer vertical size="25px" />
@@ -101,13 +101,13 @@ const OwnerDetails = ({ data, isRead, onChange }) => {
           />
         </Box>
       </Box>
-      <FilesList
+      {/* <FilesList
         isMobile
         files={data.owner_files}
         onCreate={(file) => onChange('owner-file-new', file)}
         onDelete={(i) => onChange('owner-file-delete', i)}
         isRead={isRead}
-      />
+      /> */}
     </Card>
   )
 }

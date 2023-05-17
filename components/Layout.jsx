@@ -28,8 +28,9 @@ const Wrapper = styled.div`
 
 const AuthContent = styled.div`
   flex-grow: 1;
-  background: url('/auth-back.png') center center;
-  background-size: cover;
+  /* background: url('/auth-back.png') center center;
+  background-size: cover; */
+  background: #eceff7;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,10 +51,12 @@ const DefaultContent = styled.div`
 `
 
 const DashboardContent = styled.div`
-  background: url('/back.png') center center;
+  /* background: url('/back.png') center center; */
+  background: url('/background.jpg') center center;
   background-size: cover;
   padding: 30px;
-  min-height: calc(100vh - 80px);
+  /* min-height: calc(100vh - 80px); */
+  height: calc(100vh - 80px);
   display: flex;
   flex-direction: column;
   flex-grow: 1;

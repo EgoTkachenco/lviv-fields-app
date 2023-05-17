@@ -10,7 +10,6 @@ export const useMapAreaHandlers = (ref, onOpen) => {
     /*
 			Call onOpen on mouseenter event only in desktop case 
 		*/
-    console.log(isDesktop())
     if (isDesktop()) onOpen(e)
   }
   const handleLeaveArea = (e) => {

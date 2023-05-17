@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 
-export default function Checkbox({ value, onChange, label }) {
+export default function Checkbox({ value, onChange, label, color }) {
   return (
     <Wrapper onClick={() => onChange(!value)}>
       <Box>
-        <Value active={!!value} />
+        <Value active={!!value} color={color} />
       </Box>
       <Label>{label}</Label>
     </Wrapper>
@@ -30,7 +30,8 @@ const Box = styled.div`
 const Value = styled.div`
   width: 14px;
   height: 14px;
-  background: ${(props) => (props.active ? '#407cff' : 'transparent')};
+  background: ${({ active, color }) =>
+    active ? color || '#407cff' : 'transparent'};
   border-radius: 4px;
   transition: all 0.3s;
 `

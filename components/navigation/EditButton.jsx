@@ -22,14 +22,14 @@ const EditButton = observer(({ isMobile }) => {
           cancel: () => Stores.Map.cancelSave(null),
           condition: () => !!Stores.Map.field,
         }
-      case '/registry':
-        return {
-          type: 'registry',
-          isRead: Stores.Registry.mode === 'read',
-          confirm: () => Stores.Registry.changeMode(),
-          cancel: () => Stores.Registry.cancelSave(),
-          condition: () => true,
-        }
+      // case '/registry':
+      //   return {
+      //     type: 'registry',
+      //     isRead: Stores.Registry.mode === 'read',
+      //     confirm: () => Stores.Registry.changeMode(),
+      //     cancel: () => Stores.Registry.cancelSave(),
+      //     condition: () => true,
+      //   }
       default:
         return null
     }

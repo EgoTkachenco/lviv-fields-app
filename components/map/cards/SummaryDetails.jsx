@@ -15,15 +15,15 @@ const SummaryDetails = ({ data }) => {
           <Text>Площа власних земель:</Text>
           <Text color="grey">{data.owned?.toFixed(4) || 0} гектарів</Text>
         </Column>
-        <Column gap="4px">
+        {/* <Column gap="4px">
           <Text>Площа ризикових земель: </Text>
           <Text color="grey">{data.risk?.toFixed(4) || 0} гектарів</Text>
-        </Column>
+        </Column> */}
         <Column gap="4px">
           <Text>Площа орендованих земель: </Text>
           <Text color="grey">{data.rented?.toFixed(4) || 0} гектарів</Text>
         </Column>
-        <Column gap="4px">
+        {/* <Column gap="4px">
           <Text>Площа насаджень сорту: </Text>
 
           {Object.keys(data.varieties).length > 0 ? (
@@ -49,7 +49,7 @@ const SummaryDetails = ({ data }) => {
               </Box>
             </>
           )}
-        </Column>
+        </Column> */}
       </Box>
     </Card>
   )

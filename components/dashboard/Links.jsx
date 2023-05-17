@@ -2,22 +2,23 @@ import { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Box } from '../common'
 import { useRouter } from 'next/router'
+import config from '../../config/config.json'
 
 const Links = () => {
   // get links from public folder
-  const [links, setLinks] = useState({
-    email: '',
-    video: '',
-    site: '',
-    crm_site: '',
-    telegram: '',
-    viber: '',
-  })
-  useEffect(() => {
-    fetch('/links.json')
-      .then((res) => res.json())
-      .then((res) => setLinks({ ...links, ...res }))
-  }, [])
+  // const [links, setLinks] = useState({
+  //   email: '',
+  //   video: '',
+  //   site: '',
+  //   crm_site: '',
+  //   telegram: '',
+  //   viber: '',
+  // })
+  // useEffect(() => {
+  //   fetch('/links.json')
+  //     .then((res) => res.json())
+  //     .then((res) => setLinks({ ...links, ...res }))
+  // }, [])
 
   const router = useRouter()
   // const admin = process.env.NEXT_PUBLIC_ADMIN_URL
@@ -31,6 +32,19 @@ const Links = () => {
         index={0}
       />
       <Link
+        text="crm система"
+        link={config.crm_site}
+        icon="/icons/crm.svg"
+        index={1}
+      />
+      <Link text="сайт" link={config.site} icon="/icons/web.svg" index={4} />
+      <Link
+        text="корпоративна пошта"
+        link={'mailto:' + config.email}
+        icon="/icons/mail.svg"
+        index={2}
+      />
+      {/* <Link
         text="Камери відеоспостереження"
         link={links.video}
         icon="/icons/video.svg"
@@ -41,20 +55,8 @@ const Links = () => {
         redirect={() => router.push('/planner')}
         icon="/icons/organize.svg"
         index={2}
-      />
-      <Link
-        text="crm система"
-        link={links.crm_site}
-        icon="/icons/crm.svg"
-        index={3}
-      />
-      <Link text="сайт" link={links.site} icon="/icons/web.svg" index={4} />
-      <Link
-        text="корпоративна пошта"
-        link={'mailto:' + links.email}
-        icon="/icons/mail.svg"
-        index={5}
-      />
+      /> */}
+
       {/* <LinkCardsWrapper gap="13px">
         <SocialBox gap="13px" direction="column">
           <Link
@@ -101,7 +103,7 @@ const Wrapper = styled(Box)`
 `
 
 const LinkCard = styled.a`
-  width: calc((100% - 30px * 5) / 6);
+  width: calc((100% - 30px * 3) / 4);
   /* height: ${(props) => (props.size === 'small' ? '121px' : '285px')}; */
   /* width: ${(props) =>
     props.size === 'small'

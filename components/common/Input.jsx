@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import styled from 'styled-components'
 
 export default function Input({
@@ -14,6 +15,8 @@ export default function Input({
   validate = () => true,
   isRead,
 }) {
+  const [focus, setFocus] = useState(false)
+
   return (
     <Wrapper>
       <InputField
@@ -32,8 +35,10 @@ export default function Input({
         }}
         placeholder={placeholder}
         size={size}
-        type={type}
+        type={type === 'date' ? (focus ? type : 'text') : type}
         readonly={isRead}
+        onFocus={() => type === 'date' && setFocus(true)}
+        onBlur={() => type === 'date' && setFocus(false)}
       />
 
       <InputFieldRightSlot>{rightSlot}</InputFieldRightSlot>

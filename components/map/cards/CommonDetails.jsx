@@ -22,7 +22,7 @@ const CommonDetails = ({ data, isRead, onChange }) => {
       <CardField
         isRead={isRead}
         label="Площа"
-        value={data.size + ' га'}
+        value={(data.size || 0) + ' га'}
         editableSlot={
           <Input
             value={data.size}

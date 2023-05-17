@@ -12,7 +12,11 @@ import {
   Icon,
 } from '../../common'
 import { useNoBodyScroll, useAPIVarieties } from '../../../hooks'
-import { FIELD_TYPES, FIELD_CATEGORIES } from '../../../store/help/constants'
+import {
+  FIELD_TYPES,
+  FIELD_CATEGORIES,
+  FIELD_TYPES_COLORS,
+} from '../../../store/help/constants'
 
 const Filter = ({ filter, onChange, onSubmit, onClear }) => {
   const [open, setOpen] = useState(false)
@@ -61,21 +65,22 @@ const Filter = ({ filter, onChange, onSubmit, onClear }) => {
         </FilterCloseButton>
         <FilterInner>
           <H5>Тип земельної ділянки</H5>
-          <Spacer vertical size="20px" />
-          <Box gap="20px" wrap="true">
+          <Spacer vertical size="12px" />
+          <Box gap="16px" wrap="true">
             {Object.keys(FIELD_TYPES).map((type) => (
               <Checkbox
                 key={type}
                 label={FIELD_TYPES[type]}
                 value={filter.type.includes(type)}
                 onChange={() => onChange('type', type)}
+                color={FIELD_TYPES_COLORS[type]}
               />
             ))}
           </Box>
-          <Spacer vertical size="30px" />
+          <Spacer vertical size="24px" />
           <H5>Клас земельної ділянки</H5>
-          <Spacer vertical size="20px" />
-          <Box gap="20px" wrap="true">
+          <Spacer vertical size="12px" />
+          <Box gap="16px" wrap="true">
             {Object.keys(FIELD_CATEGORIES).map((category) => (
               <Checkbox
                 key={category}
@@ -85,9 +90,9 @@ const Filter = ({ filter, onChange, onSubmit, onClear }) => {
               />
             ))}
           </Box>
-          <Spacer vertical size="30px" />
+          <Spacer vertical size="24px" />
           <H5>Сорт насаджень</H5>
-          <Spacer vertical size="20px" />
+          <Spacer vertical size="12px" />
           <Input
             value={search}
             onChange={onSearchVarieties}
@@ -95,8 +100,8 @@ const Filter = ({ filter, onChange, onSubmit, onClear }) => {
             name="search"
             tip={<SearchIcon src="/icons/search.svg" />}
           />
-          <Spacer vertical size="20px" />
-          <SortsBox gap="20px" direction="column">
+          <Spacer vertical size="8px" />
+          <SortsBox gap="16px" direction="column">
             {varieties.length > 0 ? (
               varieties.map((variety) => (
                 <Checkbox
@@ -110,9 +115,9 @@ const Filter = ({ filter, onChange, onSubmit, onClear }) => {
               <Text align="center">Немає результатів</Text>
             )}
           </SortsBox>
-          <Spacer vertical size="30px" />
+          <Spacer vertical size="24px" />
           <H5>Рік насаджень</H5>
-          <Spacer vertical size="20px" />
+          <Spacer vertical size="12px" />
           <Box align="center" justify="space-between" gap="16px">
             <Input
               value={filter.year.start}
@@ -128,9 +133,9 @@ const Filter = ({ filter, onChange, onSubmit, onClear }) => {
               onChange={(val) => onChange('year-end', val)}
             />
           </Box>
-          <Spacer vertical size="30px" />
+          <Spacer vertical size="24px" />
           <H5>Термiн дії договору</H5>
-          <Spacer vertical size="20px" />
+          <Spacer vertical size="12px" />
           <DateBox align="center" justify="space-between" gap="8px">
             <Input
               value={filter.term.start}
@@ -148,15 +153,15 @@ const Filter = ({ filter, onChange, onSubmit, onClear }) => {
               onChange={(val) => onChange('term-end', val)}
             />
           </DateBox>
-          <Spacer vertical size="30px" />
-          <Button variant="accent" onClick={handleSubmit}>
-            застосувати
-          </Button>
-          <Spacer vertical size-sm="16px" />
-          <Button variant="text" onClick={clearFilter}>
-            скинути
-          </Button>
         </FilterInner>
+        <Spacer vertical size="24px" style={{ marginTop: 'auto' }} />
+        <Button variant="accent" onClick={handleSubmit}>
+          застосувати
+        </Button>
+        <Spacer vertical size-sm="16px" />
+        <Button variant="text" onClick={clearFilter}>
+          скинути
+        </Button>
       </FilterCard>
     </>
   )
@@ -165,7 +170,12 @@ const Filter = ({ filter, onChange, onSubmit, onClear }) => {
 export default Filter
 
 const FilterCard = styled(Card)`
-  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+  height: 100%;
+  max-height: calc(100vh - 80px - 60px);
+
   @media (max-width: 1200px) {
     display: ${(props) => (props.open ? 'block' : 'none')};
     position: fixed;
@@ -215,9 +225,17 @@ const FilterButton = styled(Button)`
 
 const FilterInner = styled.div`
   overflow: auto;
+  width: 100%;
   max-height: 100%;
   margin-right: -20px;
   padding-right: 20px;
+  display: flex;
+  flex-direction: column;
+
+  ${H5} {
+    font-size: 18px;
+  }
+
   @media (max-width: 1200px) {
     max-width: 315px;
     overflow: auto;
@@ -239,8 +257,8 @@ const SearchIcon = styled.img`
 `
 
 const SortsBox = styled(Box)`
-  max-height: 150px;
-  min-height: 150px;
+  min-height: 105px;
+  /* max-height: 65px; */
   overflow: auto;
   & > * {
     flex-grow: 0;

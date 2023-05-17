@@ -14,7 +14,7 @@ const Navigation = observer(() => {
   const links = [
     { name: 'Карта', path: '/map' },
     { name: 'Реєстр орендодавців', path: '/registry' },
-    { name: 'Планер', path: '/planner' },
+    // { name: 'Планер', path: '/planner' },
     { name: 'Вихід', action: () => store.logout() },
   ]
   useNoBodyScroll(open)

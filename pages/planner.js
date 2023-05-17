@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Layout from '../components/Layout'
-import Planner from '../components/planner'
+// import Planner from '../components/planner'
 import Page from '../components/Page'
 
 export default function PlannerPage() {
@@ -10,9 +10,7 @@ export default function PlannerPage() {
         <title>Planner</title>
       </Head>
 
-      <Layout>
-        <Planner />
-      </Layout>
+      <Layout>{/* <Planner /> */}</Layout>
     </Page>
   )
 }

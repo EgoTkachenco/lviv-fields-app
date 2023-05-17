@@ -12,6 +12,7 @@ const Autocomplete = ({
   onChange,
   onNewVariant,
   getValue,
+  newElement = true,
 }) => {
   const [state, setState] = useState({
     value: getValue(value),
@@ -31,6 +32,7 @@ const Autocomplete = ({
   }, 100)
 
   useEffect(() => {
+    debugger
     if (state.value === getValue(value)) return
     fetchVariants(state.value)
   }, [state.value])
@@ -46,9 +48,11 @@ const Autocomplete = ({
           state.variants.map((variant) => (
             <Fragment key={variant.id}>{renderVariant(variant)}</Fragment>
           ))}
-        <ButtonComponent onClick={() => onNewVariant(state.value)}>
-          Додати до списку
-        </ButtonComponent>
+        {newElement && (
+          <ButtonComponent onClick={() => onNewVariant(state.value)}>
+            Додати до списку
+          </ButtonComponent>
+        )}
       </Menu>
     </Container>
   )

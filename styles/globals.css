@@ -45,7 +45,8 @@ p {
 }
 
 .map-viewer-scroll-container {
-  min-height: 736px;
+  /* min-height: 736px; */
+  min-height: 200px;
   max-height: 736px;
   width: 100%;
   height: 100%;

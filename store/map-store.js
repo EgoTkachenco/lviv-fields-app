@@ -89,7 +89,6 @@ class Store {
       const isOpenField = this.filter.cadastrs.length === 1 && !this.summary
       this.summary = await MAP_API.getSummary(requestQueryFilter.toString())
       if (!this.areas) await this.loadAreas()
-
       if (this.openFieldFlag) this.openField(this.summary.fields[0], true)
       this.openFieldFlag = false
     } catch (error) {
@@ -136,19 +135,21 @@ class Store {
           cadastr: '',
           size: '',
           location: '',
-          owner_avatar: null,
-          owner_fullname: '',
-          owner_birthdate: '',
-          owner_phone: '',
-          owner_mail: '',
-          owner_address: '',
-          owner_note: '',
-          owner_files: [],
+          // owner_avatar: null,
+          // owner_fullname: '',
+          // owner_birthdate: '',
+          // owner_phone: '',
+          // owner_mail: '',
+          // owner_address: '',
+          // owner_note: '',
+          // owner_files: [],
           contract_name: '',
           contract_start: '',
           contract_due: '',
           contract_note: '',
-          contract_files: [],
+          // contract_files: [],
+          files: [],
+          owners: [],
           plantations: [],
         }
     }
@@ -180,6 +181,7 @@ class Store {
   isEdited = false
   deletedFiles = []
   deletedPlantations = []
+  deletedOwners = []
 
   async changeMode() {
     if (this.mode === 'read') {
@@ -192,6 +194,7 @@ class Store {
           this.isEdited = false
           this.deletedFiles = []
           this.deletedPlantations = []
+          this.deletedOwners = []
         } catch (error) {
           console.log('Error: ', error)
         }
@@ -221,28 +224,46 @@ class Store {
       case 'plantation-year':
         field.plantations[val.index].year = val.value
         break
-      case 'owner-file-new':
-        field.owner_files.push(val)
+      case 'file-new':
+        field.files.push(val)
         break
-      case 'owner-file-delete':
-        const deletedOwnerFile = field.owner_files.splice(val, 1)
-        if (deletedOwnerFile.id) this.deletedFiles.push(deletedOwnerFile.id)
+      case 'file-delete':
+        const deletedFile = field.files.splice(val, 1)
+        if (deletedFile[0]?.id) this.deletedFiles.push(deletedFile[0].id)
         break
-      case 'contract-file-new':
-        field.contract_files.push(val)
+      case 'owners-new':
+        field.owners.push(val)
         break
-      case 'contract-file-delete':
-        const deletedContractFile = field.contract_files.splice(val, 1)
-        if (deletedContractFile.id)
-          this.deletedFiles.push(deletedContractFile.id)
+      case 'owners-update':
+        const index = val.index
+        if (field.owners[index]) field.owners[index] = val
         break
-      case 'owner-avatar':
-        if (!val) {
-          if (field.owner_avatar.id)
-            this.deletedFiles.push(field.owner_avatar.id)
-        }
-        field.owner_avatar = val
+      case 'owners-delete':
+        const deletedOwner = field.owners.splice(val, 1)
+        if (deletedOwner[0]?.id) this.deletedOwners.push(deletedOwner[0].id)
         break
+      // case 'owner-file-new':
+      //   field.owner_files.push(val)
+      //   break
+      // case 'owner-file-delete':
+      //   const deletedOwnerFile = field.owner_files.splice(val, 1)
+      //   if (deletedOwnerFile.id) this.deletedFiles.push(deletedOwnerFile.id)
+      //   break
+      // case 'contract-file-new':
+      //   field.contract_files.push(val)
+      //   break
+      // case 'contract-file-delete':
+      //   const deletedContractFile = field.contract_files.splice(val, 1)
+      //   if (deletedContractFile.id)
+      //     this.deletedFiles.push(deletedContractFile.id)
+      //   break
+      // case 'owner-avatar':
+      //   if (!val) {
+      //     if (field.owner_avatar.id)
+      //       this.deletedFiles.push(field.owner_avatar.id)
+      //   }
+      //   field.owner_avatar = val
+      //   break
 
       default:
         if (!this.field.hasOwnProperty(key)) return
@@ -269,23 +290,19 @@ class Store {
       }
       return result
     }
-    let new_owner_files = []
-    let new_contract_files = []
+    let new_files = []
     let plantations = []
+    let owners = []
     try {
       // create files
-      new_owner_files = field?.owner_files.filter((file) => !file.id)
-      if (new_owner_files.length > 0)
-        new_owner_files = await loadFiles(new_owner_files)
-      new_contract_files = field?.contract_files.filter((file) => !file.id)
-      if (new_contract_files.length > 0)
-        new_contract_files = await loadFiles(new_contract_files)
+      new_files = field?.files.filter((file) => !file.id)
+      if (new_files.length > 0) new_files = await loadFiles(new_files)
 
-      if (field.owner_avatar && !field.owner_avatar.id) {
-        let data = new FormData()
-        data.append('files', field.owner_avatar)
-        field.owner_avatar = await FILE_API.loadFile(data)
-      }
+      // if (field.owner_avatar && !field.owner_avatar.id) {
+      //   let data = new FormData()
+      //   data.append('files', field.owner_avatar)
+      //   field.owner_avatar = await FILE_API.loadFile(data)
+      // }
       // remove files
       for (let i = 0; i < deleted_files.length; i++) {
         await FILE_API.removeFile(deleted_files[i])
@@ -316,28 +333,43 @@ class Store {
         await MAP_API.deletePlantation(id)
       }
 
+      // handle owners change
+      for (let i = 0; i < field.owners.length; i++) {
+        let owner = field.owners[i]
+        owner.cadastr = field.cadastr
+        if (owner.id) {
+          owner = await MAP_API.updateOwner(owner.id, owner)
+        } else {
+          owner = await MAP_API.createOwner(owner)
+        }
+        owners.push(owner.id)
+      }
+      // remove owners
+      for (let i = 0; i < this.deletedOwners.length; i++) {
+        const id = this.deletedOwners[i]
+        await MAP_API.deleteOwner(id)
+      }
       const fieldCommonData = _.omit(field, [
-        'owner_files',
-        'contract_files',
         'created_at',
         'id',
         'plantations',
         'published_at',
         'updated_at',
       ])
-      fieldCommonData.owner_avatar = field.owner_avatar
-        ? field.owner_avatar.id
-        : null
-      fieldCommonData.owner_files = [
-        ...field.owner_files.filter((file) => file.id),
-        ...new_owner_files,
-      ].map((file) => file.id)
+      // fieldCommonData.owner_avatar = field.owner_avatar
+      //   ? field.owner_avatar.id
+      //   : null
+      // fieldCommonData.owner_files = [
+      //   ...field.owner_files.filter((file) => file.id),
+      //   ...new_owner_files,
+      // ].map((file) => file.id)
 
-      fieldCommonData.contract_files = [
-        ...field.contract_files.filter((file) => file.id),
-        ...new_contract_files,
+      fieldCommonData.files = [
+        ...field.files.filter((file) => file.id),
+        ...new_files,
       ].map((file) => file.id)
       fieldCommonData.plantations = plantations
+      fieldCommonData.owners = owners
 
       this.field = await MAP_API.updateField(this.field.pathname, {
         ...fieldCommonData,
@@ -358,7 +390,9 @@ class Store {
   async loadAreas() {
     try {
       const res = await MAP_API.getAreas()
-      this.areas = res.map((area) => _.pick(area, ['id', 'name', 'path']))
+      this.areas = res.map((area) =>
+        _.pick(area, ['id', 'name', 'path', 'fields'])
+      )
     } catch (error) {
       console.log(error)
     }

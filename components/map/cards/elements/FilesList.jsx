@@ -1,10 +1,10 @@
 import styled from 'styled-components'
-import { Box, Icon, Button } from '../../../common'
+import { Box, Icon, Button, Text } from '../../../common'
 
-const FilesList = ({ files, isRead, onCreate, onDelete, isMobile }) => {
+const FilesList = ({ files, isRead, onDelete, isMobile }) => {
   const Container = isMobile ? FilesMobile : Files
   return (
-    <Container gap="32px" align="center">
+    <Container direction="column" gap="10px">
       {files.map((file, i) => (
         <FilePreview
           key={i}
@@ -13,13 +13,7 @@ const FilesList = ({ files, isRead, onCreate, onDelete, isMobile }) => {
           onDelete={() => onDelete(i)}
         />
       ))}
-      {!isRead && (
-        <FileUploadButton
-          accept=".doc,.docx,.pdf"
-          placeholder="Додати ФАЙЛ"
-          onSubmit={(file) => onCreate(file)}
-        />
-      )}
+      {files.length === 0 && <Text>Файли відсутні</Text>}
     </Container>
   )
 }
@@ -31,25 +25,35 @@ const getIconType = (type) => {
   return 'file-doc'
 }
 
+const backend_url = process.env.NEXT_PUBLIC_ADMIN_URL
+
 export const FilePreview = ({ file, isRead, onDelete }) => {
-  const handleDelete = (e) => {
-    e.stopPropagation()
-    e.preventDefault()
-    onDelete()
-  }
+  const date = file?.updated_at?.slice(0, 10) || '---'
   return (
-    <FileIcon
-      href={process.env.NEXT_PUBLIC_ADMIN_URL + file.url}
-      target="_blank"
-      title={file.name}
-    >
-      {!isRead && (
-        <FilePreviewDelete onClick={handleDelete}>x</FilePreviewDelete>
-      )}
-      <Icon icon={getIconType(file?.ext)} size="32px" />
-    </FileIcon>
+    <FilePreviewBox>
+      <FilePreviewName>{file.name}</FilePreviewName>
+      <Text>{date}</Text>
+      <Icon
+        icon="download"
+        size="16px"
+        onClick={() =>
+          window.open(backend_url + file.url, { _target: '_black' })
+        }
+      />
+      {!isRead && <Icon icon="close-dark" size="12px" onClick={onDelete} />}
+    </FilePreviewBox>
   )
 }
+
+const FilePreviewBox = styled(Box)`
+  gap: 16px;
+  width: 100%;
+  align-items: center;
+`
+
+const FilePreviewName = styled(Text)`
+  flex-grow: 1;
+`
 
 const FileIcon = styled.a`
   display: block;
@@ -62,10 +66,6 @@ const FilePreviewDelete = styled.button`
   border: 1px solid transparent;
   border-radius: 50%;
   color: #464f60;
-  position: absolute;
-  top: 0;
-  right: 0;
-  transform: translate(50%, -50%);
   transition: border-color 0.3s;
   cursor: pointer;
   display: flex;
@@ -103,7 +103,7 @@ export const FileUploadButton = ({
     onSubmit(e.target.files[0])
   }
   return (
-    <FileButton variant="primary">
+    <FileButton variant="primary" width="auto">
       {placeholder}
       <FileInput type="file" onChange={handleChange} accept={accept} />
     </FileButton>

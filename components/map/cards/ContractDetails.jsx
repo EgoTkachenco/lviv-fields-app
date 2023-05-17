@@ -7,12 +7,6 @@ const ContactDetails = ({ data, isRead, onChange }) => {
     <ContactCard>
       <ContactCardHeader>
         <H5>Інформація про договiр:</H5>
-        <FilesList
-          files={data.contract_files}
-          onCreate={(file) => onChange('contract-file-new', file)}
-          onDelete={(i) => onChange('contract-file-delete', i)}
-          isRead={isRead}
-        />
       </ContactCardHeader>
       {/* <Spacer vertical size="25px" /> */}
       <Spacer vertical size="20px" />
@@ -68,25 +62,13 @@ const ContactDetails = ({ data, isRead, onChange }) => {
           }
         />
       </Box>
-      <FilesList
-        isMobile
-        files={data.contract_files}
-        onCreate={(file) => onChange('contract-file-new', file)}
-        onDelete={(i) => onChange('contract-file-delete', i)}
-        isRead={isRead}
-      />
     </ContactCard>
   )
 }
 
 export default ContactDetails
 
-const ContactCard = styled(Card)`
-  min-width: 650px;
-  @media (max-width: 800px) {
-    min-width: unset;
-  }
-`
+const ContactCard = styled(Card)``
 
 const ContactCardHeader = styled(Box)`
   justify-content: space-between;

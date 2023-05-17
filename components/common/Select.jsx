@@ -24,7 +24,7 @@ const Select = ({ value, onChange, placeholder, options, isRead, style }) => {
         {options &&
           options.map((option, i) => (
             <Label
-              key={option + i}
+              key={option.toString() + i}
               onClick={() => handleClick(option)}
               title={option}
             >

@@ -83,6 +83,11 @@ export const MAP_API = {
     axios.get(`/fields/summary?${filter}`, securedFetchOptions()),
 
   getAreas: () => axios.get('/areas', securedFetchOptions()),
+
+  updateOwner: (id, data) =>
+    axios.put(`/owners/${id}`, data, securedFetchOptions()),
+  createOwner: (data) => axios.post('/owners', data, securedFetchOptions()),
+  deleteOwner: (id) => axios.delete(`/owners/${id}`, securedFetchOptions()),
 }
 
 export const FILE_API = {
@@ -127,4 +132,28 @@ export const REGISTRY_API = {
     axios.put(`/landlords-registries/${id}`, data, securedFetchOptions()),
   delete: (id) =>
     axios.delete(`/landlords-registries/${id}`, securedFetchOptions()),
+
+  getOwners: (query) => axios.get(`/owners?${query}`, securedFetchOptions()),
+  getOwnersCount: (query) =>
+    axios.get(`/owners/count?${query}`, securedFetchOptions()),
+  exportOwners: (query) =>
+    axios.get(
+      `/owners/export${query ? '?' : ''}${query}`,
+      securedFetchOptions()
+    ),
+
+  getFields: (query) => axios.get(`/fields?${query}`, securedFetchOptions()),
+  getFieldsCount: (query) =>
+    axios.get(`/fields/count?${query}`, securedFetchOptions()),
+  exportFields: (query) =>
+    axios.get(
+      `/fields/export${query ? '?' : ''}${query}`,
+      securedFetchOptions()
+    ),
+
+  exportPlantations: (query) =>
+    axios.get(
+      `/plantations/export${query ? '?' : ''}${query}`,
+      securedFetchOptions()
+    ),
 }

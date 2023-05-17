@@ -1,9 +1,6 @@
 {
-  "video": "https://www.youtube.com",
   "site": "https://www.gaderia.com.ua/",
   "email": "test@mail.com",
   "crm_site": "https://b24-5xrsnb.bitrix24.eu/",
-
-  "telegram": "telegram",
-  "viber": "viber"
+  "video": "https://www.youtube.com"
 }
