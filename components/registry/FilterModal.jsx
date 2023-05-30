@@ -13,7 +13,7 @@ import {
 } from '../common'
 import { model } from './util'
 
-const FIELD_OPTIONS = model.map((f) => f.name)
+// const FIELD_OPTIONS = model.map((f) => f.name)
 const TYPE_OPTIONS = {
   Рівно: '',
   'Більше рівно': '_gte',
@@ -47,7 +47,8 @@ const TYPED_OPTIONS = {
   },
 }
 
-const FilterModal = ({ filters, onFilterChange }) => {
+const FilterModal = ({ model = [], filters, onFilterChange }) => {
+  const FIELD_OPTIONS = model.map((f) => f.name)
   const [show, setShow] = useState(false)
   const count = Object.keys(filters).length
 
@@ -68,7 +69,7 @@ const FilterModal = ({ filters, onFilterChange }) => {
       <Modal title="Фільтри" close={() => setShow(false)} show={show}>
         <Text>Новий фільтр: </Text>
         <Spacer vertical size="16px" />
-        <NewFilterForm onCreate={onCreate} />
+        <NewFilterForm onCreate={onCreate} fieldOptions={FIELD_OPTIONS} />
         <Spacer vertical size="32px" />
         <FilterList>
           {count ? (
@@ -106,7 +107,7 @@ const FilterModal = ({ filters, onFilterChange }) => {
   )
 }
 
-const NewFilterForm = ({ onCreate }) => {
+const NewFilterForm = ({ onCreate, fieldOptions }) => {
   const [state, setState] = useState({ field: '', type: '', value: '' })
   const isAllowAdd = state.field && state.type && state.value
 
@@ -127,7 +128,7 @@ const NewFilterForm = ({ onCreate }) => {
         value={state.field}
         onChange={(v) => setState({ ...state, field: v })}
         placeholder="Поле"
-        options={FIELD_OPTIONS}
+        options={fieldOptions}
       />
       <Select
         isRead={!state.field}

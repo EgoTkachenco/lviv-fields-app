@@ -48,7 +48,7 @@ p {
   /* min-height: 736px; */
   min-height: 200px;
   max-height: 736px;
-  width: 100%;
+  width: auto;
   height: 100%;
 }
 

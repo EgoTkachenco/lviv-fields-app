@@ -23,7 +23,7 @@ const Table = ({
               {field.name}
             </TableHeaderCell>
           ))}
-          {!isRead && (
+          {!isRead && (isEdit || isDelete) && (
             <TableHeaderCell width={sizes ? sizes[model.length] : 'auto'} />
           )}
         </TableRow>
@@ -35,18 +35,22 @@ const Table = ({
                   width={sizes ? sizes[j] : 'auto'}
                   key={i + ' ' + j}
                   onClick={(e) => onCellClick(field.id, i, row[field.id] || '')}
+                  isRead={field.isRead || isRead}
                 >
-                  {row[field.id] || ''}
-                  {/* <input
-                    type={field.type || 'text'}
-                    value={row[field.id] || ''}
-                    readOnly={isRead}
-                    onChange={(e) => onChange(i, field.id, e.target.value)}
-                    onClick={(e) => onCellClick(field.id, i, e.target.value)}
-                  /> */}
+                  {field.isRead ? (
+                    row[field.id] || ''
+                  ) : (
+                    <input
+                      type={field.type || 'text'}
+                      value={row[field.id] || ''}
+                      readOnly={isRead}
+                      onChange={(e) => onChange(i, field.id, e.target.value)}
+                      onClick={(e) => onCellClick(field.id, i, e.target.value)}
+                    />
+                  )}
                 </TableCell>
               ))}
-              {!isRead && (
+              {!isRead && (isEdit || isDelete) && (
                 <TableCell width={sizes ? sizes[model.length] : 'auto'}>
                   {isEdit && (
                     <Button
@@ -120,27 +124,29 @@ const TableCell = styled.td`
   color: #687182;
   padding: 12px 20px;
 
+  background: ${({ isRead }) => (isRead ? 'transparent' : 'white')};
+
   input {
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
     color: #687182;
-    padding: 12px 20px;
     background: none;
     border: none;
     outline: none;
     width: 100%;
+    max-width: 100%;
     transition: all 0.3s;
     cursor: pointer;
 
-    &:focus {
+    /* &:focus {
       position: absolute;
       top: 0;
       left: 0;
       z-index: 10;
       background-color: #fff;
       min-width: 300px;
-    }
+    } */
 
     &:read-only {
       &:focus {

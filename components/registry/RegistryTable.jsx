@@ -8,45 +8,27 @@ const BLOCK_SIZE = 20
 let fetchLimit
 
 const RegistryTable = ({
+  show,
   model,
-  load,
-  loadCount,
   filters,
   sizes,
   isRead,
-  formatData = (el) => el,
   onCellClick,
+  data,
+  limit,
+  loadData,
+  loadDataCount,
+  onChange,
 }) => {
-  const [data, setData] = useState([])
-  const [limit, setLimit] = useState(0)
-
   useEffect(() => {
-    fetchLimit = _.debounce(() => {
-      loadCount()
-        .then((res) => {
-          setLimit(res)
-          setData([])
-          fetchData()
-        })
-        .catch((error) => console.log(error.message))
-    }, 200)
-  }, [loadCount])
-
-  useEffect(() => {
-    if (loadCount && fetchLimit) fetchLimit()
-    return () => {
-      setLimit(0)
-    }
-  }, [loadCount, filters])
+    loadDataCount()
+  }, [filters])
 
   const fetchData = () => {
     const page = Math.floor(data.length / BLOCK_SIZE) + 1
-    load(page, BLOCK_SIZE)
-      .then((res) => {
-        setData([...data, ...res.map(formatData)])
-      })
-      .catch((error) => console.log(error.message))
+    loadData(page, BLOCK_SIZE)
   }
+  if (!show) return
   return (
     <Table
       model={model}
@@ -54,6 +36,7 @@ const RegistryTable = ({
       sizes={sizes}
       isRead={isRead}
       onCellClick={onCellClick}
+      onChange={onChange}
       renderContent={(children) => (
         <InfiniteScroll
           height="500px"

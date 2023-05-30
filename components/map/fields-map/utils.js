@@ -56,13 +56,17 @@ export const useMapFieldsHandlers = (ref, onOpen, field, fields) => {
     e.currentTarget.style.stroke = '#407CFF'
   }
   const handleLeaveField = (e) => {
-    e.currentTarget.style.fill = fields.includes(e.currentTarget.id)
-      ? '#407cff'
-      : 'transparent'
+    // e.currentTarget.style.fill = fields.includes(e.currentTarget.id)
+    //   ? '#407cff'
+    // 	: 'transparent'
+    e.currentTarget.style.fill = field ? 'transparent' : ''
     e.currentTarget.style.stroke = '#464F60'
   }
   useEffect(() => {
     if (!ref.current) return
+    // const styles = document.getElementById('map-style').innerHTML.split('\n').reduce((acc, line) => {
+    // 	return acc['']
+    // }, {})
     const element_index = ref.current.children[0].id === 'lakes' ? 1 : 0
     const childrens = ref.current.children[element_index].children
     for (let i = 0; i < childrens.length; i++) {
@@ -79,9 +83,7 @@ export const useMapFieldsHandlers = (ref, onOpen, field, fields) => {
           element.addEventListener('mouseleave', handleLeaveField)
         element.addEventListener('click', onOpen)
 
-        element.style.fill = fields.includes(element.id)
-          ? '#407cff'
-          : 'transparent'
+        element.style.fill = fields.includes(element.id) ? '' : 'transparent'
         element.style.stroke = '#464F60'
 
         if (field === element.id) {

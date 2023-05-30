@@ -31,19 +31,19 @@ class Store {
     let query = this.getFilterQuery()
     query.set('_limit', size)
     query.set('_start', (page - 1) * size)
-    if (this.search) query.set('_q', this.search.toLowerCase())
+    if (this.search) query.set('search', this.search.toLowerCase())
     return REGISTRY_API.getOwners(query.toString())
   }
 
   loadOwnersCount = () => {
     let query = this.getFilterQuery()
-    if (this.search) query.set('_q', this.search.toLowerCase())
+    if (this.search) query.set('search', this.search.toLowerCase())
     return REGISTRY_API.getOwnersCount(query.toString())
   }
 
   async exportOwners() {
     let query = this.getFilterQuery()
-    if (this.search) query.set('_q', this.search.toLowerCase())
+    if (this.search) query.set('search', this.search.toLowerCase())
     try {
       this.isFetch = true
       const res = await REGISTRY_API.exportOwners(query.toString())
@@ -109,11 +109,6 @@ class Store {
     this.isFetch = false
   }
 
-  init() {
-    this.loadData()
-    this.loadDataCount()
-  }
-
   clearFilter() {
     this.start = 0
     this.deletedItems = []
@@ -136,8 +131,6 @@ class Store {
     }
 
     this.start = 0
-    this.loadData()
-    this.loadDataCount()
   }
 
   async loadFieldIds() {
@@ -160,31 +153,31 @@ class Store {
     mapStore.updateFilter('cadastrs', [cadastr])
   }
 
-  async loadDataCount() {
-    this.isFetch = true
-    try {
-      let query = this.getFilterQuery()
-      if (this.search) query.set('search', this.search.toLowerCase())
-      this.count = await REGISTRY_API.getRegistryCount(query.toString())
-    } catch (error) {
-      console.log(error)
-    }
-    this.isFetch = false
-  }
+  // async loadDataCount() {
+  //   this.isFetch = true
+  //   try {
+  //     let query = this.getFilterQuery()
+  //     if (this.search) query.set('search', this.search.toLowerCase())
+  //     this.count = await REGISTRY_API.getRegistryCount(query.toString())
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  //   this.isFetch = false
+  // }
 
-  async loadData() {
-    this.isFetch = true
-    try {
-      let query = this.getFilterQuery()
-      query.set('_limit', this.limit)
-      query.set('_start', this.start)
-      if (this.search) query.set('search', this.search.toLowerCase())
-      this.data = await REGISTRY_API.getRegistry(query.toString())
-    } catch (error) {
-      console.log(error)
-    }
-    this.isFetch = false
-  }
+  // async loadData() {
+  //   this.isFetch = true
+  //   try {
+  //     let query = this.getFilterQuery()
+  //     query.set('_limit', this.limit)
+  //     query.set('_start', this.start)
+  //     if (this.search) query.set('search', this.search.toLowerCase())
+  //     this.data = await REGISTRY_API.getRegistry(query.toString())
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  //   this.isFetch = false
+  // }
 
   async changeMode() {
     if (this.mode === 'read') {

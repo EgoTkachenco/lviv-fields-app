@@ -123,7 +123,8 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
-  max-height: 100%;
+  /* max-height: 100%; */
+  max-height: calc(100vh - 80px - 60px);
   max-width: calc(100vw - 550px - 40px - 60px);
   @media (max-width: 1200px) {
     max-width: unset;

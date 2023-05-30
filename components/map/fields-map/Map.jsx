@@ -46,11 +46,12 @@ export default function Map({
         color = FIELD_TYPES_COLORS[field.type] || 'transparent'
       else color = '#407CFF'
 
-      let opacity
-      if (!isRegistryFilter && filter.category.length > 0)
-        opacity = field.category === 'free' ? 0.5 : 1
-      else opacity = 1
-      return `${'path#' + id} {fill: ${color}; opacity: ${opacity};}`
+      // let opacity
+      // if (!isRegistryFilter && filter.category.length > 0)
+      //   opacity = field.category === 'free' ? 0.5 : 1
+      // else opacity = 1
+      // return `${'path#' + id} {fill: ${color}; opacity: ${opacity};}`
+      return `${'path#' + id} {fill: ${color};}`
     })
 
     styles = styles.join('\n')

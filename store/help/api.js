@@ -124,8 +124,8 @@ export const REGISTRY_API = {
     axios.get(`/landlords-registries?${query}`, securedFetchOptions()),
   getRegistryCount: (query) =>
     axios.get(`/landlords-registries/count?${query}`, securedFetchOptions()),
-  getRegistryMap: (query) =>
-    axios.get(`/landlords-registries/map?${query}`, securedFetchOptions()),
+  // getRegistryMap: (query) =>
+  //   axios.get(`/landlords-registries/map?${query}`, securedFetchOptions()),
   create: (data) =>
     axios.post('/landlords-registries', data, securedFetchOptions()),
   update: (id, data) =>
@@ -136,11 +136,15 @@ export const REGISTRY_API = {
   getOwners: (query) => axios.get(`/owners?${query}`, securedFetchOptions()),
   getOwnersCount: (query) =>
     axios.get(`/owners/count?${query}`, securedFetchOptions()),
+  getRegistryMap: (query) =>
+    axios.get(`/owners/map?${query}`, securedFetchOptions()),
   exportOwners: (query) =>
     axios.get(
       `/owners/export${query ? '?' : ''}${query}`,
       securedFetchOptions()
     ),
+  saveOwner: (id, data) =>
+    axios.put(`/owners/${id}`, data, securedFetchOptions()),
 
   getFields: (query) => axios.get(`/fields?${query}`, securedFetchOptions()),
   getFieldsCount: (query) =>
@@ -150,6 +154,8 @@ export const REGISTRY_API = {
       `/fields/export${query ? '?' : ''}${query}`,
       securedFetchOptions()
     ),
+  saveField: (id, data) =>
+    axios.put(`/fields/${id}`, data, securedFetchOptions()),
 
   exportPlantations: (query) =>
     axios.get(

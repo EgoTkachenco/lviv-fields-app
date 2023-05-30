@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { useEffect, useState } from 'react'
 import { Input, Spacer, Icon, Button, Box, PageLoader } from '../common'
-import store from '../../store/registry/main.js'
+import { Registry as store } from '../../store'
 import { observer } from 'mobx-react-lite'
 import EditButton from '../navigation/EditButton'
 import FilterModal from './FilterModal'
@@ -12,6 +12,7 @@ import {
   owner_sizes,
   field_sizes,
   plantation_sizes,
+  sizes,
   formatOwner,
   formatField,
   formatPlantation,
@@ -27,61 +28,40 @@ const tabs = [
 ]
 
 const Registry = observer(() => {
-  const { ownersStore, fieldsStore, plantationsStore, search, mode, isFetch } =
-    store
-  const stores = {
-    owner: ownersStore,
-    field: fieldsStore,
-    plantation: plantationsStore,
-  }
-  const models = {
-    owner: owner_model,
-    field: field_model,
-    plantation: plantation_model,
-  }
   const [activeTab, setActiveTab] = useState(tabs[0].value)
-
-  const filter = stores[activeTab].filter
-  const [filters, setFilters] = useState({})
-  useEffect(() => {
-    const filters = { search, ...filter }
-    setFilters(filters)
-  }, [filter, search])
+  const { loadOwners, loadOwnersCount, loadFields, loadFieldsCount } = store
 
   const router = useRouter()
-  const isRead = mode === 'read'
+  const isRead = store.mode === 'read'
+  const isShowOnMap = store.search || Object.keys(store.filter).length > 0
   const handleCellClick = (key, index, value) => {
     if (key === 'cadastr') {
       store.showOnMap(value)
       router.push('/map')
     }
   }
+  const filters = { search: store.search, ...store.filter }
   const exportData = () => {
     switch (activeTab) {
       case 'owner':
-        ownersStore.exportData()
+        store.exportOwners()
         break
       case 'field':
-        fieldsStore.exportData()
+        store.exportFields()
         break
       case 'plantation':
-        plantationsStore.exportData()
+        store.exportPlantations()
         break
     }
   }
-
-  // const filters = filter
-  // filters.search = search
-  const isShowOnMap = Object.values(filters).filter((v) => v).length > 0
-
   return (
     <>
-      <PageLoader isLoading={isFetch} />
-      <EditButton isMobile={true} />
+      <PageLoader isLoading={store.isFetch} />
+      {/* <EditButton isMobile={true} /> */}
       <Box wrap="true" gap="16px 16px" align="center">
         <Search>
           <Input
-            value={search}
+            value={store.search}
             onChange={(value) => store.updateSearch(value)}
             placeholder="Пошук"
             rightSlot={<Icon icon="search" />}
@@ -100,11 +80,8 @@ const Registry = observer(() => {
         )} */}
 
         <FilterModal
-          model={models[activeTab]}
-          filters={stores[activeTab].filter}
-          onFilterChange={(key, value) =>
-            stores[activeTab].onFilterChange(key, value)
-          }
+          filters={store.filter}
+          onFilterChange={(key, value) => store.onFilterChange(key, value)}
         />
         {isShowOnMap && (
           <Button
@@ -112,7 +89,7 @@ const Registry = observer(() => {
             width="200px"
             size="small"
             onClick={() => {
-              store.loadFieldIds(filter).then(() => router.push('/map'))
+              store.loadFieldIds().then(() => router.push('/map'))
             }}
           >
             Показати на мапі
@@ -136,45 +113,45 @@ const Registry = observer(() => {
       </TabsExportContainer>
       <Spacer vertical size="30px" />
       <Wrapper>
-        <Table
-          show={activeTab === 'owner'}
-          model={owner_model}
-          filters={ownersStore.getFilter}
-          sizes={owner_sizes}
-          isRead={isRead}
-          onCellClick={handleCellClick}
-          data={ownersStore.data}
-          limit={ownersStore.limit}
-          loadData={ownersStore.loadData}
-          loadDataCount={ownersStore.loadDataCount}
-          onChange={ownersStore.onTableChange}
-        />
-        <Table
-          show={activeTab === 'field'}
-          model={field_model}
-          filters={fieldsStore.getFilter}
-          sizes={field_sizes}
-          isRead={isRead}
-          onCellClick={handleCellClick}
-          data={fieldsStore.data}
-          limit={fieldsStore.limit}
-          loadData={fieldsStore.loadData}
-          loadDataCount={fieldsStore.loadDataCount}
-          onChange={fieldsStore.onTableChange}
-        />
-        <Table
-          show={activeTab === 'plantation'}
-          model={plantation_model}
-          filters={plantationsStore.getFilter}
-          sizes={plantation_sizes}
-          isRead={isRead}
-          onCellClick={handleCellClick}
-          data={plantationsStore.data}
-          limit={plantationsStore.limit}
-          loadData={plantationsStore.loadData}
-          loadDataCount={plantationsStore.loadDataCount}
-          onChange={plantationsStore.onTableChange}
-        />
+        {activeTab === 'owner' && (
+          <Table
+            model={owner_model}
+            load={loadOwners}
+            loadCount={loadOwnersCount}
+            filters={filters}
+            sizes={owner_sizes}
+            isRead={true}
+            formatData={formatOwner}
+            onCellClick={handleCellClick}
+          />
+        )}
+        {activeTab === 'field' && (
+          <Table
+            model={field_model}
+            load={loadFields}
+            loadCount={loadFieldsCount}
+            filters={filters}
+            sizes={field_sizes}
+            isRead={true}
+            formatData={formatField}
+            onCellClick={handleCellClick}
+          />
+        )}
+        {activeTab === 'plantation' && (
+          <Table
+            model={plantation_model}
+            load={loadFields}
+            loadCount={loadFieldsCount}
+            filters={filters}
+            sizes={plantation_sizes}
+            isRead={true}
+            formatData={formatPlantation}
+            // onChange={(index, key, value) =>
+            //   store.updateTableRow(index, key, value)
+            // }
+            onCellClick={handleCellClick}
+          />
+        )}
       </Wrapper>
     </>
   )
