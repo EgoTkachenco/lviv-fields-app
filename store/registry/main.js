@@ -33,7 +33,7 @@ export class RegistryStore {
       'fields',
       REGISTRY_API.getFields,
       REGISTRY_API.getFieldsCount,
-      REGISTRY_API.exportOwners,
+      REGISTRY_API.exportFields,
       formatField,
       REGISTRY_API.saveField,
       'pathname'
