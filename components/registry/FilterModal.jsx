@@ -11,7 +11,7 @@ import {
   Label,
   Icon,
 } from '../common'
-import { model } from './util'
+// import { model } from './util'
 
 // const FIELD_OPTIONS = model.map((f) => f.name)
 const TYPE_OPTIONS = {
@@ -45,10 +45,13 @@ const TYPED_OPTIONS = {
     Менше: '_lt',
     Містить: '_contains',
   },
+  relation: {
+    Рівно: '',
+  },
 }
 
 const FilterModal = ({ model = [], filters, onFilterChange }) => {
-  const FIELD_OPTIONS = model.map((f) => f.name)
+  const FIELD_OPTIONS = model.filter((f) => !f.notFilterable).map((f) => f.name)
   const [show, setShow] = useState(false)
   const count = Object.keys(filters).length
 
@@ -69,7 +72,11 @@ const FilterModal = ({ model = [], filters, onFilterChange }) => {
       <Modal title="Фільтри" close={() => setShow(false)} show={show}>
         <Text>Новий фільтр: </Text>
         <Spacer vertical size="16px" />
-        <NewFilterForm onCreate={onCreate} fieldOptions={FIELD_OPTIONS} />
+        <NewFilterForm
+          model={model}
+          onCreate={onCreate}
+          fieldOptions={FIELD_OPTIONS}
+        />
         <Spacer vertical size="32px" />
         <FilterList>
           {count ? (
@@ -107,7 +114,7 @@ const FilterModal = ({ model = [], filters, onFilterChange }) => {
   )
 }
 
-const NewFilterForm = ({ onCreate, fieldOptions }) => {
+const NewFilterForm = ({ model, onCreate, fieldOptions }) => {
   const [state, setState] = useState({ field: '', type: '', value: '' })
   const isAllowAdd = state.field && state.type && state.value
 

@@ -37,7 +37,7 @@ const Table = ({
                   onClick={(e) => onCellClick(field.id, i, row[field.id] || '')}
                   isRead={field.isRead || isRead}
                 >
-                  {field.isRead ? (
+                  {field.isRead || isRead ? (
                     row[field.id] || ''
                   ) : (
                     <input

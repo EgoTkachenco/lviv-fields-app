@@ -121,10 +121,20 @@ export const plantation_sizes = ['250px', '100px', '300px', '150px', '150px']
 
 export const owner_model = [
   { id: 'cadastr', name: 'Кадастровий номер', isRead: true },
-  { id: 'type', name: 'Тип', isRead: true },
-  { id: 'contract_name', name: 'Договір', isRead: true },
-  { id: 'contract_start', name: 'Дата укладання', isRead: true },
-  { id: 'contract_note', name: 'Примiтки до договору', isRead: true },
+  { id: 'type', name: 'Тип', isRead: true, notFilterable: true },
+  { id: 'contract_name', name: 'Договір', isRead: true, notFilterable: true },
+  {
+    id: 'contract_start',
+    name: 'Дата укладання',
+    isRead: true,
+    notFilterable: true,
+  },
+  {
+    id: 'contract_note',
+    name: 'Примiтки до договору',
+    isRead: true,
+    notFilterable: true,
+  },
   // {
   //   id: 'rent_contract',
   //   name: 'Оренда(№договору, дата, дод.угода)',
@@ -154,7 +164,7 @@ export const owner_model = [
 export const field_model = [
   { id: 'cadastr', name: 'Кадастровий номер', isRead: true },
   { id: 'size', name: 'Площа земельної ділянки' },
-  { id: 'location', name: '№ поля' },
+  { id: 'location', name: '№ поля', type: 'relation' },
   { id: 'area_size', name: 'Площа поля' },
   { id: 'plant_year', name: 'Рік засадження' },
   { id: 'repair', name: 'Ремонт поля (рік, к-сть рядів, поле)' },
@@ -162,11 +172,12 @@ export const field_model = [
 ]
 export const plantation_model = [
   { id: 'cadastr', name: 'Кадастровий номер', isRead: true },
-  { id: 'area', name: '№ поля', isRead: true },
+  { id: 'location', name: '№ поля', isRead: true, type: 'relation' },
   {
     id: 'plantations',
     name: 'Сорт/к-сть рядів',
     isRead: true,
+    notFilterable: true,
   },
   {
     id: 'harvest',
@@ -179,33 +190,13 @@ export const plantation_model = [
 ]
 
 export const formatOwner = (el) => {
-  const contract_keys = {
-    owned: 'owner_contract',
-    rented: 'rent_contract',
-    'sub-rent': 'sub_contract',
-    risk: 'sub_contract',
-  }
-  const result = { ...el }
-  // if (el.field.type) {
-  //   const contract = []
-  //   if (el.field.contract_name) contract.push(el.field.contract_name)
-  //   if (el.field.contract_start) contract.push(el.field.contract_start)
-  //   if (el.field.contract_note) contract.push(el.field.contract_note)
-  //   result[contract_keys[el.field.type]] = contract.join(', ')
-  // }
-  // const passport = []
-  // if (el.passport) passport.push(el.passport)
-  // if (el.passport_who) passport.push(el.passport_who)
-  // if (el.passport_date) passport.push(el.passport_date)
-
   return {
-    ...result,
+    ...el,
     type: FIELD_TYPES[el.field.type],
     contract_name: el.field.contract_name,
     contract_start: el.field.contract_start,
     contract_note: el.field.contract_note,
     cadastr: el?.field.cadastr,
-    // passport: passport.join(', '),
   }
 }
 
@@ -221,7 +212,7 @@ export const formatPlantation = (el) => {
   return {
     ...el,
     cadastr: el.cadastr,
-    area: el.area?.name,
+    location: el.area?.name,
     plantations: el.plantations.map((el) => (
       <div key={el.id}>
         {el?.variety?.name || '---'} - {el.size || 0}
