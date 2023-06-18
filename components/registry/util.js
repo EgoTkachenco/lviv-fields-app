@@ -121,7 +121,7 @@ export const plantation_sizes = ['250px', '100px', '300px', '150px', '150px']
 
 export const owner_model = [
   { id: 'cadastr', name: 'Кадастровий номер', isRead: true },
-  { id: 'type', name: 'Тип', isRead: true, notFilterable: true },
+  { id: 'type', name: 'Тип', isRead: true, type: 'relation' },
   { id: 'contract_name', name: 'Договір', isRead: true, notFilterable: true },
   {
     id: 'contract_start',
@@ -152,14 +152,18 @@ export const owner_model = [
   // },
   { id: 'full_name', name: 'ПІБ' },
   { id: 'birth_date', name: 'Дата народження', type: 'date' },
-  { id: 'passport', name: 'Паспорт' },
-  { id: 'passport_who', name: 'Ким видано паспорт' },
-  { id: 'passport_date', name: 'Дата видачі паспорту' },
+  { id: 'passport', name: 'Паспорт', notFilterable: true },
+  { id: 'passport_who', name: 'Ким видано паспорт', notFilterable: true },
+  { id: 'passport_date', name: 'Дата видачі паспорту', notFilterable: true },
   { id: 'iin', name: 'ІПН' },
-  { id: 'registration_address', name: 'Місце реєстрації' },
-  { id: 'address', name: 'Місце проживання' },
+  { id: 'registration_address', name: 'Місце реєстрації', notFilterable: true },
+  { id: 'address', name: 'Місце проживання', notFilterable: true },
   { id: 'phone', name: 'Телефон' },
-  { id: 'note', name: "Примітка(родинний зв'язок, телефон)" },
+  {
+    id: 'note',
+    name: "Примітка(родинний зв'язок, телефон)",
+    notFilterable: true,
+  },
 ]
 export const field_model = [
   { id: 'cadastr', name: 'Кадастровий номер', isRead: true },
@@ -167,8 +171,16 @@ export const field_model = [
   { id: 'location', name: '№ поля', type: 'relation' },
   { id: 'area_size', name: 'Площа поля' },
   { id: 'plant_year', name: 'Рік засадження' },
-  { id: 'repair', name: 'Ремонт поля (рік, к-сть рядів, поле)' },
-  { id: 'note', name: 'Примітка (нормативно-грошова оцінка по роках)' },
+  {
+    id: 'repair',
+    name: 'Ремонт поля (рік, к-сть рядів, поле)',
+    notFilterable: true,
+  },
+  {
+    id: 'note',
+    name: 'Примітка (нормативно-грошова оцінка по роках)',
+    notFilterable: true,
+  },
 ]
 export const plantation_model = [
   { id: 'cadastr', name: 'Кадастровий номер', isRead: true },

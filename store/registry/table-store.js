@@ -1,4 +1,5 @@
 import { makeAutoObservable, computed } from 'mobx'
+import { FIELD_TYPES } from '../help/constants'
 
 export class RegistryTableStore {
   parent = null
@@ -118,7 +119,11 @@ export class RegistryTableStore {
 
   onFilterChange(key, value) {
     if (value) {
-      this.filter[key] = value
+      if (key === 'type') {
+        Object.keys(FIELD_TYPES).forEach((type) => {
+          if (FIELD_TYPES[type] === value) this.filter[key] = type
+        })
+      } else this.filter[key] = value
     } else {
       delete this.filter[key]
     }
