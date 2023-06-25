@@ -121,7 +121,13 @@ export const plantation_sizes = ['250px', '100px', '300px', '150px', '150px']
 
 export const owner_model = [
   { id: 'cadastr', name: 'Кадастровий номер', isRead: true },
-  { id: 'type', name: 'Тип', isRead: true, type: 'relation' },
+  {
+    id: 'type',
+    name: 'Тип',
+    isRead: true,
+    type: 'select',
+    options: FIELD_TYPES,
+  },
   { id: 'contract_name', name: 'Договір', isRead: true, notFilterable: true },
   {
     id: 'contract_start',
@@ -167,10 +173,10 @@ export const owner_model = [
 ]
 export const field_model = [
   { id: 'cadastr', name: 'Кадастровий номер', isRead: true },
-  { id: 'size', name: 'Площа земельної ділянки' },
+  { id: 'size', name: 'Площа земельної ділянки', type: 'mix' },
   { id: 'location', name: '№ поля', type: 'relation' },
-  { id: 'area_size', name: 'Площа поля' },
-  { id: 'plant_year', name: 'Рік засадження' },
+  { id: 'area_size', name: 'Площа поля', type: 'mix' },
+  { id: 'plant_year', name: 'Рік засадження', type: 'mix' },
   {
     id: 'repair',
     name: 'Ремонт поля (рік, к-сть рядів, поле)',

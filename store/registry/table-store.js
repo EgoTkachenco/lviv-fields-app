@@ -25,7 +25,8 @@ export class RegistryTableStore {
     format,
     save,
     idKey = 'id',
-    searchKey = '_q'
+    searchKey = '_q',
+    formatFilter = (f) => f
   ) {
     makeAutoObservable(this, {
       getFilter: computed,
@@ -40,6 +41,7 @@ export class RegistryTableStore {
     this.save = save
     this.idKey = idKey
     this.searchKey = searchKey
+    this.formatFilter = formatFilter
   }
 
   loadData = (page, size) => {
@@ -119,11 +121,12 @@ export class RegistryTableStore {
 
   onFilterChange(key, value) {
     if (value) {
-      if (key === 'type') {
-        Object.keys(FIELD_TYPES).forEach((type) => {
-          if (FIELD_TYPES[type] === value) this.filter[key] = type
-        })
-      } else this.filter[key] = value
+      // if (key === 'type') {
+      //   Object.keys(FIELD_TYPES).forEach((type) => {
+      //     if (FIELD_TYPES[type] === value) this.filter[key] = type
+      //   })
+      // } else
+      this.filter[key] = value
     } else {
       delete this.filter[key]
     }
@@ -133,8 +136,9 @@ export class RegistryTableStore {
 
   getFilterQuery() {
     let query = new URLSearchParams()
-    Object.keys(this.filter).forEach((key) => {
-      query.set(key, this.filter[key])
+    const filter = this.formatFilter(this.filter)
+    Object.keys(filter).forEach((key) => {
+      query.set(key, filter[key])
     })
     return query
   }

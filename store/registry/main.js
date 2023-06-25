@@ -8,6 +8,7 @@ import {
   formatOwner,
   formatPlantation,
 } from '../../components/registry/util'
+import { FIELD_TYPES } from '../help/constants'
 
 export class RegistryStore {
   isFetch = false
@@ -26,7 +27,17 @@ export class RegistryStore {
       formatOwner,
       REGISTRY_API.saveOwner,
       'id',
-      'search'
+      'search',
+      (filter) => {
+        if (filter.type) {
+          const typekey = Object.keys(FIELD_TYPES).find(
+            (key) => FIELD_TYPES[key] === filter.type
+          )
+          return { ...filter, type: typekey }
+        }
+
+        return filter
+      }
     )
     this.fieldsStore = new RegistryTableStore(
       this,

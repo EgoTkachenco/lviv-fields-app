@@ -45,7 +45,18 @@ const TYPED_OPTIONS = {
     // Менше: '_lt',
     Містить: '_contains',
   },
+  mix: {
+    Рівно: '',
+    'Більше рівно': '_gte',
+    Більше: '_gt',
+    'Менше рівно': '_lte',
+    Менше: '_lt',
+    Містить: '_contains',
+  },
   relation: {
+    Рівно: '',
+  },
+  select: {
     Рівно: '',
   },
 }
@@ -122,6 +133,7 @@ const NewFilterForm = ({ model, onCreate, fieldOptions }) => {
     onCreate(state.field, state.type, state.value)
     setState({ field: '', type: '', value: '' })
   }
+  const field = model.find((f) => f.name === state.field)
   const fieldType = model.find((f) => f.name === state.field)?.type || 'text'
 
   return (
@@ -144,13 +156,24 @@ const NewFilterForm = ({ model, onCreate, fieldOptions }) => {
         placeholder="Тип"
         options={Object.keys(TYPED_OPTIONS[fieldType])}
       />
-      <InputLabel
-        disabled={!state.type}
-        value={state.value}
-        type={fieldType}
-        onChange={(v) => setState({ ...state, value: v.target.value })}
-        placeholder="Значення"
-      />
+      {fieldType !== 'select' ? (
+        <InputLabel
+          disabled={!state.type}
+          value={state.value}
+          type={fieldType}
+          onChange={(v) => setState({ ...state, value: v.target.value })}
+          placeholder="Значення"
+        />
+      ) : (
+        <Select
+          isRead={!state.type}
+          value={state.value}
+          onChange={(v) => setState({ ...state, value: v })}
+          placeholder="Тип"
+          options={Object.values(field.options)}
+        />
+      )}
+
       <Button
         width="auto"
         variant="success"
