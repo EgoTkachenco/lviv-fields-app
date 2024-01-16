@@ -121,7 +121,7 @@ const Filter = ({ filter, onChange, onSubmit, onClear }) => {
             )}
           </SortsBox>
           <Spacer vertical size="24px" />
-          <Box>
+          <RangeBox>
             <div>
               <H5>Рік насаджень</H5>
               <Spacer vertical size="12px" />
@@ -163,7 +163,7 @@ const Filter = ({ filter, onChange, onSubmit, onClear }) => {
                 />
               </DateBox>
             </div>
-          </Box>
+          </RangeBox>
         </FilterInner>
         <Spacer vertical size="24px" style={{ marginTop: 'auto' }} />
         <Button variant="success" onClick={handleSubmit}>
@@ -212,6 +212,12 @@ const DateBox = styled(Box)`
   & > :nth-child(1),
   & > :nth-child(3) {
     width: calc((100% - 20px - 16px) / 2);
+  }
+`
+
+const RangeBox = styled(Box)`
+  @media (max-width: 1200px) {
+    flex-direction: column;
   }
 `
 
