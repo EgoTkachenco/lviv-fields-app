@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
-import { Box, Spacer } from '../common'
+import { Box, Icon, Spacer } from '../common'
 
 const Currencies = () => {
   const [state, setState] = useState(null)
@@ -19,13 +19,14 @@ const Currencies = () => {
       setState({ usd, eur, btc })
     })
   }, [])
+
   return (
     <Wrapper gap="30px 40px">
       <CurrencyBlock
         name="Долар"
         currency="USD"
         value={state?.usd}
-        icon="/icons/dollar.svg"
+        icon="dollar"
         index={0}
       />
 
@@ -33,7 +34,7 @@ const Currencies = () => {
         name="Євро"
         currency="EUR"
         value={state?.eur}
-        icon="/icons/euro.svg"
+        icon="euro"
         index={1}
       />
 
@@ -41,7 +42,7 @@ const Currencies = () => {
         name="Біткоїн"
         currency="btc"
         value={state?.btc}
-        icon="/icons/bitcoin.svg"
+        icon="bitcoin"
         index={2}
       />
     </Wrapper>
@@ -59,9 +60,12 @@ const Wrapper = styled(Box)`
 const CurrencyBlock = ({ name, currency, value, icon, index }) => (
   <CurrencyCard data-aos="fade-in" data-aos-delay={100 * index}>
     <CurrencyCardIcon>
-      <CurrencyCardImage src={icon} alt={name} />
+      <Icon icon="polygon" size="14px" />
+      <Icon icon={icon} size="32px" />
     </CurrencyCardIcon>
+
     <CurrencyCardName>{name}</CurrencyCardName>
+
     <CurrencyCardContent align="baseline" value={value}>
       <CurrencyCardValue>{value}</CurrencyCardValue>
       <CurrencyCardCurrency>{currency}</CurrencyCardCurrency>
@@ -69,75 +73,62 @@ const CurrencyBlock = ({ name, currency, value, icon, index }) => (
   </CurrencyCard>
 )
 
-const CurrencyCard = styled.div`
-  background: #ffffff;
-  box-shadow: 0px 20px 40px rgba(197, 206, 231, 0.25);
-  border-radius: 30px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  height: 89px;
-  position: relative;
-  overflow: hidden;
-
-  &:before {
-    content: '';
-    position: absolute;
-    top: 14px;
-    right: -20px;
-    background: url('/icons/back.svg');
-    width: 210px;
-    height: 100%;
-    object-fit: fill;
-    z-index: 0;
-  }
-`
 const CurrencyCardContent = styled(Box)`
-  /* background: ${(props) => (props.value ? 'red' : 'transparent')}; */
-  &:after {
-    content: '';
-    background: radial-gradient(
-      67.22% 67.22% at 87.17% 17.38%,
-      #e69ef7 0%,
-      #44c3f6 52.6%,
-      #776aeb 100%
-    );
-    position: absolute;
-    right: 0;
-    top: 0;
-    height: 100%;
-    transition: all 0.6s;
-    opacity: ${(props) => (props.value ? '0' : '1')};
-    width: ${(props) => (props.value ? '0' : '100%')};
-  }
+  padding: 24px;
 `
 
-const CurrencyCardImage = styled.img`
-  width: 48px;
-  height: 48px;
-`
 const CurrencyCardIcon = styled.div`
-  background: radial-gradient(
-    67.22% 67.22% at 87.17% 17.38%,
-    #e69ef7 0%,
-    #44c3f6 52.6%,
-    #776aeb 100%
-  );
-  opacity: 0.8;
-  border-radius: 30px 0px 0px 30px;
-  height: 89px;
-  width: 89px;
+  border-radius: 5px;
+  border: 1px solid #313536;
+  background: #ffffff;
+  height: 80px;
+  width: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
-`
-const CurrencyCardName = styled.div`
-  margin: 0 auto 0 32px;
-  font-weight: 600;
-  font-size: 24px;
-  line-height: 29px;
-  color: #464f60;
   position: relative;
+  transition: all 0.3s;
+
+  svg {
+    transition: all 0.3s;
+    fill: #313536;
+  }
+
+  & > :first-child {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+  }
+`
+
+const CurrencyCard = styled.div`
+  border-radius: 8px;
+  background: #fff;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  cursor: pointer;
+
+  &:hover {
+    color: #fff;
+    svg {
+      fill: #fff;
+    }
+
+    ${CurrencyCardIcon} {
+      background: #313536;
+    }
+  }
+`
+
+const CurrencyCardName = styled.div`
+  margin-left: 16px;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: normal;
+  color: #313536;
+  flex-grow: 1;
 
   @media (max-width: 600px) {
     font-size: 18px;
@@ -147,31 +138,25 @@ const CurrencyCardName = styled.div`
 `
 const CurrencyCardValue = styled.div`
   font-weight: 700;
-  font-size: 36px;
-  line-height: 43px;
-  color: #464f60;
-  margin-right: 10px;
-  position: relative;
-  margin-left: 16px;
+  font-size: 28px;
+  line-height: normal;
+  color: #313536;
+  margin-right: 5px;
 
   @media (max-width: 600px) {
     font-size: 24px;
-    margin-left: 12px;
     line-height: 150%;
   }
 `
 const CurrencyCardCurrency = styled.div`
-  margin-right: 40px;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 18px;
   line-height: 22px;
-  color: #94a5d0;
+  color: #748c8e;
   text-transform: uppercase;
-  position: relative;
 
   @media (max-width: 600px) {
     font-size: 16px;
     line-height: 150%;
-    margin-right: 16px;
   }
 `

@@ -1,19 +1,21 @@
 import styled from 'styled-components'
-import { Fragment } from 'react'
-import { Card, Text, H5, Spacer, Box } from '../../common'
+import { Card, Text, H5, Spacer, Box, Chip } from '../../common'
 
 const SummaryDetails = ({ data }) => {
   if (!data) return
   return (
     <Card>
       <H5>
-        Загальна площа земельних ділянок: {data.all.toFixed(4) || 0} гектарів
+        Загальна площа земельних ділянок:{' '}
+        <Chip color="black" type="large">
+          {data.all.toFixed(4) || 0} гектарів
+        </Chip>
       </H5>
       <Spacer vertical size="20px" />
-      <Box wrap="true" gap="20px 0">
+      <Box wrap="true" gap="20px 50px">
         <Column gap="4px">
           <Text>Площа власних земель:</Text>
-          <Text color="grey">{data.owned?.toFixed(4) || 0} гектарів</Text>
+          <Chip color="primary">{data.owned?.toFixed(2) || 0} гектарів</Chip>
         </Column>
         {/* <Column gap="4px">
           <Text>Площа ризикових земель: </Text>
@@ -21,7 +23,7 @@ const SummaryDetails = ({ data }) => {
         </Column> */}
         <Column gap="4px">
           <Text>Площа орендованих земель: </Text>
-          <Text color="grey">{data.rented?.toFixed(4) || 0} гектарів</Text>
+          <Chip color="primary">{data.rented?.toFixed(2) || 0} гектарів</Chip>
         </Column>
         {/* <Column gap="4px">
           <Text>Площа насаджень сорту: </Text>
@@ -58,9 +60,8 @@ const SummaryDetails = ({ data }) => {
 export default SummaryDetails
 
 const Column = styled(Box)`
-  min-width: 400px;
-  width: 40%;
   flex-wrap: wrap;
+  align-items: center;
 
   @media (max-width: 1200px) {
     width: calc(50% - 16px);

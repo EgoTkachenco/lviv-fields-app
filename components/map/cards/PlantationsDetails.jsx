@@ -15,7 +15,7 @@ const PlantationsDetails = ({ data, isRead, onChange }) => {
     <Card>
       <H5>Інформація про насадження:</H5>
       <Spacer vertical size="20px" />
-      <Box gap="4px 4px" wrap="true">
+      <Box wrap="true">
         <Row>
           <HeaderLabel title="Сорт">Сорт</HeaderLabel>
           <HeaderLabel title="Кількість насаджень">
@@ -40,7 +40,6 @@ const PlantationsDetails = ({ data, isRead, onChange }) => {
               }
             />
             <Select
-              style={{ flex: '0 1 calc(100% / 3 - 4px)' }}
               value={plantation.year}
               onChange={(value) =>
                 onChange('plantation-year', { value, index: i })
@@ -75,14 +74,13 @@ const PlantationsDetails = ({ data, isRead, onChange }) => {
 export default PlantationsDetails
 
 const LabelStyles = `
-	width: calc(100% / 3 - 4px);
-	max-width: calc(100% / 3 - 4px);
+	width: calc(100% / 3);
+	max-width: calc(100% / 3);
 	padding: 11px 15px;
-	background: #EDF1F8;
 	border-radius: 0;
 	font-weight: 400;
-	font-size: 16px;
-	line-height: 19px;
+	font-size: 18px;
+	line-height: 120%;
 	color: #464f60;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -96,9 +94,10 @@ const LabelStyles = `
 
 const HeaderLabel = styled.div`
   ${LabelStyles}
-  background: #CCD1E0;
+  background: rgba(116, 140, 142, 1);
   border-radius: 0;
-  font-weight: 600;
+  font-weight: 400;
+  color: #fff;
 `
 
 const Label = styled.div`
@@ -121,7 +120,7 @@ const InputLabel = styled.input`
   &:read-only {
     cursor: default;
     border-color: transparent;
-    background: #edf1f8;
+    background: transparent;
   }
 `
 
@@ -129,22 +128,37 @@ const LabelButton = styled.button`
   ${LabelStyles}
   max-width: unset;
   width: 100%;
-  font-weight: 600;
+  font-weight: 500;
   text-align: center;
   cursor: pointer;
   transition: background 0.3s;
   border: none;
   &:hover {
-    background: #ccd1e0;
+    background: transparent;
   }
 `
 
 const Row = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: stretch;
   width: 100%;
   position: relative;
-  gap: 2px;
+  gap: 0;
+  background: rgba(116, 140, 142, 0.2);
+
+  & input {
+    border: none;
+  }
+
+  & > * {
+    margin: 2px 0;
+    flex: 1 1 calc(100% / 3);
+  }
+
+  & > :nth-child(2) {
+    border-left: 1px solid #748c8e;
+    border-right: 1px solid #748c8e;
+  }
 `
 
 const CloseButton = styled.button`

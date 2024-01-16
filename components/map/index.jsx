@@ -16,6 +16,7 @@ import {
 import Map from './fields-map/Map'
 import EditButton from '../navigation/EditButton'
 import { Spacer, PageLoader } from '../common'
+import BackLink from './BackLink'
 
 const MapPage = observer(() => {
   const { area, field, mode, filter, summary, areas } = store
@@ -98,6 +99,8 @@ const MapPage = observer(() => {
           )}
         </Content>
       </Wrapper>
+
+      {field && <BackLink action={() => store.closeField()} />}
       {/* {field && (
         <Bottom>
           <OwnerDetails data={field} isRead={isRead} onChange={onChange} />
@@ -128,6 +131,7 @@ const Content = styled.div`
   max-width: calc(100vw - 550px - 40px - 60px);
   @media (max-width: 1200px) {
     max-width: unset;
+    max-height: unset;
   }
 `
 const Side = styled.div`

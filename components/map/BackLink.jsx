@@ -1,16 +1,19 @@
 import styled from 'styled-components'
-import { Button } from '../common'
+import { Button, Icon } from '../common'
 
 const BackLink = ({ action }) => {
   return (
-    <CustomButton type="text" onClick={action}>
+    <CustomButton variant="primary" onClick={action}>
+      <Icon icon="chevron" size="12px" />
       Повернутися на головну
     </CustomButton>
   )
 }
 
 const CustomButton = styled(Button)`
-  position: absolute;
+  width: 300px;
+  margin-top: 24px;
+  /* position: absolute;
   z-index: 99;
   bottom: 16px;
   left: 32px;
@@ -23,7 +26,7 @@ const CustomButton = styled(Button)`
 
   @media (max-width: 768px) {
     font-size: 12px;
-  }
+  } */
 `
 
 export default BackLink

@@ -12,11 +12,10 @@ const ButtonCore = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  text-transform: uppercase;
   gap: 8px;
   font-size: ${(props) => props.fontSize};
   line-height: 120%;
-  font-family: 'Lato';
+  font-family: 'TT Fors Trial';
   padding: ${(props) => props.padding};
   border: 1px solid transparent;
   path {
@@ -30,18 +29,19 @@ const ButtonCore = styled.button`
 `
 
 const PrimaryButton = styled(ButtonCore)`
-  border-radius: 30px;
-  background: #407cff;
-  color: #ffffff;
-  font-weight: 600;
+  border-radius: 1000px;
+  border: 1px solid #313536;
+  background: white;
+  color: #313536;
+  font-weight: 500;
   &:hover {
-    background: #ffffff;
+    /* background: #ffffff;
     color: #407cff;
     border-color: #407cff;
 
     path {
       fill: #407cff;
-    }
+    } */
   }
 `
 const GreyButton = styled(ButtonCore)`
@@ -69,10 +69,10 @@ const PrimaryOutlineButton = styled(ButtonCore)`
 `
 
 const SuccessButton = styled(ButtonCore)`
-  border-radius: 30px;
-  background: #31b984;
+  border-radius: 1000px;
+  background: #748c8e;
   color: #ffffff;
-  font-weight: 600;
+  font-weight: 500;
 `
 
 const WhiteButton = styled(ButtonCore)`
@@ -96,16 +96,20 @@ const WhiteButton = styled(ButtonCore)`
 
 const TextButton = styled(ButtonCore)`
   background: transparent;
-  border-radius: 30px;
-  color: #407cff !important;
-  font-weight: 600;
+  border-radius: none;
+  color: #313536 !important;
+  font-weight: 400;
+  font-size: 14px;
+  padding: 12px 16px;
+  height: auto;
 `
 
-const WhiteTextButton = styled(ButtonCore)`
+const SuccessTextButton = styled(ButtonCore)`
   background: transparent;
-  border-radius: 30px;
-  color: #ffffff !important;
-  font-weight: 600;
+  color: #748c8e !important;
+  font-size: 18px;
+  line-height: normal;
+  font-weight: 500;
 `
 
 const AccentButton = styled(ButtonCore)`
@@ -136,13 +140,13 @@ const variants = {
   accent: AccentButton,
   white: WhiteButton,
   text: TextButton,
-  'white-text': WhiteTextButton,
+  'success-text': SuccessTextButton,
 }
 const getVariant = (variant) => variants[variant] || TextButton
 
 const sizes = {
   small: { height: '32px', padding: '8px 16px', fontSize: '12px' },
-  medium: { height: '46px', padding: '16px 24px', fontSize: '14px' },
+  medium: { height: '46px', padding: '20px 24px', fontSize: '18px' },
 }
 const getSize = (size = 'medium') => sizes[size] || sizes['medium']
 

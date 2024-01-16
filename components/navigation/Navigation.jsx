@@ -15,7 +15,15 @@ const Navigation = observer(() => {
     { name: 'Карта', path: '/map' },
     { name: 'Реєстр орендодавців', path: '/registry' },
     // { name: 'Планер', path: '/planner' },
-    { name: 'Вихід', action: () => store.logout() },
+    {
+      name: (
+        <Box gap="8px" align="center">
+          Вихід
+          <Icon icon="exit" size="16px" />
+        </Box>
+      ),
+      action: () => store.logout(),
+    },
   ]
   useNoBodyScroll(open)
 
@@ -23,16 +31,13 @@ const Navigation = observer(() => {
   return (
     <Wrapper>
       <Link href="/">
-        <Box align="center">
-          <Logo src="/logo.svg" alt="logo" />
-          <LogoText>Львівский сад</LogoText>
-        </Box>
+        <LogoText>Land-Map</LogoText>
       </Link>
       <Spacer size="auto" />
       {isLogged && (
         <>
           <Links
-            gap="60px"
+            gap="40px"
             open={open}
             onClick={() => setOpen(false)}
             align="center"
@@ -54,10 +59,10 @@ const Navigation = observer(() => {
               </Link>
             ))}
           </Links>
-          <Spacer size="60px" />
+          {/* <Spacer size="60px" />
           <MenuButton onClick={() => router.push('/')}>
             <Icon icon="menu" size="21px" />
-          </MenuButton>
+          </MenuButton> */}
           <MobileMenuButton onClick={() => setOpen(true)}>
             <Icon icon="menu" size="21px" />
           </MobileMenuButton>
@@ -69,26 +74,18 @@ const Navigation = observer(() => {
 
 const Wrapper = styled.nav`
   height: 80px;
-  padding: 0 30px;
+  padding: 0 40px;
   display: flex;
   align-items: center;
-  background: #ffffff;
-  box-shadow: 0px 20px 30px rgba(197, 206, 231, 0.25);
-`
-
-const Logo = styled.img`
-  width: 28px;
-  height: 28px;
-  margin-right: 10px;
-  cursor: pointer;
+  background: #fff;
+  box-shadow: 0px 15px 30px 0px rgba(197, 206, 231, 0.25);
 `
 
 const LogoText = styled.div`
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 22px;
-  text-transform: uppercase;
-  color: #464f60;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 120%;
+  color: #313536;
   cursor: pointer;
 `
 
@@ -124,16 +121,6 @@ const LinksCloseButton = styled.button`
   }
 `
 
-const MenuButton = styled.button`
-  background: none;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  @media (max-width: 800px) {
-    display: none;
-  }
-`
-
 const MobileMenuButton = styled.button`
   background: none;
   border: none;
@@ -149,12 +136,13 @@ const MobileMenuButton = styled.button`
 export const NavLink = styled.div`
   font-weight: 500;
   font-size: 16px;
-  line-height: 19px;
-  color: #464f60;
+  line-height: normal;
+  color: #313536;
   cursor: pointer;
   position: relative;
   white-space: nowrap;
-  &::before {
+
+  /* &::before {
     content: '';
     opacity: ${(props) => (props.active ? 1 : 0)};
     position: absolute;
@@ -164,7 +152,7 @@ export const NavLink = styled.div`
     border-radius: 0px 0px 30px 30px;
     height: 4px;
     transition: opacity 0.3s;
-  }
+  } */
 
   @media (max-width: 800px) {
     font-weight: 600;
@@ -173,11 +161,11 @@ export const NavLink = styled.div`
     color: #ffffff;
   }
 
-  &:hover {
+  /* &:hover {
     &::before {
       opacity: 1;
     }
-  }
+  } */
 `
 
 export default Navigation

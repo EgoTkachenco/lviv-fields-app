@@ -35,7 +35,8 @@ export default class MyDocument extends Document {
           />
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="theme-color" content="#ffffff" />
-          <link rel="stylesheet" href="/font/index.css" />
+          <link rel="stylesheet" href="/font/TT Fors Trial/index.css" />
+          <link rel="manifest" href="/manifest.json" />
         </Head>
         <body>
           <Main />

@@ -16,6 +16,7 @@ import Select from './Select'
 import Pagination from './Pagination'
 import { PageLoader } from './PageLoader'
 import { Label, InputLabel } from './Label'
+import Chip from './Chip'
 
 export {
   Button,
@@ -45,4 +46,5 @@ export {
   PageLoader,
   Label,
   InputLabel,
+  Chip,
 }

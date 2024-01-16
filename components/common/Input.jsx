@@ -56,27 +56,27 @@ const Wrapper = styled.div`
 const InputField = styled.input`
   width: 100%;
   height: ${(props) => (props.size === 'large' ? '60px' : '48px')};
-  border: 1px solid #e9edf2;
-  border-radius: 30px;
-  padding: 0 20px;
-  font-family: 'Lato';
+  padding: 0 24px;
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
 
   transition: all 0.3s;
-  background: #ffffff;
+
+  border-radius: 1000px;
+  border: 1px solid #e6e6e6;
+  background: #fff;
 
   &:first-child {
-    color: #464f60 !important;
+    color: #313536 !important;
   }
 
   &::placeholder {
-    color: #bbc0cd;
+    color: #313536;
   }
 
   &:focus {
-    border-color: #464f60;
+    border-color: #313536;
     outline: none;
   }
 `
@@ -85,6 +85,7 @@ const InputTip = styled.div`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  color: #313536;
   right: 20px;
   font-weight: 400;
   font-size: 14px;

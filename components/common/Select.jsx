@@ -63,7 +63,6 @@ const Menu = styled.div`
 const LabelStyles = `
 	width: 100%;
 	padding: 11px 15px;
-	background: #EDF1F8;
 	border-radius: 0;
 	font-weight: 400;
 	font-size: 16px;
@@ -80,7 +79,7 @@ const LabelStyles = `
 
 const Label = styled.div`
   ${LabelStyles}
-  background: #EDF1F8;
+  background: transparent;
   position: relative;
   cursor: pointer;
   transition: all 0.3s;
@@ -97,6 +96,7 @@ const Label = styled.div`
 const InputLabel = styled.input`
   ${LabelStyles}
   outline: none;
+  background: transparent;
   border: 1px solid #edf1f8;
   font-weight: 400;
   cursor: pointer;

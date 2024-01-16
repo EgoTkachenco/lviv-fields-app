@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Box, Icon, Button, Text } from '../../../common'
+import { Box, Icon, Button, Text, H6 } from '../../../common'
 
 const FilesList = ({ files, isRead, onDelete, isMobile }) => {
   const Container = isMobile ? FilesMobile : Files
@@ -32,10 +32,11 @@ export const FilePreview = ({ file, isRead, onDelete }) => {
   return (
     <FilePreviewBox>
       <FilePreviewName>{file.name}</FilePreviewName>
-      <Text>{date}</Text>
+      <H6>{date}</H6>
       <Icon
-        icon="download"
-        size="16px"
+        icon="info"
+        size="20px"
+        title="Завантажити"
         onClick={() =>
           window.open(backend_url + file.url, { _target: '_black' })
         }
@@ -51,7 +52,7 @@ const FilePreviewBox = styled(Box)`
   align-items: center;
 `
 
-const FilePreviewName = styled(Text)`
+const FilePreviewName = styled(H6)`
   flex-grow: 1;
 `
 

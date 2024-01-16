@@ -1,4 +1,4 @@
-import { Text, Box } from '../../../common'
+import { Text, Box, Chip, H6 } from '../../../common'
 import styled from 'styled-components'
 
 export const CardField = ({
@@ -11,9 +11,9 @@ export const CardField = ({
   const StyledBox = styledBox
   if (isRead)
     return (
-      <StyledBox gap="16px 4px" wrap="true">
-        <Text>{label}:</Text>
-        <Text color="grey">{value || 'немає'}</Text>
+      <StyledBox gap="16px 10px" align="center" wrap="true">
+        <H6>{label}:</H6>
+        <Chip color="primary">{value || 'немає'}</Chip>
       </StyledBox>
     )
 
@@ -24,7 +24,7 @@ export const CardField = ({
       justify="space-between"
       wrap="true"
     >
-      <Text>{label}:</Text>
+      <H6>{label}:</H6>
       {editableSlot}
     </StyledBox>
   )

@@ -24,26 +24,38 @@ const Wrapper = styled.div`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: #f3f4f6;
 `
 
 const AuthContent = styled.div`
   flex-grow: 1;
-  /* background: url('/auth-back.png') center center;
-  background-size: cover; */
-  background: #eceff7;
+  position: relative;
+  background: #d5d7e3;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   padding: 20px;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/auth-back.png') center center;
+    background-size: cover;
+  }
 `
 const DefaultContent = styled.div`
   padding: 30px;
   min-height: calc(100vh - 80px);
-  background: #eceff7;
+  max-height: calc(100vh - 80px);
+  background: #f3f4f6;
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
+  overflow: auto;
 
   @media (max-width: 600px) {
     padding: 20px 20px 80px;
@@ -51,15 +63,13 @@ const DefaultContent = styled.div`
 `
 
 const DashboardContent = styled.div`
-  /* background: url('/back.png') center center; */
-  background: url('/background.jpg') center center;
-  background-size: cover;
+  background: #f3f4f6;
   padding: 30px;
-  /* min-height: calc(100vh - 80px); */
-  height: calc(100vh - 80px);
+  min-height: calc(100vh - 80px);
+  max-height: calc(100vh - 80px);
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
+  overflow: auto;
 
   @media (max-width: 600px) {
     padding: 20px 20px 80px;

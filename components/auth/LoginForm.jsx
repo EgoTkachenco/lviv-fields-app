@@ -30,24 +30,29 @@ const LoginForm = observer(() => {
   }
   return (
     <AuthCard onSubmit={onSubmit} loading={store.isFetch || undefined}>
+      <div className="expand-icon" />
       <H4>Вхід в особистий кабінет</H4>
-      <Spacer vertical size="24px" />
+      <Spacer vertical size="30px" />
       <Input placeholder="Логiн" {...form.getFieldProps('identifier')} />
-      <Spacer vertical size="10px" />
+      <Spacer vertical size="12px" />
       <Input
         type="password"
         placeholder="Пароль"
-        tip={<Link href="/forgot-password">Забули пароль?</Link>}
+        tip={
+          <Link href="/forgot-password" style={{ opacity: 0.5 }}>
+            Забули пароль?
+          </Link>
+        }
         {...form.getFieldProps('password')}
       />
-      <Spacer vertical size="18px" />
+      <Spacer vertical size="25px" />
 
-      <Button variant="primary" type="submit">
-        Увійти
-      </Button>
-      <ButtonText color="gray">або</ButtonText>
       <Button variant="success" onClick={() => router.push('/registration')}>
         Зареєструватись
+      </Button>
+      <ButtonText>або</ButtonText>
+      <Button variant="primary" type="submit">
+        Увійти
       </Button>
     </AuthCard>
   )

@@ -2,8 +2,9 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: 'Lato', sans-serif;
+  font-family: 'TT Fors Trial';
   min-width: 350px;
+  color: #313536;
 }
 * {
   box-sizing: border-box;
@@ -11,7 +12,7 @@ body {
 }
 *::-webkit-scrollbar {
   width: 3px;
-  height: 12px;
+  height: 8px;
 }
 
 *::-webkit-scrollbar-track {
@@ -20,14 +21,14 @@ body {
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: #407cff;
+  background-color: #313536;
   border-radius: 30px;
 }
 
 button,
 input,
 a {
-  font-family: 'Lato', sans-serif;
+  font-family: 'TT Fors Trial';
 }
 
 a {
@@ -37,7 +38,8 @@ a {
   transition: all 0.3s;
 }
 a:hover {
-  color: #407cff;
+  /* color: #407cff; */
+  text-decoration: underline;
 }
 
 p {

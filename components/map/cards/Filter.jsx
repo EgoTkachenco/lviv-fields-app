@@ -66,7 +66,7 @@ const Filter = ({ filter, onChange, onSubmit, onClear }) => {
         <FilterInner>
           <H5>Тип земельної ділянки</H5>
           <Spacer vertical size="12px" />
-          <Box gap="16px" wrap="true">
+          <Box gap="16px" direction="column">
             {Object.keys(FIELD_TYPES).map((type) => (
               <Checkbox
                 key={type}
@@ -80,7 +80,7 @@ const Filter = ({ filter, onChange, onSubmit, onClear }) => {
           <Spacer vertical size="24px" />
           <H5>Клас земельної ділянки</H5>
           <Spacer vertical size="12px" />
-          <Box gap="16px" wrap="true">
+          <Box gap="16px" direction="column">
             {Object.keys(FIELD_CATEGORIES).map((category) => (
               <Checkbox
                 key={category}
@@ -98,9 +98,14 @@ const Filter = ({ filter, onChange, onSubmit, onClear }) => {
             onChange={onSearchVarieties}
             placeholder="Пошук"
             name="search"
-            tip={<SearchIcon src="/icons/search.svg" />}
+            tip={
+              <SearchIcon>
+                <Icon icon="search" size="20px" />
+              </SearchIcon>
+            }
+            size="large"
           />
-          <Spacer vertical size="8px" />
+          <Spacer vertical size="24px" />
           <SortsBox gap="16px" direction="column">
             {varieties.length > 0 ? (
               varieties.map((variety) => (
@@ -116,51 +121,57 @@ const Filter = ({ filter, onChange, onSubmit, onClear }) => {
             )}
           </SortsBox>
           <Spacer vertical size="24px" />
-          <H5>Рік насаджень</H5>
-          <Spacer vertical size="12px" />
-          <Box align="center" justify="space-between" gap="16px">
-            <Input
-              value={filter.year.start}
-              validate={(v) => !isNaN(Number(v)) && v > 0 && v < 3000}
-              placeholder="2011"
-              onChange={(val) => onChange('year-start', val)}
-            />
-            <FilterDelimiter />
-            <Input
-              value={filter.year.end}
-              validate={(v) => !isNaN(Number(v)) && v > 0 && v < 3000}
-              placeholder="2022"
-              onChange={(val) => onChange('year-end', val)}
-            />
+          <Box>
+            <div>
+              <H5>Рік насаджень</H5>
+              <Spacer vertical size="12px" />
+              <Box align="center" justify="space-between" gap="16px">
+                <Input
+                  value={filter.year.start}
+                  validate={(v) => !isNaN(Number(v)) && v > 0 && v < 3000}
+                  placeholder="2011"
+                  onChange={(val) => onChange('year-start', val)}
+                />
+                <FilterDelimiter />
+                <Input
+                  value={filter.year.end}
+                  validate={(v) => !isNaN(Number(v)) && v > 0 && v < 3000}
+                  placeholder="2022"
+                  onChange={(val) => onChange('year-end', val)}
+                />
+              </Box>
+            </div>
+            <Spacer size="24px" />
+            <div>
+              <H5>Термiн дії договору</H5>
+              <Spacer vertical size="12px" />
+              <DateBox align="center" justify="space-between" gap="8px">
+                <Input
+                  value={filter.term.start}
+                  type="date"
+                  // validate={(v) => !isNaN(Number(v)) && v > 0 && v < 100}
+                  placeholder="3"
+                  onChange={(val) => onChange('term-start', val)}
+                />
+                <FilterDelimiter />
+                <Input
+                  value={filter.term.end}
+                  type="date"
+                  // validate={(v) => !isNaN(Number(v)) && v > 0 && v < 100}
+                  placeholder="10"
+                  onChange={(val) => onChange('term-end', val)}
+                />
+              </DateBox>
+            </div>
           </Box>
-          <Spacer vertical size="24px" />
-          <H5>Термiн дії договору</H5>
-          <Spacer vertical size="12px" />
-          <DateBox align="center" justify="space-between" gap="8px">
-            <Input
-              value={filter.term.start}
-              type="date"
-              // validate={(v) => !isNaN(Number(v)) && v > 0 && v < 100}
-              placeholder="3"
-              onChange={(val) => onChange('term-start', val)}
-            />
-            <FilterDelimiter />
-            <Input
-              value={filter.term.end}
-              type="date"
-              // validate={(v) => !isNaN(Number(v)) && v > 0 && v < 100}
-              placeholder="10"
-              onChange={(val) => onChange('term-end', val)}
-            />
-          </DateBox>
         </FilterInner>
         <Spacer vertical size="24px" style={{ marginTop: 'auto' }} />
-        <Button variant="accent" onClick={handleSubmit}>
-          застосувати
+        <Button variant="success" onClick={handleSubmit}>
+          Застосувати
         </Button>
         <Spacer vertical size-sm="16px" />
-        <Button variant="text" onClick={clearFilter}>
-          скинути
+        <Button variant="success-text" onClick={clearFilter}>
+          Скинути
         </Button>
       </FilterCard>
     </>
@@ -172,9 +183,11 @@ export default Filter
 const FilterCard = styled(Card)`
   display: flex;
   flex-direction: column;
-  padding: 32px;
+  padding: 24px;
   height: 100%;
   max-height: calc(100vh - 80px - 60px);
+  border-radius: 18px;
+  border: 1px solid #000;
 
   @media (max-width: 1200px) {
     display: ${(props) => (props.open ? 'block' : 'none')};
@@ -219,22 +232,19 @@ const FilterCloseButton = styled.button`
 const FilterButton = styled(Button)`
   display: none;
   @media (max-width: 1200px) {
-    display: block;
+    display: flex;
   }
 `
 
 const FilterInner = styled.div`
   overflow: auto;
   width: 100%;
+  height: 100%;
   max-height: 100%;
   margin-right: -20px;
   padding-right: 20px;
   display: flex;
   flex-direction: column;
-
-  ${H5} {
-    font-size: 18px;
-  }
 
   @media (max-width: 1200px) {
     max-width: 315px;
@@ -251,13 +261,20 @@ const FilterDelimiter = styled.div`
   width: 20px;
 `
 
-const SearchIcon = styled.img`
-  width: 24px;
-  height: 24px;
+const SearchIcon = styled.div`
+  width: 55px;
+  height: 55px;
+  background: #313536;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: -20px;
 `
 
 const SortsBox = styled(Box)`
   min-height: 105px;
+  flex-grow: 1;
   /* max-height: 65px; */
   overflow: auto;
   & > * {

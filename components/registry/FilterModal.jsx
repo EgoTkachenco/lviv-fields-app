@@ -101,7 +101,7 @@ const FilterModal = ({ model = [], filters, onFilterChange }) => {
                   <Label>{type}</Label>
                   <Label>{value}</Label>
                   <CloseButton onClick={() => onRemove(key)} title="Видалити">
-                    <Icon icon="close" size="12px" />
+                    <Icon icon="close" size="24px" />
                   </CloseButton>
                 </Row>
               )
@@ -113,12 +113,12 @@ const FilterModal = ({ model = [], filters, onFilterChange }) => {
       </Modal>
 
       <Button
-        style={{ marginLeft: 'auto' }}
         width="auto"
         variant={count ? 'success' : 'primary'}
         onClick={() => setShow(true)}
-        size="small"
+        size="large"
       >
+        <Icon icon="filter" size="16px" />
         Фільтри {count ? `(${count})` : ''}
       </Button>
     </>
@@ -176,10 +176,11 @@ const NewFilterForm = ({ model, onCreate, fieldOptions }) => {
 
       <Button
         width="auto"
-        variant="success"
+        variant="primary"
         disabled={!isAllowAdd}
         onClick={createFilter}
       >
+        <Icon icon="add" size="16px" />
         Додати
       </Button>
     </NewFilterFormContainer>
@@ -197,6 +198,15 @@ const FilterList = styled.div`
 `
 
 const NewFilterFormContainer = styled(Box)`
+  & > div,
+  & > input {
+    border-radius: 12px;
+    border: 1px solid #e6e6e6;
+    background: #f3f4f6;
+    & > * {
+      border-radius: 12px;
+    }
+  }
   @media (max-width: 768px) {
     & > * {
       flex-grow: 1;
@@ -207,6 +217,16 @@ const NewFilterFormContainer = styled(Box)`
 
 const Row = styled(Box)`
   position: relative;
+
+  & > div,
+  & > input {
+    border-radius: 12px;
+    border: 1px solid #e6e6e6;
+    background: #f3f4f6;
+    & > * {
+      border-radius: 12px;
+    }
+  }
 `
 
 const CloseButton = styled.button`

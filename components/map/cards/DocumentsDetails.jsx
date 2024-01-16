@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import { Card, H5, Spacer, Box, Icon, Button, Input } from '../../common'
-import { CardField, Column, FilesList, FileUploadButton } from './elements'
+import { Card, H5, Box } from '../../common'
+import { FilesList, FileUploadButton } from './elements'
 
 const DocumentsDetails = ({ data, isRead, onChange }) => {
   return (

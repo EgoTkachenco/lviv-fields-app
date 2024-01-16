@@ -61,8 +61,8 @@ export default function Map({
 
   return (
     <MapCard isField={!!field}>
+      <div className="expand-icon" />
       {filterStyles}
-      {area && <BackLink action={onClose} />}
       {area ? (
         <AreaMap
           area={area}
@@ -91,7 +91,19 @@ const MapCard = styled(Card)`
   align-items: center;
   flex-grow: 1;
   max-height: ${({ isField }) => (isField ? '550px' : 'unset')};
-  padding: 48px 32px;
+  padding: 20px 20px;
+  border-radius: 18px;
+  border: 1px solid #000;
+
+  .expand-icon {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 32px;
+    height: 32px;
+    background: url('/icons/expand.svg');
+    background-size: cover;
+  }
 
   svg {
     position: relative;
@@ -2609,9 +2621,9 @@ const AreaLabel = styled.div`
   position: absolute;
   z-index: 99;
   top: 16px;
-  right: 32px;
-  font-weight: 700;
+  left: 32px;
+  font-weight: 500;
   font-size: 24px;
   line-height: 120%;
-  color: #abb1c8;
+  color: #313536;
 `

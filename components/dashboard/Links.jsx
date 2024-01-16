@@ -1,47 +1,26 @@
 import { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { Box } from '../common'
+import { Box, Icon } from '../common'
 import { useRouter } from 'next/router'
 import config from '../../config/config.json'
 
 const Links = () => {
-  // get links from public folder
-  // const [links, setLinks] = useState({
-  //   email: '',
-  //   video: '',
-  //   site: '',
-  //   crm_site: '',
-  //   telegram: '',
-  //   viber: '',
-  // })
-  // useEffect(() => {
-  //   fetch('/links.json')
-  //     .then((res) => res.json())
-  //     .then((res) => setLinks({ ...links, ...res }))
-  // }, [])
-
   const router = useRouter()
-  // const admin = process.env.NEXT_PUBLIC_ADMIN_URL
 
   return (
     <Wrapper wrap="true">
       <Link
-        text="карта полiв"
+        text="Карта Полів"
         redirect={() => router.push('/map')}
-        icon="/icons/marker.svg"
+        icon="map"
         index={0}
       />
+      <Link text="CRM система" link={config.crm_site} icon="crm" index={1} />
+      <Link text="Сайт" link={config.site} icon="site" index={4} />
       <Link
-        text="crm система"
-        link={config.crm_site}
-        icon="/icons/crm.svg"
-        index={1}
-      />
-      <Link text="сайт" link={config.site} icon="/icons/web.svg" index={4} />
-      <Link
-        text="корпоративна пошта"
+        text="Корпоративна пошта"
         link={'mailto:' + config.email}
-        icon="/icons/mail.svg"
+        icon="corporate-mail"
         index={2}
       />
       {/* <Link
@@ -87,7 +66,11 @@ const Link = ({ text, link, icon, size, redirect, index }) => (
     data-aos-anchor-placement="top-bottom"
     data-aos-delay={50 * index}
   >
-    <LinkIcon src={icon} alt={text} />
+    <div className="expand-icon" />
+    <LinkIcon>
+      <Icon icon="polygon" size="14px" />
+      <Icon icon={icon} size="32px" />
+    </LinkIcon>
     {text && <LinkText>{text}</LinkText>}
   </LinkCard>
 )
@@ -96,106 +79,104 @@ export default Links
 
 const Wrapper = styled(Box)`
   justify-content: space-between;
+  flex-wrap: wrap;
   gap: 30px;
   @media (max-width: 1200px) {
     gap: 20px;
   }
 `
 
-const LinkCard = styled.a`
-  width: calc((100% - 30px * 3) / 4);
-  /* height: ${(props) => (props.size === 'small' ? '121px' : '285px')}; */
-  /* width: ${(props) =>
-    props.size === 'small'
-      ? '125px'
-      : props.size === 'medium'
-      ? 'calc(100% - 125px - 13px)'
-      : 'calc((100% - 30px * 5) / 6)'}; */
-  background: #407cff;
-  transition: all 0.3s;
-  border-radius: 30px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 30px;
-  cursor: pointer;
-  gap: 20px 20px;
-
-  &:hover {
-    background: rgba(64, 124, 255, 0.8);
-  }
-
-  @media (max-width: 1200px) {
-    width: calc((100% - 30px * 2) / 3);
-  }
-
-  @media (max-width: 900px) {
-    flex-direction: row;
-    gap: 0;
-    width: 100%;
-    height: 46px;
-    padding: 0;
-    background: #407cff;
-  }
-`
-
 const LinkText = styled.div`
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 24px;
-  text-align: center;
-  text-transform: uppercase;
-  color: #ffffff;
-  width: 100%;
-  min-height: 48px;
+  height: 80px;
   display: flex;
-  justify-content: center;
   align-items: center;
-
-  @media (max-width: 1700px) {
-    font-size: 14px;
-    line-height: 16px;
-    min-height: 28px;
-  }
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 120%;
+  color: #313536;
+  transition: all 0.3s;
 
   @media (max-width: 1200px) {
-    font-weight: 600;
+    /* font-weight: 600;
     font-size: 14px;
     line-height: 17px;
     min-height: unset;
-    width: auto;
+    width: auto; */
   }
 `
+const LinkCard = styled.a`
+  width: 45%;
+  height: 195px;
+  flex-grow: 1;
+  border: 1px solid #000;
+  background: #fff;
+  transition: all 0.3s;
+  border-radius: 18px;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  padding: 24px;
+  cursor: pointer;
+  gap: 24px;
 
-const LinkIcon = styled.img`
-  height: 100px;
+  .expand-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 18px;
+    height: 18px;
+    background: url('/icons/expand.svg');
+  }
 
-  @media (max-width: 1700px) {
-    height: 80px;
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: url('/link-card.svg');
+    width: 337px;
+    height: 158px;
+  }
+
+  &:hover {
+    background: #748c8e;
+    text-decoration: none;
+
+    .expand-icon {
+      background: url('/icons/expand-white.svg');
+    }
+
+    &::before {
+      background: url('/link-card-white.svg');
+    }
+
+    ${LinkText} {
+      color: #ffffff;
+    }
   }
 
   @media (max-width: 900px) {
-    height: 16px;
-    margin-right: 6px;
-  }
-`
-
-const LinkCardsWrapper = styled(Box)`
-  width: calc((100% - 80px) / 3);
-
-  @media (max-width: 1200px) {
-    /* width: 100%; */
-    width: calc((100% - 20px) / 2);
-  }
-  @media (max-width: 600px) {
     width: 100%;
   }
 `
+const LinkIcon = styled.div`
+  border-radius: 5px;
+  border: 1px solid #313536;
+  background: #ffffff;
+  height: 80px;
+  width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.3s;
 
-const SocialBox = styled(Box)`
-  @media (max-width: 1200px) {
-    display: none;
+  & > :first-child {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    svg {
+      fill: #313536;
+    }
   }
 `

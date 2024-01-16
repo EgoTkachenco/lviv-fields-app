@@ -4,6 +4,7 @@ import ScrollContainer from 'react-indiana-drag-scroll'
 import { usePinch } from '@use-gesture/react'
 import _ from 'lodash'
 import { useNoBodyScroll } from '../../../hooks'
+import { Icon } from '../../common'
 
 export default function Viewer({ children, small }) {
   const [focus, setFocus] = useState(false)
@@ -66,13 +67,8 @@ export default function Viewer({ children, small }) {
         {children}
       </ViewerWrapper>
       <Zoom>
-        <ZoomBtn onClick={() => handleScroll({ deltaY: -1 })}>
-          <span />
-          <span />
-        </ZoomBtn>
-        <ZoomBtn onClick={() => handleScroll({ deltaY: 1 })}>
-          <span />
-        </ZoomBtn>
+        <Icon icon="zoom-plus" onClick={() => handleScroll({ deltaY: -1 })} />
+        <Icon icon="zoom-minus" onClick={() => handleScroll({ deltaY: 1 })} />
       </Zoom>
     </ScrollContainer>
   )
@@ -104,40 +100,40 @@ const ViewerWrapper = styled.div`
 
 const Zoom = styled.div`
   position: absolute;
-  bottom: 30px;
-  right: 30px;
+  bottom: 26px;
+  right: 26px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-`
+  gap: 8px;
+  padding: 4px;
+  background: #ffffff;
+  border-radius: 36px;
+  border: 1px solid #000;
 
-const ZoomBtn = styled.button`
-  background: none;
-  border: none;
-  outline: none;
-  background: #407cff;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
+  & > * {
+    max-width: 55px;
+    min-width: 55px;
+    max-height: 55px;
+    min-height: 55px;
+    transition: all 0.3s;
 
-  span {
-    display: block;
-    background: #ffffff;
-    width: 18px;
-    height: 2px;
-    position: absolute;
-  }
-
-  &:first-child {
-    border-radius: 30px 30px 0px 0px;
-    & span:first-child {
-      transform: rotate(90deg);
+    &:hover {
+      transform: scale(1.05);
+    }
+    &:active {
+      transform: scale(1);
     }
   }
-  &:last-child {
-    border-radius: 0px 0px 30px 30px;
+
+  @media (max-width: 1200px) {
+    bottom: 16px;
+    right: 16px;
+
+    & > * {
+      max-width: 32px;
+      min-width: 32px;
+      max-height: 32px;
+      min-height: 32px;
+    }
   }
 `

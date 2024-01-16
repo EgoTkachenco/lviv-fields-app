@@ -84,7 +84,12 @@ const Registry = observer(() => {
             value={search}
             onChange={(value) => store.updateSearch(value)}
             placeholder="Пошук"
-            rightSlot={<Icon icon="search" />}
+            tip={
+              <SearchIcon>
+                <Icon icon="search" size="20px" />
+              </SearchIcon>
+            }
+            size="large"
           />
         </Search>
 
@@ -109,8 +114,8 @@ const Registry = observer(() => {
         {isShowOnMap && (
           <Button
             variant="primary"
-            width="200px"
-            size="small"
+            width="250px"
+            size="large"
             onClick={() => {
               store.loadFieldIds(filter).then(() => router.push('/map'))
             }}
@@ -121,17 +126,15 @@ const Registry = observer(() => {
       </Box>
       <Spacer vertical size="30px" />
       <TabsExportContainer>
-        <TabsWrapper>
-          {tabs.map((tab) => (
-            <TabButton
-              key={tab.value}
-              active={tab.value === activeTab}
-              onClick={() => setActiveTab(tab.value)}
-            >
-              {tab.name}
-            </TabButton>
-          ))}
-        </TabsWrapper>
+        {tabs.map((tab) => (
+          <TabButton
+            key={tab.value}
+            active={tab.value === activeTab}
+            onClick={() => setActiveTab(tab.value)}
+          >
+            {tab.name}
+          </TabButton>
+        ))}
         <Icon icon="print" size="32px" onClick={exportData} />
       </TabsExportContainer>
       <Spacer vertical size="30px" />
@@ -190,25 +193,18 @@ const Search = styled.div`
   max-width: 470px;
   width: 100%;
 `
-const TabsWrapper = styled.div`
-  background: #ffffff;
-  border: 1px solid #d7dce1;
-  border-radius: 30px;
-  display: flex;
-  align-items: center;
-  width: fit-content;
-`
+
 const TabButton = styled.button`
-  background: ${({ active }) => (active ? '#407cff' : '#ffffff')};
-  color: ${({ active }) => (active ? '#ffffff' : '#464F60')};
-  border-radius: 30px;
+  background: ${({ active }) => (active ? '#748C8E' : '#ffffff')};
+  color: ${({ active }) => (active ? '#ffffff' : '#313536')};
+  border: 1px solid ${({ active }) => (active ? '#464F60' : '#313536')};
+  border-radius: 50px;
   padding: 0 20px;
   height: 40px;
   font-weight: 600;
   font-size: 14px;
   line-height: 17px;
   text-transform: uppercase;
-  border: none;
   outline: none;
   cursor: pointer;
 
@@ -220,4 +216,24 @@ const TabButton = styled.button`
 const TabsExportContainer = styled(Box)`
   align-items: center;
   gap: 16px;
+
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    gap: 8px;
+
+    & > :last-child {
+      margin-left: 8px;
+    }
+  }
+`
+
+const SearchIcon = styled.div`
+  width: 60px;
+  height: 60px;
+  background: #313536;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: -20px;
 `

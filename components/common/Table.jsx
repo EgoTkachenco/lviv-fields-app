@@ -86,25 +86,37 @@ const TableWrapper = styled.table`
 `
 const TableContent = styled.tbody`
   display: block;
+  border-radius: 10px;
+  border: 1px solid #000;
+  background: #fff;
+  overflow: hidden;
 `
 const TableRow = styled.tr`
   border-bottom: 1px solid #e9edf5;
   background: ${({ active }) => (active ? '#EDF9ED' : '#ffffff')};
   transition: all 0.3s;
+  width: 100%;
+
+  &:nth-child(even) {
+    background: rgba(227, 232, 232, 0.5);
+  }
+  &:nth-child(odd) {
+    background: transparent;
+  }
 
   &:hover {
     background: #f4f6fa;
   }
 `
 const TableHeaderCell = styled.th`
-  padding: 12px 20px;
+  padding: 10px 20px;
   min-width: ${(props) => props.width};
   /* max-width: ${(props) => props.width}; */
-  background: #f4f6fa;
+  background: #748c8e;
+  font-size: 13px;
   font-weight: 600;
-  font-size: 14px;
-  line-height: 17px;
-  color: #687182;
+  line-height: normal;
+  color: #ffffff;
   border-right: 1px solid #e9edf5;
   text-align: left;
 
@@ -118,19 +130,19 @@ const TableCell = styled.td`
   border-right: 1px solid #e9edf5;
   min-width: ${(props) => props.width};
   /* max-width: ${(props) => props.width}; */
+  font-size: 13px;
   font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  color: #687182;
-  padding: 12px 20px;
+  line-height: normal;
+  color: #313536;
+  padding: 8px 20px;
 
   background: ${({ isRead }) => (isRead ? 'transparent' : 'white')};
 
   input {
     font-weight: 400;
-    font-size: 14px;
-    line-height: 17px;
-    color: #687182;
+    font-size: 13px;
+    line-height: normal;
+    color: #313536;
     background: none;
     border: none;
     outline: none;

@@ -88,13 +88,4 @@ const model = [
   { id: 'email', name: 'Електронна пошта' },
   { id: 'note', name: 'Примітки' },
 ]
-const sizes = [
-  '40px',
-  '120px',
-  '160px',
-  '250px',
-  '180px',
-  '170px',
-  '200px',
-  '150px',
-]
+const sizes = ['40px', '120px', '160px', '250px', '180px', '170px', '100%']

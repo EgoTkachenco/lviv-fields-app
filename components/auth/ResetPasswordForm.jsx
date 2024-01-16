@@ -4,18 +4,13 @@ import { AuthCard, ButtonText } from './elements'
 export default function ResetPasswordForm() {
   return (
     <AuthCard>
-      <Box
-        align="center"
-        justify="space-between"
-        direction-sm="column"
-        align-sm="flex-start"
-        gap-sm="15px"
-      >
-        <H4>Відновлення паролю</H4>
-        <Caption color="gray">* - обов`язкове поле</Caption>
-      </Box>
+      <div className="expand-icon" />
 
+      <H4>Відновлення паролю</H4>
       <Spacer vertical size="24px" />
+      <Text color="gray">* - обов`язкове поле</Text>
+      <Spacer vertical size="24px" />
+
       <Input placeholder="Пароль*" />
       <Spacer vertical size="10px" />
       <Input placeholder="Повторити пароль*" />

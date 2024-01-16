@@ -1,4 +1,4 @@
-import { H4, Box, Spacer, Button, Input, Caption } from '../common'
+import { H4, Spacer, Button, Input, Text } from '../common'
 import { AuthCard, ButtonText } from './elements'
 import { useRouter } from 'next/router'
 import { observer } from 'mobx-react-lite'
@@ -42,18 +42,12 @@ const RegistationForm = observer(() => {
   }
   return (
     <AuthCard onSubmit={onSubmit} loading={store.isFetch || undefined}>
-      <Box
-        align="center"
-        justify="space-between"
-        direction-sm="column"
-        align-sm="flex-start"
-        gap-sm="15px"
-      >
-        <H4>Реєстрація</H4>
-        <Caption color="gray">* - обов`язкове поле</Caption>
-      </Box>
-
+      <div className="expand-icon" />
+      <H4>Реєстрація</H4>
       <Spacer vertical size="24px" />
+      <Text color="gray">* - поля обов{"'"}язкові до заповнення</Text>
+      <Spacer vertical size="24px" />
+
       <Input placeholder="Логiн*" {...form.getFieldProps('username')} />
       <Spacer vertical size="10px" />
       <Input placeholder="Електронна пошта*" {...form.getFieldProps('email')} />
