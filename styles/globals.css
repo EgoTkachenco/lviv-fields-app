@@ -52,6 +52,9 @@ p {
   max-height: 736px;
   width: auto;
   height: 100%;
+
+  /* width: 100%; */
+  max-width: 100%;
 }
 
 .map-viewer-scroll-container.small {

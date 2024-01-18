@@ -3,14 +3,13 @@ import { H1, Text, Spacer, H2, H4, Button, Icon, H5 } from '../common'
 
 const Info = () => (
   <Wrapper>
-    <div>
+    <TextContainer>
       <H1>LAND-MAP</H1>
-      <Spacer size="40px" vertical />
-      <TextContainer>
+      <div>
         <H2 color="gray">корпоративна</H2>
         <H2>система управління</H2>
-      </TextContainer>
-    </div>
+      </div>
+    </TextContainer>
     <DetailsBlock>
       <H4>Як це працює?</H4>
       <Spacer size="32px" vertical />
@@ -34,7 +33,7 @@ const Wrapper = styled.div`
   flex-wrap: wrap;
 `
 const TextContainer = styled.div`
-  max-width: 800px;
+  max-width: 700px;
   h2 {
     display: inline;
     margin-right: 16px;

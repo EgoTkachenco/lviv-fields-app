@@ -77,7 +77,7 @@ const Filter = ({ filter, onChange, onSubmit, onClear }) => {
               />
             ))}
           </Box>
-          <Spacer vertical size="24px" />
+          <Spacer vertical size="20px" />
           <H5>Клас земельної ділянки</H5>
           <Spacer vertical size="12px" />
           <Box gap="16px" direction="column">
@@ -90,7 +90,7 @@ const Filter = ({ filter, onChange, onSubmit, onClear }) => {
               />
             ))}
           </Box>
-          <Spacer vertical size="24px" />
+          <Spacer vertical size="20px" />
           <H5>Сорт насаджень</H5>
           <Spacer vertical size="12px" />
           <Input
@@ -105,7 +105,7 @@ const Filter = ({ filter, onChange, onSubmit, onClear }) => {
             }
             size="large"
           />
-          <Spacer vertical size="24px" />
+          <Spacer vertical size="20px" />
           <SortsBox gap="16px" direction="column">
             {varieties.length > 0 ? (
               varieties.map((variety) => (
@@ -120,7 +120,7 @@ const Filter = ({ filter, onChange, onSubmit, onClear }) => {
               <Text align="center">Немає результатів</Text>
             )}
           </SortsBox>
-          <Spacer vertical size="24px" />
+          <Spacer vertical size="20px" />
           <RangeBox>
             <div>
               <H5>Рік насаджень</H5>

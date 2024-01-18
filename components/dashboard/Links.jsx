@@ -106,7 +106,7 @@ const LinkText = styled.div`
 `
 const LinkCard = styled.a`
   width: 45%;
-  height: 195px;
+  height: 160px;
   flex-grow: 1;
   border: 1px solid #000;
   background: #fff;
