@@ -19,7 +19,7 @@ const Container = styled.div`
   flex-direction: column;
   gap: 48px;
 
-  @media (max-width: 1300px) {
+  @media (max-width: 1500px) {
     gap: 32px;
   }
 

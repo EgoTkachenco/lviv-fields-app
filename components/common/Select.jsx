@@ -79,7 +79,7 @@ const LabelStyles = `
 
 const Label = styled.div`
   ${LabelStyles}
-  background: transparent;
+  background: #ffffff;
   position: relative;
   cursor: pointer;
   transition: all 0.3s;
@@ -96,7 +96,6 @@ const Label = styled.div`
 const InputLabel = styled.input`
   ${LabelStyles}
   outline: none;
-  background: transparent;
   border: 1px solid #edf1f8;
   font-weight: 400;
   cursor: pointer;

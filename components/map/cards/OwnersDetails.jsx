@@ -59,17 +59,17 @@ const OwnersDetails = ({ data, isRead, onUpdate, onCreate, onDelete }) => {
 export default OwnersDetails
 
 const StyledCard = styled(Card)`
-  /* flex-grow: 1; */
+  flex-grow: 1;
 `
 const TableContent = styled.div`
-  max-height: 300px;
   width: 100%;
-  overflow: auto;
 `
 const TableContainer = styled.div`
   max-width: 100%;
   overflow: auto;
-  min-height: 200px;
+  min-height: calc(100% - 48px);
+  max-height: calc(100% - 48px);
+
   table {
     width: 100%;
     th,

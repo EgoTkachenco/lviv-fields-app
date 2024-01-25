@@ -47,27 +47,36 @@ p {
 }
 
 .map-viewer-scroll-container {
-  /* min-height: 736px; */
-  min-height: 200px;
-  max-height: 736px;
-  width: auto;
-  height: 100%;
-
-  /* width: 100%; */
+  /* min-height: 200px; */
+  /* max-height: 736px; */
+  width: 100%;
   max-width: 100%;
+  max-height: calc(100vh - 80px - 60px - 150px - 60px);
+  height: calc(100vh - 80px - 60px - 150px - 60px);
+  min-height: calc(100vh - 80px - 60px - 150px - 60px);
 }
 
 .map-viewer-scroll-container.small {
-  max-height: 488px;
-  min-height: 488px;
+  /* max-height: 488px;
+  min-height: 488px; */
 }
-@media (max-width: 1200px) {
+
+@media (max-width: 1500px) {
+  .map-viewer-scroll-container {
+    /* min-height: 450px;
+    height: 450px;
+    max-height: 450px; */
+    /* height: calc(100vh - 80px - 60px); */
+  }
+}
+
+/* @media (max-width: 1200px) {
   .map-viewer-scroll-container {
     min-height: 500px;
     height: 500px;
     max-height: 500px;
   }
-}
+} */
 
 @media (max-width: 800px) {
   .map-viewer-scroll-container {

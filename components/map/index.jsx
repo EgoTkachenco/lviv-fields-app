@@ -60,7 +60,7 @@ const MapPage = observer(() => {
                 isRead={isRead}
                 onChange={onChange}
               />
-              <Spacer vertical size="40px" />
+              {/* <Spacer vertical size="40px" />
               <ContractDetails
                 data={field}
                 isRead={isRead}
@@ -71,7 +71,7 @@ const MapPage = observer(() => {
                 data={field}
                 isRead={isRead}
                 onChange={onChange}
-              />
+              /> */}
             </>
           )}
         </Side>
@@ -88,7 +88,7 @@ const MapPage = observer(() => {
             filter={filter}
           />
           {!field && <SummaryDetails data={summary} />}
-          {field && (
+          {/* {field && (
             <OwnersDetails
               data={field}
               isRead={isRead}
@@ -96,11 +96,34 @@ const MapPage = observer(() => {
               onUpdate={(data) => onChange('owners-update', data)}
               onDelete={(data) => onChange('owners-delete', data)}
             />
-          )}
+          )} */}
         </Content>
       </Wrapper>
 
-      {field && <BackLink action={() => store.closeField()} />}
+      {field && (
+        <Wrapper style={{ marginTop: '40px' }}>
+          <Side>
+            <ContractDetails data={field} isRead={isRead} onChange={onChange} />
+            <Spacer vertical size="40px" />
+            <DocumentsDetails
+              data={field}
+              isRead={isRead}
+              onChange={onChange}
+            />
+          </Side>
+          <Content>
+            <OwnersDetails
+              data={field}
+              isRead={isRead}
+              onCreate={(data) => onChange('owners-new', data)}
+              onUpdate={(data) => onChange('owners-update', data)}
+              onDelete={(data) => onChange('owners-delete', data)}
+            />
+          </Content>
+        </Wrapper>
+      )}
+
+      {/* {field && <BackLink action={() => store.closeField()} />} */}
       {/* {field && (
         <Bottom>
           <OwnerDetails data={field} isRead={isRead} onChange={onChange} />
@@ -129,6 +152,11 @@ const Content = styled.div`
   /* max-height: 100%; */
   max-height: calc(100vh - 80px - 60px);
   max-width: calc(100vw - 550px - 40px - 60px);
+
+  @media (max-width: 1500px) {
+    max-width: calc(100vw - 450px - 40px - 60px);
+  }
+
   @media (max-width: 1200px) {
     max-width: unset;
     max-height: unset;
@@ -137,7 +165,11 @@ const Content = styled.div`
 const Side = styled.div`
   min-width: 550px;
   max-width: 550px;
-  /* width: 29.5%; */
+
+  @media (max-width: 1500px) {
+    min-width: 450px;
+    max-width: 450px;
+  }
 
   @media (max-width: 1200px) {
     max-width: 100%;

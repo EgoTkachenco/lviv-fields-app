@@ -23,40 +23,45 @@ const PlantationsDetails = ({ data, isRead, onChange }) => {
           </HeaderLabel>
           <HeaderLabel title="Кількість насаджень">Рік насаджень</HeaderLabel>
         </Row>
-        {data.plantations.map((plantation, i) => (
-          <Row key={plantation.id || i}>
-            <Autocomplete
-              value={plantation.variety}
-              onChange={(value) =>
-                onChange('plantation-variety', { value, index: i })
-              }
-              isRead={isRead}
-            />
-            <InputLabel
-              value={plantation.size}
-              readOnly={isRead}
-              onChange={(e) =>
-                onChange('plantation-size', { value: e.target.value, index: i })
-              }
-            />
-            <Select
-              value={plantation.year}
-              onChange={(value) =>
-                onChange('plantation-year', { value, index: i })
-              }
-              isRead={isRead}
-              options={YEARS_OPTIONS}
-            />
-            {!isRead && (
-              <CloseButton
-                onClick={() => onChange('delete-plantation', i)}
-                title="Видалити"
-              >
-                <Icon icon="close" size="12px" />
-              </CloseButton>
-            )}
-          </Row>
-        ))}
+        <ScrollContent>
+          {data.plantations.map((plantation, i) => (
+            <Row key={plantation.id || i}>
+              <Autocomplete
+                value={plantation.variety}
+                onChange={(value) =>
+                  onChange('plantation-variety', { value, index: i })
+                }
+                isRead={isRead}
+              />
+              <InputLabel
+                value={plantation.size}
+                readOnly={isRead}
+                onChange={(e) =>
+                  onChange('plantation-size', {
+                    value: e.target.value,
+                    index: i,
+                  })
+                }
+              />
+              <Select
+                value={plantation.year}
+                onChange={(value) =>
+                  onChange('plantation-year', { value, index: i })
+                }
+                isRead={isRead}
+                options={YEARS_OPTIONS}
+              />
+              {!isRead && (
+                <CloseButton
+                  onClick={() => onChange('delete-plantation', i)}
+                  title="Видалити"
+                >
+                  <Icon icon="close" size="12px" />
+                </CloseButton>
+              )}
+            </Row>
+          ))}
+        </ScrollContent>
 
         {!isRead && (
           <LabelButton
@@ -159,6 +164,13 @@ const Row = styled.div`
     border-left: 1px solid #748c8e;
     border-right: 1px solid #748c8e;
   }
+`
+
+const ScrollContent = styled.div`
+  min-height: 150px;
+  height: calc(100vh - 80px - 60px - 525px);
+  max-height: calc(100vh - 80px - 60px - 525px);
+  overflow: auto;
 `
 
 const CloseButton = styled.button`

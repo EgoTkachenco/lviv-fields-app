@@ -75,6 +75,10 @@ const CurrencyBlock = ({ name, currency, value, icon, index }) => (
 
 const CurrencyCardContent = styled(Box)`
   padding: 24px;
+
+  @media (max-width: 1600px) {
+    padding: 16px 24px;
+  }
 `
 
 const CurrencyCardIcon = styled.div`
@@ -98,6 +102,11 @@ const CurrencyCardIcon = styled.div`
     position: absolute;
     top: 3px;
     left: 3px;
+  }
+
+  @media (max-width: 1600px) {
+    height: 64px;
+    width: 64px;
   }
 `
 

@@ -6,8 +6,10 @@ const Info = () => (
     <TextContainer>
       <H1>LAND-MAP</H1>
       <div>
-        <H2 color="gray">корпоративна</H2>
-        <H2>система управління</H2>
+        <H2>
+          <span style={{ opacity: 0.5, marginRight: '4px' }}>корпоративна</span>{' '}
+          система управління
+        </H2>
       </div>
     </TextContainer>
     <DetailsBlock>
@@ -31,16 +33,38 @@ const Wrapper = styled.div`
   justify-content: space-between;
   gap: 64px;
   flex-wrap: wrap;
+
+  @media (max-width: 1600px) {
+    gap: 32px;
+  }
 `
 const TextContainer = styled.div`
   max-width: 700px;
-  h2 {
-    display: inline;
-    margin-right: 16px;
+
+  @media (max-width: 1600px) {
+    max-width: calc(50% - 16px);
+
+    h1 {
+      font-size: 64px;
+    }
+
+    h2 {
+      display: inline;
+      font-size: 48px;
+    }
   }
 `
 const DetailsBlock = styled.div`
   max-width: 580px;
+
+  @media (max-width: 1600px) {
+    h4 {
+      font-size: 24px;
+    }
+    h5 {
+      font-size: 18px;
+    }
+  }
 `
 
 export default Info

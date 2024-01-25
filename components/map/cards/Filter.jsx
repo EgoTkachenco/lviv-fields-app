@@ -216,7 +216,7 @@ const DateBox = styled(Box)`
 `
 
 const RangeBox = styled(Box)`
-  @media (max-width: 1200px) {
+  @media (max-width: 1500px) {
     flex-direction: column;
   }
 `
@@ -244,7 +244,6 @@ const FilterButton = styled(Button)`
 
 const FilterInner = styled.div`
   overflow: auto;
-  width: 100%;
   height: 100%;
   max-height: 100%;
   margin-right: -20px;
@@ -256,7 +255,7 @@ const FilterInner = styled.div`
     max-width: 315px;
     overflow: auto;
     max-height: unset;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     padding-right: 0;
   }
 `
@@ -286,5 +285,10 @@ const SortsBox = styled(Box)`
   & > * {
     flex-grow: 0;
     width: 100%;
+  }
+
+  @media (max-width: 1500px) {
+    min-height: unset;
+    overflow: visible;
   }
 `

@@ -47,12 +47,12 @@ const LoginForm = observer(() => {
       />
       <Spacer vertical size="25px" />
 
-      <Button variant="success" onClick={() => router.push('/registration')}>
-        Зареєструватись
-      </Button>
-      <ButtonText>або</ButtonText>
       <Button variant="primary" type="submit">
         Увійти
+      </Button>
+      <ButtonText>або</ButtonText>
+      <Button variant="success" onClick={() => router.push('/registration')}>
+        Зареєструватись
       </Button>
     </AuthCard>
   )

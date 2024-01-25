@@ -63,6 +63,7 @@ export default function Map({
     <MapCard isField={!!field}>
       <div className="expand-icon" />
       {filterStyles}
+      {area && <BackLink action={onClose} />}
       {area ? (
         <AreaMap
           area={area}
@@ -90,7 +91,7 @@ const MapCard = styled(Card)`
   justify-content: center;
   align-items: center;
   flex-grow: 1;
-  max-height: ${({ isField }) => (isField ? '550px' : 'unset')};
+  max-height: ${({ isField }) => (isField ? 'unset' : 'unset')};
   padding: 20px 20px;
   border-radius: 18px;
   border: 1px solid #000;
@@ -162,7 +163,7 @@ export function AreaMap({ area, onOpen, field, onClose, summary, areaLabel }) {
   return (
     <>
       {areaLabel && <AreaLabel>Поле № {areaLabel.name}</AreaLabel>}
-      <Viewer small={!!field}>{renderField()}</Viewer>
+      <Viewer small={false}>{renderField()}</Viewer>
     </>
   )
 }

@@ -154,7 +154,9 @@ const LinkCard = styled.a`
       color: #ffffff;
     }
   }
-
+  @media (max-width: 1600px) {
+    height: auto;
+  }
   @media (max-width: 900px) {
     width: 100%;
   }
