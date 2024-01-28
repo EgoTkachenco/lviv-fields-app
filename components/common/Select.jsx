@@ -17,6 +17,7 @@ const Select = ({ value, onChange, placeholder, options, isRead, style }) => {
         value={value}
         title={value}
         readOnly
+        isRead={isRead}
         placeholder={placeholder}
         onClick={() => !isRead && setShow(!show)}
       />
@@ -79,7 +80,6 @@ const LabelStyles = `
 
 const Label = styled.div`
   ${LabelStyles}
-  background: #ffffff;
   position: relative;
   cursor: pointer;
   transition: all 0.3s;
@@ -95,6 +95,7 @@ const Label = styled.div`
 
 const InputLabel = styled.input`
   ${LabelStyles}
+  background: ${({ isRead }) => (isRead ? 'transparent' : '#ffffff')};
   outline: none;
   border: 1px solid #edf1f8;
   font-weight: 400;

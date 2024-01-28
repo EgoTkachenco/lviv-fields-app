@@ -72,7 +72,7 @@ const InputField = styled.input`
   }
 
   &::placeholder {
-    color: #313536;
+    color: rgba(49, 53, 54 0.5);
   }
 
   &:focus {
