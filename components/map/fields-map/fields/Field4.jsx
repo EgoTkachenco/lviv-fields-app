@@ -11,6 +11,7 @@ const Field = React.forwardRef((props, ref) => (
     <g id="4">
       <path
         id="Vector 1"
+        className="green-particle"
         d="M155.333 1076.5V1055.5L192.833 956.5L399.833 524L656.333 0.5L827.333 49L819.333 89L783.833 250.5L774.333 363.5L746.833 481L714.333 684.5L640.333 948.5L546.333 1181.5L155.333 1076.5Z"
         fill="#D2ECD2"
       />

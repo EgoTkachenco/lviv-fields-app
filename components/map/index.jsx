@@ -26,7 +26,7 @@ const MapPage = observer(() => {
   const onSubmitFilter = () => store.getSummary()
   const onClearFilter = () => store.clearFilter()
   const areaLabel =
-    store.areaLabel === null
+    store.areaLabel === null || !areas
       ? null
       : areas.find((area) => area.path === store.areaLabel)
 

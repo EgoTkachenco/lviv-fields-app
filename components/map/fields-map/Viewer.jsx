@@ -93,6 +93,13 @@ const ViewerWrapper = styled.div`
   path {
     cursor: pointer;
     transition: all 0.3s;
+    position: relative;
+    z-index: 10;
+  }
+
+  .green-particle {
+    z-index: -10;
+    position: relative;
   }
 
   max-width: 100%;

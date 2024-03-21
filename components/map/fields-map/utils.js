@@ -52,14 +52,16 @@ export const useMapAreaHandlers = (ref, onOpen) => {
 
 export const useMapFieldsHandlers = (ref, onOpen, field, fields) => {
   const handleEnterField = (e) => {
+    console.log('Enter ', e.target)
     e.currentTarget.style.fill = 'rgba(64, 124, 255, 0.2)'
     e.currentTarget.style.stroke = '#407CFF'
   }
   const handleLeaveField = (e) => {
+    console.log('Leave ', e.target)
     // e.currentTarget.style.fill = fields.includes(e.currentTarget.id)
     //   ? '#407cff'
     // 	: 'transparent'
-    e.currentTarget.style.fill = field ? 'transparent' : ''
+    e.currentTarget.style.fill = 'transparent'
     e.currentTarget.style.stroke = '#464F60'
   }
   useEffect(() => {
@@ -71,14 +73,14 @@ export const useMapFieldsHandlers = (ref, onOpen, field, fields) => {
     const childrens = ref.current.children[element_index].children
     for (let i = 0; i < childrens.length; i++) {
       const element = childrens[i]
-
       if (
         element.tagName === 'path' &&
         element.id.search('Vector') === -1 &&
-        element.id.search('Lake') === -1
+        element.id.search('Lake') === -1 &&
+        !element.classList.contains('disabled-field')
       ) {
         if (field !== element.id)
-          element.addEventListener('mouseenter', handleEnterField)
+          element.addEventListener('mouseover', handleEnterField)
         if (field !== element.id)
           element.addEventListener('mouseleave', handleLeaveField)
         element.addEventListener('click', onOpen)
@@ -90,6 +92,13 @@ export const useMapFieldsHandlers = (ref, onOpen, field, fields) => {
           element.style.fill = 'rgba(64, 124, 255, 0.2)'
           element.style.stroke = '#407CFF'
         }
+      }
+
+      if (element.classList.contains('disabled-field')) {
+        element.style.fill = 'white'
+        // element.style.stroke = 'transparent'
+        element.style.cursor = 'default'
+        // element.style.fill = 'rgba(0,0,0,0.1)'
       }
     }
 
