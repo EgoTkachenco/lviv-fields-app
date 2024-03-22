@@ -95,8 +95,8 @@ export const useMapFieldsHandlers = (ref, onOpen, field, fields) => {
       }
 
       if (element.classList.contains('disabled-field')) {
-        element.style.fill = 'white'
-        // element.style.stroke = 'transparent'
+        // element.style.fill = 'white'
+        element.style.stroke = 'transparent'
         element.style.cursor = 'default'
         // element.style.fill = 'rgba(0,0,0,0.1)'
       }
