@@ -114,9 +114,29 @@ const Field = React.forwardRef((props, ref) => (
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      <path
+      {/* <path
         id="path21698"
         d="M552.306 684.8L358.866 610.24L366.706 591.84L397.426 529.28L589.906 603.52L552.306 684.8Z"
+        stroke="#464F60"
+        strokeWidth="1.12"
+        strokeMiterlimit="10"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+			/> */}
+      <path
+        id="path21698"
+        xmlns="http://www.w3.org/2000/svg"
+        d="M572 642L378.561 567.44L397.426 529.28L589.906 603.52L572 642Z"
+        stroke="#464F60"
+        strokeWidth="1.12"
+        strokeMiterlimit="10"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        id="path21699"
+        xmlns="http://www.w3.org/2000/svg"
+        d="M552.305 684.8L358.865 610.24L366.705 591.84L378.56 567.44L572 642L552.305 684.8Z"
         stroke="#464F60"
         strokeWidth="1.12"
         strokeMiterlimit="10"
@@ -224,6 +244,7 @@ const Field = React.forwardRef((props, ref) => (
       />
       <path
         id="path21722"
+        className="disabled-field"
         d="M393.266 1078.4L636.466 1172.16L625.586 1197.12L624.626 1219.84L618.066 1253.28L588.786 1245.28L548.786 1250.4L355.666 1175.84L353.906 1170.88L357.746 1162.08L393.266 1078.4Z"
         stroke="#464F60"
         strokeWidth="1.12"

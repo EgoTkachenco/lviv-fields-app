@@ -38,7 +38,7 @@ const Field = React.forwardRef((props, ref) => (
       />
       <path
         id="path21840"
-        d="M158.426 810.559L149.146 844.799L133.146 879.839L107.546 927.999L89.6257 959.199L79.2257 994.239V1027.2L48.9857 1025.44L38.5857 1020.64L52.8257 975.199L82.2657 939.519L92.5057 927.039L99.3857 803.199L158.426 810.559Z"
+        d="M149.146 844.799L133.146 879.839L107.546 927.999L89.6257 959.199L79.2257 994.239V1027.2L48.9857 1025.44L38.5857 1020.64L52.8257 975.199L82.2657 939.519L92.5057 927.039L98.5 837.5L149.146 844.799Z"
         stroke="#464F60"
         strokeWidth="1.12"
         strokeMiterlimit="10"
@@ -47,7 +47,16 @@ const Field = React.forwardRef((props, ref) => (
       />
       <path
         id="path21842"
-        d="M158.426 810.56L99.3859 803.2L100.026 791.04L96.3459 661.6L100.986 607.68L190.586 619.04L204.026 637.92L205.946 666.24L200.186 713.44L184.186 740.96L164.346 789.12L158.426 810.56Z"
+        d="M200.5 702L93 691V675L100.986 607.68L190.586 619.04L204.026 637.92L205.946 666.24L200.5 702Z"
+        stroke="#464F60"
+        strokeWidth="1.12"
+        strokeMiterlimit="10"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        id="path21841"
+        d="M93 691L200.5 702C194.679 717.3 160 800.5 160 800.5C160 800.5 150.856 826.551 149 845L98.5 837.5L93 691Z"
         stroke="#464F60"
         strokeWidth="1.12"
         strokeMiterlimit="10"
@@ -72,7 +81,7 @@ const Field = React.forwardRef((props, ref) => (
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      <path
+      {/* <path
         id="path21848"
         d="M144.186 238.72L146.426 223.04L174.746 79.3598L215.386 71.8398L241.786 78.3998L254.586 85.4398L257.946 124.8L256.506 163.52L261.626 173.92V186.08L256.986 211.36L248.826 252L144.186 238.72Z"
         stroke="#464F60"
@@ -80,7 +89,7 @@ const Field = React.forwardRef((props, ref) => (
         strokeMiterlimit="10"
         strokeLinecap="round"
         strokeLinejoin="round"
-      />
+      /> */}
     </g>
   </svg>
 ))

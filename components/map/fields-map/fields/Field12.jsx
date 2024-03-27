@@ -258,6 +258,7 @@ const Field = React.forwardRef((props, ref) => (
       />
       <path
         id="path21530"
+        className="disabled-field"
         d="M120.106 888.24L430.666 1353.36L411.786 1382.32L103.306 920.08L120.106 888.24Z"
         stroke="#464F60"
         strokeWidth="1.12"

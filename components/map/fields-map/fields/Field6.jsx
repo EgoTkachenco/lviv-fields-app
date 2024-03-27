@@ -216,36 +216,18 @@ const Field = React.forwardRef((props, ref) => (
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      {/* <path
-        id="path21584"
-        d="M332.146 1653.2L28.627 1704.24L24.947 1690.64L11.827 1632.88L6.38696 1606.16L338.066 1550.32L336.146 1589.2L332.146 1653.2Z"
-        stroke="#464F60"
-        strokeWidth="1.12"
-        strokeMiterlimit="10"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      /> */}
       <path
         id="path21584"
-        d="M332.146 1653.2L28.6268 1704.24L24.9468 1690.64L11.8268 1652.88L6.38672 1626.16L338.066 1570.32L336.146 1589.2L332.146 1653.2Z"
+        d="M338.065 1629C212.632 1657.33 144.379 1667.92 26.5 1677.5L31.9994 1621L338.065 1570.32V1629Z"
         stroke="#464F60"
         strokeWidth="1.12"
         strokeMiterlimit="10"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      {/* <path
-        id="path21586"
-        d="M338.066 1550.32L6.38678 1606.16L0.946777 1579.28L17.9068 1517.2L18.2268 1513.52L340.306 1459.28L341.266 1490.96L338.066 1550.32Z"
-        stroke="#464F60"
-        strokeWidth="1.12"
-        strokeMiterlimit="10"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      /> */}
       <path
         id="path21586"
-        d="M338.066 1570.32L6.38629 1626.16L0.946289 1599.28L17.9063 1517.2L18.2263 1513.52L340.306 1459.28L341.266 1490.96L338.066 1570.32Z"
+        d="M338.066 1570.32L32 1621L17.9062 1517.2L18.2262 1513.52L340.306 1459.28L341.266 1490.96L338.066 1570.32Z"
         stroke="#464F60"
         strokeWidth="1.12"
         strokeMiterlimit="10"
@@ -317,6 +299,7 @@ const Field = React.forwardRef((props, ref) => (
       />
       <path
         id="path21644"
+        className="disabled-field"
         d="M884.626 1607.28L876.626 1663.12L851.986 1734L821.906 1738L843.026 1452.08L852.946 1450L886.066 1544.56L884.626 1607.28Z"
         stroke="#464F60"
         strokeWidth="1.12"
@@ -326,6 +309,7 @@ const Field = React.forwardRef((props, ref) => (
       />
       <path
         id="path21646"
+        className="disabled-field"
         d="M843.026 1452.08L821.906 1738L774.386 1744.4L795.186 1462.32L843.026 1452.08Z"
         stroke="#464F60"
         strokeWidth="1.12"
@@ -398,6 +382,7 @@ const Field = React.forwardRef((props, ref) => (
       />
       <path
         id="path21666"
+        className="disabled-field"
         d="M907.826 146.641L1004.79 141.681L1007.35 208.241L1001.75 279.601L992.466 355.921L839.826 363.761L850.066 330.641L864.466 218.641L904.946 154.801L907.826 146.641Z"
         stroke="#464F60"
         strokeWidth="1.12"
