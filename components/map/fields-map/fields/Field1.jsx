@@ -1,5 +1,6 @@
 import React from 'react'
 
+// eslint-disable-next-line react/display-name
 const Field = React.forwardRef((props, ref) => (
   <svg
     ref={ref}
@@ -166,7 +167,7 @@ const Field = React.forwardRef((props, ref) => (
 
 export default Field
 
-// // eslint-disable-next-line react/display-name
+//
 // const Field = React.forwardRef((props, ref) => (
 //   <svg
 //     ref={ref}
