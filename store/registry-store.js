@@ -59,7 +59,7 @@ class Store {
     this.isFetch = false
   }
 
-  loadFields = (page, size) => {
+	loadFields = (page, size) => {
     let query = this.getFilterQuery()
     query.set('_limit', size)
     query.set('_start', (page - 1) * size)

@@ -43,7 +43,7 @@ const Registry = observer(() => {
 
   const filter = stores[activeTab].filter
   const [filters, setFilters] = useState({})
-  useEffect(() => {
+	useEffect(() => {
     const filters = { search, ...filter }
     setFilters(filters)
   }, [filter, search])
@@ -149,7 +149,7 @@ const Registry = observer(() => {
           data={ownersStore.data}
           limit={ownersStore.limit}
           loadData={ownersStore.loadData}
-          loadDataCount={ownersStore.loadDataCount}
+          loadDataCount={ownersStore.debouncedLoadDataCount}
           onChange={ownersStore.onTableChange}
         />
         <Table
@@ -162,7 +162,7 @@ const Registry = observer(() => {
           data={fieldsStore.data}
           limit={fieldsStore.limit}
           loadData={fieldsStore.loadData}
-          loadDataCount={fieldsStore.loadDataCount}
+          loadDataCount={fieldsStore.debouncedLoadDataCount}
           onChange={fieldsStore.onTableChange}
         />
         <Table
@@ -175,7 +175,7 @@ const Registry = observer(() => {
           data={plantationsStore.data}
           limit={plantationsStore.limit}
           loadData={plantationsStore.loadData}
-          loadDataCount={plantationsStore.loadDataCount}
+          loadDataCount={plantationsStore.debouncedLoadDataCount}
           onChange={plantationsStore.onTableChange}
         />
       </Wrapper>

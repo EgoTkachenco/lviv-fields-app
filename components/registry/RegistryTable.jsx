@@ -20,11 +20,11 @@ const RegistryTable = ({
   loadDataCount,
   onChange,
 }) => {
-  useEffect(() => {
+	useEffect(() => {
     loadDataCount()
   }, [filters])
 
-  const fetchData = () => {
+	const fetchData = () => {
     const page = Math.floor(data.length / BLOCK_SIZE) + 1
     loadData(page, BLOCK_SIZE)
   }
