@@ -1,4 +1,5 @@
 import { makeAutoObservable, computed } from 'mobx'
+import _ from 'lodash'
 import { FIELD_TYPES } from '../help/constants'
 
 export class RegistryTableStore {
