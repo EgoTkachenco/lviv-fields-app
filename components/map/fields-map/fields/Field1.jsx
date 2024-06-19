@@ -8,6 +8,12 @@ const Field = React.forwardRef((props, ref) => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
+    <g id="lakes">
+      <path
+        d="M205 271.5L252.5 281L256.5 283L258.5 288L252.5 299.5L237 376L244 381L243 400.5L247.5 416L256.5 411.5L258.5 420.5L247.5 424L244 445L195 488.5L184.5 500L173.5 503L114.5 512.5L113 508.5L115.5 503L157 427L168.5 387L180 344L189 288L205 271.5Z"
+        fill="#C1FFFF"
+      />
+    </g>
     <g id="1">
       <path
         id="Vector 7"
