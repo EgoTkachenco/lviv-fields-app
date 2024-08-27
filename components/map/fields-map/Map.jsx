@@ -1,4 +1,4 @@
-import React, { useMemo, useRef } from 'react'
+import React, { Fragment, useMemo, useRef } from 'react'
 import { useMapAreaHandlers, useMapFieldsHandlers } from './utils'
 import Viewer from './Viewer'
 import styled from 'styled-components'
@@ -18,6 +18,7 @@ import Field10 from './fields/Field10'
 import Field11 from './fields/Field11'
 import Field12 from './fields/Field12'
 import { FIELD_TYPES_COLORS } from '../../../store/help/constants'
+import { useAPIVarieties } from '../../../hooks'
 
 export default function Map({
   areaLabel,
@@ -29,7 +30,9 @@ export default function Map({
   summary,
   areas,
   filter,
+  type = 'registry',
 }) {
+  const { varieties } = useAPIVarieties()
   const filterStyles = useMemo(() => {
     if (!summary?.fields) return ''
     const fields =
@@ -44,7 +47,9 @@ export default function Map({
       let color
       if (!isRegistryFilter && filter.type.includes(field.type))
         color = FIELD_TYPES_COLORS[field.type] || 'transparent'
-      else color = '#407CFF'
+      else if (!isRegistryFilter && filter.varieties.length > 0) {
+        return ''
+      } else color = '#407CFF'
 
       // let opacity
       // if (!isRegistryFilter && filter.category.length > 0)
@@ -54,32 +59,67 @@ export default function Map({
       return `${'path#' + id} {fill: ${color};}`
     })
 
+    // Plantations styles
+    if (type === 'plantation' && filter.varieties.length > 0) {
+      areas.forEach((area) => {
+        if (!area.plantation_schema) return
+        for (const rowId in area.plantation_schema) {
+          const variety = area.plantation_schema[rowId]
+          if (filter.varieties.includes(variety)) {
+            const varietyColor =
+              varieties.find((el) => el.id === variety)?.color || 'transparent'
+
+            styles.push(
+              `g#plantation > g#plantation-${area.id} :nth-child(${rowId}) {fill: ${varietyColor};}`
+            )
+          }
+        }
+      })
+    }
+
     styles = styles.join('\n')
-    console.log('filter styles', styles)
-    return <style id="map-style">{styles}</style>
-  }, [summary])
+    // console.log('filter styles', styles)
+    return (
+      <style id="map-style">
+        {`
+				g#plantation > g > rect { 
+					stroke: black;
+					stroke-width: 0.3px;
+				}	
+			`}
+        {styles}
+      </style>
+    )
+  }, [summary, type, varieties])
 
   return (
     <MapCard isField={!!field}>
       <div className="expand-icon" />
+
       {filterStyles}
-      {area && <BackLink action={onClose} />}
-      {area ? (
-        <AreaMap
-          area={area}
-          areaLabel={areaLabel}
-          field={field}
-          onOpen={(v) => onOpenField(v)}
-          onClose={onClose}
-          summary={summary}
-          // fields={summary?.fields || []}
-        />
-      ) : (
+      {!area && (
         <AllMap
           onOpen={(v) => onOpenArea(v)}
-          fields={summary?.fields || []}
+          areas={areas || []}
           areaLabel={areaLabel}
+          type={type}
         />
+      )}
+
+      {area && (
+        <>
+          <BackLink action={onClose} />{' '}
+          <AreaMap
+            area={area}
+            areaLabel={areaLabel}
+            field={field}
+            onOpen={(v) => onOpenField(v)}
+            onClose={onClose}
+            summary={summary}
+            type={type}
+            // fields={summary?.fields || []}
+          />
+        </>
       )}
     </MapCard>
   )
@@ -91,7 +131,7 @@ const MapCard = styled(Card)`
   justify-content: center;
   align-items: center;
   flex-grow: 1;
-  max-height: ${({ isField }) => (isField ? 'unset' : 'unset')};
+  /* max-height: ${({ isField }) => (isField ? 'unset' : 'unset')}; */
   padding: 20px 20px;
   border-radius: 18px;
   border: 1px solid #000;
@@ -121,13 +161,22 @@ const MapCard = styled(Card)`
   }
 `
 
-export function AreaMap({ area, onOpen, field, onClose, summary, areaLabel }) {
+export function AreaMap({
+  area,
+  onOpen,
+  field,
+  onClose,
+  summary,
+  areaLabel,
+  type,
+}) {
   const ref = useRef()
   useMapFieldsHandlers(
     ref,
     (e) => onOpen(e.currentTarget.id),
     field,
-    field ? [] : summary?.fields || []
+    field ? [] : summary?.fields || [],
+    type
   )
   const renderField = () => {
     switch (area) {
@@ -168,16 +217,190 @@ export function AreaMap({ area, onOpen, field, onClose, summary, areaLabel }) {
   )
 }
 
-export function AllMap({ onOpen, areaLabel }) {
+export function AllMap({ onOpen, areaLabel, type, areas }) {
   const ref = useRef()
-  useMapAreaHandlers(ref, (e) => onOpen(e.currentTarget.id))
+  useMapAreaHandlers(ref, (e) => onOpen(e.currentTarget.id), type)
+
   return (
     <Viewer>
       {areaLabel && <AreaLabel>Поле № {areaLabel.name}</AreaLabel>}
-      <MapIcon ref={ref} />
+      {/* <div
+        style={{
+          position: 'absolute',
+          top: '20px',
+          left: '20px',
+          width: 'calc(100% - 40px)',
+          height: 'calc(100% - 40px)',
+          opacity: '50%',
+        }}
+      >
+        <MapIcon ref={ref} />
+      </div> */}
+      <AllFieldsMap ref={ref} areas={areas} />
     </Viewer>
   )
 }
+
+const AllFieldsMap = React.forwardRef(({ areas }, ref) => {
+  const areasConfigs = [
+    {
+      area: 1,
+      cmp: Field1,
+      x: 3850,
+      y: 450,
+      width: 1259,
+      height: 995,
+      labelXOffset: -200,
+    },
+    {
+      area: 2,
+      cmp: Field2,
+      x: 2450,
+      y: 300,
+      width: 1384,
+      height: 1031,
+    },
+    // { cmp: Field3, x: 2150, y: 300, width: 352, height: 1028 },
+    {
+      area: 4,
+      cmp: Field4,
+      x: 1400,
+      y: 130,
+      width: 1234,
+      height: 1597,
+      labelXOffset: -100,
+    },
+    {
+      area: 5,
+      cmp: Field5,
+      x: 975,
+      y: 100,
+      width: 1027,
+      height: 1774,
+      labelXOffset: -200,
+    },
+    { area: 6, cmp: Field6, x: 0, y: 300, width: 1120, height: 1863 },
+    {
+      area: 7,
+      cmp: Field7,
+      x: 1050,
+      y: 0,
+      width: 638,
+      height: 579,
+    },
+    // { area: 8, cmp: Field8, x: 0, y: 0, width: 124, height: 246 },
+    {
+      area: 9,
+      cmp: Field9,
+      x: 1550,
+      y: 2300,
+      width: 1632,
+      height: 913,
+      labelXOffset: -400,
+      labelYOffset: -100,
+    },
+    {
+      area: 10,
+      cmp: Field10,
+      x: 2600,
+      y: 2800,
+      width: 772,
+      height: 405,
+      labelXOffset: 100,
+    },
+    {
+      area: 11,
+      cmp: Field11,
+      x: 2250,
+      y: 2700,
+      width: 625,
+      height: 405,
+      labelXOffset: -100,
+      labelYOffset: 50,
+    },
+    {
+      area: 12,
+      cmp: Field12,
+      x: 2350,
+      y: 1530,
+      width: 1093,
+      height: 1434,
+      labelXOffset: -100,
+      labelYOffset: 100,
+    },
+  ]
+  const getAreaSize = (areaConfig) => {
+    const area = areas.find((area) => area.id === areaConfig.area)
+    if (!area) return null
+    const areaSize = area.fields
+      .reduce((sum, field) => sum + (field.size || 0), 0)
+      .toFixed(2)
+
+    const areaWidth = areaConfig.width || 0
+    const areaHeight = areaConfig.height || 0
+
+    const x =
+      areaConfig.x + areaWidth / 2 - 600 / 2 + (areaConfig.labelXOffset || 0)
+    const y =
+      areaConfig.y + areaHeight / 2 - 150 / 2 + (areaConfig.labelYOffset || 0)
+
+    return (
+      <svg
+        width="600"
+        height="150"
+        viewBox="0 0 100 40"
+        x={x}
+        y={y}
+        fill="none"
+        style={{ zIndex: 10, position: 'relative' }}
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect
+          width="100"
+          height="40"
+          rx="10"
+          fill="white"
+          stroke="#313536"
+          strokeWidth="1"
+        />
+        <text
+          x="50%"
+          y="50%"
+          dominantBaseline="central"
+          textAnchor="middle"
+          fill="black"
+          fontSize="28"
+        >
+          {areaSize}
+        </text>
+      </svg>
+    )
+  }
+
+  return (
+    <svg
+      viewBox="0 0 5094 3224"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      ref={ref}
+    >
+      {areasConfigs.map((area, i) => {
+        const { cmp: Area, x, y, width, height } = area
+        const props = {}
+        if (width) props.width = width
+        if (height) props.height = height
+        return (
+          <Fragment key={i}>
+            <Area x={x} y={y} {...props} />
+            {getAreaSize(area)}
+          </Fragment>
+        )
+      })}
+    </svg>
+  )
+})
+
+AllFieldsMap.displayName = 'AllFieldsMap'
 
 // eslint-disable-next-line react/display-name
 const MapIcon = React.forwardRef((_, ref) => (
@@ -2603,7 +2826,7 @@ const MapIcon = React.forwardRef((_, ref) => (
         strokeLinejoin="round"
       />
     </g>
-    <g id="1" transform="translate(3830 430)">
+    <g id="1" transform="translate(2127 355)">
       <path
         d="M471.536 79.1597L433.296 248.12L352.336 235.16L385.456 88.4397L396.496 83.6397L417.456 88.5997L444.176 89.8797L463.856 79.3197L471.536 79.1597Z"
         id="path21480"

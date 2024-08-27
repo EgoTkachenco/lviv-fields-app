@@ -4,6 +4,7 @@ import React from 'react'
 const Field = React.forwardRef((props, ref) => (
   <svg
     ref={ref}
+    {...props}
     viewBox="0 0 1093 1434"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -256,7 +257,7 @@ const Field = React.forwardRef((props, ref) => (
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      <path
+      {/* <path
         id="path21530"
         className="disabled-field"
         d="M120.106 888.24L430.666 1353.36L411.786 1382.32L103.306 920.08L120.106 888.24Z"
@@ -265,7 +266,7 @@ const Field = React.forwardRef((props, ref) => (
         strokeMiterlimit="10"
         strokeLinecap="round"
         strokeLinejoin="round"
-      />
+      /> */}
     </g>
   </svg>
 ))

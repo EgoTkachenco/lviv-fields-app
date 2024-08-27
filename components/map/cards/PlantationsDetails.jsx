@@ -167,6 +167,7 @@ const Row = styled.div`
 `
 
 const ScrollContent = styled.div`
+  width: 100%;
   min-height: 150px;
   height: calc(100vh - 80px - 60px - 525px);
   max-height: calc(100vh - 80px - 60px - 525px);

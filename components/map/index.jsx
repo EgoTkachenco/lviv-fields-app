@@ -4,7 +4,6 @@ import { observer } from 'mobx-react-lite'
 import store from '../../store/map-store'
 import {
   Filter,
-  OwnerDetails,
   ContractDetails,
   SummaryDetails,
   CommonDetails,
@@ -16,15 +15,16 @@ import {
 import Map from './fields-map/Map'
 import EditButton from '../navigation/EditButton'
 import { Spacer, PageLoader } from '../common'
-import BackLink from './BackLink'
 
 const MapPage = observer(() => {
-  const { area, field, mode, filter, summary, areas } = store
+  const { area, field, mode, filter, summary, areas, type } = store
   const isRead = mode === 'read'
+
   const onChange = (key, value) => store.updateFieldDetails(key, value)
   const onFilterChange = (key, value) => store.updateFilter(key, value)
   const onSubmitFilter = () => store.getSummary()
   const onClearFilter = () => store.clearFilter()
+  const onTypeChange = (type) => store.changeType(type)
   const areaLabel =
     store.areaLabel === null || !areas
       ? null
@@ -36,6 +36,7 @@ const MapPage = observer(() => {
       store.reset()
     }
   }, [])
+
   return (
     <>
       <Wrapper>
@@ -49,6 +50,8 @@ const MapPage = observer(() => {
               onChange={onFilterChange}
               onSubmit={onSubmitFilter}
               onClear={onClearFilter}
+              type={type}
+              onTypeChange={onTypeChange}
             />
           )}
           {field && (
@@ -60,18 +63,6 @@ const MapPage = observer(() => {
                 isRead={isRead}
                 onChange={onChange}
               />
-              {/* <Spacer vertical size="40px" />
-              <ContractDetails
-                data={field}
-                isRead={isRead}
-                onChange={onChange}
-              />
-              <Spacer vertical size="40px" />
-              <DocumentsDetails
-                data={field}
-                isRead={isRead}
-                onChange={onChange}
-              /> */}
             </>
           )}
         </Side>
@@ -86,17 +77,9 @@ const MapPage = observer(() => {
             summary={summary}
             areas={areas}
             filter={filter}
+            type={type}
           />
           {!field && <SummaryDetails data={summary} />}
-          {/* {field && (
-            <OwnersDetails
-              data={field}
-              isRead={isRead}
-              onCreate={(data) => onChange('owners-new', data)}
-              onUpdate={(data) => onChange('owners-update', data)}
-              onDelete={(data) => onChange('owners-delete', data)}
-            />
-          )} */}
         </Content>
       </Wrapper>
 
@@ -122,13 +105,6 @@ const MapPage = observer(() => {
           </Content>
         </Wrapper>
       )}
-
-      {/* {field && <BackLink action={() => store.closeField()} />} */}
-      {/* {field && (
-        <Bottom>
-          <OwnerDetails data={field} isRead={isRead} onChange={onChange} />
-        </Bottom>
-      )} */}
     </>
   )
 })
@@ -174,14 +150,5 @@ const Side = styled.div`
   @media (max-width: 1200px) {
     max-width: 100%;
     min-width: unset;
-  }
-`
-const Bottom = styled.div`
-  display: flex;
-  gap: 40px;
-  margin-top: 40px;
-
-  @media (max-width: 1600px) {
-    flex-direction: column;
   }
 `

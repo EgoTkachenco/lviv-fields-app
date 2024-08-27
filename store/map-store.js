@@ -25,6 +25,7 @@ class Store {
   area = null
   field = null
   openFieldFlag = false
+  type = 'registry' // map type
 
   constructor() {
     makeAutoObservable(this)
@@ -391,11 +392,15 @@ class Store {
     try {
       const res = await MAP_API.getAreas()
       this.areas = res.map((area) =>
-        _.pick(area, ['id', 'name', 'path', 'fields'])
+        _.pick(area, ['id', 'name', 'path', 'fields', 'plantation_schema'])
       )
     } catch (error) {
       console.log(error)
     }
+  }
+
+  changeType(type) {
+    this.type = type
   }
 }
 

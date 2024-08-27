@@ -1,7 +1,7 @@
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useMobileDetect } from '../../../hooks'
 
-export const useMapAreaHandlers = (ref, onOpen) => {
+export const useMapAreaHandlers = (ref, onOpen, type = 'registry') => {
   const { isDesktop } = useMobileDetect()
   const handleEnterArea = (e) => {
     e.currentTarget.style.fill = 'rgba(64, 124, 255, 0.2)'
@@ -17,22 +17,32 @@ export const useMapAreaHandlers = (ref, onOpen) => {
     e.currentTarget.style.stroke = 'transparent'
     onOpen({ currentTarget: { id: null } })
   }
+
+  useMapPlantations(ref, type)
+
   useEffect(() => {
     if (!ref.current) return
 
-    const childrens = ref.current.children
+    const childrens = ref.current.querySelectorAll('g')
+
     for (let i = 0; i < childrens.length; i++) {
       const element = childrens[i]
-
-      if (element.tagName === 'g' && !['lakes', 'green'].includes(element.id)) {
+      if (
+        !['lakes', 'green'].includes(element.id) &&
+        element.id.search('plantation') === -1
+      ) {
         element.addEventListener('mouseenter', handleEnterArea)
         element.addEventListener('mouseleave', handleLeaveArea)
         element.addEventListener('click', onOpen)
-        element.style.fill =
-          element.style.fill === 'rgba(64, 124, 255, 0.2)'
-            ? 'rgba(64, 124, 255, 0.2)'
-            : 'transparent'
+        // element.style.fill =
+        //   element.style.fill === 'rgba(64, 124, 255, 0.2)'
+        //     ? 'rgba(64, 124, 255, 0.2)'
+        //     : 'transparent'
       }
+
+      // if (element.id === 'plantation') {
+      //   element.style.opacity = type === 'plantation' ? 1 : 0
+      // }
     }
 
     return () => {
@@ -47,29 +57,36 @@ export const useMapAreaHandlers = (ref, onOpen) => {
         }
       }
     }
-  }, [ref, onOpen])
+  }, [ref, onOpen, type])
 }
 
-export const useMapFieldsHandlers = (ref, onOpen, field, fields) => {
-  const handleEnterField = (e) => {
-    console.log('Enter ', e.target)
+let lastColor = ''
+
+export const useMapFieldsHandlers = (
+  ref,
+  onOpen,
+  field,
+  fields,
+  type = 'registry'
+) => {
+  const handleEnterField = useCallback((e) => {
+    const lastColor = e.currentTarget.style.fill
     e.currentTarget.style.fill = 'rgba(64, 124, 255, 0.2)'
     e.currentTarget.style.stroke = '#407CFF'
-  }
-  const handleLeaveField = (e) => {
-    console.log('Leave ', e.target)
+  }, [])
+  const handleLeaveField = useCallback((e) => {
     // e.currentTarget.style.fill = fields.includes(e.currentTarget.id)
     //   ? '#407cff'
     // 	: 'transparent'
-    e.currentTarget.style.fill = 'transparent'
+    e.currentTarget.style.fill = lastColor
     e.currentTarget.style.stroke = '#464F60'
-  }
+  }, [])
+
+  useMapPlantations(ref, type)
+
   useEffect(() => {
     if (!ref.current) return
-    // const styles = document.getElementById('map-style').innerHTML.split('\n').reduce((acc, line) => {
-    // 	return acc['']
-    // }, {})
-    const element_index = ref.current.children[0].id === 'lakes' ? 1 : 0
+    const element_index = ref.current.children.length - 1
     const childrens = ref.current.children[element_index].children
     for (let i = 0; i < childrens.length; i++) {
       const element = childrens[i]
@@ -83,7 +100,7 @@ export const useMapFieldsHandlers = (ref, onOpen, field, fields) => {
           element.addEventListener('mouseover', handleEnterField)
         if (field !== element.id)
           element.addEventListener('mouseleave', handleLeaveField)
-        element.addEventListener('click', onOpen)
+        if (field !== element.id) element.addEventListener('click', onOpen)
 
         element.style.fill = fields.includes(element.id) ? '' : 'transparent'
         element.style.stroke = '#464F60'
@@ -92,13 +109,15 @@ export const useMapFieldsHandlers = (ref, onOpen, field, fields) => {
           element.style.fill = 'rgba(64, 124, 255, 0.2)'
           element.style.stroke = '#407CFF'
         }
+
+        if (element.id === 'plantation') {
+          element.style.opacity = type === 'plantation' ? 1 : 0
+        }
       }
 
       if (element.classList.contains('disabled-field')) {
-        // element.style.fill = 'white'
         element.style.stroke = 'transparent'
         element.style.cursor = 'default'
-        // element.style.fill = 'rgba(0,0,0,0.1)'
       }
     }
 
@@ -120,4 +139,20 @@ export const useMapFieldsHandlers = (ref, onOpen, field, fields) => {
       }
     }
   }, [ref, field, fields])
+}
+
+export const useMapPlantations = (ref, type) => {
+  useEffect(() => {
+    if (!ref.current) return
+
+    const childrens = ref.current.querySelectorAll('g')
+
+    for (let i = 0; i < childrens.length; i++) {
+      const element = childrens[i]
+
+      if (element.id === 'plantation') {
+        element.style.opacity = type === 'plantation' ? 1 : 0
+      }
+    }
+  }, [ref, type])
 }

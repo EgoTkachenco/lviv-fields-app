@@ -4,6 +4,7 @@ import React from 'react'
 const Field = React.forwardRef((props, ref) => (
   <svg
     ref={ref}
+    {...props}
     viewBox="0 0 1120 1863"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -218,7 +219,7 @@ const Field = React.forwardRef((props, ref) => (
         strokeLinecap="round"
         strokeLinejoin="round"
 			/> */}
-      <path
+      {/* <path
         id="path21582"
         className="disabled-field"
         d="M55.666 1803.12L56.786 1813.36L58.3866 1827.44L59.0266 1858.48L87.9859 1861.52L137.745 1856.72L218.865 1844.56L281.585 1830.64L301.265 1824.4L321.265 1819.28L324.625 1768.24L331.825 1658.64L332.145 1653.2L28.626 1704.24L55.666 1803.12Z"
@@ -227,7 +228,7 @@ const Field = React.forwardRef((props, ref) => (
         strokeMiterlimit="10"
         strokeLinecap="round"
         strokeLinejoin="round"
-      />
+      /> */}
       <path
         id="path21584"
         d="M338.065 1629C212.632 1657.33 188.879 1661.42 71 1671L68.5 1614L338.065 1570.32V1629Z"
@@ -312,7 +313,7 @@ const Field = React.forwardRef((props, ref) => (
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      <path
+      {/* <path
         id="path21644"
         className="disabled-field"
         d="M884.626 1607.28L876.626 1663.12L851.986 1734L821.906 1738L843.026 1452.08L852.946 1450L886.066 1544.56L884.626 1607.28Z"
@@ -331,7 +332,7 @@ const Field = React.forwardRef((props, ref) => (
         strokeMiterlimit="10"
         strokeLinecap="round"
         strokeLinejoin="round"
-      />
+      /> */}
       <path
         id="path21652"
         d="M691.826 1457.84L669.586 1758.64L646.066 1761.84L591.666 1771.12L618.866 1402L645.586 1421.2L674.866 1447.12L691.826 1457.84Z"
@@ -395,7 +396,7 @@ const Field = React.forwardRef((props, ref) => (
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      <path
+      {/* <path
         id="path21666"
         className="disabled-field"
         d="M907.826 146.641L1004.79 141.681L1007.35 208.241L1001.75 279.601L992.466 355.921L839.826 363.761L850.066 330.641L864.466 218.641L904.946 154.801L907.826 146.641Z"
@@ -404,7 +405,7 @@ const Field = React.forwardRef((props, ref) => (
         strokeMiterlimit="10"
         strokeLinecap="round"
         strokeLinejoin="round"
-      />
+      /> */}
       <path
         id="path21668"
         d="M839.826 363.76L992.466 355.92L985.266 413.68L979.506 511.44L966.706 528.72L960.306 545.04L961.266 567.6L833.106 574.32L832.146 567.44L826.866 370.48L838.866 366.96L839.826 363.76Z"

@@ -83,7 +83,7 @@ const ViewerWrapper = styled.div`
   justify-content: center;
   align-items: center;
 
-  svg {
+  & > svg {
     max-width: ${(props) => (props.zoom ? 'unset' : '100%')};
     max-height: ${(props) => (props.zoom ? 'unset' : '100%')};
     height: ${(props) => (props.zoom ? '100%' : '100%')};

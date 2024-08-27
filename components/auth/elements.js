@@ -17,7 +17,7 @@ export const AuthCard = styled.form`
     top: 0;
     height: ${(props) => (!!props.loading ? '4px' : '0')};
     border-radius: 4px;
-    background: #407cff;
+    background: #748c8e;
     animation: 2s topLoader linear infinite;
     z-index: 100;
   }

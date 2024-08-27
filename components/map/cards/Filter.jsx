@@ -17,8 +17,16 @@ import {
   FIELD_CATEGORIES,
   FIELD_TYPES_COLORS,
 } from '../../../store/help/constants'
+import MapType from '../fields-map/MapType'
 
-const Filter = ({ filter, onChange, onSubmit, onClear }) => {
+const Filter = ({
+  filter,
+  onChange,
+  onSubmit,
+  onClear,
+  type = 'registry',
+  onTypeChange,
+}) => {
   const [open, setOpen] = useState(false)
   useNoBodyScroll(open)
   const { search, varieties, onSearch: onSearchVarieties } = useAPIVarieties()
@@ -59,111 +67,128 @@ const Filter = ({ filter, onChange, onSubmit, onClear }) => {
       <FilterButton variant="success" onClick={() => setOpen(!open)}>
         Фiльтр
       </FilterButton>
+
       <FilterCard open={open}>
         <FilterCloseButton onClick={() => setOpen(false)}>
           <Icon icon="close" />
         </FilterCloseButton>
         <FilterInner>
-          <H5>Тип земельної ділянки</H5>
-          <Spacer vertical size="12px" />
-          <Box gap="16px" direction="column">
-            {Object.keys(FIELD_TYPES).map((type) => (
-              <Checkbox
-                key={type}
-                label={FIELD_TYPES[type]}
-                value={filter.type.includes(type)}
-                onChange={() => onChange('type', type)}
-                color={FIELD_TYPES_COLORS[type]}
-              />
-            ))}
-          </Box>
-          <Spacer vertical size="20px" />
-          <H5>Клас земельної ділянки</H5>
-          <Spacer vertical size="12px" />
-          <Box gap="16px" direction="column">
-            {Object.keys(FIELD_CATEGORIES).map((category) => (
-              <Checkbox
-                key={category}
-                label={FIELD_CATEGORIES[category]}
-                value={filter.category.includes(category)}
-                onChange={() => onChange('category', category)}
-              />
-            ))}
-          </Box>
-          <Spacer vertical size="20px" />
-          <H5>Сорт насаджень</H5>
-          <Spacer vertical size="12px" />
-          <Input
-            value={search}
-            onChange={onSearchVarieties}
-            placeholder="Пошук"
-            name="search"
-            tip={
-              <SearchIcon>
-                <Icon icon="search" size="20px" />
-              </SearchIcon>
-            }
-            size="large"
-          />
-          <Spacer vertical size="20px" />
-          <SortsBox gap="16px" direction="column">
-            {varieties.length > 0 ? (
-              varieties.map((variety) => (
-                <Checkbox
-                  key={variety.id}
-                  label={variety.name}
-                  value={filter.varieties.includes(variety.id)}
-                  onChange={() => onChange('varieties', variety.id)}
-                />
-              ))
-            ) : (
-              <Text align="center">Немає результатів</Text>
-            )}
-          </SortsBox>
-          <Spacer vertical size="20px" />
-          <RangeBox>
-            <div>
-              <H5>Рік насаджень</H5>
+          <MapType type={type} onChange={onTypeChange} />
+          {type == 'registry' && (
+            <>
+              <H5>Тип земельної ділянки</H5>
               <Spacer vertical size="12px" />
-              <Box align="center" justify="space-between" gap="16px">
-                <Input
-                  value={filter.year.start}
-                  validate={(v) => !isNaN(Number(v)) && v > 0 && v < 3000}
-                  placeholder="2011"
-                  onChange={(val) => onChange('year-start', val)}
-                />
-                <FilterDelimiter />
-                <Input
-                  value={filter.year.end}
-                  validate={(v) => !isNaN(Number(v)) && v > 0 && v < 3000}
-                  placeholder="2022"
-                  onChange={(val) => onChange('year-end', val)}
-                />
+              <Box gap="16px" direction="column">
+                {Object.keys(FIELD_TYPES).map((type) => (
+                  <Checkbox
+                    key={type}
+                    label={FIELD_TYPES[type]}
+                    value={filter.type.includes(type)}
+                    onChange={() => onChange('type', type)}
+                    color={FIELD_TYPES_COLORS[type]}
+                  />
+                ))}
               </Box>
-            </div>
-            <Spacer size="24px" />
-            <div>
-              <H5>Термiн дії договору</H5>
+              <Spacer vertical size="20px" />
+              <H5>Клас земельної ділянки</H5>
               <Spacer vertical size="12px" />
-              <DateBox align="center" justify="space-between" gap="8px">
-                <Input
-                  value={filter.term.start}
-                  type="date"
-                  // validate={(v) => !isNaN(Number(v)) && v > 0 && v < 100}
-                  placeholder="3"
-                  onChange={(val) => onChange('term-start', val)}
-                />
-                <FilterDelimiter />
-                <Input
-                  value={filter.term.end}
-                  type="date"
-                  // validate={(v) => !isNaN(Number(v)) && v > 0 && v < 100}
-                  placeholder="10"
-                  onChange={(val) => onChange('term-end', val)}
-                />
-              </DateBox>
-            </div>
-          </RangeBox>
+              <Box gap="16px" direction="column">
+                {Object.keys(FIELD_CATEGORIES).map((category) => (
+                  <Checkbox
+                    key={category}
+                    label={FIELD_CATEGORIES[category]}
+                    value={filter.category.includes(category)}
+                    onChange={() => onChange('category', category)}
+                  />
+                ))}
+              </Box>
+              <Spacer vertical size="20px" />
+              <RangeBox>
+                <div>
+                  <H5>Термiн дії договору</H5>
+                  <Spacer vertical size="12px" />
+                  <DateBox align="center" justify="space-between" gap="8px">
+                    <Input
+                      value={filter.term.start}
+                      type="date"
+                      // validate={(v) => !isNaN(Number(v)) && v > 0 && v < 100}
+                      placeholder="3"
+                      onChange={(val) => onChange('term-start', val)}
+                    />
+                    <FilterDelimiter />
+                    <Input
+                      value={filter.term.end}
+                      type="date"
+                      // validate={(v) => !isNaN(Number(v)) && v > 0 && v < 100}
+                      placeholder="10"
+                      onChange={(val) => onChange('term-end', val)}
+                    />
+                  </DateBox>
+                </div>
+              </RangeBox>
+            </>
+          )}
+          {type == 'plantation' && (
+            <>
+              <H5>Сорт насаджень</H5>
+              <Spacer vertical size="12px" />
+              <Input
+                value={search}
+                onChange={onSearchVarieties}
+                placeholder="Пошук"
+                name="search"
+                tip={
+                  <SearchIcon>
+                    <Icon icon="search" size="20px" />
+                  </SearchIcon>
+                }
+                size="large"
+              />
+              <Spacer vertical size="20px" />
+              <SortsBox gap="16px" direction="column">
+                {varieties.length > 0 ? (
+                  varieties.map((variety) => (
+                    <Checkbox
+                      key={variety.id}
+                      label={
+                        <Box align="center" gap="8px">
+                          {variety.name} <ColorPreview color={variety.color} />
+                        </Box>
+                      }
+                      value={filter.varieties.includes(variety.id)}
+                      onChange={() => onChange('varieties', variety.id)}
+                    />
+                  ))
+                ) : (
+                  <Text align="center">Немає результатів</Text>
+                )}
+              </SortsBox>
+              <Spacer vertical size="20px" />
+              <RangeBox>
+                <div>
+                  <H5>Рік насаджень</H5>
+                  <Spacer vertical size="12px" />
+                  <Box align="center" justify="space-between" gap="16px">
+                    <Input
+                      value={filter.year.start}
+                      validate={(v) => !isNaN(Number(v)) && v > 0 && v < 3000}
+                      placeholder="2011"
+                      onChange={(val) => onChange('year-start', val)}
+                    />
+                    <FilterDelimiter />
+                    <Input
+                      value={filter.year.end}
+                      validate={(v) => !isNaN(Number(v)) && v > 0 && v < 3000}
+                      placeholder="2022"
+                      onChange={(val) => onChange('year-end', val)}
+                    />
+                  </Box>
+                </div>
+              </RangeBox>
+            </>
+          )}
+
+          <Spacer vertical size="20px" />
         </FilterInner>
         <Spacer vertical size="24px" style={{ marginTop: 'auto' }} />
         <Button variant="success" onClick={handleSubmit}>
@@ -183,11 +208,8 @@ export default Filter
 const FilterCard = styled(Card)`
   display: flex;
   flex-direction: column;
-  padding: 24px;
   height: 100%;
   max-height: calc(100vh - 80px - 60px);
-  border-radius: 18px;
-  border: 1px solid #000;
 
   @media (max-width: 1200px) {
     display: ${(props) => (props.open ? 'block' : 'none')};
@@ -244,15 +266,16 @@ const FilterButton = styled(Button)`
 
 const FilterInner = styled.div`
   overflow: auto;
-  height: 100%;
-  max-height: 100%;
+  flex-grow: 1;
+  /* height: 100%; */
+  /* max-height: 100%; */
   margin-right: -20px;
   padding-right: 20px;
   display: flex;
   flex-direction: column;
 
   @media (max-width: 1200px) {
-    max-width: 315px;
+    /* max-width: 315px; */
     overflow: auto;
     max-height: unset;
     /* margin: 0 auto; */
@@ -279,9 +302,10 @@ const SearchIcon = styled.div`
 
 const SortsBox = styled(Box)`
   min-height: 105px;
-  flex-grow: 1;
-  /* max-height: 65px; */
+  max-height: 400px;
+  height: 100%;
   overflow: auto;
+
   & > * {
     flex-grow: 0;
     width: 100%;
@@ -289,6 +313,13 @@ const SortsBox = styled(Box)`
 
   @media (max-width: 1500px) {
     min-height: unset;
-    overflow: visible;
+    overflow: auto;
   }
+`
+
+const ColorPreview = styled.div`
+  width: 24px;
+  height: 24px;
+  background: ${(props) => props.color || '#000000'};
+  border-radius: 8px;
 `

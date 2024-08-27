@@ -4,6 +4,7 @@ import React from 'react'
 const Field = React.forwardRef((props, ref) => (
   <svg
     ref={ref}
+    {...props}
     viewBox="0 0 772 405"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

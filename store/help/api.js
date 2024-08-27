@@ -65,6 +65,9 @@ export const MAP_API = {
   getField: (pathname) =>
     axios.get(`/fields/${pathname}`, securedFetchOptions()),
 
+  getFields: (params) =>
+    axios.get(`/fields`, { params, ...securedFetchOptions() }),
+
   updateField: (pathname, data) =>
     axios.put(`/fields/${pathname}`, data, securedFetchOptions()),
 
