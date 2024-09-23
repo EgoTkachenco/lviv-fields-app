@@ -15,7 +15,7 @@ const Field = React.forwardRef((props, ref) => (
         fill="#C1FFFF"
       />
     </g>
-    <g id="1">
+    <g id="1" className="fields">
       <path
         id="Vector 7"
         className="green-particle"

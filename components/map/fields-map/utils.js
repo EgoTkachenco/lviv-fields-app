@@ -62,14 +62,11 @@ export const useMapFieldsHandlers = (
   type = 'registry'
 ) => {
   const handleEnterField = useCallback((e) => {
-    const lastColor = e.currentTarget.style.fill
+    lastColor = e.currentTarget.style.fill
     e.currentTarget.style.fill = 'rgba(64, 124, 255, 0.2)'
     e.currentTarget.style.stroke = '#407CFF'
   }, [])
   const handleLeaveField = useCallback((e) => {
-    // e.currentTarget.style.fill = fields.includes(e.currentTarget.id)
-    //   ? '#407cff'
-    // 	: 'transparent'
     e.currentTarget.style.fill = lastColor
     e.currentTarget.style.stroke = '#464F60'
   }, [])
@@ -78,7 +75,13 @@ export const useMapFieldsHandlers = (
 
   useEffect(() => {
     if (!ref.current) return
-    const element_index = ref.current.children.length - 1
+    let element_index = 0
+    for (let i = 0; i < ref.current.children.length; i++) {
+      const element = ref.current.children[i]
+      if (element.classList.contains('fields')) {
+        element_index = i
+      }
+    }
     const childrens = ref.current.children[element_index].children
     for (let i = 0; i < childrens.length; i++) {
       const element = childrens[i]
