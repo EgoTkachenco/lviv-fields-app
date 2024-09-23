@@ -53,7 +53,7 @@ const Field = React.forwardRef((props, ref) => (
         fill="#C1FFFF"
       />
     </g>
-    <g id="9">
+    <g id="9" className="fields">
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -323,6 +323,460 @@ const Field = React.forwardRef((props, ref) => (
         strokeLinecap="round"
         strokeLinejoin="round"
       />
+    </g>
+    <g id="plantation">
+      <mask
+        id="mask0_249_393"
+        style={{ maskType: 'alpha' }}
+        maskUnits="userSpaceOnUse"
+        x="87"
+        y="12"
+        width="737"
+        height="490"
+      >
+        <path
+          d="M387.902 178.363L695.131 12.0185L820.738 92.9277L823.001 102.546L818.475 120.086L807.724 139.889L802.632 148.942L792.448 154.034L779.434 159.126L771.513 155.731L765.29 152.337L720.591 175.534L716.631 185.719L652.696 364.511L644.209 384.314L632.327 396.761L624.406 409.775L617.05 419.393L604.603 433.538L579.142 455.039L567.826 468.052L546.891 478.802L387.902 178.363Z"
+          fill="black"
+        />
+        <path
+          d="M320.006 214.574L379.415 182.89L537.273 485.026L508.983 498.605L477.864 492.381L449.574 485.026L435.995 485.026L321.138 494.079L291.716 502L257.768 498.605L239.663 485.592L201.188 453.907L159.885 414.301L87.4629 341.879L320.006 214.574Z"
+          fill="black"
+        />
+      </mask>
+      <g id="plantation-2_1" mask="url(#mask0_249_393)">
+        <rect
+          id="1"
+          x="768.236"
+          y="-29.7094"
+          width="6.31972"
+          height="792.455"
+          transform="rotate(61.5 768.236 -29.7094)"
+        />
+        <rect
+          id="2"
+          x="771.251"
+          y="-24.1556"
+          width="6.31972"
+          height="792.455"
+          transform="rotate(61.5 771.251 -24.1556)"
+        />
+        <rect
+          id="3"
+          x="774.267"
+          y="-18.6019"
+          width="6.31972"
+          height="792.455"
+          transform="rotate(61.5 774.267 -18.6019)"
+        />
+        <rect
+          id="4"
+          x="777.283"
+          y="-13.0472"
+          width="6.31972"
+          height="792.455"
+          transform="rotate(61.5 777.283 -13.0472)"
+        />
+        <rect
+          id="5"
+          x="780.297"
+          y="-7.49353"
+          width="6.31972"
+          height="792.455"
+          transform="rotate(61.5 780.297 -7.49353)"
+        />
+        <rect
+          id="6"
+          x="783.313"
+          y="-1.93982"
+          width="6.31972"
+          height="792.455"
+          transform="rotate(61.5 783.313 -1.93982)"
+        />
+        <rect
+          id="7"
+          x="786.328"
+          y="3.61389"
+          width="6.31972"
+          height="792.455"
+          transform="rotate(61.5 786.328 3.61389)"
+        />
+        <rect
+          id="8"
+          x="789.344"
+          y="9.1676"
+          width="6.31972"
+          height="792.455"
+          transform="rotate(61.5 789.344 9.1676)"
+        />
+        <rect
+          id="9_2"
+          x="792.36"
+          y="14.7213"
+          width="6.31972"
+          height="792.455"
+          transform="rotate(61.5 792.36 14.7213)"
+        />
+        <rect
+          id="10"
+          x="795.375"
+          y="20.276"
+          width="6.31972"
+          height="792.455"
+          transform="rotate(61.5 795.375 20.276)"
+        />
+        <rect
+          id="11"
+          x="798.391"
+          y="25.8297"
+          width="6.31972"
+          height="792.455"
+          transform="rotate(61.5 798.391 25.8297)"
+        />
+        <rect
+          id="12"
+          x="801.407"
+          y="31.3834"
+          width="6.31972"
+          height="792.455"
+          transform="rotate(61.5 801.407 31.3834)"
+        />
+        <rect
+          id="13"
+          x="804.422"
+          y="36.9371"
+          width="6.31972"
+          height="792.455"
+          transform="rotate(61.5 804.422 36.9371)"
+        />
+        <rect
+          id="14"
+          x="807.437"
+          y="42.4908"
+          width="6.31972"
+          height="792.455"
+          transform="rotate(61.5 807.437 42.4908)"
+        />
+        <rect
+          id="15"
+          x="810.452"
+          y="48.0446"
+          width="6.31972"
+          height="792.455"
+          transform="rotate(61.5 810.452 48.0446)"
+        />
+        <rect
+          id="16"
+          x="813.468"
+          y="53.5992"
+          width="6.31972"
+          height="792.455"
+          transform="rotate(61.5 813.468 53.5992)"
+        />
+        <rect
+          id="17"
+          x="816.484"
+          y="59.153"
+          width="6.31972"
+          height="792.455"
+          transform="rotate(61.5 816.484 59.153)"
+        />
+        <rect
+          id="18"
+          x="819.499"
+          y="64.7067"
+          width="6.31972"
+          height="792.455"
+          transform="rotate(61.5 819.499 64.7067)"
+        />
+        <rect
+          id="19"
+          x="822.515"
+          y="70.2604"
+          width="6.31972"
+          height="792.455"
+          transform="rotate(61.5 822.515 70.2604)"
+        />
+        <rect
+          id="20"
+          x="825.531"
+          y="75.8141"
+          width="6.31972"
+          height="792.455"
+          transform="rotate(61.5 825.531 75.8141)"
+        />
+        <rect
+          id="21"
+          x="828.546"
+          y="81.3688"
+          width="6.31972"
+          height="792.455"
+          transform="rotate(61.5 828.546 81.3688)"
+        />
+        <rect
+          id="22"
+          x="831.562"
+          y="86.9215"
+          width="6.31972"
+          height="792.455"
+          transform="rotate(61.5 831.562 86.9215)"
+        />
+        <rect
+          id="23"
+          x="834.576"
+          y="92.4762"
+          width="6.31972"
+          height="792.455"
+          transform="rotate(61.5 834.576 92.4762)"
+        />
+        <rect
+          id="24"
+          x="837.592"
+          y="98.0299"
+          width="6.31972"
+          height="792.455"
+          transform="rotate(61.5 837.592 98.0299)"
+        />
+        <rect
+          id="25"
+          x="840.608"
+          y="103.584"
+          width="6.31972"
+          height="792.455"
+          transform="rotate(61.5 840.608 103.584)"
+        />
+        <rect
+          id="26"
+          x="843.623"
+          y="109.137"
+          width="6.31972"
+          height="792.455"
+          transform="rotate(61.5 843.623 109.137)"
+        />
+        <rect
+          id="27"
+          x="846.639"
+          y="114.692"
+          width="6.31972"
+          height="792.455"
+          transform="rotate(61.5 846.639 114.692)"
+        />
+        <rect
+          id="28"
+          x="849.655"
+          y="120.246"
+          width="6.31972"
+          height="792.455"
+          transform="rotate(61.5 849.655 120.246)"
+        />
+        <rect
+          id="29"
+          x="852.67"
+          y="125.799"
+          width="6.31972"
+          height="792.455"
+          transform="rotate(61.5 852.67 125.799)"
+        />
+        <rect
+          id="30"
+          x="855.686"
+          y="131.353"
+          width="6.31972"
+          height="792.455"
+          transform="rotate(61.5 855.686 131.353)"
+        />
+        <rect
+          id="31"
+          x="858.7"
+          y="136.907"
+          width="6.31972"
+          height="792.455"
+          transform="rotate(61.5 858.7 136.907)"
+        />
+        <rect
+          id="32"
+          x="861.716"
+          y="142.461"
+          width="6.31973"
+          height="792.455"
+          transform="rotate(61.5 861.716 142.461)"
+        />
+        <rect
+          id="33"
+          x="864.732"
+          y="148.014"
+          width="6.31973"
+          height="792.455"
+          transform="rotate(61.5 864.732 148.014)"
+        />
+        <rect
+          id="34"
+          x="867.747"
+          y="153.569"
+          width="6.31973"
+          height="792.455"
+          transform="rotate(61.5 867.747 153.569)"
+        />
+        <rect
+          id="35"
+          x="870.763"
+          y="159.123"
+          width="6.31973"
+          height="792.455"
+          transform="rotate(61.5 870.763 159.123)"
+        />
+        <rect
+          id="36"
+          x="873.779"
+          y="164.676"
+          width="6.31973"
+          height="792.455"
+          transform="rotate(61.5 873.779 164.676)"
+        />
+        <rect
+          id="37"
+          x="876.794"
+          y="170.23"
+          width="6.31973"
+          height="792.455"
+          transform="rotate(61.5 876.794 170.23)"
+        />
+        <rect
+          id="38"
+          x="879.81"
+          y="175.784"
+          width="6.31973"
+          height="792.455"
+          transform="rotate(61.5 879.81 175.784)"
+        />
+        <rect
+          id="39"
+          x="882.825"
+          y="181.338"
+          width="6.31973"
+          height="792.455"
+          transform="rotate(61.5 882.825 181.338)"
+        />
+        <rect
+          id="40"
+          x="885.84"
+          y="186.892"
+          width="6.31973"
+          height="792.455"
+          transform="rotate(61.5 885.84 186.892)"
+        />
+        <rect
+          id="41"
+          x="888.856"
+          y="192.446"
+          width="6.31973"
+          height="792.455"
+          transform="rotate(61.5 888.856 192.446)"
+        />
+        <rect
+          id="42"
+          x="891.871"
+          y="198"
+          width="6.31973"
+          height="792.455"
+          transform="rotate(61.5 891.871 198)"
+        />
+        <rect
+          id="43"
+          x="894.887"
+          y="203.553"
+          width="6.31973"
+          height="792.455"
+          transform="rotate(61.5 894.887 203.553)"
+        />
+        <rect
+          id="44"
+          x="897.903"
+          y="209.107"
+          width="6.31973"
+          height="792.455"
+          transform="rotate(61.5 897.903 209.107)"
+        />
+        <rect
+          id="45"
+          x="900.918"
+          y="214.662"
+          width="6.31973"
+          height="792.455"
+          transform="rotate(61.5 900.918 214.662)"
+        />
+        <rect
+          id="46"
+          x="903.934"
+          y="220.215"
+          width="6.31973"
+          height="792.455"
+          transform="rotate(61.5 903.934 220.215)"
+        />
+        <rect
+          id="47"
+          x="906.949"
+          y="225.769"
+          width="6.31973"
+          height="792.455"
+          transform="rotate(61.5 906.949 225.769)"
+        />
+        <rect
+          id="48"
+          x="909.964"
+          y="231.323"
+          width="6.31973"
+          height="792.455"
+          transform="rotate(61.5 909.964 231.323)"
+        />
+        <rect
+          id="49"
+          x="912.98"
+          y="236.877"
+          width="6.31973"
+          height="792.455"
+          transform="rotate(61.5 912.98 236.877)"
+        />
+        <rect
+          id="50"
+          x="915.995"
+          y="242.43"
+          width="6.31973"
+          height="792.455"
+          transform="rotate(61.5 915.995 242.43)"
+        />
+        <rect
+          id="51"
+          x="919.011"
+          y="247.985"
+          width="6.31973"
+          height="792.455"
+          transform="rotate(61.5 919.011 247.985)"
+        />
+        <rect
+          id="52"
+          x="922.027"
+          y="253.539"
+          width="6.31973"
+          height="792.455"
+          transform="rotate(61.5 922.027 253.539)"
+        />
+        <rect
+          id="53"
+          x="925.042"
+          y="259.092"
+          width="6.31973"
+          height="792.455"
+          transform="rotate(61.5 925.042 259.092)"
+        />
+        <rect
+          id="54"
+          x="928.058"
+          y="264.646"
+          width="6.31973"
+          height="792.455"
+          transform="rotate(61.5 928.058 264.646)"
+        />
+      </g>
     </g>
   </svg>
 ))

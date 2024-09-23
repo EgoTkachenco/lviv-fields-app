@@ -18,7 +18,7 @@ const Field = React.forwardRef((props, ref) => (
         fill="#C1FFFF"
       />
     </g>
-    <g id="11">
+    <g id="11" className="fields">
       <path
         id="Vector 4"
         className="green-particle"
@@ -43,6 +43,368 @@ const Field = React.forwardRef((props, ref) => (
         strokeLinecap="round"
         strokeLinejoin="round"
       />
+    </g>
+    <g id="plantation">
+      <mask
+        id="mask0_249_441"
+        style={{ maskType: 'alpha' }}
+        maskUnits="userSpaceOnUse"
+        x="29"
+        y="33"
+        width="513"
+        height="351"
+      >
+        <path
+          d="M206.104 33.706L229.276 45.844L271.207 119.223L218.793 206.396L53.8276 117.017L56.5862 111.499L118.931 54.6716L125 51.3612L148.173 40.8785L206.104 33.706Z"
+          fill="black"
+        />
+        <path
+          d="M29 214.12L40.0345 167.775L191.759 251.947L145.966 328.327L86.3794 297.431L43.3448 248.327L31.7586 232.327L29 222.948L29 214.12Z"
+          fill="black"
+        />
+        <path
+          d="M204.449 375.224L143.207 341.569L196.173 254.396L377.69 357.017L309.828 366.396L259.069 383.5L229.828 375.224L213.828 375.224L204.449 375.224Z"
+          fill="black"
+        />
+        <path
+          d="M509.001 352.051L501.277 359.224L222.656 208.603L267.345 133.017L284.449 140.189L541.001 284.189L509.001 352.051Z"
+          fill="black"
+        />
+      </mask>
+      <g id="plantation-3_1" mask="url(#mask0_249_441)">
+        <g clipPath="url(#clip1_249_441)">
+          <rect
+            id="1"
+            x="579.054"
+            y="232.514"
+            width="4.42501"
+            height="525.605"
+            transform="rotate(118.04 579.054 232.514)"
+          />
+          <rect
+            id="2"
+            x="576.974"
+            y="236.419"
+            width="4.42501"
+            height="525.605"
+            transform="rotate(118.04 576.974 236.419)"
+          />
+          <rect
+            id="3_2"
+            x="574.894"
+            y="240.325"
+            width="4.42501"
+            height="525.605"
+            transform="rotate(118.04 574.894 240.325)"
+          />
+          <rect
+            id="4"
+            x="572.814"
+            y="244.231"
+            width="4.42501"
+            height="525.605"
+            transform="rotate(118.04 572.814 244.231)"
+          />
+          <rect
+            id="5"
+            x="570.734"
+            y="248.136"
+            width="4.42501"
+            height="525.605"
+            transform="rotate(118.04 570.734 248.136)"
+          />
+          <rect
+            id="6"
+            x="568.654"
+            y="252.042"
+            width="4.42501"
+            height="525.605"
+            transform="rotate(118.04 568.654 252.042)"
+          />
+          <rect
+            id="7"
+            x="566.574"
+            y="255.947"
+            width="4.42501"
+            height="525.605"
+            transform="rotate(118.04 566.574 255.947)"
+          />
+          <rect
+            id="8"
+            x="564.494"
+            y="259.853"
+            width="4.42501"
+            height="525.605"
+            transform="rotate(118.04 564.494 259.853)"
+          />
+          <rect
+            id="9"
+            x="562.414"
+            y="263.759"
+            width="4.42501"
+            height="525.605"
+            transform="rotate(118.04 562.414 263.759)"
+          />
+          <rect
+            id="10"
+            x="560.334"
+            y="267.664"
+            width="4.42501"
+            height="525.605"
+            transform="rotate(118.04 560.334 267.664)"
+          />
+          <rect
+            id="11_2"
+            x="558.254"
+            y="271.569"
+            width="4.42501"
+            height="525.605"
+            transform="rotate(118.04 558.254 271.569)"
+          />
+          <rect
+            id="12"
+            x="556.174"
+            y="275.476"
+            width="4.42501"
+            height="525.605"
+            transform="rotate(118.04 556.174 275.476)"
+          />
+          <rect
+            id="13"
+            x="554.093"
+            y="279.381"
+            width="4.42501"
+            height="525.605"
+            transform="rotate(118.04 554.093 279.381)"
+          />
+          <rect
+            id="14"
+            x="552.012"
+            y="283.287"
+            width="4.42501"
+            height="525.605"
+            transform="rotate(118.04 552.012 283.287)"
+          />
+          <rect
+            id="15"
+            x="549.932"
+            y="287.192"
+            width="4.42501"
+            height="525.605"
+            transform="rotate(118.04 549.932 287.192)"
+          />
+          <rect
+            id="16"
+            x="547.852"
+            y="291.098"
+            width="4.42501"
+            height="525.605"
+            transform="rotate(118.04 547.852 291.098)"
+          />
+          <rect
+            id="17"
+            x="545.772"
+            y="295.004"
+            width="4.42501"
+            height="525.605"
+            transform="rotate(118.04 545.772 295.004)"
+          />
+          <rect
+            id="18"
+            x="543.692"
+            y="298.909"
+            width="4.42501"
+            height="525.605"
+            transform="rotate(118.04 543.692 298.909)"
+          />
+          <rect
+            id="19"
+            x="541.612"
+            y="302.815"
+            width="4.42501"
+            height="525.605"
+            transform="rotate(118.04 541.612 302.815)"
+          />
+          <rect
+            id="20"
+            x="539.532"
+            y="306.721"
+            width="4.42501"
+            height="525.605"
+            transform="rotate(118.04 539.532 306.721)"
+          />
+          <rect
+            id="21"
+            x="537.452"
+            y="310.626"
+            width="4.42501"
+            height="525.605"
+            transform="rotate(118.04 537.452 310.626)"
+          />
+          <rect
+            id="22"
+            x="535.372"
+            y="314.531"
+            width="4.42501"
+            height="525.605"
+            transform="rotate(118.04 535.372 314.531)"
+          />
+          <rect
+            id="23"
+            x="533.292"
+            y="318.438"
+            width="4.42501"
+            height="525.605"
+            transform="rotate(118.04 533.292 318.438)"
+          />
+          <rect
+            id="24"
+            x="531.212"
+            y="322.343"
+            width="4.42501"
+            height="525.605"
+            transform="rotate(118.04 531.212 322.343)"
+          />
+          <rect
+            id="25"
+            x="529.132"
+            y="326.248"
+            width="4.42501"
+            height="525.605"
+            transform="rotate(118.04 529.132 326.248)"
+          />
+          <rect
+            id="26"
+            x="527.052"
+            y="330.154"
+            width="4.42501"
+            height="525.605"
+            transform="rotate(118.04 527.052 330.154)"
+          />
+          <rect
+            id="27"
+            x="524.971"
+            y="334.06"
+            width="4.42501"
+            height="525.605"
+            transform="rotate(118.04 524.971 334.06)"
+          />
+          <rect
+            id="28"
+            x="522.891"
+            y="337.965"
+            width="4.42501"
+            height="525.605"
+            transform="rotate(118.04 522.891 337.965)"
+          />
+          <rect
+            id="29"
+            x="520.811"
+            y="341.871"
+            width="4.42501"
+            height="525.605"
+            transform="rotate(118.04 520.811 341.871)"
+          />
+          <rect
+            id="30"
+            x="518.731"
+            y="345.776"
+            width="4.42501"
+            height="525.605"
+            transform="rotate(118.04 518.731 345.776)"
+          />
+          <rect
+            id="31"
+            x="516.651"
+            y="349.682"
+            width="4.42501"
+            height="525.605"
+            transform="rotate(118.04 516.651 349.682)"
+          />
+          <rect
+            id="32"
+            x="514.571"
+            y="353.588"
+            width="4.42501"
+            height="525.605"
+            transform="rotate(118.04 514.571 353.588)"
+          />
+          <rect
+            id="33"
+            x="512.491"
+            y="357.493"
+            width="4.42501"
+            height="525.605"
+            transform="rotate(118.04 512.491 357.493)"
+          />
+        </g>
+        <g clipPath="url(#clip2_249_441)">
+          <rect
+            id="41"
+            x="385.492"
+            y="361.834"
+            width="12.6883"
+            height="406.037"
+            transform="rotate(119.5 385.492 361.834)"
+          />
+          <rect
+            id="42"
+            x="379.244"
+            y="372.876"
+            width="12.6883"
+            height="406.037"
+            transform="rotate(119.5 379.244 372.876)"
+          />
+          <rect
+            id="43"
+            x="372.996"
+            y="383.92"
+            width="12.6883"
+            height="406.037"
+            transform="rotate(119.5 372.996 383.92)"
+          />
+          <rect
+            id="44"
+            x="366.748"
+            y="394.963"
+            width="12.6883"
+            height="406.037"
+            transform="rotate(119.5 366.748 394.963)"
+          />
+          <rect
+            id="45"
+            x="360.5"
+            y="406.006"
+            width="12.6883"
+            height="406.037"
+            transform="rotate(119.5 360.5 406.006)"
+          />
+          <rect
+            id="46"
+            x="354.252"
+            y="417.05"
+            width="12.6883"
+            height="406.037"
+            transform="rotate(119.5 354.252 417.05)"
+          />
+          <rect
+            id="47"
+            x="348.004"
+            y="428.093"
+            width="12.6883"
+            height="406.037"
+            transform="rotate(119.5 348.004 428.093)"
+          />
+          <rect
+            id="48"
+            x="341.756"
+            y="439.136"
+            width="12.6883"
+            height="406.037"
+            transform="rotate(119.5 341.756 439.136)"
+          />
+        </g>
+      </g>
     </g>
   </svg>
 ))

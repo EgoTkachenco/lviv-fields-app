@@ -3,46 +3,40 @@ import { useMobileDetect } from '../../../hooks'
 
 export const useMapAreaHandlers = (ref, onOpen, type = 'registry') => {
   const { isDesktop } = useMobileDetect()
-  const handleEnterArea = (e) => {
-    e.currentTarget.style.fill = 'rgba(64, 124, 255, 0.2)'
-    e.currentTarget.style.stroke = '#407CFF'
+  const handleEnterArea = useCallback(
+    (e) => {
+      e.target.style.fill = 'rgba(64, 124, 255, 0.2)'
+      e.target.style.stroke = '#407CFF'
 
-    /*
+      /*
 			Call onOpen on mouseenter event only in desktop case 
 		*/
-    if (isDesktop()) onOpen(e)
-  }
-  const handleLeaveArea = (e) => {
-    e.currentTarget.style.fill = 'transparent'
-    e.currentTarget.style.stroke = 'transparent'
-    onOpen({ currentTarget: { id: null } })
-  }
+      if (isDesktop()) onOpen(e)
+    },
+    [onOpen, isDesktop]
+  )
+  const handleLeaveArea = useCallback(
+    (e) => {
+      e.target.style.fill = 'transparent'
+      e.target.style.stroke = 'transparent'
+      onOpen({ currentTarget: { id: null } })
+    },
+    [onOpen, isDesktop]
+  )
 
   useMapPlantations(ref, type)
 
   useEffect(() => {
     if (!ref.current) return
 
-    const childrens = ref.current.querySelectorAll('g')
+    const childrens = ref.current.querySelectorAll('g.fields')
 
     for (let i = 0; i < childrens.length; i++) {
       const element = childrens[i]
-      if (
-        !['lakes', 'green'].includes(element.id) &&
-        element.id.search('plantation') === -1
-      ) {
-        element.addEventListener('mouseenter', handleEnterArea)
-        element.addEventListener('mouseleave', handleLeaveArea)
-        element.addEventListener('click', onOpen)
-        // element.style.fill =
-        //   element.style.fill === 'rgba(64, 124, 255, 0.2)'
-        //     ? 'rgba(64, 124, 255, 0.2)'
-        //     : 'transparent'
-      }
 
-      // if (element.id === 'plantation') {
-      //   element.style.opacity = type === 'plantation' ? 1 : 0
-      // }
+      element.addEventListener('mouseenter', handleEnterArea)
+      element.addEventListener('mouseleave', handleLeaveArea)
+      element.addEventListener('click', onOpen)
     }
 
     return () => {
@@ -50,11 +44,9 @@ export const useMapAreaHandlers = (ref, onOpen, type = 'registry') => {
 
       for (let i = 0; i < childrens.length; i++) {
         const element = childrens[i]
-        if (element.tagName === 'g') {
-          element.removeEventListener('mouseenter', handleEnterArea)
-          element.removeEventListener('mouseleave', handleLeaveArea)
-          element.removeEventListener('click', onOpen)
-        }
+        element.removeEventListener('mouseenter', handleEnterArea)
+        element.removeEventListener('mouseleave', handleLeaveArea)
+        element.removeEventListener('click', onOpen)
       }
     }
   }, [ref, onOpen, type])
@@ -145,14 +137,12 @@ export const useMapPlantations = (ref, type) => {
   useEffect(() => {
     if (!ref.current) return
 
-    const childrens = ref.current.querySelectorAll('g')
+    const childrens = ref.current.querySelectorAll('g#plantation')
 
     for (let i = 0; i < childrens.length; i++) {
       const element = childrens[i]
 
-      if (element.id === 'plantation') {
-        element.style.opacity = type === 'plantation' ? 1 : 0
-      }
+      element.style.opacity = type === 'plantation' ? 1 : 0
     }
   }, [ref, type])
 }

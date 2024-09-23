@@ -392,7 +392,14 @@ class Store {
     try {
       const res = await MAP_API.getAreas()
       this.areas = res.map((area) =>
-        _.pick(area, ['id', 'name', 'path', 'fields', 'plantation_schema'])
+        _.pick(area, [
+          'id',
+          'name',
+          'path',
+          'fields',
+          'plantation_schema',
+          'size',
+        ])
       )
     } catch (error) {
       console.log(error)
