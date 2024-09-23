@@ -25,7 +25,7 @@ const LoginForm = observer(() => {
     store
       .signIn(form.state.identifier, form.state.password)
       .then(({ key, error }) => {
-        !error ? router.push('/') : form.onError(key, error)
+        !error ? router.push('/map') : form.onError(key, error)
       })
   }
   return (

@@ -14,11 +14,12 @@ export default function Input({
   type,
   validate = () => true,
   isRead,
+  style = {},
 }) {
   const [focus, setFocus] = useState(false)
 
   return (
-    <Wrapper>
+    <Wrapper style={style}>
       <InputField
         id={id}
         name={name}

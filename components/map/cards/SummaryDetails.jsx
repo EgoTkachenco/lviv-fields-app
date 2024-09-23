@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Card, Text, H5, Spacer, Box, Chip } from '../../common'
+import { Fragment } from 'react'
 
 const SummaryDetails = ({ data }) => {
   if (!data) return
@@ -14,25 +15,27 @@ const SummaryDetails = ({ data }) => {
       <Spacer vertical size="20px" />
       <Box wrap="true" gap="20px 50px">
         <Column gap="4px">
-          <Text>Площа власних земель:</Text>
-          <Chip color="primary">{data.owned?.toFixed(2) || 0} гектарів</Chip>
-        </Column>
-        {/* <Column gap="4px">
-          <Text>Площа ризикових земель: </Text>
-          <Text color="grey">{data.risk?.toFixed(4) || 0} гектарів</Text>
-        </Column> */}
-        <Column gap="4px">
-          <Text>Площа орендованих земель: </Text>
+          <Text>Площа ділянок в оренді: </Text>
           <Chip color="primary">{data.rented?.toFixed(2) || 0} гектарів</Chip>
         </Column>
-        {/* <Column gap="4px">
+        <Column gap="4px">
+          <Text>Площа власних ділянок:</Text>
+          <Chip color="primary">{data.owned?.toFixed(2) || 0} гектарів</Chip>
+        </Column>
+        <Column gap="4px">
+          <Text>Площа ділянок не в оренді: </Text>
+          <Chip color="primary">
+            {((data.all || 0) - (data.rented || 0)).toFixed(2) || 0} гектарів
+          </Chip>
+        </Column>
+        <Column gap="4px">
           <Text>Площа насаджень сорту: </Text>
 
           {Object.keys(data.varieties).length > 0 ? (
             Object.keys(data.varieties).map((variety) => (
               <Fragment key={variety}>
                 <Text color="grey">
-                  {data.varieties[variety]?.toFixed(2)} гектарів
+                  {data.varieties[variety]?.toFixed(2) || 0} Га
                 </Text>
                 <Box>
                   <Text color="grey">(</Text>
@@ -51,7 +54,7 @@ const SummaryDetails = ({ data }) => {
               </Box>
             </>
           )}
-        </Column> */}
+        </Column>
       </Box>
     </Card>
   )

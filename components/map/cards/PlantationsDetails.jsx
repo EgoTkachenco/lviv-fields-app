@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import styled from 'styled-components'
-import { Card, Select, H5, Spacer, Box, Icon } from '../../common'
+import { Card, Select, H5, Spacer, Box, Icon, Input } from '../../common'
 import { useAPIVarieties } from '../../../hooks'
 import { useClickOutside } from '@mantine/hooks'
+import { CardField, Column } from './elements/CardField'
 
 const YEARS_OPTIONS = new Array(20)
   .fill(null)
@@ -14,6 +15,20 @@ const PlantationsDetails = ({ data, isRead, onChange }) => {
   return (
     <Card>
       <H5>Інформація про насадження:</H5>
+      <Spacer vertical size="20px" />
+      <CardField
+        styledBox={Column}
+        isRead={isRead}
+        label="Кількість рядів"
+        value={data.plantations_rows}
+        editableSlot={
+          <Input
+            type="number"
+            value={data.plantations_rows}
+            onChange={(value) => onChange('plantations_rows', value)}
+          />
+        }
+      />
       <Spacer vertical size="20px" />
       <Box wrap="true">
         <Row>

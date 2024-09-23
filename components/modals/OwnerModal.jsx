@@ -1,19 +1,14 @@
-import {
-  Modal,
-  Button,
-  Box,
-  Text,
-  Spacer,
-  Input,
-  Autocomplete,
-  Label,
-  LabelInput,
-  Checkbox,
-} from '../common'
+import { Modal, Button, Box, Input, Checkbox } from '../common'
 import { useForm } from '@mantine/form'
 import styled from 'styled-components'
 
-const OwnerModal = ({ children, onConfirm, onCancel = () => {}, data }) => {
+const OwnerModal = ({
+  children,
+  onConfirm,
+  onCancel = () => {},
+  data,
+  isCurrentOwnerDisabled,
+}) => {
   const form = useForm({
     initialValues: {
       full_name: data?.full_name || '',
@@ -36,6 +31,7 @@ const OwnerModal = ({ children, onConfirm, onCancel = () => {}, data }) => {
   const handleSubmit = form.onSubmit((values) => {
     onConfirm({ ...data, ...values })
   })
+
   return (
     <Modal
       title={(data ? 'Редагування' : 'Створення') + ' Власника'}
@@ -67,7 +63,10 @@ const OwnerModal = ({ children, onConfirm, onCancel = () => {}, data }) => {
             <Input placeholder="Пошта" {...form.getInputProps('email')} />
           </Row>
           <Row>
-            <Input placeholder="Нотатка" {...form.getInputProps('note')} />
+            <Input
+              placeholder="Примітка до власника"
+              {...form.getInputProps('note')}
+            />
           </Row>
           <Row>
             <Input placeholder="Паспорт" {...form.getInputProps('passport')} />
@@ -88,24 +87,20 @@ const OwnerModal = ({ children, onConfirm, onCancel = () => {}, data }) => {
             />
           </Row>
           <Row>
-            <Input placeholder="ІІН" {...form.getInputProps('iin')} />
+            <Input placeholder="ІПН" {...form.getInputProps('iin')} />
           </Row>
           <Row>
             <Checkbox
               label="Теперішній власник"
               {...form.getInputProps('isCurrentOwner')}
+              disabled={isCurrentOwnerDisabled}
             />
           </Row>
           <Row>
-            <Button
-              variant="outline"
-              onClick={() => {
-                onCancel()
-              }}
-            >
+            <Button variant="outline" onClick={onCancel}>
               Закрити
             </Button>
-            <Button variant="primary" onClick={handleSubmit}>
+            <Button variant="primary" type="submit">
               Підтвердити
             </Button>
           </Row>

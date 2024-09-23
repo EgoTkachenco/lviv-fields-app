@@ -244,7 +244,7 @@ export function AllMap({ onOpen, areaLabel, type, areas }) {
 const AllFieldsMap = React.forwardRef(({ areas }, ref) => {
   const areasConfigs = [
     {
-      area: 1,
+      area: 10,
       cmp: Field1,
       x: 3850,
       y: 450,
@@ -253,7 +253,7 @@ const AllFieldsMap = React.forwardRef(({ areas }, ref) => {
       labelXOffset: -200,
     },
     {
-      area: 2,
+      area: 6,
       cmp: Field2,
       x: 2450,
       y: 300,
@@ -262,7 +262,7 @@ const AllFieldsMap = React.forwardRef(({ areas }, ref) => {
     },
     // { cmp: Field3, x: 2150, y: 300, width: 352, height: 1028 },
     {
-      area: 4,
+      area: 5,
       cmp: Field4,
       x: 1400,
       y: 130,
@@ -271,7 +271,7 @@ const AllFieldsMap = React.forwardRef(({ areas }, ref) => {
       labelXOffset: -100,
     },
     {
-      area: 5,
+      area: 9,
       cmp: Field5,
       x: 975,
       y: 100,
@@ -279,9 +279,9 @@ const AllFieldsMap = React.forwardRef(({ areas }, ref) => {
       height: 1774,
       labelXOffset: -200,
     },
-    { area: 6, cmp: Field6, x: 0, y: 300, width: 1120, height: 1863 },
+    { area: 7, cmp: Field6, x: 0, y: 300, width: 1120, height: 1863 },
     {
-      area: 7,
+      area: 8,
       cmp: Field7,
       x: 1050,
       y: 0,
@@ -290,7 +290,7 @@ const AllFieldsMap = React.forwardRef(({ areas }, ref) => {
     },
     // { area: 8, cmp: Field8, x: 0, y: 0, width: 124, height: 246 },
     {
-      area: 9,
+      area: 2,
       cmp: Field9,
       x: 1550,
       y: 2300,
@@ -300,7 +300,7 @@ const AllFieldsMap = React.forwardRef(({ areas }, ref) => {
       labelYOffset: -100,
     },
     {
-      area: 10,
+      area: 4,
       cmp: Field10,
       x: 2600,
       y: 2800,
@@ -309,7 +309,7 @@ const AllFieldsMap = React.forwardRef(({ areas }, ref) => {
       labelXOffset: 100,
     },
     {
-      area: 11,
+      area: 3,
       cmp: Field11,
       x: 2250,
       y: 2700,
@@ -319,7 +319,7 @@ const AllFieldsMap = React.forwardRef(({ areas }, ref) => {
       labelYOffset: 50,
     },
     {
-      area: 12,
+      area: 1,
       cmp: Field12,
       x: 2350,
       y: 1530,
@@ -329,7 +329,11 @@ const AllFieldsMap = React.forwardRef(({ areas }, ref) => {
       labelYOffset: 100,
     },
   ]
-  const getAreaSize = (areaConfig) => {
+
+  const labelWidth = 700
+  const labelHeight = 150
+
+  const getAreaLabel = (areaConfig) => {
     const area = areas.find((area) => area.id === areaConfig.area)
     if (!area) return null
     const areaSize = area.fields
@@ -340,14 +344,20 @@ const AllFieldsMap = React.forwardRef(({ areas }, ref) => {
     const areaHeight = areaConfig.height || 0
 
     const x =
-      areaConfig.x + areaWidth / 2 - 600 / 2 + (areaConfig.labelXOffset || 0)
+      areaConfig.x +
+      areaWidth / 2 -
+      labelWidth / 2 +
+      (areaConfig.labelXOffset || 0)
     const y =
-      areaConfig.y + areaHeight / 2 - 150 / 2 + (areaConfig.labelYOffset || 0)
+      areaConfig.y +
+      areaHeight / 2 -
+      labelHeight / 2 +
+      (areaConfig.labelYOffset || 0)
 
     return (
       <svg
-        width="600"
-        height="150"
+        width={labelWidth}
+        height={labelHeight}
         viewBox="0 0 100 40"
         x={x}
         y={y}
@@ -356,8 +366,10 @@ const AllFieldsMap = React.forwardRef(({ areas }, ref) => {
         xmlns="http://www.w3.org/2000/svg"
       >
         <rect
-          width="100"
-          height="40"
+          width="100%"
+          height="100%"
+          x="0"
+          y="0"
           rx="10"
           fill="white"
           stroke="#313536"
@@ -365,13 +377,23 @@ const AllFieldsMap = React.forwardRef(({ areas }, ref) => {
         />
         <text
           x="50%"
-          y="50%"
+          y="25%"
           dominantBaseline="central"
           textAnchor="middle"
           fill="black"
-          fontSize="28"
+          fontSize="16"
         >
-          {areaSize}
+          Поле № {areaConfig.area}
+        </text>
+        <text
+          x="50%"
+          y="75%"
+          dominantBaseline="central"
+          textAnchor="middle"
+          fill="black"
+          fontSize="16"
+        >
+          {areaSize} Га
         </text>
       </svg>
     )
@@ -392,7 +414,7 @@ const AllFieldsMap = React.forwardRef(({ areas }, ref) => {
         return (
           <Fragment key={i}>
             <Area x={x} y={y} {...props} />
-            {getAreaSize(area)}
+            {getAreaLabel(area)}
           </Fragment>
         )
       })}

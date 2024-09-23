@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Button, ConfirmationModal } from '../common'
+import { formatDate } from '../../utils'
 
 const Table = ({
   model,
@@ -38,7 +39,15 @@ const Table = ({
                   isRead={field.isRead || isRead}
                 >
                   {field.isRead || isRead ? (
-                    row[field.id] || ''
+                    row[field.id] ? (
+                      field.type === 'date' ? (
+                        formatDate(row[field.id])
+                      ) : (
+                        row[field.id]
+                      )
+                    ) : (
+                      ''
+                    )
                   ) : (
                     <input
                       type={field.type || 'text'}

@@ -1,9 +1,21 @@
 import styled from 'styled-components'
 import Icon from './Icon'
 
-export default function Checkbox({ value, onChange, label, color }) {
+export default function Checkbox({
+  value,
+  onChange,
+  label,
+  color,
+  disabled = false,
+}) {
+  const onClick = (event) => {
+    event.preventDefault()
+    if (disabled) return
+    onChange(!value)
+  }
+
   return (
-    <Wrapper onClick={() => onChange(!value)}>
+    <Wrapper onClick={onClick} disabled={disabled}>
       <Box color={color} active={!!value}>
         <Icon icon="check" />
       </Box>
@@ -17,7 +29,9 @@ const Wrapper = styled.div`
   align-items: center;
   cursor: pointer;
   flex-grow: 1;
+  opacity: ${({ disabled }) => (disabled ? 0.75 : 1)};
 `
+
 const Box = styled.div`
   border: 1px solid #313536;
   border-radius: 3px;

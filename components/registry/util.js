@@ -20,7 +20,7 @@ export const model = [
   },
   { id: 'percent', name: '%', type: 'number' },
   { id: 'owner_dismatch', name: 'Не співпадає власник згідно державного акту' },
-  { id: 'note', name: 'Примітки' },
+  { id: 'note', name: 'Примітка до власника' },
   {
     id: 'sublease_MRIA_FARMING',
     name: 'Договір суборенди ТОВ "МРІЯ ФАРМІНГ ЛЬВІВ"до 06.06.2021 (7 років)',
@@ -132,12 +132,13 @@ export const owner_model = [
   {
     id: 'contract_start',
     name: 'Дата укладання',
+    type: 'date',
     isRead: true,
     notFilterable: true,
   },
   {
     id: 'contract_note',
-    name: 'Примiтки до договору',
+    name: 'Примiтка до договору',
     isRead: true,
     notFilterable: true,
   },
@@ -160,7 +161,12 @@ export const owner_model = [
   { id: 'birth_date', name: 'Дата народження', type: 'date' },
   { id: 'passport', name: 'Паспорт', notFilterable: true },
   { id: 'passport_who', name: 'Ким видано паспорт', notFilterable: true },
-  { id: 'passport_date', name: 'Дата видачі паспорту', notFilterable: true },
+  {
+    id: 'passport_date',
+    name: 'Дата видачі паспорту',
+    notFilterable: true,
+    type: 'date',
+  },
   { id: 'iin', name: 'ІПН' },
   { id: 'registration_address', name: 'Місце реєстрації', notFilterable: true },
   { id: 'address', name: 'Місце проживання', notFilterable: true },
@@ -173,10 +179,10 @@ export const owner_model = [
 ]
 export const field_model = [
   { id: 'cadastr', name: 'Кадастровий номер', isRead: true },
-  { id: 'size', name: 'Площа земельної ділянки', type: 'mix' },
+  { id: 'size', name: 'Площа земельної ділянки' },
   { id: 'location', name: '№ поля', type: 'relation' },
-  { id: 'area_size', name: 'Площа поля', type: 'mix' },
-  { id: 'plant_year', name: 'Рік засадження', type: 'mix' },
+  { id: 'area_size', name: 'Площа поля' },
+  { id: 'plant_year', name: 'Рік засадження' },
   {
     id: 'repair',
     name: 'Ремонт поля (рік, к-сть рядів, поле)',

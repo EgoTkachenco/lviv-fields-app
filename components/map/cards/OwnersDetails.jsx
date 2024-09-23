@@ -8,6 +8,10 @@ const OwnersDetails = ({ data, isRead, onUpdate, onCreate, onDelete }) => {
   const openModal = (data = null) => setModal({ show: true, data })
   const closeModal = () => setModal({ show: false, data: null })
   const owners = data.owners.map((owner, i) => ({ ...owner, order: i + 1 }))
+  const isCurrentOwner = owners.reduce(
+    (acc, el) => acc || el.isCurrentOwner,
+    false
+  )
   return (
     <StyledCard>
       <Box justify="space-between" align="center">
@@ -30,7 +34,13 @@ const OwnersDetails = ({ data, isRead, onUpdate, onCreate, onDelete }) => {
           isRead={isRead}
           onChange={(index, key, value) => {
             if (key === 'delete') onDelete(index)
-            if (key === 'update') openModal({ ...owners[index], index })
+            if (key === 'update')
+              openModal({
+                ...owners[index],
+                index,
+                isCurrentOwnerDisabled:
+                  isCurrentOwner && !owners[index].isCurrentOwner,
+              })
           }}
           renderContent={(children) => <TableContent>{children}</TableContent>}
           isEdit
@@ -42,6 +52,9 @@ const OwnersDetails = ({ data, isRead, onUpdate, onCreate, onDelete }) => {
       {modal.show && (
         <OwnerModal
           data={modal.data}
+          isCurrentOwnerDisabled={
+            modal.data ? modal.data.isCurrentOwnerDisabled : isCurrentOwner
+          }
           onConfirm={(data) => {
             if (modal.data) onUpdate(data)
             else onCreate(data)
@@ -82,10 +95,19 @@ const TableContainer = styled.div`
 const model = [
   { id: 'order', name: '№' },
   { id: 'full_name', name: 'ПІБ' },
-  { id: 'birth_date', name: 'Дата народження' },
+  { id: 'birth_date', name: 'Дата народження', type: 'date' },
   { id: 'address', name: 'Адреса' },
   { id: 'phone', name: 'Контактний телефон' },
   { id: 'email', name: 'Електронна пошта' },
-  { id: 'note', name: 'Примітки' },
+  { id: 'note', name: 'Примітка до власника' },
 ]
-const sizes = ['40px', '120px', '160px', '250px', '180px', '170px', '100%']
+const sizes = [
+  '40px',
+  '120px',
+  '160px',
+  '250px',
+  '180px',
+  '170px',
+  '200px',
+  '100%',
+]
