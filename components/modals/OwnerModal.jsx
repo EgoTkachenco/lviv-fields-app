@@ -1,13 +1,20 @@
-import { Modal, Button, Box, Input, Checkbox } from '../common'
+import {
+  Modal,
+  Button,
+  Box,
+  Input,
+  Checkbox,
+  PhoneInput,
+  DateInput,
+} from '../common'
 import { useForm } from '@mantine/form'
 import styled from 'styled-components'
 
 const OwnerModal = ({
-  children,
   onConfirm,
   onCancel = () => {},
   data,
-  isCurrentOwnerDisabled,
+  isCurrentOwnerDisabled = false,
 }) => {
   const form = useForm({
     initialValues: {
@@ -41,9 +48,15 @@ const OwnerModal = ({
       <form onSubmit={handleSubmit}>
         <Box gap="16px" direction="column">
           <Row>
-            <Input placeholder="ПІБ" {...form.getInputProps('full_name')} />
+            <Input placeholder="Прізвище" {...form.getInputProps('surname')} />
+            <Input placeholder="Імʼя" {...form.getInputProps('first_name')} />
+          </Row>
+          <Row>
             <Input
-              type="date"
+              placeholder="По-батькові"
+              {...form.getInputProps('patronymic')}
+            />
+            <DateInput
               placeholder="Дата народження"
               {...form.getInputProps('birth_date')}
             />
@@ -59,7 +72,10 @@ const OwnerModal = ({
             /> */}
           </Row>
           <Row>
-            <Input placeholder="Телефон" {...form.getInputProps('phone')} />
+            <PhoneInput
+              placeholder="Телефон"
+              {...form.getInputProps('phone')}
+            />
             <Input placeholder="Пошта" {...form.getInputProps('email')} />
           </Row>
           <Row>
@@ -80,8 +96,7 @@ const OwnerModal = ({
               placeholder="Ким видано паспорт"
               {...form.getInputProps('passport_who')}
             />
-            <Input
-              type="date"
+            <DateInput
               placeholder="Коли видано паспорт"
               {...form.getInputProps('passport_date')}
             />

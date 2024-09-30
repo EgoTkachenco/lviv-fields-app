@@ -8,13 +8,13 @@ export const FIELD_TYPES = {
   // risk: 'Ризикові земельні ділянки',
   owned: 'Власні ділянки',
   rented: 'Орендовані ділянки',
-  subrent: 'Cуборендовані ділянки',
+  subrent: 'Інші ділянки',
 }
 
 export const FIELD_TYPES_COLORS = {
-  owned: '#B3CCCE',
-  rented: '#ABACDC',
-  subrent: '#B8DCAB',
+  owned: '#008000',
+  rented: '#ffff00',
+  subrent: '#000080',
 }
 
 export const FIELD_CATEGORIES = {

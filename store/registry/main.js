@@ -25,7 +25,21 @@ export class RegistryStore {
       REGISTRY_API.getOwnersCount,
       REGISTRY_API.exportOwners,
       formatOwner,
-      REGISTRY_API.saveOwner,
+      (id, data, oldData) => {
+        const isNameChanged = data.surname || data.first_name || data.patronymic
+        if (isNameChanged) {
+          const [n1, n2, n3] = oldData.full_name
+            ? oldData.full_name.split(' ')
+            : ['', '', '']
+
+          data.full_name = [
+            data.surname || n1,
+            data.first_name || n2,
+            data.patronymic || n3,
+          ].join(' ')
+        }
+        REGISTRY_API.saveOwner(id, data)
+      },
       'id',
       'search',
       (filter) => {

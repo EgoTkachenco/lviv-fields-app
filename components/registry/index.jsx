@@ -43,7 +43,7 @@ const Registry = observer(() => {
 
   const filter = stores[activeTab].filter
   const [filters, setFilters] = useState({})
-	useEffect(() => {
+  useEffect(() => {
     const filters = { search, ...filter }
     setFilters(filters)
   }, [filter, search])
@@ -150,7 +150,9 @@ const Registry = observer(() => {
           limit={ownersStore.limit}
           loadData={ownersStore.loadData}
           loadDataCount={ownersStore.debouncedLoadDataCount}
-          onChange={ownersStore.onTableChange}
+          onChange={(index, key, value) => {
+            ownersStore.onTableChange(index, key, value)
+          }}
         />
         <Table
           show={activeTab === 'field'}

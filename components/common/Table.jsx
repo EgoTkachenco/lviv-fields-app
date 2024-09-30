@@ -1,6 +1,8 @@
 import styled from 'styled-components'
-import { Button, ConfirmationModal } from '../common'
-import { formatDate } from '../../utils'
+import { Button, ConfirmationModal, DateInput } from '../common'
+import { format, useMask } from '@react-input/mask'
+import DatePicker from 'react-datepicker'
+import { formatDate } from 'date-fns'
 
 const Table = ({
   model,
@@ -13,8 +15,35 @@ const Table = ({
   isEdit = false,
   isDelete = false,
   isActive = () => false,
+  withEvenOdd = true,
 }) => {
   if (!data) return
+
+  const renderCell = (field, row, index) => {
+    const props = {
+      value: row[field.id] || '',
+      readOnly: field.isRead || isRead || !onChange,
+      onChange: (e) => onChange(index, field.id, e.target.value),
+      onClick: (e) => onCellClick(field.id, index, e.target.value),
+    }
+    if (field.type === 'phone') {
+      return (
+        <PhoneCell
+          {...props}
+          value={format(props.value, {
+            mask: '+38 (___) ___-__-__',
+            replacement: { _: /\d/ },
+          })}
+        />
+      )
+    }
+    if (field.type === 'date')
+      return <DateCell {...props} readOnly={props.readOnly || isEdit} />
+
+    if (props.readOnly) return props.value || ''
+
+    return <input type={field.type || 'text'} {...props} />
+  }
   return (
     <TableWrapper>
       <TableContent>
@@ -30,7 +59,7 @@ const Table = ({
         </TableRow>
         {renderContent(
           data.map((row, i) => (
-            <TableRow key={i} active={isActive(row)}>
+            <TableRow key={i} active={isActive(row)} withEvenOdd={withEvenOdd}>
               {model.map((field, j) => (
                 <TableCell
                   width={sizes ? sizes[j] : 'auto'}
@@ -38,25 +67,7 @@ const Table = ({
                   onClick={(e) => onCellClick(field.id, i, row[field.id] || '')}
                   isRead={field.isRead || isRead}
                 >
-                  {field.isRead || isRead ? (
-                    row[field.id] ? (
-                      field.type === 'date' ? (
-                        formatDate(row[field.id])
-                      ) : (
-                        row[field.id]
-                      )
-                    ) : (
-                      ''
-                    )
-                  ) : (
-                    <input
-                      type={field.type || 'text'}
-                      value={row[field.id] || ''}
-                      readOnly={isRead}
-                      onChange={(e) => onChange(i, field.id, e.target.value)}
-                      onClick={(e) => onCellClick(field.id, i, e.target.value)}
-                    />
-                  )}
+                  {renderCell(field, row, i)}
                 </TableCell>
               ))}
               {!isRead && (isEdit || isDelete) && (
@@ -102,16 +113,19 @@ const TableContent = styled.tbody`
 `
 const TableRow = styled.tr`
   border-bottom: 1px solid #e9edf5;
-  background: ${({ active }) => (active ? '#EDF9ED' : '#ffffff')};
+  background: ${({ active }) => (active ? '#b8dcab80' : '#ffffff')};
   transition: all 0.3s;
   width: 100%;
 
-  &:nth-child(even) {
-    background: rgba(227, 232, 232, 0.5);
-  }
-  &:nth-child(odd) {
-    background: transparent;
-  }
+  ${({ withEvenOdd }) =>
+    withEvenOdd
+      ? ` &:nth-child(even) {
+						background: rgba(227, 232, 232, 0.5);
+					}
+					&:nth-child(odd) {
+						background: transparent;
+					}`
+      : ''}
 
   &:hover {
     background: #f4f6fa;
@@ -187,3 +201,29 @@ const TableCell = styled.td`
 `
 
 export default Table
+
+const PhoneCell = (props) => {
+  const ref = useMask({
+    mask: '+38 (___) ___-__-__',
+    replacement: { _: /\d/ },
+  })
+
+  return <input ref={ref} {...props} />
+}
+
+const DateCell = (props) => {
+  return (
+    <DatePicker
+      {...props}
+      value={props.value && formatDate(props.value, 'dd/MM/yyyy')}
+      selected={props.value}
+      onChange={(value) => {
+        debugger
+        props.onChange({ target: { value } })
+      }}
+      locale="uk"
+      format="dd/MM/yyyy"
+      disabled={props.readOnly}
+    />
+  )
+}

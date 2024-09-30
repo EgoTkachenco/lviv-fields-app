@@ -30,7 +30,7 @@ const Navigation = observer(() => {
   const isLogged = !!store.user
   return (
     <Wrapper>
-      <Link href="/">
+      <Link href="/map">
         <LogoText>Land-Map</LogoText>
       </Link>
       <Spacer size="auto" />

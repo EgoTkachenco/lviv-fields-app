@@ -1533,7 +1533,7 @@ const Field = React.forwardRef((props, ref) => (
           <path
             d="M353.768 1318.25L353.768 1322.4L66.1917 1326.04L66.1917 1318.25L353.768 1318.25Z"
             stroke="black"
-            stroke-width="2.90481"
+            strokeWidth="2.90481"
             mask="url(#path-175-inside-1_249_325)"
           />
         </g>

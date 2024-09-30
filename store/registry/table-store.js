@@ -42,14 +42,14 @@ export class RegistryTableStore {
     this.save = save
     this.idKey = idKey
     this.searchKey = searchKey
-		this.formatFilter = formatFilter
+    this.formatFilter = formatFilter
 
-		this.debouncedLoadDataCount = _.debounce(() => {
+    this.debouncedLoadDataCount = _.debounce(() => {
       this.loadDataCount()
     }, 300)
   }
 
-	loadData = (page, size) => {
+  loadData = (page, size) => {
     let query = this.getFilterQuery()
     query.set('_limit', size)
     query.set('_start', (page - 1) * size)
@@ -65,8 +65,8 @@ export class RegistryTableStore {
   loadDataCount = () => {
     let query = this.getFilterQuery()
     if (this.parent.search)
-			query.set(this.searchKey, this.parent.search.toLowerCase())
-		
+      query.set(this.searchKey, this.parent.search.toLowerCase())
+
     this.loadDataCountService(query.toString())
       .then((limit) => {
         this.limit = limit
@@ -103,7 +103,6 @@ export class RegistryTableStore {
 
     data[index][field] = value
     this.editedRows[id][field] = value
-
     this.data = data
   }
 
@@ -112,7 +111,11 @@ export class RegistryTableStore {
     for (let i = 0; i < ids.length; i++) {
       const id = ids[i]
       try {
-        await this.save(id, this.editedRows[id])
+        await this.save(
+          id,
+          this.editedRows[id],
+          this.data.find((el) => el.id == id)
+        )
       } catch (error) {
         console.log(error.message)
       }

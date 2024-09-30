@@ -7,11 +7,19 @@ const OwnersDetails = ({ data, isRead, onUpdate, onCreate, onDelete }) => {
   const [modal, setModal] = useState({ show: false, data: null })
   const openModal = (data = null) => setModal({ show: true, data })
   const closeModal = () => setModal({ show: false, data: null })
-  const owners = data.owners.map((owner, i) => ({ ...owner, order: i + 1 }))
-  const isCurrentOwner = owners.reduce(
-    (acc, el) => acc || el.isCurrentOwner,
-    false
-  )
+  const owners = data.owners
+    .map((owner, i) => ({
+      ...owner,
+      order: i + 1,
+      surname: owner.full_name && owner.full_name.split(' ')[0],
+      first_name: owner.full_name && owner.full_name.split(' ')[1],
+      patronymic: owner.full_name && owner.full_name.split(' ')[2],
+    }))
+    .sort((a, b) => b.isCurrentOwner - a.isCurrentOwner)
+  // const isCurrentOwner = owners.reduce(
+  //   (acc, el) => acc || el.isCurrentOwner,
+  //   false
+  // )
   return (
     <StyledCard>
       <Box justify="space-between" align="center">
@@ -38,13 +46,14 @@ const OwnersDetails = ({ data, isRead, onUpdate, onCreate, onDelete }) => {
               openModal({
                 ...owners[index],
                 index,
-                isCurrentOwnerDisabled:
-                  isCurrentOwner && !owners[index].isCurrentOwner,
+                // isCurrentOwnerDisabled:
+                //   isCurrentOwner && !owners[index].isCurrentOwner,
               })
           }}
           renderContent={(children) => <TableContent>{children}</TableContent>}
           isEdit
           isDelete
+          withEvenOdd={false}
           isActive={(row) => row.isCurrentOwner}
         />
       </TableContainer>
@@ -52,9 +61,9 @@ const OwnersDetails = ({ data, isRead, onUpdate, onCreate, onDelete }) => {
       {modal.show && (
         <OwnerModal
           data={modal.data}
-          isCurrentOwnerDisabled={
-            modal.data ? modal.data.isCurrentOwnerDisabled : isCurrentOwner
-          }
+          // isCurrentOwnerDisabled={
+          //   modal.data ? modal.data.isCurrentOwnerDisabled : isCurrentOwner
+          // }
           onConfirm={(data) => {
             if (modal.data) onUpdate(data)
             else onCreate(data)
@@ -94,15 +103,20 @@ const TableContainer = styled.div`
 
 const model = [
   { id: 'order', name: '№' },
-  { id: 'full_name', name: 'ПІБ' },
+  // { id: 'full_name', name: 'ПІБ' },
+  { id: 'surname', name: 'Прізвище' },
+  { id: 'first_name', name: 'Імʼя' },
+  { id: 'patronymic', name: 'По-батькові' },
   { id: 'birth_date', name: 'Дата народження', type: 'date' },
   { id: 'address', name: 'Адреса' },
-  { id: 'phone', name: 'Контактний телефон' },
+  { id: 'phone', name: 'Контактний телефон', type: 'phone' },
   { id: 'email', name: 'Електронна пошта' },
   { id: 'note', name: 'Примітка до власника' },
 ]
 const sizes = [
   '40px',
+  '100px',
+  '120px',
   '120px',
   '160px',
   '250px',

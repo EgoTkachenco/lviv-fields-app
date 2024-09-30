@@ -94,6 +94,8 @@ export const sizes = [
 export const owner_sizes = [
   '250px',
   '250px',
+  '250px',
+  '250px',
   '300px',
   '300px',
   '300px',
@@ -157,7 +159,10 @@ export const owner_model = [
   //   name: 'Суборенда (№договору, дата, дод.угода)',
   //   isRead: true,
   // },
-  { id: 'full_name', name: 'ПІБ' },
+  // { id: 'full_name', name: 'ПІБ' },
+  { id: 'surname', name: 'Прізвище' },
+  { id: 'first_name', name: 'Імʼя' },
+  { id: 'patronymic', name: 'По-батькові' },
   { id: 'birth_date', name: 'Дата народження', type: 'date' },
   { id: 'passport', name: 'Паспорт', notFilterable: true },
   { id: 'passport_who', name: 'Ким видано паспорт', notFilterable: true },
@@ -170,7 +175,7 @@ export const owner_model = [
   { id: 'iin', name: 'ІПН' },
   { id: 'registration_address', name: 'Місце реєстрації', notFilterable: true },
   { id: 'address', name: 'Місце проживання', notFilterable: true },
-  { id: 'phone', name: 'Телефон' },
+  { id: 'phone', name: 'Телефон', type: 'phone' },
   {
     id: 'note',
     name: "Примітка(родинний зв'язок, телефон)",
@@ -221,6 +226,9 @@ export const formatOwner = (el) => {
     contract_start: el.field.contract_start,
     contract_note: el.field.contract_note,
     cadastr: el?.field.cadastr,
+    surname: el.full_name && el.full_name.split(' ')[0],
+    first_name: el.full_name && el.full_name.split(' ')[1],
+    patronymic: el.full_name && el.full_name.split(' ')[2],
   }
 }
 

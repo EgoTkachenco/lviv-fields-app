@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Card, H5, Spacer, Box, Icon, Button, Input } from '../../common'
+import { Card, H5, Spacer, Box, Input, DateInput } from '../../common'
 import { CardField, Column, FilesList } from './elements'
 import { formatDate } from '../../../utils'
 
@@ -30,8 +30,7 @@ const ContactDetails = ({ data, isRead, onChange }) => {
           label="Дата укладання"
           value={data.contract_start && formatDate(data.contract_start)}
           editableSlot={
-            <Input
-              type="date"
+            <DateInput
               value={data.contract_start}
               onChange={(value) => onChange('contract_start', value)}
             />
@@ -43,8 +42,7 @@ const ContactDetails = ({ data, isRead, onChange }) => {
           label="Дійсний до"
           value={data.contract_due && formatDate(data.contract_due)}
           editableSlot={
-            <Input
-              type="date"
+            <DateInput
               value={data.contract_due}
               onChange={(value) => onChange('contract_due', value)}
             />

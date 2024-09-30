@@ -7,6 +7,8 @@ import Modal from './Modal'
 import Box from './Box'
 import Tabs from './Tabs'
 import Input from './Input'
+import PhoneInput from './PhoneInput'
+import DateInput from './DateInput'
 import Checkbox from './Checkbox'
 import Icon from './Icon'
 import Table from './Table'
@@ -47,4 +49,6 @@ export {
   Label,
   InputLabel,
   Chip,
+  PhoneInput,
+  DateInput,
 }
