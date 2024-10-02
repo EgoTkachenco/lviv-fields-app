@@ -15,6 +15,7 @@ import {
 import Map from './fields-map/Map'
 import EditButton from '../navigation/EditButton'
 import { Spacer, PageLoader } from '../common'
+import AreaPlantationsDetails from './cards/AreaPlantationsDetails'
 
 const MapPage = observer(() => {
   const { area, field, mode, filter, summary, areas, type } = store
@@ -80,6 +81,12 @@ const MapPage = observer(() => {
             type={type}
           />
           {!field && <SummaryDetails data={summary} />}
+          {area && !field && (
+            <AreaPlantationsDetails
+              area={summary.area}
+              onAreaDetailsUpdate={(data) => store.updateArea(data)}
+            />
+          )}
         </Content>
       </Wrapper>
 

@@ -406,6 +406,18 @@ class Store {
     }
   }
 
+  async updateArea(data) {
+    try {
+      await MAP_API.updateArea(
+        this.area,
+        _.pick(data, ['plantation_schema', 'plantation_info'])
+      )
+      await this.loadAreas()
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
+
   changeType(type) {
     this.type = type
   }

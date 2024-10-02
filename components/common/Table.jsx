@@ -204,7 +204,7 @@ export default Table
 
 const PhoneCell = (props) => {
   const ref = useMask({
-    mask: '+38 (___) ___-__-__',
+    mask: '+__ (___) ___-__-__',
     replacement: { _: /\d/ },
   })
 

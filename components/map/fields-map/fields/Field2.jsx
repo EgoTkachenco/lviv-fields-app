@@ -415,7 +415,6 @@ const Field = React.forwardRef((props, ref) => (
       <g id="plantation-6_1" mask="url(#mask0_249_25)">
         <rect
           id="2_2"
-          opacity="0.7"
           x="0.394001"
           y="0.631922"
           width="336.975"
@@ -424,7 +423,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="3"
-          opacity="0.7"
           x="0.394001"
           y="0.631922"
           width="336.975"
@@ -433,7 +431,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="4"
-          opacity="0.7"
           x="0.394001"
           y="0.631922"
           width="336.975"
@@ -442,7 +439,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="5"
-          opacity="0.7"
           x="0.394001"
           y="0.631922"
           width="336.975"
@@ -451,7 +447,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="6"
-          opacity="0.7"
           x="0.394001"
           y="0.631922"
           width="336.975"
@@ -460,7 +455,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="7"
-          opacity="0.7"
           x="0.394001"
           y="0.631922"
           width="336.975"
@@ -469,7 +463,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="8"
-          opacity="0.7"
           x="0.394001"
           y="0.631922"
           width="336.975"
@@ -478,7 +471,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="9"
-          opacity="0.7"
           x="0.394001"
           y="0.631922"
           width="336.975"
@@ -487,7 +479,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="10"
-          opacity="0.7"
           x="0.394001"
           y="0.631922"
           width="336.975"
@@ -496,7 +487,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="11"
-          opacity="0.7"
           x="0.394001"
           y="0.631922"
           width="336.975"
@@ -505,7 +495,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="12"
-          opacity="0.7"
           x="0.394001"
           y="0.631922"
           width="336.975"
@@ -514,7 +503,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="13"
-          opacity="0.7"
           x="0.394001"
           y="0.631922"
           width="336.975"
@@ -523,7 +511,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="14"
-          opacity="0.7"
           x="0.394001"
           y="0.631922"
           width="336.975"
@@ -532,7 +519,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="15"
-          opacity="0.7"
           x="0.394001"
           y="0.631922"
           width="336.975"
@@ -541,7 +527,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="16"
-          opacity="0.7"
           x="0.394001"
           y="0.631922"
           width="336.975"
@@ -550,7 +535,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="17"
-          opacity="0.7"
           x="0.394001"
           y="0.631922"
           width="336.975"
@@ -559,7 +543,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="18"
-          opacity="0.7"
           x="0.394001"
           y="0.631922"
           width="336.975"
@@ -568,7 +551,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="19"
-          opacity="0.7"
           x="0.394001"
           y="0.631922"
           width="336.975"
@@ -577,7 +559,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="20"
-          opacity="0.7"
           x="0.394001"
           y="0.631922"
           width="336.975"
@@ -586,7 +567,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="21"
-          opacity="0.7"
           x="0.394001"
           y="0.631922"
           width="336.975"
@@ -595,7 +575,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="22"
-          opacity="0.7"
           x="0.394001"
           y="0.631922"
           width="336.975"
@@ -604,7 +583,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="23"
-          opacity="0.7"
           x="0.394001"
           y="0.631922"
           width="336.975"
@@ -613,7 +591,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="24"
-          opacity="0.7"
           x="0.394001"
           y="0.631922"
           width="336.975"
@@ -622,7 +599,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="25"
-          opacity="0.7"
           x="0.394001"
           y="0.631922"
           width="336.975"
@@ -631,7 +607,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="26"
-          opacity="0.7"
           x="0.394001"
           y="0.631922"
           width="336.975"
@@ -640,7 +615,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="27"
-          opacity="0.7"
           x="0.394001"
           y="0.631922"
           width="336.975"
@@ -649,7 +623,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="28"
-          opacity="0.7"
           x="0.394001"
           y="0.631922"
           width="336.975"
@@ -658,7 +631,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="29"
-          opacity="0.7"
           x="0.394001"
           y="0.631922"
           width="336.975"
@@ -667,7 +639,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="30"
-          opacity="0.7"
           x="0.394001"
           y="0.631922"
           width="336.975"
@@ -676,7 +647,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="31"
-          opacity="0.7"
           x="0.394001"
           y="0.631922"
           width="336.975"
@@ -685,7 +655,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="32"
-          opacity="0.7"
           x="0.394001"
           y="0.631922"
           width="336.975"
@@ -694,7 +663,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="33"
-          opacity="0.7"
           x="0.394001"
           y="0.631922"
           width="336.975"
@@ -703,7 +671,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="34"
-          opacity="0.7"
           x="0.394001"
           y="0.631922"
           width="336.975"
@@ -712,7 +679,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="35"
-          opacity="0.7"
           x="0.394001"
           y="0.631922"
           width="336.975"
@@ -721,7 +687,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="36"
-          opacity="0.7"
           x="0.394001"
           y="0.631922"
           width="336.975"
@@ -730,7 +695,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="37"
-          opacity="0.7"
           x="0.394001"
           y="0.631922"
           width="336.975"
@@ -739,7 +703,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="38"
-          opacity="0.7"
           x="0.394001"
           y="0.631922"
           width="336.975"
@@ -748,104 +711,86 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="39"
-          opacity="0.7"
           x="0.394001"
           y="0.631922"
           width="248.631"
           height="7.06173"
           transform="matrix(0.978595 0.205795 -0.245937 0.969286 562.542 376.175)"
         />
-        <g id="40" opacity="0.7">
+        <g id="40">
           <mask id="path-84-inside-3_249_25" fill="white">
             <path d="M574.846 386.449L791.616 431.953L786.524 440.397L572.668 390.187L574.846 386.449Z" />
           </mask>
           <path
             d="M574.846 386.449L791.616 431.953L786.524 440.397L572.668 390.187L574.846 386.449Z"
-            stroke="black"
-            strokeWidth="2.15108"
             mask="url(#path-84-inside-3_249_25)"
           />
         </g>
-        <g id="41" opacity="0.7">
+        <g id="41">
           <mask id="path-85-inside-4_249_25" fill="white">
             <path d="M573.084 389.2L786.918 439.668L782.999 448.142L570.391 395.588L573.084 389.2Z" />
           </mask>
           <path
             d="M573.084 389.2L786.918 439.668L782.999 448.142L570.391 395.588L573.084 389.2Z"
-            stroke="black"
-            strokeWidth="2.15108"
             mask="url(#path-85-inside-4_249_25)"
           />
         </g>
-        <g id="42" opacity="0.7">
+        <g id="42">
           <mask id="path-86-inside-5_249_25" fill="white">
             <path d="M570.808 394.601L783.013 447.613L779.068 457.144L568.115 400.988L570.808 394.601Z" />
           </mask>
           <path
             d="M570.808 394.601L783.013 447.613L779.068 457.144L568.115 400.988L570.808 394.601Z"
-            stroke="black"
-            strokeWidth="2.15108"
             mask="url(#path-86-inside-5_249_25)"
           />
         </g>
-        <g id="43" opacity="0.7">
+        <g id="43">
           <mask id="path-87-inside-6_249_25" fill="white">
             <path d="M568.533 400L779.464 456.414L774.971 464.344L565.841 406.387L568.533 400Z" />
           </mask>
           <path
             d="M568.533 400L779.464 456.414L774.971 464.344L565.841 406.387L568.533 400Z"
-            stroke="black"
-            strokeWidth="2.15108"
             mask="url(#path-87-inside-6_249_25)"
           />
         </g>
-        <g id="44" opacity="0.7">
+        <g id="44">
           <mask id="path-88-inside-7_249_25" fill="white">
             <path d="M566.256 405.4L774.996 463.287L769.878 472.79L563.563 411.788L566.256 405.4Z" />
           </mask>
           <path
             d="M566.256 405.4L774.996 463.287L769.878 472.79L563.563 411.788L566.256 405.4Z"
-            stroke="black"
-            strokeWidth="2.15108"
             mask="url(#path-88-inside-7_249_25)"
           />
         </g>
-        <g id="45" opacity="0.7">
+        <g id="45">
           <mask id="path-89-inside-8_249_25" fill="white">
             <path d="M563.978 410.801L770.08 472.161L765.764 480.52L561.285 417.188L563.978 410.801Z" />
           </mask>
           <path
             d="M563.978 410.801L770.08 472.161L765.764 480.52L561.285 417.188L563.978 410.801Z"
-            stroke="black"
-            strokeWidth="2.15108"
             mask="url(#path-89-inside-8_249_25)"
           />
         </g>
-        <g id="46" opacity="0.7">
+        <g id="46">
           <mask id="path-90-inside-9_249_25" fill="white">
             <path d="M561.702 416.2L765.792 479.462L761.44 489.488L559.009 422.588L561.702 416.2Z" />
           </mask>
           <path
             d="M561.702 416.2L765.792 479.462L761.44 489.488L559.009 422.588L561.702 416.2Z"
-            stroke="black"
-            strokeWidth="2.15108"
             mask="url(#path-90-inside-9_249_25)"
           />
         </g>
-        <g id="47" opacity="0.7">
+        <g id="47">
           <mask id="path-91-inside-10_249_25" fill="white">
             <path d="M559.426 421.601L761.087 488.341L760.834 498.633L556.733 427.988L559.426 421.601Z" />
           </mask>
           <path
             d="M559.426 421.601L761.087 488.341L760.834 498.633L556.733 427.988L559.426 421.601Z"
-            stroke="black"
-            strokeWidth="2.15108"
             mask="url(#path-91-inside-10_249_25)"
           />
         </g>
         <rect
           id="48"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -854,7 +799,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="49"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -863,7 +807,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="50"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -872,7 +815,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="51"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -881,7 +823,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="52"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -890,7 +831,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="53"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -899,7 +839,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="54"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -908,7 +847,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="55"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -917,7 +855,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="56"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -926,7 +863,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="57"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -935,7 +871,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="58"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -944,7 +879,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="59"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -953,7 +887,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="60"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -962,7 +895,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="61"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -971,7 +903,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="62"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -980,7 +911,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="63"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -989,7 +919,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="64"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -998,7 +927,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="65"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -1007,7 +935,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="66"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -1016,7 +943,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="67"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -1025,7 +951,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="68"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -1034,7 +959,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="69"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -1043,7 +967,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="70"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -1052,7 +975,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="71"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -1061,7 +983,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="72"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -1070,7 +991,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="73"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -1079,7 +999,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="74"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -1088,7 +1007,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="75"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -1097,7 +1015,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="76"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -1106,7 +1023,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="77"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -1115,7 +1031,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="78"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -1124,7 +1039,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="79"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -1133,7 +1047,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="80"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -1142,7 +1055,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="81"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -1151,7 +1063,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="82"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -1160,7 +1071,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="83"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -1169,7 +1079,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="84"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -1178,7 +1087,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="85"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -1187,7 +1095,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="86"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -1196,7 +1103,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="87"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -1205,7 +1111,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="88"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -1214,7 +1119,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="89"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -1223,7 +1127,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="90"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -1232,7 +1135,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="91"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -1241,7 +1143,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="92"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -1250,7 +1151,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="93"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -1259,7 +1159,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="94"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -1268,7 +1167,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="95"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -1277,7 +1175,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="96"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -1286,7 +1183,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="97"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -1295,7 +1191,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="98"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -1304,7 +1199,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="99"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -1313,7 +1207,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="100"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -1322,7 +1215,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="101"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -1331,7 +1223,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="102"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -1340,7 +1231,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="103"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
@@ -1349,21 +1239,18 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="104"
-          opacity="0.7"
           x="0.299269"
           y="0.671425"
           width="214.906"
           height="5.85624"
           transform="matrix(0.944994 0.327086 -0.388493 0.921452 429.929 729.362)"
         />
-        <g id="105" opacity="0.7">
+        <g id="105">
           <mask id="path-149-inside-11_249_25" fill="white">
             <path d="M427.375 734.808L477.069 752.3L474.922 756.007L425.751 742.265L427.375 734.808Z" />
           </mask>
           <path
             d="M427.375 734.808L477.069 752.3L474.922 756.007L425.751 742.265L427.375 734.808Z"
-            stroke="black"
-            strokeWidth="2.15108"
             mask="url(#path-149-inside-11_249_25)"
           />
         </g>
@@ -1386,7 +1273,6 @@ const Field = React.forwardRef((props, ref) => (
       <g id="plantation-6_1" mask="url(#mask1_249_25)">
         <rect
           id="1_2"
-          opacity="0.7"
           x="334.347"
           y="43.4794"
           width="310.936"
@@ -1395,7 +1281,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="2_3"
-          opacity="0.7"
           x="332.777"
           y="49.9247"
           width="310.936"
@@ -1404,7 +1289,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="3_2"
-          opacity="0.7"
           x="331.207"
           y="56.3714"
           width="310.936"
@@ -1413,7 +1297,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="4_2"
-          opacity="0.7"
           x="329.637"
           y="62.8168"
           width="310.936"
@@ -1422,7 +1305,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="5_2"
-          opacity="0.7"
           x="328.067"
           y="69.263"
           width="310.936"
@@ -1431,7 +1313,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="6_2"
-          opacity="0.7"
           x="326.498"
           y="75.7079"
           width="310.936"
@@ -1440,7 +1321,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="7_2"
-          opacity="0.7"
           x="324.926"
           y="82.1542"
           width="310.936"
@@ -1449,7 +1329,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="8_2"
-          opacity="0.7"
           x="323.357"
           y="88.6"
           width="310.936"
@@ -1458,7 +1337,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="9_2"
-          opacity="0.7"
           x="321.786"
           y="95.0453"
           width="310.936"
@@ -1467,7 +1345,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="10_2"
-          opacity="0.7"
           x="320.217"
           y="101.492"
           width="310.936"
@@ -1476,7 +1353,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="11_2"
-          opacity="0.7"
           x="318.647"
           y="107.937"
           width="310.936"
@@ -1485,7 +1361,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="12_2"
-          opacity="0.7"
           x="317.076"
           y="114.384"
           width="310.936"
@@ -1494,7 +1369,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="13_2"
-          opacity="0.7"
           x="315.507"
           y="120.829"
           width="310.936"
@@ -1503,7 +1377,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="14_2"
-          opacity="0.7"
           x="313.935"
           y="127.275"
           width="310.936"
@@ -1512,7 +1385,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="15_2"
-          opacity="0.7"
           x="312.365"
           y="133.721"
           width="310.936"
@@ -1521,7 +1393,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="16_2"
-          opacity="0.7"
           x="310.795"
           y="140.166"
           width="310.936"
@@ -1530,7 +1401,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="17_2"
-          opacity="0.7"
           x="309.225"
           y="146.613"
           width="310.936"
@@ -1539,7 +1409,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="18_2"
-          opacity="0.7"
           x="307.654"
           y="153.058"
           width="310.936"
@@ -1548,7 +1417,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="19_2"
-          opacity="0.7"
           x="306.085"
           y="159.504"
           width="310.936"
@@ -1557,7 +1425,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="20_2"
-          opacity="0.7"
           x="304.515"
           y="165.95"
           width="310.936"
@@ -1566,7 +1433,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="21_2"
-          opacity="0.7"
           x="302.944"
           y="172.395"
           width="310.936"
@@ -1575,7 +1441,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="22_2"
-          opacity="0.7"
           x="301.375"
           y="178.842"
           width="310.936"
@@ -1584,7 +1449,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="23_2"
-          opacity="0.7"
           x="299.804"
           y="185.287"
           width="310.936"
@@ -1593,7 +1457,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="24_2"
-          opacity="0.7"
           x="298.234"
           y="191.733"
           width="310.936"
@@ -1602,7 +1465,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="25_2"
-          opacity="0.7"
           x="296.664"
           y="198.179"
           width="310.936"
@@ -1611,7 +1473,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="26_2"
-          opacity="0.7"
           x="295.094"
           y="204.625"
           width="310.936"
@@ -1620,7 +1481,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="27_2"
-          opacity="0.7"
           x="293.522"
           y="211.071"
           width="310.936"
@@ -1629,7 +1489,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="28_2"
-          opacity="0.7"
           x="291.953"
           y="217.516"
           width="310.936"
@@ -1638,7 +1497,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="29_2"
-          opacity="0.7"
           x="290.383"
           y="223.963"
           width="310.936"
@@ -1647,7 +1505,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="30_2"
-          opacity="0.7"
           x="288.812"
           y="230.408"
           width="310.936"
@@ -1656,7 +1513,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="31_2"
-          opacity="0.7"
           x="287.243"
           y="236.854"
           width="310.936"
@@ -1665,7 +1521,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="32_2"
-          opacity="0.7"
           x="285.673"
           y="243.3"
           width="310.936"
@@ -1674,7 +1529,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="33_2"
-          opacity="0.7"
           x="284.102"
           y="249.745"
           width="310.936"
@@ -1683,7 +1537,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="34_2"
-          opacity="0.7"
           x="282.531"
           y="256.191"
           width="310.936"
@@ -1692,7 +1545,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="35_2"
-          opacity="0.7"
           x="280.962"
           y="262.637"
           width="310.936"
@@ -1701,7 +1553,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="36_2"
-          opacity="0.7"
           x="279.391"
           y="269.083"
           width="310.936"
@@ -1710,7 +1561,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="37_2"
-          opacity="0.7"
           x="277.822"
           y="275.529"
           width="310.936"
@@ -1719,7 +1569,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="38_2"
-          opacity="0.7"
           x="276.253"
           y="281.974"
           width="310.936"
@@ -1728,60 +1577,50 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="39_2"
-          opacity="0.7"
           x="274.681"
           y="288.421"
           width="310.936"
           height="6.6343"
           transform="rotate(13.6904 274.681 288.421)"
         />
-        <g id="40_2" opacity="0.7">
+        <g id="40_2">
           <mask id="path-191-inside-12_249_25" fill="white">
             <path d="M318.864 313.488L577.098 378.492L574.756 386.335L316.756 320.642L318.864 313.488Z" />
           </mask>
           <path
             d="M318.864 313.488L577.098 378.492L574.756 386.335L316.756 320.642L318.864 313.488Z"
-            stroke="black"
-            strokeWidth="2.15108"
             mask="url(#path-191-inside-12_249_25)"
           />
         </g>
-        <g id="41_2" opacity="0.7">
+        <g id="41_2">
           <mask id="path-192-inside-13_249_25" fill="white">
             <path d="M317.06 319.61L575.832 385.259L572.605 396.015L314.951 326.763L317.06 319.61Z" />
           </mask>
           <path
             d="M317.06 319.61L575.832 385.259L572.605 396.015L314.951 326.763L317.06 319.61Z"
-            stroke="black"
-            strokeWidth="2.15108"
             mask="url(#path-192-inside-13_249_25)"
           />
         </g>
-        <g id="42_2" opacity="0.7">
+        <g id="42_2">
           <mask id="path-193-inside-14_249_25" fill="white">
             <path d="M315.255 325.732L573.681 394.939L569.378 404.619L313.146 332.885L315.255 325.732Z" />
           </mask>
           <path
             d="M315.255 325.732L573.681 394.939L569.378 404.619L313.146 332.885L315.255 325.732Z"
-            stroke="black"
-            strokeWidth="2.15108"
             mask="url(#path-193-inside-14_249_25)"
           />
         </g>
-        <g id="43_2" opacity="0.7">
+        <g id="43_2">
           <mask id="path-194-inside-15_249_25" fill="white">
             <path d="M313.451 331.854L569.379 403.544L566.18 414.128L311.342 339.007L313.451 331.854Z" />
           </mask>
           <path
             d="M313.451 331.854L569.379 403.544L566.18 414.128L311.342 339.007L313.451 331.854Z"
-            stroke="black"
-            strokeWidth="2.15108"
             mask="url(#path-194-inside-15_249_25)"
           />
         </g>
         <rect
           id="44_2"
-          opacity="0.7"
           x="312.01"
           y="338.643"
           width="264.604"
@@ -1790,7 +1629,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="45_2"
-          opacity="0.7"
           x="310.206"
           y="344.765"
           width="264.604"
@@ -1799,7 +1637,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="46_2"
-          opacity="0.7"
           x="308.401"
           y="350.886"
           width="264.604"
@@ -1808,7 +1645,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="47_2"
-          opacity="0.7"
           x="306.597"
           y="357.008"
           width="264.604"
@@ -1817,7 +1653,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="48_2"
-          opacity="0.7"
           x="304.792"
           y="363.129"
           width="264.604"
@@ -1826,7 +1661,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="49_2"
-          opacity="0.7"
           x="302.988"
           y="369.251"
           width="264.604"
@@ -1835,7 +1669,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="50_2"
-          opacity="0.7"
           x="301.183"
           y="375.373"
           width="264.604"
@@ -1844,7 +1677,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="51_2"
-          opacity="0.7"
           x="299.378"
           y="381.495"
           width="264.604"
@@ -1853,7 +1685,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="52_2"
-          opacity="0.7"
           x="297.574"
           y="387.616"
           width="264.604"
@@ -1862,7 +1693,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="53_2"
-          opacity="0.7"
           x="295.77"
           y="393.738"
           width="264.604"
@@ -1871,7 +1701,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="54_2"
-          opacity="0.7"
           x="293.965"
           y="399.859"
           width="264.604"
@@ -1880,7 +1709,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="55_2"
-          opacity="0.7"
           x="292.161"
           y="405.981"
           width="264.604"
@@ -1889,7 +1717,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="56_2"
-          opacity="0.7"
           x="290.356"
           y="412.103"
           width="264.604"
@@ -1898,7 +1725,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="57_2"
-          opacity="0.7"
           x="288.551"
           y="418.225"
           width="264.604"
@@ -1907,7 +1733,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="58_2"
-          opacity="0.7"
           x="286.747"
           y="424.346"
           width="264.604"
@@ -1916,7 +1741,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="59_2"
-          opacity="0.7"
           x="284.943"
           y="430.468"
           width="264.604"
@@ -1925,7 +1749,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="60_2"
-          opacity="0.7"
           x="283.138"
           y="436.59"
           width="264.604"
@@ -1934,7 +1757,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="61_2"
-          opacity="0.7"
           x="281.333"
           y="442.711"
           width="264.604"
@@ -1943,7 +1765,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="62_2"
-          opacity="0.7"
           x="279.529"
           y="448.833"
           width="264.604"
@@ -1952,7 +1773,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="63_2"
-          opacity="0.7"
           x="277.724"
           y="454.955"
           width="264.604"
@@ -1961,7 +1781,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="64_2"
-          opacity="0.7"
           x="275.919"
           y="461.076"
           width="264.604"
@@ -1970,7 +1789,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="65_2"
-          opacity="0.7"
           x="274.116"
           y="467.198"
           width="264.604"
@@ -1979,7 +1797,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="66_2"
-          opacity="0.7"
           x="272.31"
           y="473.32"
           width="264.604"
@@ -1988,7 +1805,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="67_2"
-          opacity="0.7"
           x="270.505"
           y="479.441"
           width="264.604"
@@ -1997,7 +1813,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="68_2"
-          opacity="0.7"
           x="268.701"
           y="485.562"
           width="264.604"
@@ -2006,7 +1821,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="69_2"
-          opacity="0.7"
           x="266.896"
           y="491.684"
           width="264.604"
@@ -2015,7 +1829,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="70_2"
-          opacity="0.7"
           x="265.091"
           y="497.806"
           width="264.604"
@@ -2024,7 +1837,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="71_2"
-          opacity="0.7"
           x="263.287"
           y="503.928"
           width="264.604"
@@ -2033,7 +1845,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="72_2"
-          opacity="0.7"
           x="261.484"
           y="510.049"
           width="264.604"
@@ -2042,7 +1853,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="73_2"
-          opacity="0.7"
           x="259.679"
           y="516.171"
           width="264.604"
@@ -2051,7 +1861,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="74_2"
-          opacity="0.7"
           x="257.875"
           y="522.293"
           width="264.604"
@@ -2060,7 +1869,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="75_2"
-          opacity="0.7"
           x="256.07"
           y="528.414"
           width="264.604"
@@ -2069,7 +1877,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="76_2"
-          opacity="0.7"
           x="254.265"
           y="534.536"
           width="264.604"
@@ -2078,7 +1885,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="77_2"
-          opacity="0.7"
           x="252.46"
           y="540.657"
           width="264.604"
@@ -2087,7 +1893,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="78_2"
-          opacity="0.7"
           x="250.657"
           y="546.779"
           width="264.604"
@@ -2096,7 +1901,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="79_2"
-          opacity="0.7"
           x="248.852"
           y="552.901"
           width="264.604"
@@ -2105,7 +1909,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="80_2"
-          opacity="0.7"
           x="247.047"
           y="559.022"
           width="264.604"
@@ -2114,7 +1917,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="81_2"
-          opacity="0.7"
           x="245.242"
           y="565.144"
           width="264.604"
@@ -2123,7 +1925,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="82_2"
-          opacity="0.7"
           x="243.438"
           y="571.267"
           width="264.604"
@@ -2132,7 +1933,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="83_2"
-          opacity="0.7"
           x="241.633"
           y="577.387"
           width="264.604"
@@ -2141,7 +1941,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="84_2"
-          opacity="0.7"
           x="239.829"
           y="583.509"
           width="264.604"
@@ -2150,7 +1949,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="85_2"
-          opacity="0.7"
           x="238.025"
           y="589.631"
           width="264.604"
@@ -2159,7 +1957,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="86_2"
-          opacity="0.7"
           x="236.22"
           y="595.753"
           width="264.604"
@@ -2168,7 +1965,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="87_2"
-          opacity="0.7"
           x="234.416"
           y="601.874"
           width="264.604"
@@ -2177,7 +1973,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="88_2"
-          opacity="0.7"
           x="232.611"
           y="607.996"
           width="264.604"
@@ -2186,7 +1981,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="89_2"
-          opacity="0.7"
           x="230.806"
           y="614.118"
           width="264.604"
@@ -2195,7 +1989,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="90_2"
-          opacity="0.7"
           x="229.001"
           y="620.24"
           width="264.604"
@@ -2204,7 +1997,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="91_2"
-          opacity="0.7"
           x="227.198"
           y="626.361"
           width="264.604"
@@ -2213,7 +2005,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="92_2"
-          opacity="0.7"
           x="225.392"
           y="632.483"
           width="264.604"
@@ -2222,7 +2013,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="93_2"
-          opacity="0.7"
           x="223.588"
           y="638.604"
           width="264.604"
@@ -2231,7 +2021,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="94_2"
-          opacity="0.7"
           x="221.784"
           y="644.726"
           width="264.604"
@@ -2240,7 +2029,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="95_2"
-          opacity="0.7"
           x="219.979"
           y="650.848"
           width="264.604"
@@ -2249,7 +2037,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="96_2"
-          opacity="0.7"
           x="218.173"
           y="656.969"
           width="264.604"
@@ -2258,7 +2045,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="97_2"
-          opacity="0.7"
           x="216.37"
           y="663.091"
           width="264.604"
@@ -2267,7 +2053,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="98_2"
-          opacity="0.7"
           x="214.565"
           y="669.212"
           width="264.604"
@@ -2276,7 +2061,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="99_2"
-          opacity="0.7"
           x="212.76"
           y="675.334"
           width="264.604"
@@ -2285,7 +2069,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="100_2"
-          opacity="0.7"
           x="210.956"
           y="681.456"
           width="264.604"
@@ -2294,7 +2077,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="101_2"
-          opacity="0.7"
           x="209.151"
           y="687.578"
           width="264.604"
@@ -2303,7 +2085,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="102_2"
-          opacity="0.7"
           x="207.346"
           y="693.7"
           width="264.604"
@@ -2312,7 +2093,6 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="103_2"
-          opacity="0.7"
           x="205.543"
           y="699.821"
           width="264.604"
@@ -2321,21 +2101,18 @@ const Field = React.forwardRef((props, ref) => (
         />
         <rect
           id="104_2"
-          opacity="0.7"
           x="203.739"
           y="705.943"
           width="264.604"
           height="6.38209"
           transform="rotate(16.4244 203.739 705.943)"
         />
-        <g id="105_2" opacity="0.7">
+        <g id="105_2">
           <mask id="path-256-inside-16_249_25" fill="white">
             <path d="M201.57 711.397L456.369 786.65L454.3 793.671L199.462 718.55L201.57 711.397Z" />
           </mask>
           <path
             d="M201.57 711.397L456.369 786.65L454.3 793.671L199.462 718.55L201.57 711.397Z"
-            stroke="black"
-            strokeWidth="2.15108"
             mask="url(#path-256-inside-16_249_25)"
           />
         </g>

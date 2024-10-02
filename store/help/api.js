@@ -86,6 +86,8 @@ export const MAP_API = {
     axios.get(`/fields/summary?${filter}`, securedFetchOptions()),
 
   getAreas: () => axios.get('/areas', securedFetchOptions()),
+  updateArea: (id, data) =>
+    axios.put(`/areas/${id}`, data, securedFetchOptions()),
 
   updateOwner: (id, data) =>
     axios.put(`/owners/${id}`, data, securedFetchOptions()),

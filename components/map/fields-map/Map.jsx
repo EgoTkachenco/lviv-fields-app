@@ -72,7 +72,7 @@ export default function Map({
                 'transparent'
 
               styles.push(
-                `g#plantation > g#plantation-${areaSectionId} :nth-child(${rowId}) {fill: ${varietyColor};}`
+                `g#plantation > g#plantation-${areaSectionId} > :nth-child(${rowId}) {fill: ${varietyColor};}`
               )
             }
           }
@@ -96,7 +96,7 @@ export default function Map({
         {styles}
       </style>
     )
-  }, [summary, type, varieties])
+  }, [summary, type, varieties, areas])
 
   return (
     <MapCard isField={!!field}>

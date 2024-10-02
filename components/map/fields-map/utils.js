@@ -49,7 +49,7 @@ export const useMapAreaHandlers = (ref, onOpen, type = 'registry') => {
         element.removeEventListener('click', onOpen)
       }
     }
-  }, [ref, onOpen, type])
+  }, [ref])
 }
 
 let lastColor = ''
@@ -133,7 +133,7 @@ export const useMapFieldsHandlers = (
         }
       }
     }
-  }, [ref, field, fields])
+  }, [ref, field])
 }
 
 export const useMapPlantations = (ref, type) => {

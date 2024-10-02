@@ -151,7 +151,7 @@ const sizes = {
 const getSize = (size = 'medium') => sizes[size] || sizes['medium']
 
 const Button = React.forwardRef(function Button(
-  { variant, children, ...props },
+  { variant = 'primary', children, ...props },
   ref
 ) {
   const sizesProps = getSize(props.size)
