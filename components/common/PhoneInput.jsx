@@ -19,7 +19,7 @@ export default function PhoneInput({
 }) {
   const [focus, setFocus] = useState(false)
   const inputRef = useMask({
-    mask: '+38 (___) ___-__-__',
+    mask: '+__ ___ ___-__-__',
     replacement: { _: /\d/ },
   })
 

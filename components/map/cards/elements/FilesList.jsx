@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Box, Icon, Button, Text, H6 } from '../../../common'
+import { formatDate } from '../../../../utils'
 
 const FilesList = ({ files, isRead, onDelete, isMobile }) => {
   const Container = isMobile ? FilesMobile : Files
@@ -28,11 +29,10 @@ const getIconType = (type) => {
 const backend_url = process.env.NEXT_PUBLIC_ADMIN_URL
 
 export const FilePreview = ({ file, isRead, onDelete }) => {
-  const date = file?.updated_at?.slice(0, 10) || '---'
   return (
     <FilePreviewBox>
       <FilePreviewName>{file.name}</FilePreviewName>
-      <H6>{date}</H6>
+      <H6>{formatDate(file?.updated_at)}</H6>
       <Icon
         icon="info"
         size="20px"

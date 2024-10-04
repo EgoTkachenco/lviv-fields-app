@@ -2,7 +2,6 @@ import { useState } from 'react'
 import styled from 'styled-components'
 import DatePicker from 'react-datepicker'
 import { formatDate } from '../../utils'
-import { format } from 'date-fns'
 
 export default function DateInput({
   id,
@@ -27,7 +26,7 @@ export default function DateInput({
         id={id}
         locale="uk"
         name={name}
-        value={value && format(value, 'dd/MM/yyyy')}
+        value={value && formatDate(value)}
         selected={value}
         onChange={(value) => {
           debugger
