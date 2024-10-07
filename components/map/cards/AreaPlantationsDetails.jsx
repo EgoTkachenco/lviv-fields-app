@@ -24,7 +24,7 @@ const AreaPlantationsDetails = ({ area, onAreaDetailsUpdate }) => {
       (acc, el) => [...acc, ...Object.values(el)],
       []
     )
-    return [...new Set(allRows)].map(getValue)
+    return [...new Set(allRows)].filter((el) => !!el).map(getValue)
   }, [schema, getValue])
 
   useEffect(() => {
