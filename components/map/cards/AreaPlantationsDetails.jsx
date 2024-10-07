@@ -5,7 +5,7 @@ import { useAPIVarieties } from '../../../hooks'
 import { useClickOutside } from '@mantine/hooks'
 import { CardField, Column } from './elements/CardField'
 
-const AreaPlantationsDetails = ({ area, onAreaDetailsUpdate }) => {
+const AreaPlantationsDetails = ({ isEditable, area, onAreaDetailsUpdate }) => {
   const [isRead, setIsRead] = useState(true)
   const [activeSector, setActiveSector] = useState(null)
   const [schema, setSchema] = useState({})
@@ -28,7 +28,7 @@ const AreaPlantationsDetails = ({ area, onAreaDetailsUpdate }) => {
   }, [schema, getValue])
 
   useEffect(() => {
-    if (area) {
+    if (area && area?.plantation_schema) {
       setSchema({ ...area?.plantation_schema })
       setInfo({ ...area?.plantation_info })
       setActiveSector(Object.keys(area?.plantation_schema)[0])
@@ -54,7 +54,7 @@ const AreaPlantationsDetails = ({ area, onAreaDetailsUpdate }) => {
     setInfo(newInfo)
   }
 
-  if (!area) return null
+  if (!area || !area?.plantation_schema) return null
 
   const areaPlantations = Object.keys(schema)
 
@@ -71,9 +71,11 @@ const AreaPlantationsDetails = ({ area, onAreaDetailsUpdate }) => {
     <Card>
       <Box justify="space-between">
         <H5>Інформація про насадження:</H5>
-        <Button width="100px" size="small" onClick={toggleSave}>
-          {isRead ? 'Редагувати' : 'Зберегти'}
-        </Button>
+        {isEditable && (
+          <Button width="100px" size="small" onClick={toggleSave}>
+            {isRead ? 'Редагувати' : 'Зберегти'}
+          </Button>
+        )}
       </Box>
       <Spacer vertical size="20px" />
       <H5>Загальна інформація:</H5>

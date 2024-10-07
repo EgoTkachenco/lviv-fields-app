@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import styled from 'styled-components'
 import { observer } from 'mobx-react-lite'
 import store from '../../store/map-store'
+import AuthStore from '../../store/auth-store'
 import {
   Filter,
   ContractDetails,
@@ -20,6 +21,7 @@ import AreaPlantationsDetails from './cards/AreaPlantationsDetails'
 const MapPage = observer(() => {
   const { area, field, mode, filter, summary, areas, type } = store
   const isRead = mode === 'read'
+  const isAdmin = AuthStore?.user?.role.name === 'Admin'
 
   const onChange = (key, value) => store.updateFieldDetails(key, value)
   const onFilterChange = (key, value) => store.updateFilter(key, value)
@@ -83,6 +85,7 @@ const MapPage = observer(() => {
           {!field && <SummaryDetails data={summary} />}
           {area && !field && (
             <AreaPlantationsDetails
+              isEditable={isAdmin}
               area={summary.area}
               onAreaDetailsUpdate={(data) => store.updateArea(data)}
             />
