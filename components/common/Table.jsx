@@ -31,7 +31,7 @@ const Table = ({
         <PhoneCell
           {...props}
           value={format(props.value, {
-            mask: '+38 (___) ___-__-__',
+            mask: '+__ ___ ___-__-__',
             replacement: { _: /\d/ },
           })}
         />
