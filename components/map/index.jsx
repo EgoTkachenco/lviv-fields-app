@@ -61,11 +61,16 @@ const MapPage = observer(() => {
             <>
               <CommonDetails data={field} isRead={isRead} onChange={onChange} />
               <Spacer vertical size="40px" />
-              <PlantationsDetails
+              <ContractDetails
                 data={field}
                 isRead={isRead}
                 onChange={onChange}
               />
+              {/* <PlantationsDetails
+                data={field}
+                isRead={isRead}
+                onChange={onChange}
+              /> */}
             </>
           )}
         </Side>
@@ -96,8 +101,8 @@ const MapPage = observer(() => {
       {field && (
         <Wrapper style={{ marginTop: '40px' }}>
           <Side>
-            <ContractDetails data={field} isRead={isRead} onChange={onChange} />
-            <Spacer vertical size="40px" />
+            {/* <ContractDetails data={field} isRead={isRead} onChange={onChange} />
+            <Spacer vertical size="40px" /> */}
             <DocumentsDetails
               data={field}
               isRead={isRead}
