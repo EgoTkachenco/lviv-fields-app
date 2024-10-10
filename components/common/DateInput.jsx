@@ -19,17 +19,31 @@ export default function DateInput({
   style = {},
 }) {
   const [focus, setFocus] = useState(false)
+  const [inputValue, setInputValue] = useState('')
+  const handleChangeRaw = (event) => {
+    const inputValue = event.target.value
 
+    if (inputValue.length === 10) {
+      if (new Date(inputValue).toString() === 'Invalid Date') return
+      onChange(inputValue)
+      setInputValue('')
+    }
+    if (inputValue.length === 0) {
+      onChange(null)
+      setInputValue('')
+    } else {
+      setInputValue(inputValue)
+    }
+  }
   return (
     <Wrapper style={style}>
       <InputField
         id={id}
         locale="uk"
         name={name}
-        value={value && formatDate(value)}
+        value={inputValue || (value ? formatDate(value) : null)}
         selected={value}
-        onChange={(value) => {
-          debugger
+        onSelect={(value) => {
           const newValue = value
           if (!newValue) return onChange('')
           const isValid = newValue && validate(newValue)
@@ -37,7 +51,8 @@ export default function DateInput({
             onChange(newValue)
           }
         }}
-        placeholder={placeholder}
+        onChangeRaw={handleChangeRaw}
+        placeholderText={placeholder}
         size={size}
         type={type === 'date' ? (focus ? type : 'text') : type}
         readonly={isRead}

@@ -23,7 +23,7 @@ const SummaryDetails = ({ data }) => {
           <Chip color="primary">{data.owned?.toFixed(2) || 0} гектарів</Chip>
         </Column>
         <Column gap="4px">
-          <Text>Площа ділянок не в оренді: </Text>
+          <Text>Площа інших ділянок: </Text>
           <Chip color="primary">
             {((data.all || 0) - (data.rented || 0)).toFixed(2) || 0} гектарів
           </Chip>

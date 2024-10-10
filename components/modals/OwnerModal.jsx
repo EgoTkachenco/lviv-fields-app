@@ -18,7 +18,10 @@ const OwnerModal = ({
 }) => {
   const form = useForm({
     initialValues: {
-      full_name: data?.full_name || '',
+      // full_name: data?.full_name || '',
+      surname: data?.surname || '',
+      first_name: data?.first_name || '',
+      patronymic: data?.patronymic || '',
       birth_date: data?.birth_date || null,
       address: data?.address || '',
       phone: data?.phone || '',
@@ -36,6 +39,9 @@ const OwnerModal = ({
   })
 
   const handleSubmit = form.onSubmit((values) => {
+    values.full_name = [values.surname, values.first_name, values.patronymic]
+      .filter((v) => v)
+      .join(' ')
     onConfirm({ ...data, ...values })
   })
 

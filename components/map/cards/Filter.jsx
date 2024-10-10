@@ -112,7 +112,7 @@ const Filter = ({
                       value={filter.term.start}
                       type="date"
                       // validate={(v) => !isNaN(Number(v)) && v > 0 && v < 100}
-                      placeholder="3"
+                      placeholder="З"
                       onChange={(val) => onChange('term-start', val)}
                     />
                     <FilterDelimiter />
@@ -120,7 +120,7 @@ const Filter = ({
                       value={filter.term.end}
                       type="date"
                       // validate={(v) => !isNaN(Number(v)) && v > 0 && v < 100}
-                      placeholder="10"
+                      placeholder="По"
                       onChange={(val) => onChange('term-end', val)}
                     />
                   </DateBox>
