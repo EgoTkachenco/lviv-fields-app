@@ -20,17 +20,24 @@ export default function DateInput({
 }) {
   const [focus, setFocus] = useState(false)
   const [inputValue, setInputValue] = useState('')
-  const handleChangeRaw = (event) => {
-    const inputValue = event.target.value
 
-    if (inputValue.length === 10) {
-      if (new Date(inputValue).toString() === 'Invalid Date') return
-      onChange(inputValue)
-      setInputValue('')
-    }
-    if (inputValue.length === 0) {
+  const handleChangeRaw = (event) => {
+    let inputValue = event.target.value
+
+    if (!inputValue) {
       onChange(null)
       setInputValue('')
+      return
+    }
+
+    if (inputValue.length === 10) {
+      const isValid = validate(inputValue)
+      const newDate = new Date(inputValue.split('.').reverse().join('.'))
+      console.log(newDate, isValid)
+      if (!isValid) return
+
+      onChange(newDate)
+      setFocus(false)
     } else {
       setInputValue(inputValue)
     }
@@ -41,7 +48,7 @@ export default function DateInput({
         id={id}
         locale="uk"
         name={name}
-        value={inputValue || (value ? formatDate(value) : null)}
+        value={focus ? inputValue : value ? formatDate(value) : null}
         selected={value}
         onSelect={(value) => {
           const newValue = value
@@ -49,15 +56,23 @@ export default function DateInput({
           const isValid = newValue && validate(newValue)
           if (newValue && isValid && onChange) {
             onChange(newValue)
+            setFocus(false)
           }
         }}
         onChangeRaw={handleChangeRaw}
         placeholderText={placeholder}
         size={size}
-        type={type === 'date' ? (focus ? type : 'text') : type}
+        type="date"
         readonly={isRead}
-        onFocus={() => type === 'date' && setFocus(true)}
-        onBlur={() => type === 'date' && setFocus(false)}
+        // format="dd.MM.yyyy"
+        onFocus={() => {
+          setFocus(true)
+          if (!inputValue) setInputValue(value ? formatDate(value) : '')
+        }}
+        onBlur={() => {
+          setFocus(false)
+          setInputValue('')
+        }}
       />
 
       <InputFieldRightSlot>{rightSlot}</InputFieldRightSlot>

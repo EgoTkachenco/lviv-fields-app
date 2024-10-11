@@ -55,9 +55,10 @@ export class RegistryTableStore {
     query.set('_start', (page - 1) * size)
     if (this.parent.search)
       query.set(this.searchKey, this.parent.search.toLowerCase())
-    this.loadDataService(query.toString())
+    return this.loadDataService(query.toString())
       .then((data) => {
-        this.data = [...this.data, ...data.map(this.format)]
+        if (page === 1) this.data = [...data.map(this.format)]
+        else this.data = [...this.data, ...data.map(this.format)]
       })
       .catch((error) => console.log(error.message))
   }
