@@ -87,7 +87,14 @@ const MapPage = observer(() => {
             filter={filter}
             type={type}
           />
-          {!field && <SummaryDetails data={summary} />}
+          {!field && (
+            <SummaryDetails
+              isEditable={isAdmin}
+              data={summary}
+              onMapDetailsUpdate={(data) => store.updateMapInfo(data)}
+              onAreaDetailsUpdate={(data) => store.updateArea(data)}
+            />
+          )}
           {area && !field && (
             <AreaPlantationsDetails
               isEditable={isAdmin}

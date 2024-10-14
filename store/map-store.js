@@ -88,7 +88,9 @@ class Store {
     if (this.area) requestQueryFilter.set('area_in', this.area)
     try {
       const isOpenField = this.filter.cadastrs.length === 1 && !this.summary
-      this.summary = await MAP_API.getSummary(requestQueryFilter.toString())
+      const summary = await MAP_API.getSummary(requestQueryFilter.toString())
+      summary.mapInfo = await MAP_API.getMapInfo()
+      this.summary = summary
       if (!this.areas) await this.loadAreas()
       if (this.openFieldFlag) this.openField(this.summary.fields[0], true)
       this.openFieldFlag = false
@@ -410,9 +412,23 @@ class Store {
     try {
       await MAP_API.updateArea(
         this.area,
-        _.pick(data, ['plantation_schema', 'plantation_info'])
+        _.pick(data, [
+          'plantation_schema',
+          'plantation_info',
+          'plantation_size',
+        ])
       )
       await this.loadAreas()
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
+
+  async updateMapInfo(data) {
+    try {
+      await MAP_API.updateMapInfo(_.pick(data, ['plantation_size']))
+      await this.loadAreas()
+      await this.getSummary()
     } catch (error) {
       console.log(error.message)
     }

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import styled from 'styled-components'
 import DatePicker from 'react-datepicker'
 import { formatDate } from '../../utils'
@@ -13,13 +13,13 @@ export default function DateInput({
   tip,
   rightSlot,
   size,
-  type,
   validate = () => true,
   isRead,
   style = {},
 }) {
   const [focus, setFocus] = useState(false)
   const [inputValue, setInputValue] = useState('')
+  const datepickerRef = useRef()
 
   const handleChangeRaw = (event) => {
     let inputValue = event.target.value
@@ -31,13 +31,18 @@ export default function DateInput({
     }
 
     if (inputValue.length === 10) {
-      const isValid = validate(inputValue)
-      const newDate = new Date(inputValue.split('.').reverse().join('.'))
-      console.log(newDate, isValid)
-      if (!isValid) return
+      const [day, month, year] = inputValue.split('.')
+      const newDate = new Date([month, day, year].join('/'))
+      const isValid = newDate.toString() !== 'Invalid Date'
+      if (!isValid) {
+        setInputValue(inputValue)
+        return
+      }
 
       onChange(newDate)
+      setInputValue('')
       setFocus(false)
+      datepickerRef.current.setOpen(false)
     } else {
       setInputValue(inputValue)
     }
@@ -45,12 +50,14 @@ export default function DateInput({
   return (
     <Wrapper style={style}>
       <InputField
+        ref={datepickerRef}
         id={id}
         locale="uk"
         name={name}
         value={focus ? inputValue : value ? formatDate(value) : null}
         selected={value}
         onSelect={(value) => {
+          debugger
           const newValue = value
           if (!newValue) return onChange('')
           const isValid = newValue && validate(newValue)
@@ -64,7 +71,7 @@ export default function DateInput({
         size={size}
         type="date"
         readonly={isRead}
-        // format="dd.MM.yyyy"
+        format="dd.MM.yyyy"
         onFocus={() => {
           setFocus(true)
           if (!inputValue) setInputValue(value ? formatDate(value) : '')

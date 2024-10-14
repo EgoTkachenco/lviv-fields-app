@@ -14,7 +14,7 @@ export const FIELD_TYPES = {
 export const FIELD_TYPES_COLORS = {
   owned: '#008000',
   rented: '#ffff00',
-  subrent: '#000080',
+  subrent: '#6699CC',
 }
 
 export const FIELD_CATEGORIES = {

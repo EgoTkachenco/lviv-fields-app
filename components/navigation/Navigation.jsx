@@ -31,7 +31,7 @@ const Navigation = observer(() => {
   return (
     <Wrapper>
       <Link href="/map">
-        <LogoText>Land-Map</LogoText>
+        <LogoText>Land-Sad</LogoText>
       </Link>
       <Spacer size="auto" />
       {isLogged && (

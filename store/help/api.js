@@ -93,6 +93,9 @@ export const MAP_API = {
     axios.put(`/owners/${id}`, data, securedFetchOptions()),
   createOwner: (data) => axios.post('/owners', data, securedFetchOptions()),
   deleteOwner: (id) => axios.delete(`/owners/${id}`, securedFetchOptions()),
+
+  getMapInfo: () => axios.get('/map-info', securedFetchOptions()),
+  updateMapInfo: (data) => axios.put('/map-info', data, securedFetchOptions()),
 }
 
 export const FILE_API = {
