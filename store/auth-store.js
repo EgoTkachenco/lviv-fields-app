@@ -74,6 +74,7 @@ class Store {
     } else {
       this.user = null
       localStorage.removeItem(USER_STORE_NAME)
+      eraseToken()
       return false
     }
   }

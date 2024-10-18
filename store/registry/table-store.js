@@ -44,6 +44,9 @@ export class RegistryTableStore {
     this.searchKey = searchKey
     this.formatFilter = formatFilter
 
+    this.debouncedLoadData = _.debounce((page, size) => {
+      this.loadData(page, size)
+    }, 300)
     this.debouncedLoadDataCount = _.debounce(() => {
       this.loadDataCount()
     }, 300)

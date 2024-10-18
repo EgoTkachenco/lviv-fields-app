@@ -1,6 +1,9 @@
-export const SETTINGS_LOCALE_STORAGE_KEY = 'lviv_map_1.1_conf'
-export const TOKEN_NAME = 'lviv_map_access_token'
-export const USER_STORE_NAME = 'lviv_map__user'
+export const SETTINGS_LOCALE_STORAGE_KEY =
+  process.env.NEXT_PUBLIC_SETTINGS_LOCALE_STORAGE_KEY || 'lviv_map_1.1_conf'
+export const TOKEN_NAME =
+  process.env.NEXT_PUBLIC_TOKEN_NAME || 'lviv_map_access_token'
+export const USER_STORE_NAME =
+  process.env.NEXT_PUBLIC_USER_STORE_NAME || 'lviv_map__user'
 
 export const FIELD_TYPES = {
   // owned: 'Власні земельні ділянки',

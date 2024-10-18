@@ -219,17 +219,25 @@ export const plantation_model = [
 ]
 
 export const formatOwner = (el) => {
-  return {
+  let result = {
     ...el,
-    type: FIELD_TYPES[el.field.type],
-    contract_name: el.field.contract_name,
-    contract_start: el.field.contract_start,
-    contract_note: el.field.contract_note,
-    cadastr: el?.field.cadastr,
     surname: el.full_name && el.full_name.split(' ')[0],
     first_name: el.full_name && el.full_name.split(' ')[1],
     patronymic: el.full_name && el.full_name.split(' ')[2],
   }
+
+  if (el.field) {
+    result = {
+      ...result,
+      type: FIELD_TYPES[el.field.type],
+      contract_name: el.field.contract_name,
+      contract_start: el.field.contract_start,
+      contract_note: el.field.contract_note,
+      cadastr: el?.field.cadastr,
+    }
+  }
+
+  return result
 }
 
 export const formatField = (el) => {

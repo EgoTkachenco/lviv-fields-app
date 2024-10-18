@@ -1,5 +1,4 @@
 import InfiniteScroll from 'react-infinite-scroll-component'
-import { useEffect, useState } from 'react'
 import { Table } from '../common'
 import styled from 'styled-components'
 import _ from 'lodash'
@@ -20,15 +19,12 @@ const RegistryTable = ({
   loadDataCount,
   onChange,
 }) => {
-	useEffect(() => {
-    loadDataCount()
-  }, [filters])
-
-	const fetchData = () => {
+  const fetchData = () => {
     const page = Math.floor(data.length / BLOCK_SIZE) + 1
     loadData(page, BLOCK_SIZE)
   }
   if (!show) return
+
   return (
     <Table
       model={model}

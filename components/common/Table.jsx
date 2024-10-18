@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 import { Button, ConfirmationModal, DateInput } from '../common'
 import { format, useMask } from '@react-input/mask'
-import DatePicker from 'react-datepicker'
-import { formatDate } from '../../utils'
+// import DatePicker from 'react-datepicker'
+// import { formatDate } from '../../utils'
 
 const Table = ({
   model,
@@ -213,17 +213,28 @@ const PhoneCell = (props) => {
 
 const DateCell = (props) => {
   return (
-    <DatePicker
+    <DateInput
+      unstyled={true}
       {...props}
-      value={props.value && formatDate(props.value)}
-      selected={props.value}
+      isRead={props.readOnly}
+      disabled={props.readOnly}
       onChange={(value) => {
-        debugger
         props.onChange({ target: { value } })
       }}
-      locale="uk"
-      format="dd.MM.yyyy"
-      disabled={props.readOnly}
     />
   )
+  // return (
+  //   <DatePicker
+  //     // {...props}
+  //     value={props.value ? formatDate(props.value) : props.value}
+  //     // selected={props.value}
+  //     onChange={(value) => {
+  //       debugger
+  //       props.onChange({ target: { value } })
+  //     }}
+  //     locale="uk"
+  //     format="dd.MM.yyyy"
+  //     disabled={props.readOnly}
+  //   />
+  // )
 }

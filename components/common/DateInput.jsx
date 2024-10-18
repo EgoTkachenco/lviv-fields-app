@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import React, { useMemo, useRef, useState } from 'react'
 import styled from 'styled-components'
 import DatePicker from 'react-datepicker'
 import { formatDate } from '../../utils'
@@ -16,6 +16,8 @@ export default function DateInput({
   validate = () => true,
   isRead,
   style = {},
+  unstyled = false,
+  disabled = false,
 }) {
   const [focus, setFocus] = useState(false)
   const [inputValue, setInputValue] = useState('')
@@ -47,40 +49,53 @@ export default function DateInput({
       setInputValue(inputValue)
     }
   }
+
+  const DateInputComponent = unstyled ? DatePicker : InputField
+
+  const selectedDate = useMemo(() => {
+    if (!value) return undefined
+    const date = new Date(value)
+    if (date.toString() === 'Invalid Date') return undefined
+    return value
+  }, [value])
+
   return (
     <Wrapper style={style}>
-      <InputField
-        ref={datepickerRef}
-        id={id}
-        locale="uk"
-        name={name}
-        value={focus ? inputValue : value ? formatDate(value) : null}
-        selected={value}
-        onSelect={(value) => {
-          debugger
-          const newValue = value
-          if (!newValue) return onChange('')
-          const isValid = newValue && validate(newValue)
-          if (newValue && isValid && onChange) {
-            onChange(newValue)
+      <ErrorBoundary>
+        <DateInputComponent
+          ref={datepickerRef}
+          id={id}
+          locale="uk"
+          name={name}
+          value={focus ? inputValue : value ? formatDate(value) : ''}
+          selected={selectedDate}
+          // selected={value}
+          onSelect={(value) => {
+            const newValue = value
+            if (!newValue) return onChange('')
+            const isValid = newValue && validate(newValue)
+            if (newValue && isValid && onChange) {
+              onChange(newValue)
+              setFocus(false)
+            }
+          }}
+          onChangeRaw={handleChangeRaw}
+          placeholderText={placeholder}
+          size={size}
+          type="date"
+          readonly={isRead}
+          disabled={disabled}
+          format="dd.MM.yyyy"
+          onFocus={() => {
+            setFocus(true)
+            if (!inputValue) setInputValue(value ? formatDate(value) : '')
+          }}
+          onBlur={() => {
             setFocus(false)
-          }
-        }}
-        onChangeRaw={handleChangeRaw}
-        placeholderText={placeholder}
-        size={size}
-        type="date"
-        readonly={isRead}
-        format="dd.MM.yyyy"
-        onFocus={() => {
-          setFocus(true)
-          if (!inputValue) setInputValue(value ? formatDate(value) : '')
-        }}
-        onBlur={() => {
-          setFocus(false)
-          setInputValue('')
-        }}
-      />
+            setInputValue('')
+          }}
+        />
+      </ErrorBoundary>
 
       <InputFieldRightSlot>{rightSlot}</InputFieldRightSlot>
 
@@ -88,6 +103,45 @@ export default function DateInput({
       <InputError show={!!error}>{error}</InputError>
     </Wrapper>
   )
+}
+
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props)
+
+    // Define a state variable to track whether is an error or not
+    this.state = { hasError: false }
+  }
+  static getDerivedStateFromError(error) {
+    // Update state so the next render will show the fallback UI
+
+    return { hasError: true }
+  }
+  componentDidCatch(error, errorInfo) {
+    // You can use your own error logging service here
+    console.log({ error, errorInfo })
+  }
+  render() {
+    // Check if the error is thrown
+    if (this.state.hasError) {
+      // You can render any custom fallback UI
+      return (
+        <div>
+          <h2>Oops, there is an error!</h2>
+          <button
+            type="button"
+            onClick={() => this.setState({ hasError: false })}
+          >
+            Try again?
+          </button>
+        </div>
+      )
+    }
+
+    // Return children components in case of no error
+
+    return this.props.children
+  }
 }
 
 const Wrapper = styled.div`

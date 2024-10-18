@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Input, Spacer, Icon, Button, Box, PageLoader } from '../common'
 import store from '../../store/registry/main.js'
 import { observer } from 'mobx-react-lite'
@@ -42,20 +42,20 @@ const Registry = observer(() => {
   const [activeTab, setActiveTab] = useState(tabs[0].value)
 
   const filter = stores[activeTab].filter
-  const [filters, setFilters] = useState({})
-  useEffect(() => {
-    const filters = { search, ...filter }
-    setFilters(filters)
-  }, [filter, search])
+
+  const filters = useMemo(() => ({ search, ...filter }), [search, filter])
 
   const router = useRouter()
   const isRead = mode === 'read'
-  const handleCellClick = (key, index, value) => {
-    if (key === 'cadastr') {
-      store.showOnMap(value)
-      router.push('/map')
-    }
-  }
+  const handleCellClick = useCallback(
+    (key, index, value) => {
+      if (key === 'cadastr') {
+        store.showOnMap(value)
+        router.push('/map')
+      }
+    },
+    [router]
+  )
   const exportData = () => {
     switch (activeTab) {
       case 'owner':
@@ -70,8 +70,12 @@ const Registry = observer(() => {
     }
   }
 
-  // const filters = filter
-  // filters.search = search
+  useEffect(() => {
+    if (activeTab) {
+      stores[activeTab].debouncedLoadDataCount()
+    }
+  }, [activeTab, filters])
+
   const isShowOnMap = Object.values(filters).filter((v) => v).length > 0
 
   return (
@@ -82,7 +86,9 @@ const Registry = observer(() => {
         <Search>
           <Input
             value={search}
-            onChange={(value) => store.updateSearch(value)}
+            onChange={(value) => {
+              store.updateSearch(value)
+            }}
             placeholder="Пошук"
             tip={
               <SearchIcon>
